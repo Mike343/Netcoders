@@ -1,0 +1,5 @@
+C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.dll
+C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\Coders.dll
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\Coders.pdb

@@ -1,0 +1,8 @@
+C:\Users\Mike\Desktop\Netcoders\Coders.Tests\bin\Release\Coders.Tests.dll
+C:\Users\Mike\Desktop\Netcoders\Coders.Tests\bin\Release\Coders.Tests.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders.Tests\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Mike\Desktop\Netcoders\Coders.Tests\obj\Release\Coders.Tests.dll
+C:\Users\Mike\Desktop\Netcoders\Coders.Tests\obj\Release\Coders.Tests.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders.Tests\bin\Release\Coders.dll
+C:\Users\Mike\Desktop\Netcoders\Coders.Tests\bin\Release\Coders.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders.Tests\bin\Release\Ninject.dll

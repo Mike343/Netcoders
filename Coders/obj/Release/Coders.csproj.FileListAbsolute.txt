@@ -1,0 +1,10 @@
+C:\Users\Mike\Desktop\Netcoders\Coders\bin\Release\Coders.dll
+C:\Users\Mike\Desktop\Netcoders\Coders\bin\Release\Coders.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders\bin\Release\Coders.dll.CodeAnalysisLog.xml
+C:\Users\Mike\Desktop\Netcoders\Coders\bin\Release\Coders.dll.lastcodeanalysissucceeded
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Release\ResolveAssemblyReference.cache
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Release\Coders.dll
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Release\Coders.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Release\Coders.Strings.Errors.resources
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Release\GenerateResource.read.1.tlog
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Release\GenerateResource.write.1.tlog
