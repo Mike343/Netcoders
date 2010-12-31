@@ -17,18 +17,18 @@
 
 namespace Coders.Specifications
 {
-    public abstract class CompositeSpecification<T> : Specification<T>
-    {
+	public abstract class CompositeSpecification<T> : Specification<T>
+	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CompositeSpecification&lt;T&gt;"/> class.
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		protected CompositeSpecification(ISpecification<T> left, ISpecification<T> right)
-        {
-            this.Left = left;
+		{
+			this.Left = left;
 			this.Right = right;
-        }
+		}
 
 		/// <summary>
 		/// Gets or sets the left.
@@ -36,8 +36,8 @@ namespace Coders.Specifications
 		/// <value>The left.</value>
 		public ISpecification<T> Left
 		{
-			get; 
-			private set; 
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -49,5 +49,5 @@ namespace Coders.Specifications
 			get;
 			private set;
 		}
-    }
+	}
 }

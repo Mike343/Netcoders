@@ -17,37 +17,37 @@
 
 namespace Coders.Specifications
 {
-    public abstract class Specification<T> : ISpecification<T>
-    {
+	public abstract class Specification<T> : ISpecification<T>
+	{
 		/// <summary>
 		/// Ands the specified specification.
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-        public AndSpecification<T> And(Specification<T> specification)
-        {
-            return new AndSpecification<T>(this, specification);
-        }
+		public AndSpecification<T> And(Specification<T> specification)
+		{
+			return new AndSpecification<T>(this, specification);
+		}
 
 		/// <summary>
 		/// Ors the specified specification.
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-        public OrSpecification<T> Or(Specification<T> specification)
-        {
-            return new OrSpecification<T>(this, specification);
-        }
+		public OrSpecification<T> Or(Specification<T> specification)
+		{
+			return new OrSpecification<T>(this, specification);
+		}
 
 		/// <summary>
 		/// Nots the specified specification.
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-        public NotSpecification<T> Not(Specification<T> specification)
-        {
-            return new NotSpecification<T>(this, specification);
-        }
+		public NotSpecification<T> Not(Specification<T> specification)
+		{
+			return new NotSpecification<T>(this, specification);
+		}
 
 		/// <summary>
 		/// Determines whether [is satisfied by] [the specified obj].
@@ -57,5 +57,5 @@ namespace Coders.Specifications
 		/// 	<c>true</c> if [is satisfied by] [the specified obj]; otherwise, <c>false</c>.
 		/// </returns>
 		public abstract bool IsSatisfiedBy(T entity);
-    }
+	}
 }

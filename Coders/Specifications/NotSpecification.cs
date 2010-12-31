@@ -17,18 +17,18 @@
 
 namespace Coders.Specifications
 {
-    public class NotSpecification<T> : CompositeSpecification<T>
-    {
+	public class NotSpecification<T> : CompositeSpecification<T>
+	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="NotSpecification&lt;T&gt;"/> class.
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
-        public NotSpecification(Specification<T> left, Specification<T> right) 
+		public NotSpecification(ISpecification<T> left, ISpecification<T> right)
 			: base(left, right)
-        {
+		{
 
-        }
+		}
 
 		/// <summary>
 		/// Determines whether [is satisfied by] [the specified entity].
@@ -37,9 +37,9 @@ namespace Coders.Specifications
 		/// <returns>
 		/// 	<c>true</c> if [is satisfied by] [the specified entity]; otherwise, <c>false</c>.
 		/// </returns>
-        public override bool IsSatisfiedBy(T entity)
-        {
+		public override bool IsSatisfiedBy(T entity)
+		{
 			return base.Left.IsSatisfiedBy(entity) && !base.Right.IsSatisfiedBy(entity);
-        }
-    }
+		}
+	}
 }
