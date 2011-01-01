@@ -17,36 +17,8 @@
 
 namespace Coders.Models.Countries
 {
-	public class Country : EntityBase
+	public interface ICountryService : IEntityService<Country>
 	{
-		/// <summary>
-		/// Gets or sets the title.
-		/// </summary>
-		/// <value>The title.</value>
-		public virtual string Title
-		{
-			get;
-			set;
-		}
 
-		/// <summary>
-		/// Gets or sets the slug.
-		/// </summary>
-		/// <value>The slug.</value>
-		public virtual string Slug
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the code.
-		/// </summary>
-		/// <value>The code.</value>
-		public virtual string Code
-		{
-			get;
-			set;
-		}
 	}
 }

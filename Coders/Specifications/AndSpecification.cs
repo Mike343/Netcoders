@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 //	Author: Mike Geise - http://www.netcoders.net
 //	Copyright (c) 2010, Mike Geise
 //
@@ -15,9 +15,13 @@
 //	limitations under the License.
 #endregion
 
+#region Using Directives
+using System;
+#endregion
+
 namespace Coders.Specifications
 {
-	public class AndSpecification<T> : CompositeSpecification<T>
+	public class AndSpecification<T> : Specification<T>
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AndSpecification&lt;T&gt;"/> class.
@@ -25,9 +29,19 @@ namespace Coders.Specifications
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
 		public AndSpecification(ISpecification<T> left, ISpecification<T> right)
-			: base(left, right)
 		{
+			if (left == null)
+			{
+				throw new ArgumentNullException("left");
+			}
 
+			if (right == null)
+			{
+				throw new ArgumentNullException("right");
+			}
+
+			base.Func = Delegate.Combine(left.Predicate.Compile(), right.Predicate.Compile()) as Func<T, bool>;
+			base.Predicate = left.Predicate.And(right.Predicate);
 		}
 
 		/// <summary>
@@ -39,7 +53,7 @@ namespace Coders.Specifications
 		/// </returns>
 		public override bool IsSatisfiedBy(T entity)
 		{
-			return base.Left.IsSatisfiedBy(entity) && base.Right.IsSatisfiedBy(entity);
+			return base.Predicate.Compile().Invoke(entity);
 		}
 	}
 }

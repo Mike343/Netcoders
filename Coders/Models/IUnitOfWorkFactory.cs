@@ -15,38 +15,14 @@
 //	limitations under the License.
 #endregion
 
-namespace Coders.Models.Countries
+namespace Coders.Models
 {
-	public class Country : EntityBase
-	{
+    public interface IUnitOfWorkFactory
+    {
 		/// <summary>
-		/// Gets or sets the title.
+		/// Creates this instance.
 		/// </summary>
-		/// <value>The title.</value>
-		public virtual string Title
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the slug.
-		/// </summary>
-		/// <value>The slug.</value>
-		public virtual string Slug
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the code.
-		/// </summary>
-		/// <value>The code.</value>
-		public virtual string Code
-		{
-			get;
-			set;
-		}
-	}
+		/// <returns></returns>
+        IUnitOfWork Create();
+    }
 }

@@ -15,10 +15,63 @@
 //	limitations under the License.
 #endregion
 
+#region Using Directives
+using System;
+using System.Linq.Expressions;
+#endregion
+
 namespace Coders.Specifications
 {
 	public interface ISpecification<T>
 	{
+		/// <summary>
+		/// Gets the func.
+		/// </summary>
+		/// <value>The func.</value>
+		Func<T, bool> Func { get; }
+
+		/// <summary>
+		/// Gets the predicate.
+		/// </summary>
+		/// <value>The predicate.</value>
+		Expression<Func<T, bool>> Predicate { get; }
+
+		/// <summary>
+		/// Gets or sets the page.
+		/// </summary>
+		/// <value>The page.</value>
+		int? Page { get; set; }
+
+		/// <summary>
+		/// Gets the page or default.
+		/// </summary>
+		/// <value>The page or default.</value>
+		int PageOrDefault { get; }
+
+		/// <summary>
+		/// Gets or sets the limit.
+		/// </summary>
+		/// <value>The limit.</value>
+		int Limit { get; set; }
+
+		/// <summary>
+		/// Gets the limit or default.
+		/// </summary>
+		/// <value>The limit or default.</value>
+		int LimitOrDefault { get; }
+
+		/// <summary>
+		/// Gets the first.
+		/// </summary>
+		/// <value>The first.</value>
+		int First { get; }
+
+		/// <summary>
+		/// Gets the last.
+		/// </summary>
+		/// <value>The last.</value>
+		int Last { get; }
+
 		/// <summary>
 		/// Determines whether [is satisfied by] [the specified entity].
 		/// </summary>

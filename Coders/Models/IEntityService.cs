@@ -23,16 +23,14 @@ using Coders.Specifications;
 
 namespace Coders.Models
 {
-	public interface IEntityService<T, in TSpecification>
-		where T : class, IEntity, new()
-		where TSpecification : class, ISpecification<T>, new()
+	public interface IEntityService<T> where T : class, IEntity, new()
 	{
 		/// <summary>
 		/// Gets the entity using the specified specification.
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-		T GetBy(TSpecification specification);
+		T GetBy(ISpecification<T> specification);
 
 		/// <summary>
 		/// Gets the entity using the specified id.
@@ -52,14 +50,14 @@ namespace Coders.Models
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-		IList<T> GetAll(TSpecification specification);
+		IList<T> GetAll(ISpecification<T> specification);
 
 		/// <summary>
 		/// Gets the entities paged using the specified specification.
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-		IPagedCollection<T> GetPaged(TSpecification specification);
+		IPagedCollection<T> GetPaged(ISpecification<T> specification);
 
 		/// <summary>
 		/// Creates the entity.
@@ -78,7 +76,7 @@ namespace Coders.Models
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-		int Count(TSpecification specification);
+		int Count(ISpecification<T> specification);
 
 		/// <summary>
 		/// Inserts the specified entity.
