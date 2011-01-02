@@ -16,26 +16,13 @@
 #endregion
 
 #region Using Directives
-using System;
-using System.Linq.Expressions;
+using System.Linq;
 #endregion
 
 namespace Coders.Specifications
 {
-	public interface ISpecification<T>
+	public interface ISpecification<TEntity>
 	{
-		/// <summary>
-		/// Gets the func.
-		/// </summary>
-		/// <value>The func.</value>
-		Func<T, bool> Func { get; }
-
-		/// <summary>
-		/// Gets the predicate.
-		/// </summary>
-		/// <value>The predicate.</value>
-		Expression<Func<T, bool>> Predicate { get; }
-
 		/// <summary>
 		/// Gets or sets the page.
 		/// </summary>
@@ -73,12 +60,17 @@ namespace Coders.Specifications
 		int Last { get; }
 
 		/// <summary>
-		/// Determines whether [is satisfied by] [the specified entity].
+		/// Satisfies the entity from.
 		/// </summary>
-		/// <param name="entity">The entity.</param>
-		/// <returns>
-		/// 	<c>true</c> if [is satisfied by] [the specified entity]; otherwise, <c>false</c>.
-		/// </returns>
-		bool IsSatisfiedBy(T entity);
+		/// <param name="query">The query.</param>
+		/// <returns></returns>
+		TEntity SatisfyEntityFrom(IQueryable<TEntity> query);
+
+		/// <summary>
+		/// Satisfies the entities from.
+		/// </summary>
+		/// <param name="query">The query.</param>
+		/// <returns></returns>
+		IQueryable<TEntity> SatisfyEntitiesFrom(IQueryable<TEntity> query);
 	}
 }

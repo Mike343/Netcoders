@@ -48,7 +48,7 @@ namespace Coders.Specifications
 		}
 
 		/// <summary>
-		/// Visits the parameter.
+		/// Visits the <see cref="T:System.Linq.Expressions.ParameterExpression"/>.
 		/// </summary>
 		/// <param name="node">The expression to visit.</param>
 		/// <returns>

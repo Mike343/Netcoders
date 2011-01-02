@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoderContext.cs" />
+    <Compile Include="CountryRepository.cs" />
     <Compile Include="EntityUnitOfWork.cs" />
     <Compile Include="EntityUnitOfWorkFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

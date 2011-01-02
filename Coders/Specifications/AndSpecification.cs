@@ -16,44 +16,43 @@
 #endregion
 
 #region Using Directives
-using System;
+using System.Linq;
+using Coders.Extensions;
 #endregion
 
 namespace Coders.Specifications
 {
-	public class AndSpecification<T> : Specification<T>
+	public class AndSpecification<TEntity> : CompositeSpecification<TEntity>
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="AndSpecification&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="AndSpecification&lt;TEntity&gt;"/> class.
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
-		public AndSpecification(ISpecification<T> left, ISpecification<T> right)
+		public AndSpecification(Specification<TEntity> left, Specification<TEntity> right)
+			: base(left, right)
 		{
-			if (left == null)
-			{
-				throw new ArgumentNullException("left");
-			}
 
-			if (right == null)
-			{
-				throw new ArgumentNullException("right");
-			}
-
-			base.Func = Delegate.Combine(left.Predicate.Compile(), right.Predicate.Compile()) as Func<T, bool>;
-			base.Predicate = left.Predicate.And(right.Predicate);
 		}
 
 		/// <summary>
-		/// Determines whether [is satisfied by] [the specified entity].
+		/// Satisfies the entity from.
 		/// </summary>
-		/// <param name="entity">The entity.</param>
-		/// <returns>
-		/// 	<c>true</c> if [is satisfied by] [the specified entity]; otherwise, <c>false</c>.
-		/// </returns>
-		public override bool IsSatisfiedBy(T entity)
+		/// <param name="query">The query.</param>
+		/// <returns></returns>
+		public override TEntity SatisfyEntityFrom(IQueryable<TEntity> query)
 		{
-			return base.Predicate.Compile().Invoke(entity);
+			return SatisfyEntitiesFrom(query).FirstOrDefault();
+		}
+
+		/// <summary>
+		/// Satisfies the entities from.
+		/// </summary>
+		/// <param name="query">The query.</param>
+		/// <returns></returns>
+		public override IQueryable<TEntity> SatisfyEntitiesFrom(IQueryable<TEntity> query)
+		{
+			return query.Where(Left.Predicate.And(Right.Predicate));
 		}
 	}
 }

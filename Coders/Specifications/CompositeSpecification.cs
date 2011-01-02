@@ -1,4 +1,4 @@
-#region License
+﻿#region License
 //	Author: Mike Geise - http://www.netcoders.net
 //	Copyright (c) 2010, Mike Geise
 //
@@ -17,14 +17,14 @@
 
 namespace Coders.Specifications
 {
-	public abstract class CompositeSpecification<T> : Specification<T>
+	public abstract class CompositeSpecification<TEntity> : Specification<TEntity> 
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="CompositeSpecification&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="CompositeSpecification&lt;TEntity&gt;"/> class.
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
-		protected CompositeSpecification(ISpecification<T> left, ISpecification<T> right)
+		protected CompositeSpecification(Specification<TEntity> left, Specification<TEntity> right)
 		{
 			this.Left = left;
 			this.Right = right;
@@ -34,17 +34,17 @@ namespace Coders.Specifications
 		/// Gets or sets the left.
 		/// </summary>
 		/// <value>The left.</value>
-		public ISpecification<T> Left
+		public Specification<TEntity> Left
 		{
-			get;
-			private set;
+			get; 
+			private set; 
 		}
 
 		/// <summary>
 		/// Gets or sets the right.
 		/// </summary>
 		/// <value>The right.</value>
-		public ISpecification<T> Right
+		public Specification<TEntity> Right
 		{
 			get;
 			private set;

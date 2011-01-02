@@ -17,15 +17,16 @@
 
 #region Using Directives
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 #endregion
 
 namespace Coders.Specifications
 {
-	public class Specification<T> : ISpecification<T>
+	public class Specification<TEntity> : ISpecification<TEntity>
 	{
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Specification&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="Specification&lt;TEntity&gt;"/> class.
 		/// </summary>
 		public Specification()
 		{
@@ -33,33 +34,12 @@ namespace Coders.Specifications
 		}
 
 		/// <summary>
-		/// Initializes a new instance of the <see cref="Specification&lt;T&gt;"/> class.
+		/// Initializes a new instance of the <see cref="Specification&lt;TEntity&gt;"/> class.
 		/// </summary>
 		/// <param name="predicate">The predicate.</param>
-		public Specification(Expression<Func<T, bool>> predicate)
+		public Specification(Expression<Func<TEntity, bool>> predicate)
 		{
-			this.Func = null;
 			this.Predicate = predicate;
-		}
-
-		/// <summary>
-		/// Gets or sets the func.
-		/// </summary>
-		/// <value>The func.</value>
-		public Func<T, bool> Func
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the predicate.
-		/// </summary>
-		/// <value>The predicate.</value>
-		public Expression<Func<T, bool>> Predicate
-		{
-			get; 
-			set;
 		}
 
 		/// <summary>
@@ -141,37 +121,53 @@ namespace Coders.Specifications
 		}
 
 		/// <summary>
-		/// Ands the specified left.
+		/// Gets or sets the predicate.
 		/// </summary>
-		/// <param name="left">The left.</param>
-		/// <param name="right">The right.</param>
-		/// <returns></returns>
-		public Specification<T> And(ISpecification<T> left, ISpecification<T> right)
+		/// <value>The predicate.</value>
+		public Expression<Func<TEntity, bool>> Predicate
 		{
-			return new AndSpecification<T>(left, right);
+			get;
+			private set;
 		}
 
 		/// <summary>
-		/// Ors the specified left.
+		/// Ands the specified specification.
 		/// </summary>
-		/// <param name="left">The left.</param>
-		/// <param name="right">The right.</param>
+		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-		public Specification<T> Or(ISpecification<T> left, ISpecification<T> right)
+		public AndSpecification<TEntity> And(Specification<TEntity> specification)
 		{
-			return new OrSpecification<T>(left, right);
+			return new AndSpecification<TEntity>(this, specification);
 		}
 
 		/// <summary>
-		/// Determines whether [is satisfied by] [the specified obj].
+		/// Ors the specified specification.
 		/// </summary>
-		/// <param name="entity">The entity.</param>
-		/// <returns>
-		/// 	<c>true</c> if [is satisfied by] [the specified obj]; otherwise, <c>false</c>.
-		/// </returns>
-		public virtual bool IsSatisfiedBy(T entity)
+		/// <param name="specification">The specification.</param>
+		/// <returns></returns>
+		public OrSpecification<TEntity> Or(Specification<TEntity> specification)
 		{
-			return this.Predicate.Compile().Invoke(entity);
+			return new OrSpecification<TEntity>(this, specification);
+		}
+
+		/// <summary>
+		/// Satisfies the entity from.
+		/// </summary>
+		/// <param name="query">The query.</param>
+		/// <returns></returns>
+		public virtual TEntity SatisfyEntityFrom(IQueryable<TEntity> query)
+		{
+			return query.Where(Predicate).FirstOrDefault();
+		}
+
+		/// <summary>
+		/// Satisfies the entities from.
+		/// </summary>
+		/// <param name="query">The query.</param>
+		/// <returns></returns>
+		public virtual IQueryable<TEntity> SatisfyEntitiesFrom(IQueryable<TEntity> query)
+		{
+			return query.Where(Predicate);
 		}
 	}
 }

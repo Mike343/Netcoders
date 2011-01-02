@@ -63,7 +63,9 @@
     <Compile Include="Models\Attachments\AttachmentPrivilege.cs" />
     <Compile Include="Models\Attachments\AttachmentRulePrivilege.cs" />
     <Compile Include="Models\Countries\Country.cs" />
+    <Compile Include="Models\Countries\CountryCodeSpecification.cs" />
     <Compile Include="Models\Countries\CountryPrivilege.cs" />
+    <Compile Include="Models\Countries\CountrySlugSpecification.cs" />
     <Compile Include="Models\Countries\ICountryRepository.cs" />
     <Compile Include="Models\Countries\ICountryService.cs" />
     <Compile Include="Models\EntityBase.cs" />
@@ -92,11 +94,12 @@
     <Compile Include="ServiceLocatorBase.cs" />
     <Compile Include="ServiceLocatorProvider.cs" />
     <Compile Include="Specifications\AndSpecification.cs" />
+    <Compile Include="Specifications\CompositeSpecification.cs" />
     <Compile Include="Specifications\ISpecification.cs" />
     <Compile Include="Specifications\OrSpecification.cs" />
     <Compile Include="Specifications\Specification.cs" />
+    <Compile Include="Extensions\SpecificationExtension.cs" />
     <Compile Include="Specifications\SpecificationParameterBinder.cs" />
-    <Compile Include="Specifications\SpecificationExtension.cs" />
     <Compile Include="Strings\Errors.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

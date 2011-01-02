@@ -36,12 +36,12 @@ namespace Coders.Repositories
 				throw new ArgumentNullException("specification");
 			}
 
-			return this.ObjectSet.FirstOrDefault(specification.Predicate);
+			return specification.SatisfyEntityFrom(this.ObjectSet);
 		}
 
 		public virtual T GetById(int id)
 		{
-			return this.ObjectSet.FirstOrDefault(x => x.Id == id);
+			return this.ObjectSet.SingleOrDefault(x => x.Id == id);
 		}
 
 		public virtual IList<T> GetAll()
@@ -56,7 +56,7 @@ namespace Coders.Repositories
 				throw new ArgumentNullException("specification");
 			}
 
-			return this.ObjectSet.Where(specification.Predicate).ToList();
+			return specification.SatisfyEntitiesFrom(this.ObjectSet).ToList();
 		}
 
 		public virtual IPagedCollection<T> GetPaged(ISpecification<T> specification)
@@ -66,7 +66,7 @@ namespace Coders.Repositories
 				throw new ArgumentNullException("specification");
 			}
 
-			var items = this.ObjectSet.Where(specification.Predicate)
+			var items = specification.SatisfyEntitiesFrom(this.ObjectSet)
 				.Skip(specification.First)
 				.Take(specification.LimitOrDefault)
 				.ToList();
@@ -86,7 +86,7 @@ namespace Coders.Repositories
 				throw new ArgumentNullException("specification");
 			}
 
-			return this.ObjectSet.Where(specification.Predicate).Count();
+			return specification.SatisfyEntitiesFrom(this.ObjectSet).Count();
 		}
 
 		public virtual void Insert(T entity)
