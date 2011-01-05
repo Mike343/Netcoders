@@ -89,7 +89,7 @@ namespace Coders.Authentication
 		/// </returns>
 		public bool CanView(T entity, UserIdentity identity)
 		{
-			return _principal.ContainsRole(this.Role) && _principal.Actions[this.Role].AllowedTo(Privileges.View);
+			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.View);
 		}
 
 		/// <summary>
@@ -114,7 +114,7 @@ namespace Coders.Authentication
 		/// </returns>
 		public bool CanViewAny(T entity, UserIdentity identity)
 		{
-			return _principal.ContainsRole(this.Role) && _principal.Actions[this.Role].AllowedTo(Privileges.ViewAny);
+			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.ViewAny);
 		}
 
 		/// <summary>
@@ -139,7 +139,7 @@ namespace Coders.Authentication
 		/// </returns>
 		public bool CanCreate(T entity, UserIdentity identity)
 		{
-			return _principal.ContainsRole(this.Role) && _principal.Actions[this.Role].AllowedTo(Privileges.Create);
+			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.Create);
 		}
 
 		/// <summary>
@@ -164,7 +164,7 @@ namespace Coders.Authentication
 		/// </returns>
 		public bool CanUpdate(T entity, UserIdentity identity)
 		{
-			return _principal.ContainsRole(this.Role) && _principal.Actions[this.Role].AllowedTo(Privileges.Update);
+			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.Update);
 		}
 
 		/// <summary>
@@ -189,7 +189,7 @@ namespace Coders.Authentication
 		/// </returns>
 		public bool CanUpdateAny(T entity, UserIdentity identity)
 		{
-			return _principal.ContainsRole(this.Role) && _principal.Actions[this.Role].AllowedTo(Privileges.UpdateAny);
+			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.UpdateAny);
 		}
 
 		/// <summary>
@@ -214,7 +214,7 @@ namespace Coders.Authentication
 		/// </returns>
 		public bool CanDelete(T entity, UserIdentity identity)
 		{
-			return _principal.ContainsRole(this.Role) && _principal.Actions[this.Role].AllowedTo(Privileges.Delete);
+			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.Delete);
 		}
 
 		/// <summary>
@@ -239,7 +239,7 @@ namespace Coders.Authentication
 		/// </returns>
 		public bool CanDeleteAny(T entity, UserIdentity identity)
 		{
-			return _principal.ContainsRole(this.Role) && _principal.Actions[this.Role].AllowedTo(Privileges.DeleteAny);
+			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.DeleteAny);
 		}
 	}
 }

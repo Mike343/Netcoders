@@ -4,68 +4,33 @@
  <Namespaces>
   <Namespace Name="Coders.Collections">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-02 00:11:27Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-05 04:06:49Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Collections' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Exceptions">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-02 00:11:27Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-05 04:06:49Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Exceptions' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
+  <Namespace Name="Coders.Models.Logs">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-05 04:06:49Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Logs' with another namespace.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="Coders.Models.Users.Enums">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-05 04:06:49Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Users.Enums' with another namespace.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
  </Namespaces>
- <Targets>
-  <Target Name="C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.dll">
-   <Modules>
-    <Module Name="coders.dll">
-     <Namespaces>
-      <Namespace Name="Coders.Extensions">
-       <Types>
-        <Type Name="SpecificationExtension" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#And`1(System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!!0,System.Boolean&gt;&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2011-01-02 00:11:27Z" FixCategory="Breaking">
-             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\Mike\Desktop\Netcoders\Coders\Extensions" File="SpecificationExtension.cs" Line="63">Consider a design where 'SpecificationExtension.And&lt;T&gt;(this LambdaExpression, Expression&lt;Func&lt;T, bool&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;T, bool&gt;&gt;'.</Issue>
-             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\Mike\Desktop\Netcoders\Coders\Extensions" File="SpecificationExtension.cs" Line="63">Consider a design where 'SpecificationExtension.And&lt;T&gt;(this LambdaExpression, Expression&lt;Func&lt;T, bool&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;T, bool&gt;&gt;'.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-          <Member Name="#Or`1(System.Linq.Expressions.LambdaExpression,System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;!!0,System.Boolean&gt;&gt;)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2011-01-02 00:11:27Z" FixCategory="Breaking">
-             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\Mike\Desktop\Netcoders\Coders\Extensions" File="SpecificationExtension.cs" Line="76">Consider a design where 'SpecificationExtension.Or&lt;T&gt;(this LambdaExpression, Expression&lt;Func&lt;T, bool&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;T, bool&gt;&gt;'.</Issue>
-             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\Mike\Desktop\Netcoders\Coders\Extensions" File="SpecificationExtension.cs" Line="76">Consider a design where 'SpecificationExtension.Or&lt;T&gt;(this LambdaExpression, Expression&lt;Func&lt;T, bool&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;T, bool&gt;&gt;'.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-       </Types>
-      </Namespace>
-      <Namespace Name="Coders.Specifications">
-       <Types>
-        <Type Name="Specification`1" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#Predicate" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2011-01-02 00:11:27Z" FixCategory="Breaking">
-             <Issue Certainty="95" Level="CriticalError">Consider a design where 'Specification&lt;TEntity&gt;.Predicate' doesn't nest generic type 'Expression&lt;Func&lt;TEntity, bool&gt;&gt;'.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-       </Types>
-      </Namespace>
-     </Namespaces>
-    </Module>
-   </Modules>
-  </Target>
- </Targets>
  <Rules>
   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
    <Name>Avoid namespaces with few types</Name>
@@ -75,16 +40,6 @@
    <Url>http://msdn.microsoft.com/library/ms182130(VS.100).aspx</Url>
    <Email>[none]</Email>
    <MessageLevel Certainty="50">Warning</MessageLevel>
-   <File Name="designrules.dll" Version="10.0.0.0" />
-  </Rule>
-  <Rule TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006">
-   <Name>Do not nest generic types in member signatures</Name>
-   <Description>Avoid API that require users to instantiate a generic type with another generic type as type argument. The syntax gets too complex.</Description>
-   <Resolution Name="Default">Consider a design where {0} doesn't nest generic type {1}.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/ms182144(VS.100).aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="95">CriticalError</MessageLevel>
    <File Name="designrules.dll" Version="10.0.0.0" />
   </Rule>
  </Rules>

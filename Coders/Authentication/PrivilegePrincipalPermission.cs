@@ -199,7 +199,7 @@ namespace Coders.Authentication
 				return false;
 			}
 
-			principal.DetermineRoleActions();
+			principal.DetermineRolePrivileges();
 
 			return !AuthorizeOnly && principal.AllowedTo(this.Role, this.Action);
 		}

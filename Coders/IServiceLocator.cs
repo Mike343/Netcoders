@@ -17,6 +17,7 @@
 
 #region Using Directives
 using System;
+using System.Collections.Generic;
 #endregion
 
 namespace Coders
@@ -52,6 +53,21 @@ namespace Coders
 		/// <param name="key">The key.</param>
 		/// <returns></returns>
 		object GetInstance(Type type, string key);
+
+		/// <summary>
+		/// Gets the instances.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		IEnumerable<T> GetInstances<T>();
+
+		/// <summary>
+		/// Gets the instances by the specified type and key.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="key">The key.</param>
+		/// <returns></returns>
+		IEnumerable<T> GetInstances<T>(string key);
 
 		/// <summary>
 		/// Releases the specified instance.

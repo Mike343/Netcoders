@@ -23,7 +23,7 @@ namespace Coders.Models.Attachments
 		/// Gets or sets the size of the file.
 		/// </summary>
 		/// <value>The size of the file.</value>
-		public int FileSize
+		public virtual int FileSize
 		{
 			get;
 			set;
@@ -33,7 +33,7 @@ namespace Coders.Models.Attachments
 		/// Gets or sets the width of the file.
 		/// </summary>
 		/// <value>The width of the file.</value>
-		public int FileWidth
+		public virtual int FileWidth
 		{
 			get;
 			set;
@@ -43,7 +43,7 @@ namespace Coders.Models.Attachments
 		/// Gets or sets the height of the file.
 		/// </summary>
 		/// <value>The height of the file.</value>
-		public int FileHeight
+		public virtual int FileHeight
 		{
 			get;
 			set;
@@ -53,9 +53,9 @@ namespace Coders.Models.Attachments
 		/// Gets or sets the group.
 		/// </summary>
 		/// <value>The group.</value>
-		public string Group
+		public virtual string Group
 		{
-			get; 
+			get;
 			set;
 		}
 
@@ -63,9 +63,9 @@ namespace Coders.Models.Attachments
 		/// Gets or sets the type of the file.
 		/// </summary>
 		/// <value>The type of the file.</value>
-		public string FileType
+		public virtual string FileType
 		{
-			get; 
+			get;
 			set;
 		}
 
@@ -73,7 +73,7 @@ namespace Coders.Models.Attachments
 		/// Gets or sets the file extension.
 		/// </summary>
 		/// <value>The file extension.</value>
-		public string FileExtension
+		public virtual string FileExtension
 		{
 			get;
 			set;

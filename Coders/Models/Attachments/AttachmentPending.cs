@@ -23,17 +23,7 @@ namespace Coders.Models.Attachments
 		/// Gets or sets the user id.
 		/// </summary>
 		/// <value>The user id.</value>
-		public int UserId
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the property.
-		/// </summary>
-		/// <value>The property.</value>
-		public string Property
+		public virtual int UserId
 		{
 			get;
 			set;
@@ -43,7 +33,7 @@ namespace Coders.Models.Attachments
 		/// Gets or sets the group.
 		/// </summary>
 		/// <value>The group.</value>
-		public string Group
+		public virtual string Group
 		{
 			get;
 			set;
@@ -53,7 +43,7 @@ namespace Coders.Models.Attachments
 		/// Gets or sets the attachment.
 		/// </summary>
 		/// <value>The attachment.</value>
-		public Attachment Attachment
+		public virtual Attachment Attachment
 		{
 			get; 
 			set;

@@ -11,7 +11,7 @@ namespace Coders.Tests.Authentication
 		public void Initialize()
 		{
 			_principal = new FakePrivilegePrincipal();
-			_principal.DetermineRoleActions();
+			_principal.DetermineRolePrivileges();
 		}
 
 		[TestMethod]
@@ -21,9 +21,9 @@ namespace Coders.Tests.Authentication
 		}
 
 		[TestMethod]
-		public void Test_PrivilegePrincipal_Actions()
+		public void Test_PrivilegePrincipal_Privileges()
 		{
-			Assert.IsTrue(_principal.Actions.ContainsKey("Test"));
+			Assert.IsTrue(_principal.Privileges.ContainsKey("Test"));
 		}
 
 		[TestMethod]

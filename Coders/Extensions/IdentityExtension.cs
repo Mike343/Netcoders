@@ -45,7 +45,7 @@ namespace Coders.Extensions
 		/// </returns>
 		public static bool ContainsRole(this PrivilegePrincipal principal, string role)
 		{
-			return principal != null && principal.Actions != null && principal.Actions.ContainsKey(role);
+			return principal != null && principal.Privileges != null && principal.Privileges.ContainsKey(role);
 		}
 	}
 }

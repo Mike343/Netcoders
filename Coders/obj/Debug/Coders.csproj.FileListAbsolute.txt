@@ -1,10 +1,11 @@
 C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.dll
 C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.dll.CodeAnalysisLog.xml
+C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.dll.lastcodeanalysissucceeded
 C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\Coders.dll
-C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\Coders.pdb
 C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\Coders.Strings.Errors.resources
 C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\GenerateResource.read.1.tlog
 C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\GenerateResource.write.1.tlog
-C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.dll.CodeAnalysisLog.xml
-C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.dll.lastcodeanalysissucceeded
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\Coders.dll
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\Coders.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\Coders.Strings.Emails.resources

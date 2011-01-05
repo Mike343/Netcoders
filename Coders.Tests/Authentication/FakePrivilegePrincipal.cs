@@ -10,10 +10,10 @@ namespace Coders.Tests.Authentication
 
 		}
 
-		public override void DetermineRoleActions()
+		public override void DetermineRolePrivileges()
 		{
-			this.Actions.Clear();
-			this.Actions.Add("Test", new PrivilegesValue(Privileges.View | Privileges.Create));
+			this.Privileges.Clear();
+			this.Privileges.Add("Test", new PrivilegesValue(Coders.Authentication.Privileges.View | Coders.Authentication.Privileges.Create));
 		}
 	}
 }

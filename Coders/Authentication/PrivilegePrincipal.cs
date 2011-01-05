@@ -31,7 +31,7 @@ namespace Coders.Authentication
 		protected PrivilegePrincipal(IIdentity identity)
 		{
 			this.Identity = identity;
-			this.Actions = new Dictionary<string, PrivilegesValue>();
+			this.Privileges = new Dictionary<string, PrivilegesValue>();
 		}
 
 		/// <summary>
@@ -49,7 +49,7 @@ namespace Coders.Authentication
 		/// Gets or sets the actions.
 		/// </summary>
 		/// <value>The actions.</value>
-		public Dictionary<string, PrivilegesValue> Actions
+		public Dictionary<string, PrivilegesValue> Privileges
 		{
 			get;
 			private set;
@@ -64,30 +64,30 @@ namespace Coders.Authentication
 		/// </returns>
 		public bool IsInRole(string role)
 		{
-			if (!this.Actions.ContainsKey(role))
+			if (!this.Privileges.ContainsKey(role))
 			{
 				return false;
 			}
 
-			var perm = this.Actions[role];
+			var perm = this.Privileges[role];
 
 			return perm.AllowedTo(Authentication.Privileges.View);
 		}
 
 		/// <summary>
-		/// Alloweds to.
+		/// Determines if the current user is in the specified role has the specified privilege.
 		/// </summary>
 		/// <param name="role">The role.</param>
-		/// <param name="permission">The permission.</param>
+		/// <param name="privilege">The privilege.</param>
 		/// <returns></returns>
-		public bool AllowedTo(string role, Privileges permission)
+		public bool AllowedTo(string role, Privileges privilege)
 		{
-			return this.Actions.ContainsKey(role) && this.Actions[role].AllowedTo(permission);
+			return this.Privileges.ContainsKey(role) && this.Privileges[role].AllowedTo(privilege);
 		}
 
 		/// <summary>
-		/// Determines the role actions.
+		/// Determines the role privileges for the current user.
 		/// </summary>
-		public abstract void DetermineRoleActions();
+		public abstract void DetermineRolePrivileges();
 	}
 }

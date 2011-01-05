@@ -14,7 +14,7 @@ namespace Coders.Tests.Extensions
 		{
 			var principal = new FakePrivilegePrincipal();
 
-			principal.DetermineRoleActions();
+			principal.DetermineRolePrivileges();
 
 			Thread.CurrentPrincipal = principal;
 		}

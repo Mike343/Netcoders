@@ -17,6 +17,7 @@
 
 #region Using Directives
 using System;
+using System.Collections.Generic;
 using Coders.Exceptions;
 using Coders.Extensions;
 using Coders.Strings;
@@ -83,6 +84,35 @@ namespace Coders
 		}
 
 		/// <summary>
+		/// Gets the instances.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <returns></returns>
+		public IEnumerable<T> GetInstances<T>()
+		{
+			return GetInstances<T>(null);
+		}
+
+
+		/// <summary>
+		/// Gets the instances by the specified type and key.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="key">The key.</param>
+		/// <returns></returns>
+		public IEnumerable<T> GetInstances<T>(string key)
+		{
+			try
+			{
+				return TryGetInstances<T>(key);
+			}
+			catch (Exception exception)
+			{
+				throw new ActivationException(Errors.ActivationFailed.FormatInvariant(typeof(T)), exception);
+			}
+		}
+
+		/// <summary>
 		/// Releases the specified instance.
 		/// </summary>
 		/// <param name="instance">The instance.</param>
@@ -98,6 +128,14 @@ namespace Coders
 		/// <param name="key">The key.</param>
 		/// <returns></returns>
 		protected abstract T TryGetInstance<T>(string key);
+
+		/// <summary>
+		/// Tries to get instances by the specified key.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="key">The key.</param>
+		/// <returns></returns>
+		protected abstract IEnumerable<T> TryGetInstances<T>(string key);
 
 		/// <summary>
 		/// Tries to get instance by the specified type and  key.

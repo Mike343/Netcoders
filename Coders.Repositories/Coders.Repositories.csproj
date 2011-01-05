@@ -36,26 +36,82 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Coders.Repositories.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Coders.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.1.0.39271, Culture=neutral, PublicKeyToken=3a9cab8f8d22bfb7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core, Version=1.1.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=1.1.0.685, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\FluentNHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\NHibernate.dll</HintPath>
+    </Reference>
+    <Reference Include="NHibernate.ByteCode.Castle, Version=2.1.2.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\NHibernate.ByteCode.Castle.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\Dependencies\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq">
+      <HintPath>..\Dependencies\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CoderContext.cs" />
+    <Compile Include="AttachmentPendingRepository.cs" />
+    <Compile Include="AttachmentRepository.cs" />
+    <Compile Include="AttachmentRuleRepository.cs" />
+    <Compile Include="Conventions\EnumConvention.cs" />
     <Compile Include="CountryRepository.cs" />
-    <Compile Include="EntityUnitOfWork.cs" />
-    <Compile Include="EntityUnitOfWorkFactory.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="LogRepository.cs" />
+    <Compile Include="Mappings\AttachmentMapping.cs" />
+    <Compile Include="Mappings\AttachmentPendingMapping.cs" />
+    <Compile Include="Mappings\AttachmentRuleMapping.cs" />
+    <Compile Include="Mappings\CountryMapping.cs" />
+    <Compile Include="Mappings\LogMapping.cs" />
+    <Compile Include="Mappings\SettingMapping.cs" />
+    <Compile Include="Mappings\TimeZoneMapping.cs" />
+    <Compile Include="Mappings\UserAvatarMapping.cs" />
+    <Compile Include="Mappings\UserBanMapping.cs" />
+    <Compile Include="Mappings\UserHostMapping.cs" />
+    <Compile Include="Mappings\UserMapping.cs" />
+    <Compile Include="Mappings\UserPreferenceMapping.cs" />
+    <Compile Include="Mappings\UserRoleMapping.cs" />
+    <Compile Include="Mappings\UserRolePrivilegeMapping.cs" />
+    <Compile Include="NHibernateModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EntityRepository.cs" />
+    <Compile Include="NHibernateEntityRepository.cs" />
+    <Compile Include="SettingRepository.cs" />
+    <Compile Include="TimeZoneRepository.cs" />
+    <Compile Include="UserAvatarRepository.cs" />
+    <Compile Include="UserBanRepository.cs" />
+    <Compile Include="UserHostRepository.cs" />
+    <Compile Include="UserRepository.cs" />
+    <Compile Include="UserRolePrivilegeRepository.cs" />
+    <Compile Include="UserRoleRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Coders\Coders.csproj">
@@ -64,11 +120,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="Coders.edmx" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config" />
-    <None Include="Coders.Repositories.pfx" />
+    <None Include="Coders.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
