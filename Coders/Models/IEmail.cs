@@ -42,11 +42,5 @@ namespace Coders.Models
 		/// </summary>
 		/// <value>The subject.</value>
 		string Subject { get; }
-
-		/// <summary>
-		/// Builds this instance.
-		/// </summary>
-		/// <returns></returns>
-		object Build();
 	}
 }

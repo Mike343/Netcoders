@@ -45,7 +45,7 @@ namespace Coders.Repositories.Mappings
 				.Not.Nullable();
 
 			base.Map(x => x.IsDefault)
-				.Column("Default")
+				.Column("[Default]")
 				.Not.Nullable();
 
 			base.Map(x => x.IsAdministrator)

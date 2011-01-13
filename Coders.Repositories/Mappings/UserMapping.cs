@@ -41,30 +41,37 @@ namespace Coders.Repositories.Mappings
 
 			base.Map(x => x.Name)
 				.Column("Name")
+				.Length(255)
 				.Not.Nullable();
 
 			base.Map(x => x.Slug)
 				.Column("Slug")
+				.Length(255)
 				.Not.Nullable();
 
 			base.Map(x => x.Title)
 				.Column("Title")
+				.Length(255)
 				.Nullable();
 
 			base.Map(x => x.EmailAddress)
 				.Column("EmailAddress")
+				.Length(255)
 				.Not.Nullable();
 
 			base.Map(x => x.HostAddress)
 				.Column("HostAddress")
+				.Length(255)
 				.Not.Nullable();
 
 			base.Map(x => x.Password)
 				.Column("Password")
+				.Length(255)
 				.Not.Nullable();
 
 			base.Map(x => x.Salt)
 				.Column("Salt")
+				.Length(255)
 				.Not.Nullable();
 
 			base.Map(x => x.Signature)

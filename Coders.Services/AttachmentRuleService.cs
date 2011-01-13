@@ -16,6 +16,8 @@
 #endregion
 
 #region Using Directives
+using System;
+using Coders.Models;
 using Coders.Models.Attachments;
 #endregion
 
@@ -27,10 +29,31 @@ namespace Coders.Services
 		/// Initializes a new instance of the <see cref="AttachmentRuleService"/> class.
 		/// </summary>
 		/// <param name="repository">The repository.</param>
-		public AttachmentRuleService(IAttachmentRuleRepository repository)
+		public AttachmentRuleService(IRepository<AttachmentRule> repository)
 			: base(repository)
 		{
 
+		}
+
+		/// <summary>
+		/// Inserts or updates the specified attachment rule.
+		/// </summary>
+		/// <param name="rule">The rule.</param>
+		public void InsertOrUpdate(AttachmentRule rule)
+		{
+			if (rule == null)
+			{
+				throw new ArgumentNullException("rule");
+			}
+
+			if (rule.Id > 0)
+			{
+				this.Update(rule);
+			}
+			else
+			{
+				this.Insert(rule);
+			}
 		}
 	}
 }

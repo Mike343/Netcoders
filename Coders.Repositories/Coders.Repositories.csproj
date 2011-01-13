@@ -63,6 +63,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Dependencies\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate.Caches.SysCache">
+      <HintPath>..\Dependencies\NHibernate.Caches.SysCache.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\Dependencies\Ninject.dll</HintPath>
     </Reference>
@@ -80,13 +83,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AttachmentPendingRepository.cs" />
-    <Compile Include="AttachmentRepository.cs" />
-    <Compile Include="AttachmentRuleRepository.cs" />
     <Compile Include="Conventions\EnumConvention.cs" />
-    <Compile Include="CountryRepository.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="LogRepository.cs" />
     <Compile Include="Mappings\AttachmentMapping.cs" />
     <Compile Include="Mappings\AttachmentPendingMapping.cs" />
     <Compile Include="Mappings\AttachmentRuleMapping.cs" />
@@ -97,21 +95,15 @@
     <Compile Include="Mappings\UserAvatarMapping.cs" />
     <Compile Include="Mappings\UserBanMapping.cs" />
     <Compile Include="Mappings\UserHostMapping.cs" />
+    <Compile Include="Mappings\UserHostSearchMapping.cs" />
     <Compile Include="Mappings\UserMapping.cs" />
     <Compile Include="Mappings\UserPreferenceMapping.cs" />
     <Compile Include="Mappings\UserRoleMapping.cs" />
-    <Compile Include="Mappings\UserRolePrivilegeMapping.cs" />
+    <Compile Include="Mappings\UserRoleRelationMapping.cs" />
+    <Compile Include="Mappings\UserSearchMapping.cs" />
     <Compile Include="NHibernateModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="NHibernateEntityRepository.cs" />
-    <Compile Include="SettingRepository.cs" />
-    <Compile Include="TimeZoneRepository.cs" />
-    <Compile Include="UserAvatarRepository.cs" />
-    <Compile Include="UserBanRepository.cs" />
-    <Compile Include="UserHostRepository.cs" />
-    <Compile Include="UserRepository.cs" />
-    <Compile Include="UserRolePrivilegeRepository.cs" />
-    <Compile Include="UserRoleRepository.cs" />
+    <Compile Include="NHibernateRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Coders\Coders.csproj">

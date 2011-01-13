@@ -17,6 +17,7 @@
 
 #region Using Directives
 using System;
+using Coders.Models;
 using Coders.Models.Settings;
 #endregion
 
@@ -28,7 +29,7 @@ namespace Coders.Services
 		/// Initializes a new instance of the <see cref="SettingService"/> class.
 		/// </summary>
 		/// <param name="repository">The repository.</param>
-		public SettingService(ISettingRepository repository)
+		public SettingService(IRepository<Setting> repository)
 			: base(repository)
 		{
 
@@ -42,6 +43,27 @@ namespace Coders.Services
 			var settings = this.GetAll();
 
 			Setting.Rebuild(settings);
+		}
+
+		/// <summary>
+		/// Inserts or updates the specified setting.
+		/// </summary>
+		/// <param name="setting">The setting.</param>
+		public void InsertOrUpdate(Setting setting)
+		{
+			if (setting == null)
+			{
+				throw new ArgumentNullException("setting");
+			}
+
+			if (setting.Id > 0)
+			{
+				this.Update(setting);
+			}
+			else
+			{
+				this.Insert(setting);
+			}
 		}
 
 		/// <summary>

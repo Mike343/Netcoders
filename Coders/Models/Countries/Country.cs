@@ -15,10 +15,19 @@
 //	limitations under the License.
 #endregion
 
+#region Using Directives
+
+using System;
+using System.Collections.Generic;
+#endregion
+
 namespace Coders.Models.Countries
 {
 	public class Country : EntityBase
 	{
+		// countries cache
+		private static readonly IList<Country> _countries = new List<Country>();
+
 		/// <summary>
 		/// Gets or sets the title.
 		/// </summary>
@@ -47,6 +56,40 @@ namespace Coders.Models.Countries
 		{
 			get;
 			set;
+		}
+
+		/// <summary>
+		/// Gets the countries.
+		/// </summary>
+		/// <value>The countries.</value>
+		public static IList<Country> Countries
+		{
+			get
+			{
+				return _countries;
+			}
+		}
+
+		/// <summary>
+		/// Caches the specified countries.
+		/// </summary>
+		/// <param name="countries">The countries.</param>
+		public static void Cache(IList<Country> countries)
+		{
+			if (countries == null)
+			{
+				throw new ArgumentNullException("countries");
+			}
+
+			lock (_countries)
+			{
+				_countries.Clear();
+
+				foreach (var country in countries)
+				{
+					_countries.Add(country);
+				}
+			}
 		}
 	}
 }

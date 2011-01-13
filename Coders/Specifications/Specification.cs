@@ -19,6 +19,7 @@
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using Coders.Models.Common.Enums;
 #endregion
 
 namespace Coders.Specifications
@@ -121,6 +122,16 @@ namespace Coders.Specifications
 		}
 
 		/// <summary>
+		/// Gets or sets the order.
+		/// </summary>
+		/// <value>The order.</value>
+		public SortOrder Order
+		{
+			get; 
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the predicate.
 		/// </summary>
 		/// <value>The predicate.</value>
@@ -157,7 +168,7 @@ namespace Coders.Specifications
 		/// <returns></returns>
 		public virtual TEntity SatisfyEntityFrom(IQueryable<TEntity> query)
 		{
-			return query.Where(Predicate).FirstOrDefault();
+			return this.Predicate != null ? query.Where(Predicate).FirstOrDefault() : query.FirstOrDefault();
 		}
 
 		/// <summary>
@@ -167,7 +178,36 @@ namespace Coders.Specifications
 		/// <returns></returns>
 		public virtual IQueryable<TEntity> SatisfyEntitiesFrom(IQueryable<TEntity> query)
 		{
-			return query.Where(Predicate);
+			if (this.Predicate == null)
+			{
+				return this.OrderEntities(query, this);
+			}
+
+			return this.OrderEntities(query.Where(Predicate), this);
+		}
+
+		/// <summary>
+		/// Orders the specified entities.
+		/// </summary>
+		/// <param name="entities">The entities.</param>
+		/// <param name="specification">The specification.</param>
+		/// <returns></returns>
+		public virtual IQueryable<TEntity> OrderEntities(IQueryable<TEntity> entities, ISpecification<TEntity> specification)
+		{
+			return entities;
+		}
+
+		/// <summary>
+		/// Orders the specified entities.
+		/// </summary>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="entities">The entities.</param>
+		/// <param name="value">The value.</param>
+		/// <param name="order">The order.</param>
+		/// <returns></returns>
+		public virtual IQueryable<TEntity> OrderBy<TValue>(IQueryable<TEntity> entities, Expression<Func<TEntity, TValue>> value, SortOrder order)
+		{
+			return (order == SortOrder.Descending) ? entities.OrderByDescending(value) : entities.OrderBy(value);
 		}
 	}
 }

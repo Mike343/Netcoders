@@ -16,12 +16,7 @@
 #endregion
 
 #region Using Directives
-using Coders.Models.Attachments;
-using Coders.Models.Countries;
-using Coders.Models.Logs;
-using Coders.Models.Settings;
-using Coders.Models.TimeZones;
-using Coders.Models.Users;
+using Coders.Models;
 using Coders.Repositories;
 using Ninject.Modules;
 #endregion
@@ -32,19 +27,7 @@ namespace Coders.DependencyResolution
 	{
 		public override void Load()
 		{
-			Bind<IAttachmentPendingRepository>().To<AttachmentPendingRepository>();
-			Bind<IAttachmentRepository>().To<AttachmentRepository>();
-			Bind<IAttachmentRuleRepository>().To<AttachmentRuleRepository>();
-			Bind<ICountryRepository>().To<CountryRepository>();
-			Bind<ILogRepository>().To<LogRepository>();
-			Bind<ISettingRepository>().To<SettingRepository>();
-			Bind<ITimeZoneRepository>().To<TimeZoneRepository>();
-			Bind<IUserAvatarRepository>().To<UserAvatarRepository>();
-			Bind<IUserBanRepository>().To<UserBanRepository>();
-			Bind<IUserHostRepository>().To<UserHostRepository>();
-			Bind<IUserRepository>().To<UserRepository>();
-			Bind<IUserRolePrivilegeRepository>().To<UserRolePrivilegeRepository>();
-			Bind<IUserRoleRepository>().To<UserRoleRepository>();
+			Bind(typeof(IRepository<>)).To(typeof(NHibernateRepository<>));
 		}
 	}
 }

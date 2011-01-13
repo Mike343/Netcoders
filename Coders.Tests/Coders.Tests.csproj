@@ -37,10 +37,14 @@
     <Reference Include="Ninject">
       <HintPath>..\Dependencies\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\Dependencies\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -54,10 +58,34 @@
     <Compile Include="Authentication\PrivilegePrincipalPermissionTest.cs" />
     <Compile Include="Authentication\PrivilegePrincipalTest.cs" />
     <Compile Include="Collections\PagedCollectionTest.cs" />
+    <Compile Include="Extensions\EnumerableExtensionTest.cs" />
     <Compile Include="Extensions\EnumExtensionTest.cs" />
     <Compile Include="Extensions\HashExtensionTest.cs" />
     <Compile Include="Extensions\IdentityExtensionTest.cs" />
+    <Compile Include="Extensions\ObjectExtensionTest.cs" />
+    <Compile Include="Extensions\PathExtensionTest.cs" />
     <Compile Include="Extensions\StringExtensionTest.cs" />
+    <Compile Include="Extensions\TypeExtensionTest.cs" />
+    <Compile Include="Models\Attachments\AttachmentPendingGroupSpecificationTest.cs" />
+    <Compile Include="Models\Attachments\AttachmentPendingUserSpecificationTest.cs" />
+    <Compile Include="Models\Attachments\AttachmentRuleGroupSpecificationTest.cs" />
+    <Compile Include="Models\Attachments\AttachmentTest.cs" />
+    <Compile Include="Models\Countries\CountryCodeSpecificationTest.cs" />
+    <Compile Include="Models\Countries\CountryTest.cs" />
+    <Compile Include="Models\Settings\SettingKeySpecificationTest.cs" />
+    <Compile Include="Models\Settings\SettingTest.cs" />
+    <Compile Include="Models\TimeZones\TimeZoneOffsetSpecificationTest.cs" />
+    <Compile Include="Models\TimeZones\TimeZoneTest.cs" />
+    <Compile Include="Models\Users\UserAvatarTest.cs" />
+    <Compile Include="Models\Users\UserBanExpiredSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserBanUserSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserEmailAddressSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserHostAddressSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserNameSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserRoleDefaultSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserRolePrivilegeRoleSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserRolePrivilegeUserSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserTest.cs" />
     <Compile Include="ServiceLocatorClasses.cs" />
     <Compile Include="NinjectServiceLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

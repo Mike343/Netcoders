@@ -18,9 +18,7 @@
 #region Using Directives
 using System.Messaging;
 using System.Net.Mail;
-using Coders.Extensions;
 using Coders.Models.Common;
-using Coders.Models.Settings;
 #endregion
 
 namespace Coders.MailerProcessor
@@ -28,7 +26,7 @@ namespace Coders.MailerProcessor
 	public static class Program
 	{
 		// private constants
-		private const string QueueName = @".\private$\{0}-mail";
+		private const string QueueName = @".\private$\mail";
 
 		/// <summary>
 		/// Executes the application.
@@ -41,9 +39,7 @@ namespace Coders.MailerProcessor
 			// initialize the application
 			Application.Initialize();
 
-			var name = QueueName.FormatInvariant(Setting.SiteTitle.Value.Slug());
-
-			using (var queue = new MessageQueue(name))
+			using (var queue = new MessageQueue(QueueName))
 			{
 				queue.Formatter = new XmlMessageFormatter(new[] { typeof(EmailResult) });
 
@@ -77,6 +73,8 @@ namespace Coders.MailerProcessor
 							client.Send(mail);
 						}
 					}
+
+					message.Dispose();
 				}
 			}
 		}

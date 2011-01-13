@@ -21,36 +21,15 @@ using Coders.Authentication;
 
 namespace Coders.Models.Users
 {
-	public class UserRolePrivilege : EntityBase
+	public class UserRolePrivilege : Privilege<UserRole>
 	{
 		/// <summary>
-		/// Gets or sets the privilege.
+		/// Initializes a new instance of the <see cref="UserRolePrivilege"/> class.
 		/// </summary>
-		/// <value>The privilege.</value>
-		public virtual Privileges Privilege
+		public UserRolePrivilege()
+			: base(Roles.UsersRoles)
 		{
-			get; 
-			set;
-		}
 
-		/// <summary>
-		/// Gets or sets the user.
-		/// </summary>
-		/// <value>The user.</value>
-		public virtual User User
-		{
-			get; 
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the role.
-		/// </summary>
-		/// <value>The role.</value>
-		public virtual UserRole Role
-		{
-			get;
-			set;
 		}
 	}
 }

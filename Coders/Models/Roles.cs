@@ -19,18 +19,19 @@ namespace Coders.Models
 {
 	public static class Roles
 	{
+		public const string Administrator = "Administrator";
 		public const string Attachments = "Attachments";
 		public const string AttachmentsRules = "AttachmentsRules";
 		public const string Comments = "Comments";
 		public const string Countries = "Countries";
 		public const string Logs = "Logs";
 		public const string Settings = "Settings";
-		public const string Systems = "Systems";
 		public const string TimeZones = "TimeZones";
 		public const string Users = "Users";
 		public const string UsersAvatars = "UsersAvatars";
 		public const string UsersBans = "UsersBans";
 		public const string UsersRoles = "UsersRoles";
 		public const string UsersSearches = "UsersSearches";
+		public const string UsersHostsSearches = "UsersHostsSearches";
 	}
 }

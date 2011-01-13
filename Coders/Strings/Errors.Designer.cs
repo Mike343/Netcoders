@@ -22,7 +22,7 @@ namespace Coders.Strings {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Errors {
+    public class Errors {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Coders.Strings {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Coders.Strings.Errors", typeof(Errors).Assembly);
@@ -51,7 +51,7 @@ namespace Coders.Strings {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,34 +63,70 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Activation error occurred while trying to get instance of type &apos;{0}&apos;..
         /// </summary>
-        internal static string ActivationFailed {
+        public static string ActivationFailed {
             get {
                 return ResourceManager.GetString("ActivationFailed", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This file type &apos;{0}&apos; or extension is not allowed. Valid extensions are: {1}.
+        /// </summary>
+        public static string AttachmentContentTypeNotValid {
+            get {
+                return ResourceManager.GetString("AttachmentContentTypeNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The image must not be greater then {0}x{1} pixels..
+        /// </summary>
+        public static string AttachmentImageDimensionMaxNotValid {
+            get {
+                return ResourceManager.GetString("AttachmentImageDimensionMaxNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The image must be greater then {0}x{1} pixels..
+        /// </summary>
+        public static string AttachmentImageDimensionMinNotValid {
+            get {
+                return ResourceManager.GetString("AttachmentImageDimensionMinNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file size must not be greater than {0}..
+        /// </summary>
+        public static string AttachmentLengthNotValid {
+            get {
+                return ResourceManager.GetString("AttachmentLengthNotValid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} contains characters that are not valid. Valid characters are letters, numbers and spaces..
         /// </summary>
-        internal static string CharacterNotValid {
+        public static string CharacterNotValid {
             get {
                 return ResourceManager.GetString("CharacterNotValid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This date is not valid. A valid example would be: &quot;01/01/2010&quot;.
+        ///   Looks up a localized string similar to This date is not valid. A valid example would be mm/dd/yyyy.
         /// </summary>
-        internal static string DateNotValid {
+        public static string DateNotValid {
             get {
                 return ResourceManager.GetString("DateNotValid", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} is not valid a valid email address. A valid email address is name@example.com..
+        ///   Looks up a localized string similar to {0} is not valid a valid email address. A valid email address is &apos;name@example.com&apos;..
         /// </summary>
-        internal static string EmailNotValid {
+        public static string EmailNotValid {
             get {
                 return ResourceManager.GetString("EmailNotValid", resourceCulture);
             }
@@ -99,7 +135,7 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to {0} is not equal to or does not match {1}..
         /// </summary>
-        internal static string Equal {
+        public static string Equal {
             get {
                 return ResourceManager.GetString("Equal", resourceCulture);
             }
@@ -108,7 +144,7 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Oops, an error has occurred..
         /// </summary>
-        internal static string GenericMessage {
+        public static string GenericMessage {
             get {
                 return ResourceManager.GetString("GenericMessage", resourceCulture);
             }
@@ -117,7 +153,7 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to The user identity is null..
         /// </summary>
-        internal static string IdentityNull {
+        public static string IdentityNull {
             get {
                 return ResourceManager.GetString("IdentityNull", resourceCulture);
             }
@@ -126,7 +162,7 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to This image type &apos;{0}&apos; is not allowed. Valid extensions are: {1}.
         /// </summary>
-        internal static string ImageContentTypeNotValid {
+        public static string ImageContentTypeNotValid {
             get {
                 return ResourceManager.GetString("ImageContentTypeNotValid", resourceCulture);
             }
@@ -135,7 +171,7 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to The image must not be greater then {0}x{1} pixels..
         /// </summary>
-        internal static string ImageDimensionMaxNotValid {
+        public static string ImageDimensionMaxNotValid {
             get {
                 return ResourceManager.GetString("ImageDimensionMaxNotValid", resourceCulture);
             }
@@ -144,7 +180,7 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to The image must be greater then {0}x{1} pixels..
         /// </summary>
-        internal static string ImageDimensionMinNotValid {
+        public static string ImageDimensionMinNotValid {
             get {
                 return ResourceManager.GetString("ImageDimensionMinNotValid", resourceCulture);
             }
@@ -153,7 +189,7 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to {0} must be at least {1} characters..
         /// </summary>
-        internal static string LengthMin {
+        public static string LengthMin {
             get {
                 return ResourceManager.GetString("LengthMin", resourceCulture);
             }
@@ -162,7 +198,7 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to {0} must be at least {1} characters and no longer then {2} characters..
         /// </summary>
-        internal static string LengthMinOrMax {
+        public static string LengthMinOrMax {
             get {
                 return ResourceManager.GetString("LengthMinOrMax", resourceCulture);
             }
@@ -171,7 +207,7 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Limit must be greater then zero..
         /// </summary>
-        internal static string LimitGreaterThanZero {
+        public static string LimitGreaterThanZero {
             get {
                 return ResourceManager.GetString("LimitGreaterThanZero", resourceCulture);
             }
@@ -180,16 +216,16 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to Page must be greater then zero..
         /// </summary>
-        internal static string PageGreaterThanZero {
+        public static string PageGreaterThanZero {
             get {
                 return ResourceManager.GetString("PageGreaterThanZero", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error occurred while trying to build the path &apos;{0}&apos;..
+        ///   Looks up a localized string similar to Could not build the &apos;{0}&apos; path..
         /// </summary>
-        internal static string PathFailed {
+        public static string PathFailed {
             get {
                 return ResourceManager.GetString("PathFailed", resourceCulture);
             }
@@ -198,18 +234,99 @@ namespace Coders.Strings {
         /// <summary>
         ///   Looks up a localized string similar to {0} is a required field..
         /// </summary>
-        internal static string Required {
+        public static string Required {
             get {
                 return ResourceManager.GetString("Required", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The property &apos;Session&apos; for argument &apos;context&apos; of type &apos;HttpContext&apos; is null..
+        /// </summary>
+        public static string SessionNull {
+            get {
+                return ResourceManager.GetString("SessionNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This setting key has already been taken..
+        /// </summary>
+        public static string SettingKeyTaken {
+            get {
+                return ResourceManager.GetString("SettingKeyTaken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total must be greater then or equal to zero..
         /// </summary>
-        internal static string TotalGreaterThanOrEqualZero {
+        public static string TotalGreaterThanOrEqualZero {
             get {
                 return ResourceManager.GetString("TotalGreaterThanOrEqualZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your email address or password is incorrect..
+        /// </summary>
+        public static string UserAuthenticationFailed {
+            get {
+                return ResourceManager.GetString("UserAuthenticationFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The property &apos;File&apos; for type &apos;UserAvatarCreate&apos; is null..
+        /// </summary>
+        public static string UserAvatarCreateFileNull {
+            get {
+                return ResourceManager.GetString("UserAvatarCreateFileNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We could not locate an account with this email address..
+        /// </summary>
+        public static string UserEmailAddressNotFound {
+            get {
+                return ResourceManager.GetString("UserEmailAddressNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This email address has already been used..
+        /// </summary>
+        public static string UserEmailAddressTaken {
+            get {
+                return ResourceManager.GetString("UserEmailAddressTaken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We could not locate an account with this name..
+        /// </summary>
+        public static string UserNameNotFound {
+            get {
+                return ResourceManager.GetString("UserNameNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This name has already been taken..
+        /// </summary>
+        public static string UserNameTaken {
+            get {
+                return ResourceManager.GetString("UserNameTaken", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This user is protected and cannot be modified except by the user..
+        /// </summary>
+        public static string UserProtected {
+            get {
+                return ResourceManager.GetString("UserProtected", resourceCulture);
             }
         }
     }

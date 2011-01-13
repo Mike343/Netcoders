@@ -4,34 +4,88 @@
  <Namespaces>
   <Namespace Name="Coders.Collections">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-05 04:06:49Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Collections' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Exceptions">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-05 04:06:49Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Exceptions' with another namespace.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="Coders.Models.Common.Enums">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Common.Enums' with another namespace.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="Coders.Models.Countries.Enums">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Countries.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.Logs">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-05 04:06:49Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Logs' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
-  <Namespace Name="Coders.Models.Users.Enums">
+  <Namespace Name="Coders.Models.TimeZones.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-05 04:06:49Z" FixCategory="Breaking">
-     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Users.Enums' with another namespace.</Issue>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.TimeZones.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
  </Namespaces>
+ <Targets>
+  <Target Name="C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.dll">
+   <Modules>
+    <Module Name="coders.dll">
+     <Namespaces>
+      <Namespace Name="Coders.Models.Logs">
+       <Types>
+        <Type Name="ILogService" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Define a custom attribute to replace 'ILogService'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+     <Resources>
+      <Resource Name="Coders.Strings.Errors.resources">
+       <Messages>
+        <Message Id="yyyy" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="NonBreaking">
+         <Issue Name="StringResource" Certainty="50" Level="CriticalWarning">In resource 'Coders.Strings.Errors.resx', referenced by name 'DateNotValid', correct the spelling of 'yyyy' in string value 'This date is not valid. A valid example would be mm/dd/yyyy'.</Issue>
+        </Message>
+       </Messages>
+      </Resource>
+     </Resources>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
  <Rules>
+  <Rule TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040">
+   <Name>Avoid empty interfaces</Name>
+   <Description>Interfaces are meant to contain members that specify a set of behaviors. To mark or label a class, use an attribute instead of an empty interface.</Description>
+   <Resolution Name="Default">Define a custom attribute to replace {0}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182128(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
    <Name>Avoid namespaces with few types</Name>
    <Description>A namespace should generally have more than five types.</Description>
@@ -41,6 +95,16 @@
    <Email>[none]</Email>
    <MessageLevel Certainty="50">Warning</MessageLevel>
    <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703">
+   <Name>Resource strings should be spelled correctly</Name>
+   <Description>The individual words that make up a resource string should not be abbreviated and should be spelled correctly. If this rule generates a false positive on a term that should be recognized, add the word to the FxCop custom dictionary.</Description>
+   <Resolution Name="StringResource">In resource {0}, referenced by name '{1}', correct the spelling of '{2}' in string value '{3}'.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb264483(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="50">CriticalWarning</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
   </Rule>
  </Rules>
  <Localized>

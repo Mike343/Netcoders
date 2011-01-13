@@ -22,6 +22,7 @@ using System.Globalization;
 using System.IO;
 using System.Web;
 using Coders.Extensions;
+using Coders.Models;
 using Coders.Models.Attachments;
 using Coders.Models.Common;
 using Coders.Models.Settings;
@@ -41,14 +42,14 @@ namespace Coders.Services
 		/// <param name="fileService">The file service.</param>
 		/// <param name="imageService">The image service.</param>
 		/// <param name="attachmentRuleService">The attachment rule service.</param>
-		/// <param name="attachmentPendingRepository">The attachment pending repository.</param>
 		/// <param name="repository">The repository.</param>
+		/// <param name="attachmentPendingRepository">The attachment pending repository.</param>
 		public AttachmentService(
 			IFileService fileService,
 			IImageService imageService,
 			IAttachmentRuleService attachmentRuleService, 
-			IAttachmentPendingRepository attachmentPendingRepository, 
-			IAttachmentRepository repository)
+			IRepository<Attachment> repository,
+			IRepository<AttachmentPending> attachmentPendingRepository)
 			: base(repository)
 		{
 			this.FileService = fileService;
@@ -91,7 +92,7 @@ namespace Coders.Services
 		/// Gets or sets the attachment pending repository.
 		/// </summary>
 		/// <value>The attachment pending repository.</value>
-		public IAttachmentPendingRepository AttachmentPendingRepository
+		public IRepository<AttachmentPending> AttachmentPendingRepository
 		{
 			get;
 			private set;

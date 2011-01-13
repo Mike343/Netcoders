@@ -52,6 +52,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Authentication\EmailAddressPasswordToken.cs" />
+    <Compile Include="Authentication\IAuthenticationToken.cs" />
     <Compile Include="Authentication\Privilege.cs" />
     <Compile Include="Authentication\Privileges.cs" />
     <Compile Include="Authentication\IPrivilege.cs" />
@@ -61,18 +63,20 @@
     <Compile Include="Authentication\PrivilegePrincipalPermission.cs" />
     <Compile Include="Collections\IPagedCollection.cs" />
     <Compile Include="Collections\PagedCollection.cs" />
+    <Compile Include="Extensions\EnumerableExtension.cs" />
     <Compile Include="Extensions\ObjectExtension.cs" />
+    <Compile Include="Extensions\ResourceExtension.cs" />
+    <Compile Include="Extensions\TypeExtension.cs" />
     <Compile Include="Models\Attachments\AttachmentPrivilege.cs" />
     <Compile Include="Models\Attachments\AttachmentRuleGroupSpecification.cs" />
     <Compile Include="Models\Attachments\AttachmentRulePrivilege.cs" />
     <Compile Include="Models\Attachments\AttachmentPendingUserSpecification.cs" />
     <Compile Include="Models\Attachments\AttachmentPendingGroupSpecification.cs" />
-    <Compile Include="Models\Attachments\IAttachmentPendingRepository.cs" />
-    <Compile Include="Models\Attachments\IAttachmentRepository.cs" />
-    <Compile Include="Models\Attachments\IAttachmentRuleRepository.cs" />
+    <Compile Include="Models\Attachments\AttachmentRuleSpecification.cs" />
     <Compile Include="Models\Attachments\IAttachmentRuleService.cs" />
     <Compile Include="Models\Attachments\IAttachmentService.cs" />
     <Compile Include="Models\Common\EmailResult.cs" />
+    <Compile Include="Models\Common\Enums\SortOrder.cs" />
     <Compile Include="Models\Common\FileResult.cs" />
     <Compile Include="Models\Common\IAuthenticationService.cs" />
     <Compile Include="Models\Common\IEmailService.cs" />
@@ -83,8 +87,10 @@
     <Compile Include="Models\Countries\Country.cs" />
     <Compile Include="Models\Countries\CountryCodeSpecification.cs" />
     <Compile Include="Models\Countries\CountryPrivilege.cs" />
-    <Compile Include="Models\Countries\ICountryRepository.cs" />
+    <Compile Include="Models\Countries\CountrySpecification.cs" />
+    <Compile Include="Models\Countries\Enums\SortCountry.cs" />
     <Compile Include="Models\Countries\ICountryService.cs" />
+    <Compile Include="Models\Countries\ICountrySpecification.cs" />
     <Compile Include="Models\EmailBase.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\IEmail.cs" />
@@ -104,42 +110,53 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IInstaller.cs" />
     <Compile Include="IServiceLocator.cs" />
-    <Compile Include="Models\Logs\ILogRepository.cs" />
     <Compile Include="Models\Logs\ILogService.cs" />
     <Compile Include="Models\Logs\Log.cs" />
     <Compile Include="Models\Roles.cs" />
-    <Compile Include="Models\Settings\ISettingRepository.cs" />
     <Compile Include="Models\Settings\ISettingService.cs" />
     <Compile Include="Models\Settings\Setting.cs" />
     <Compile Include="Models\Settings\SettingAsValue.cs" />
     <Compile Include="Models\Settings\SettingKeySpecification.cs" />
+    <Compile Include="Models\Settings\SettingPrivilege.cs" />
+    <Compile Include="Models\Settings\SettingSpecification.cs" />
     <Compile Include="Models\Settings\SettingValue.cs" />
     <Compile Include="Models\Settings\SettingValueAsBoolean.cs" />
     <Compile Include="Models\Settings\SettingValueAsInt.cs" />
-    <Compile Include="Models\TimeZones\ITimeZoneRepository.cs" />
+    <Compile Include="Models\TimeZones\CountrySpecification.cs" />
+    <Compile Include="Models\TimeZones\Enums\SortTimeZone.cs" />
+    <Compile Include="Models\TimeZones\ITimeZoneSpecification.cs" />
     <Compile Include="Models\TimeZones\ITimeZoneService.cs" />
     <Compile Include="Models\TimeZones\TimeZoneOffsetSpecification.cs" />
     <Compile Include="Models\TimeZones\TimeZonePrivilege.cs" />
     <Compile Include="Models\TimeZones\TimeZone.cs" />
+    <Compile Include="Models\Users\Enums\SortUser.cs" />
+    <Compile Include="Models\Users\IUserAvatarService.cs" />
+    <Compile Include="Models\Users\IUserBanService.cs" />
+    <Compile Include="Models\Users\IUserHostSearchService.cs" />
+    <Compile Include="Models\Users\IUserHostService.cs" />
+    <Compile Include="Models\Users\IUserSearchService.cs" />
+    <Compile Include="Models\Users\IUserSpecification.cs" />
+    <Compile Include="Models\Users\UserAvatarPrivilege.cs" />
+    <Compile Include="Models\Users\UserAvatarUserSpecification.cs" />
     <Compile Include="Models\Users\UserBanExpiredSpecification.cs" />
+    <Compile Include="Models\Users\UserBanPrivilege.cs" />
+    <Compile Include="Models\Users\UserBanSpecification.cs" />
     <Compile Include="Models\Users\UserBanUserSpecification.cs" />
     <Compile Include="Models\Users\UserEmailAddressSpecification.cs" />
     <Compile Include="Models\Users\UserHostAddressSpecification.cs" />
+    <Compile Include="Models\Users\UserHostSearch.cs" />
+    <Compile Include="Models\Users\UserHostSearchPrivilege.cs" />
+    <Compile Include="Models\Users\UserHostSearchSpecification.cs" />
+    <Compile Include="Models\Users\UserHostSearchUserSpecification.cs" />
     <Compile Include="Models\Users\UserHostUserSpecification.cs" />
+    <Compile Include="Models\Users\UserNameSpecification.cs" />
+    <Compile Include="Models\Users\UserPrivilege.cs" />
+    <Compile Include="Models\Users\UserProtectedSpecification.cs" />
     <Compile Include="Models\Users\UserResetPasswordEmail.cs" />
     <Compile Include="Models\Users\UserRoleDefaultSpecification.cs" />
     <Compile Include="Models\Users\Enums\UserPreferenceDaylightSavingTime.cs" />
     <Compile Include="Models\Users\Enums\UserPreferenceStartOfWeek.cs" />
     <Compile Include="Models\Users\Enums\UserPreferenceTimeFormat.cs" />
-    <Compile Include="Models\Users\IUserAvatarRepository.cs" />
-    <Compile Include="Models\Users\IUserAvatarService.cs" />
-    <Compile Include="Models\Users\IUserBanRepository.cs" />
-    <Compile Include="Models\Users\IUserBanService.cs" />
-    <Compile Include="Models\Users\IUserHostRepository.cs" />
-    <Compile Include="Models\Users\IUserHostService.cs" />
-    <Compile Include="Models\Users\IUserRepository.cs" />
-    <Compile Include="Models\Users\IUserRolePrivilegeRepository.cs" />
-    <Compile Include="Models\Users\IUserRoleRepository.cs" />
     <Compile Include="Models\Users\IUserRoleService.cs" />
     <Compile Include="Models\Users\IUserService.cs" />
     <Compile Include="Models\Users\User.cs" />
@@ -148,12 +165,18 @@
     <Compile Include="Models\Users\UserBan.cs" />
     <Compile Include="Models\Users\UserHost.cs" />
     <Compile Include="Models\Users\UserPreference.cs" />
-    <Compile Include="Models\Users\UserRolePrivilegeRoleSpecification.cs" />
-    <Compile Include="Models\Users\UserRolePrivilegeUpdate.cs" />
-    <Compile Include="Models\Users\UserRolePrivilegeUpdateValue.cs" />
-    <Compile Include="Models\Users\UserRole.cs" />
     <Compile Include="Models\Users\UserRolePrivilege.cs" />
-    <Compile Include="Models\Users\UserRolePrivilegeUserSpecification.cs" />
+    <Compile Include="Models\Users\UserRoleRelationRoleSpecification.cs" />
+    <Compile Include="Models\Users\UserRoleRelationUpdate.cs" />
+    <Compile Include="Models\Users\UserRoleRelationUpdateValue.cs" />
+    <Compile Include="Models\Users\UserRole.cs" />
+    <Compile Include="Models\Users\UserRoleRelation.cs" />
+    <Compile Include="Models\Users\UserRoleRelationUserSpecification.cs" />
+    <Compile Include="Models\Users\UserSearch.cs" />
+    <Compile Include="Models\Users\UserSearchPrivilege.cs" />
+    <Compile Include="Models\Users\UserSearchSpecification.cs" />
+    <Compile Include="Models\Users\UserSearchUserSpecification.cs" />
+    <Compile Include="Models\Users\UserSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocator.cs" />
     <Compile Include="ServiceLocatorBase.cs" />
@@ -175,6 +198,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Errors.resx</DependentUpon>
     </Compile>
+    <Compile Include="Strings\Messages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Messages.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Strings\Titles.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Titles.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Strings\Emails.resx">
@@ -182,8 +215,16 @@
       <LastGenOutput>Emails.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Strings\Errors.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Errors.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Messages.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Messages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Titles.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Titles.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

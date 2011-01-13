@@ -19,6 +19,10 @@ namespace Coders.Models.Attachments
 {
 	public interface IAttachmentRuleService : IEntityService<AttachmentRule>
 	{
-
+		/// <summary>
+		/// Inserts or updates the specified attachment rule.
+		/// </summary>
+		/// <param name="rule">The rule.</param>
+		void InsertOrUpdate(AttachmentRule rule);
 	}
 }

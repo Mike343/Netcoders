@@ -10,4 +10,3 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ninject", Scope = "type", Target = "Coders.DependencyResolution.NinjectServiceLocator")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Ninject", Scope = "type", Target = "Coders.DependencyResolution.NinjectHelper")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Maintainability", "CA1506:AvoidExcessiveClassCoupling", Scope = "member", Target = "Coders.DependencyResolution.CodersServices.#Load()")]

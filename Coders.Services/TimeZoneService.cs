@@ -16,6 +16,9 @@
 #endregion
 
 #region Using Directives
+using System;
+using System.Collections.Generic;
+using Coders.Models;
 using Coders.Models.TimeZones;
 using TimeZone = Coders.Models.TimeZones.TimeZone;
 #endregion
@@ -28,10 +31,49 @@ namespace Coders.Services
 		/// Initializes a new instance of the <see cref="TimeZoneService"/> class.
 		/// </summary>
 		/// <param name="repository">The repository.</param>
-		public TimeZoneService(ITimeZoneRepository repository)
+		public TimeZoneService(IRepository<TimeZone> repository)
 			: base(repository)
 		{
 
+		}
+
+		/// <summary>
+		/// Gets all.
+		/// </summary>
+		/// <returns></returns>
+		public override IList<TimeZone> GetAll()
+		{
+			if (TimeZone.TimeZones.Count > 0)
+			{
+				return TimeZone.TimeZones;
+			}
+
+			var timeZones = base.GetAll();
+
+			TimeZone.Cache(timeZones);
+
+			return timeZones;
+		}
+
+		/// <summary>
+		/// Inserts or updates the specified time zone.
+		/// </summary>
+		/// <param name="timeZone">The time zone.</param>
+		public void InsertOrUpdate(TimeZone timeZone)
+		{
+			if (timeZone == null)
+			{
+				throw new ArgumentNullException("timeZone");
+			}
+
+			if (timeZone.Id > 0)
+			{
+				this.Update(timeZone);
+			}
+			else
+			{
+				this.Insert(timeZone);
+			}
 		}
 	}
 }

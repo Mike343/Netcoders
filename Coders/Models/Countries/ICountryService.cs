@@ -19,6 +19,10 @@ namespace Coders.Models.Countries
 {
 	public interface ICountryService : IEntityService<Country>
 	{
-
+		/// <summary>
+		/// Inserts or updates the specified country.
+		/// </summary>
+		/// <param name="country">The country.</param>
+		void InsertOrUpdate(Country country);
 	}
 }

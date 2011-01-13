@@ -16,7 +16,6 @@
 #endregion
 
 #region Using Directives
-using System;
 using Coders.Models.Settings;
 #endregion
 
@@ -50,7 +49,7 @@ namespace Coders.Models
 		/// Gets the site title.
 		/// </summary>
 		/// <value>The site title.</value>
-		protected static string SiteTitle
+		public virtual string SiteTitle
 		{
 			get
 			{
@@ -62,11 +61,11 @@ namespace Coders.Models
 		/// Gets the site URL.
 		/// </summary>
 		/// <value>The site URL.</value>
-		protected static Uri SiteUrl
+		public virtual string SiteUrl
 		{
 			get
 			{
-				return new Uri(Setting.SiteUrl.Value);
+				return Setting.SiteUrl.Value;
 			}
 		}
 
@@ -81,11 +80,5 @@ namespace Coders.Models
 		/// </summary>
 		/// <value>The subject.</value>
 		public abstract string Subject { get; }
-
-		/// <summary>
-		/// Builds this instance.
-		/// </summary>
-		/// <returns></returns>
-		public abstract object Build();
 	}
 }

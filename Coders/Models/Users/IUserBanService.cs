@@ -26,6 +26,19 @@ namespace Coders.Models.Users
 		UserBan Check();
 
 		/// <summary>
+		/// Inserts or updates the specified user ban.
+		/// </summary>
+		/// <param name="ban">The ban.</param>
+		void InsertOrUpdate(UserBan ban);
+
+		/// <summary>
+		/// Inserts or updates the specified user ban.
+		/// </summary>
+		/// <param name="ban">The ban.</param>
+		/// <param name="name">The name.</param>
+		void InsertOrUpdate(UserBan ban, string name);
+
+		/// <summary>
 		/// Deletes the expired bans.
 		/// </summary>
 		void DeleteExpired();

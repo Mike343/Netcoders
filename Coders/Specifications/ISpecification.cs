@@ -16,7 +16,10 @@
 #endregion
 
 #region Using Directives
+using System;
 using System.Linq;
+using System.Linq.Expressions;
+using Coders.Models.Common.Enums;
 #endregion
 
 namespace Coders.Specifications
@@ -60,6 +63,12 @@ namespace Coders.Specifications
 		int Last { get; }
 
 		/// <summary>
+		/// Gets the order.
+		/// </summary>
+		/// <value>The order.</value>
+		SortOrder Order { get; }
+
+		/// <summary>
 		/// Satisfies the entity from.
 		/// </summary>
 		/// <param name="query">The query.</param>
@@ -72,5 +81,23 @@ namespace Coders.Specifications
 		/// <param name="query">The query.</param>
 		/// <returns></returns>
 		IQueryable<TEntity> SatisfyEntitiesFrom(IQueryable<TEntity> query);
+
+		/// <summary>
+		/// Sorts the specified entities.
+		/// </summary>
+		/// <param name="entities">The entities.</param>
+		/// <param name="specification">The specification.</param>
+		/// <returns></returns>
+		IQueryable<TEntity> OrderEntities(IQueryable<TEntity> entities, ISpecification<TEntity> specification);
+
+		/// <summary>
+		/// Orders the specified entities.
+		/// </summary>
+		/// <typeparam name="TValue">The type of the value.</typeparam>
+		/// <param name="entities">The entities.</param>
+		/// <param name="value">The value.</param>
+		/// <param name="order">The order.</param>
+		/// <returns></returns>
+		IQueryable<TEntity> OrderBy<TValue>(IQueryable<TEntity> entities, Expression<Func<TEntity, TValue>> value, SortOrder order);
 	}
 }

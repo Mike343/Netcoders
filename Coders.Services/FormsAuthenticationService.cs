@@ -22,6 +22,7 @@ using System.Web;
 using System.Web.Security;
 using Coders.Authentication;
 using Coders.Extensions;
+using Coders.Models;
 using Coders.Models.Common;
 using Coders.Models.Settings;
 using Coders.Models.Users;
@@ -44,10 +45,19 @@ namespace Coders.Services
 		/// <param name="userRepository">The user repository.</param>
 		public FormsAuthenticationService(
 			IEmailService emailService,
-			IUserRepository userRepository)
+			IRepository<User> userRepository)
 		{
 			this.EmailService = emailService;
 			this.UserRepository = userRepository;
+
+			this.Principal = PrivilegePrincipalPermission.Current;
+
+			if (this.Principal == null)
+			{
+				return;
+			}
+
+			this.Identity = this.Principal.Identity as UserIdentity;
 		}
 
 		/// <summary>
@@ -64,7 +74,7 @@ namespace Coders.Services
 		/// Gets or sets the user repository.
 		/// </summary>
 		/// <value>The user repository.</value>
-		public IUserRepository UserRepository
+		public IRepository<User> UserRepository
 		{
 			get; 
 			private set;
@@ -74,11 +84,11 @@ namespace Coders.Services
 		/// Gets the return URL.
 		/// </summary>
 		/// <value>The return URL.</value>
-		public Uri ReturnUrl
+		public string ReturnUrl
 		{
 			get
 			{
-				return new Uri(FormsAuthentication.DefaultUrl);
+				return FormsAuthentication.DefaultUrl;
 			}
 		}
 
@@ -86,12 +96,22 @@ namespace Coders.Services
 		/// Gets the log on URL.
 		/// </summary>
 		/// <value>The log on URL.</value>
-		public Uri LogOnUrl
+		public string LogOnUrl
 		{
 			get
 			{
-				return new Uri(FormsAuthentication.LoginUrl);
+				return FormsAuthentication.LoginUrl;
 			}
+		}
+
+		/// <summary>
+		/// Gets or sets the principal.
+		/// </summary>
+		/// <value>The principal.</value>
+		public PrivilegePrincipal Principal
+		{
+			get; 
+			private set;
 		}
 
 		/// <summary>
@@ -100,17 +120,8 @@ namespace Coders.Services
 		/// <value>The identity.</value>
 		public UserIdentity Identity
 		{
-			get
-			{
-				var principal = PrivilegePrincipalPermission.Current;
-
-				if (principal == null)
-				{
-					return null;
-				}
-
-				return principal.Identity as UserIdentity;
-			}
+			get;
+			private set;
 		}
 
 		/// <summary>

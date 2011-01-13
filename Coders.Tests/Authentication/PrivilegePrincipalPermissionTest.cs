@@ -20,7 +20,7 @@ namespace Coders.Tests.Authentication
 			var permission = new PrivilegePrincipalPermission("Test", Privileges.Create);
 
 			Assert.IsFalse(permission.AuthorizeOnly);
-			Assert.AreEqual(Privileges.Create, permission.Action);
+			Assert.AreEqual(Privileges.Create, permission.Privilege);
 			Assert.AreEqual("Test", permission.Role);
 		}
 
@@ -31,7 +31,7 @@ namespace Coders.Tests.Authentication
 			var copyOfPermission = permission.Copy() as PrivilegePrincipalPermission;
 
 			Assert.AreEqual(permission.AuthorizeOnly, copyOfPermission.AuthorizeOnly);
-			Assert.AreEqual(permission.Action, copyOfPermission.Action);
+			Assert.AreEqual(permission.Privilege, copyOfPermission.Privilege);
 			Assert.AreEqual(permission.Role, copyOfPermission.Role);
 		}
 
@@ -42,7 +42,7 @@ namespace Coders.Tests.Authentication
 			var intersect = permission.Intersect(new PrivilegePrincipalPermission("Test", Privileges.Delete)) as PrivilegePrincipalPermission;
 
 			Assert.AreEqual(permission.AuthorizeOnly, intersect.AuthorizeOnly);
-			Assert.AreEqual(Privileges.Delete, intersect.Action);
+			Assert.AreEqual(Privileges.Delete, intersect.Privilege);
 			Assert.AreEqual(permission.Role, intersect.Role);
 		}
 
@@ -53,7 +53,7 @@ namespace Coders.Tests.Authentication
 			var intersect = permission.Union(new PrivilegePrincipalPermission("Test", Privileges.Delete)) as PrivilegePrincipalPermission;
 
 			Assert.AreEqual(permission.AuthorizeOnly, intersect.AuthorizeOnly);
-			Assert.AreEqual(permission.Action.Add(Privileges.Delete), intersect.Action);
+			Assert.AreEqual(permission.Privilege.Add(Privileges.Delete), intersect.Privilege);
 			Assert.AreEqual(permission.Role, intersect.Role);
 		}
 

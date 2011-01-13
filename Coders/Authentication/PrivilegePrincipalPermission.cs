@@ -38,12 +38,12 @@ namespace Coders.Authentication
 		/// Initializes a new instance of the <see cref="PrivilegePrincipalPermission"/> class.
 		/// </summary>
 		/// <param name="role">The role.</param>
-		/// <param name="action">The action.</param>
-		public PrivilegePrincipalPermission(string role, Privileges action)
+		/// <param name="privilege">The privilege.</param>
+		public PrivilegePrincipalPermission(string role, Privileges privilege)
 		{
 			this.AuthorizeOnly = false;
 			this.Role = role;
-			this.Action = action;
+			this.Privilege = privilege;
 		}
 
 		/// <summary>
@@ -69,10 +69,10 @@ namespace Coders.Authentication
 		}
 
 		/// <summary>
-		/// Gets or sets the action.
+		/// Gets or sets the privilege.
 		/// </summary>
-		/// <value>The action.</value>
-		public Privileges Action
+		/// <value>The privilege.</value>
+		public Privileges Privilege
 		{
 			get;
 			private set;
@@ -114,7 +114,7 @@ namespace Coders.Authentication
 
 			var permission = VerifyTypeMatch(target);
 
-			return this.Clone(permission.AuthorizeOnly, this.Role, this.Action & permission.Action);
+			return permission.AuthorizeOnly != this.AuthorizeOnly ? null : this.Clone(permission.AuthorizeOnly, this.Role, this.Privilege & permission.Privilege);
 		}
 
 		/// <summary>
@@ -134,7 +134,7 @@ namespace Coders.Authentication
 
 			var permission = VerifyTypeMatch(target);
 
-			return this.Clone((permission.AuthorizeOnly || this.AuthorizeOnly), this.Role, this.Action | permission.Action);
+			return this.Clone((permission.AuthorizeOnly || this.AuthorizeOnly), this.Role, this.Privilege | permission.Privilege);
 		}
 
 		/// <summary>
@@ -169,7 +169,7 @@ namespace Coders.Authentication
 				return false;
 			}
 
-			return ((permission.Action | this.Action) == this.Action);
+			return ((permission.Privilege | this.Privilege) == this.Privilege);
 
 		}
 
@@ -201,7 +201,7 @@ namespace Coders.Authentication
 
 			principal.DetermineRolePrivileges();
 
-			return !AuthorizeOnly && principal.AllowedTo(this.Role, this.Action);
+			return !AuthorizeOnly && principal.AllowedTo(this.Role, this.Privilege);
 		}
 
 		/// <summary>
@@ -229,15 +229,15 @@ namespace Coders.Authentication
 		/// </summary>
 		/// <param name="authorizeOnly">if set to <c>true</c> [authorize only].</param>
 		/// <param name="role">The role.</param>
-		/// <param name="action">The action.</param>
+		/// <param name="privilege">The privilege.</param>
 		/// <returns></returns>
-		private PrivilegePrincipalPermission Clone(bool authorizeOnly, string role, Privileges action)
+		private PrivilegePrincipalPermission Clone(bool authorizeOnly, string role, Privileges privilege)
 		{
 			var clone = (PrivilegePrincipalPermission)this.Clone();
 
 			clone.AuthorizeOnly = authorizeOnly;
 			clone.Role = role;
-			clone.Action = action;
+			clone.Privilege = privilege;
 
 			return clone;
 		}
@@ -260,7 +260,7 @@ namespace Coders.Authentication
 		#region ICloneable Members
 		public object Clone()
 		{
-			return this.MemberwiseClone();
+			return MemberwiseClone();
 		}
 		#endregion
 	}

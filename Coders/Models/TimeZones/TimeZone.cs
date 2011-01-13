@@ -15,10 +15,19 @@
 //	limitations under the License.
 #endregion
 
+#region Using Directives
+
+using System;
+using System.Collections.Generic;
+#endregion
+
 namespace Coders.Models.TimeZones
 {
 	public class TimeZone : EntityBase
 	{
+		// time zones cache
+		private static readonly IList<TimeZone> _timeZones = new List<TimeZone>();
+
 		/// <summary>
 		/// Gets or sets the offset.
 		/// </summary>
@@ -57,6 +66,40 @@ namespace Coders.Models.TimeZones
 		{
 			get;
 			set;
+		}
+
+		/// <summary>
+		/// Gets the time zones.
+		/// </summary>
+		/// <value>The time zones.</value>
+		public static IList<TimeZone> TimeZones
+		{
+			get
+			{
+				return _timeZones;
+			}
+		}
+
+		/// <summary>
+		/// Caches the specified time zones.
+		/// </summary>
+		/// <param name="timeZones">The time zones.</param>
+		public static void Cache(IList<TimeZone> timeZones)
+		{
+			if (timeZones == null)
+			{
+				throw new ArgumentNullException("timeZones");
+			}
+
+			lock (_timeZones)
+			{
+				_timeZones.Clear();
+
+				foreach (var timeZone in timeZones)
+				{
+					_timeZones.Add(timeZone);
+				}
+			}
 		}
 	}
 }

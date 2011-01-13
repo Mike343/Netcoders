@@ -17,3 +17,4 @@ C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\Coders.pdb
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\obj\Debug\Coders.DependencyResolution.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\obj\Debug\Coders.DependencyResolution.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\RazorEngine.Core.dll

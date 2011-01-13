@@ -65,5 +65,12 @@ namespace Coders.Authentication
 			get;
 			protected set;
 		}
+
+		/// <summary>
+		/// Authenticates the specified token.
+		/// </summary>
+		/// <param name="token">The token.</param>
+		/// <returns></returns>
+		public abstract bool Authenticate(IAuthenticationToken token);
 	}
 }

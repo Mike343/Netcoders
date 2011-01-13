@@ -78,21 +78,5 @@ namespace Coders.Models.Users
 			get;
 			set;
 		}
-
-		/// <summary>
-		/// Builds this instance.
-		/// </summary>
-		/// <returns></returns>
-		public override object Build()
-		{
-			return new
-			{
-				name = this.Name,
-				emailAddress = this.EmailAddress,
-				password = this.Password,
-				siteTitle = SiteTitle,
-				siteUrl = SiteUrl,
-			};
-		}
 	}
 }

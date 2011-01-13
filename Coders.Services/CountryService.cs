@@ -16,6 +16,9 @@
 #endregion
 
 #region Using Directives
+using System;
+using System.Collections.Generic;
+using Coders.Models;
 using Coders.Models.Countries;
 #endregion
 
@@ -27,10 +30,49 @@ namespace Coders.Services
 		/// Initializes a new instance of the <see cref="CountryService"/> class.
 		/// </summary>
 		/// <param name="repository">The repository.</param>
-		public CountryService(ICountryRepository repository)
+		public CountryService(IRepository<Country> repository)
 			: base(repository)
 		{
 
+		}
+
+		/// <summary>
+		/// Gets all.
+		/// </summary>
+		/// <returns></returns>
+		public override IList<Country> GetAll()
+		{
+			if (Country.Countries.Count > 0)
+			{
+				return Country.Countries;
+			}
+
+			var countries = base.GetAll();
+
+			Country.Cache(countries);
+
+			return countries;
+		}
+
+		/// <summary>
+		/// Inserts or updates the specified country.
+		/// </summary>
+		/// <param name="country">The country.</param>
+		public void InsertOrUpdate(Country country)
+		{
+			if (country == null)
+			{
+				throw new ArgumentNullException("country");
+			}
+
+			if (country.Id > 0)
+			{
+				this.Update(country);
+			}
+			else
+			{
+				this.Insert(country);
+			}
 		}
 	}
 }

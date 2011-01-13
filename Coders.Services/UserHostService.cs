@@ -18,6 +18,7 @@
 #region Using Directives
 using System.Web;
 using Coders.Extensions;
+using Coders.Models;
 using Coders.Models.Common;
 using Coders.Models.Users;
 #endregion
@@ -33,9 +34,9 @@ namespace Coders.Services
 		/// <param name="userRepository">The user repository.</param>
 		/// <param name="repository">The repository.</param>
 		public UserHostService(
-			IAuthenticationService authenticationService, 
-			IUserRepository userRepository, 
-			IUserHostRepository repository)
+			IAuthenticationService authenticationService,
+			IRepository<User> userRepository,
+			IRepository<UserHost> repository)
 			: base(repository)
 		{
 			this.AuthenticationService = authenticationService;
@@ -56,7 +57,7 @@ namespace Coders.Services
 		/// Gets or sets the user repository.
 		/// </summary>
 		/// <value>The user repository.</value>
-		public IUserRepository UserRepository
+		public IRepository<User> UserRepository
 		{
 			get;
 			private set;

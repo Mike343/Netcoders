@@ -17,12 +17,11 @@
 
 #region Using Directives
 using System;
-using Coders.Specifications;
 #endregion
 
 namespace Coders.Models.Users
 {
-	public class UserBanExpiredSpecification : Specification<UserBan>
+	public class UserBanExpiredSpecification : UserBanSpecification
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UserBanExpiredSpecification"/> class.

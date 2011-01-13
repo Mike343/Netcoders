@@ -8,10 +8,11 @@ C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\Coders.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\FluentNHibernate.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\Iesi.Collections.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\NHibernate.ByteCode.Castle.dll
+C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\NHibernate.Caches.SysCache.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\NHibernate.dll
+C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\Ninject.dll
+C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\Remotion.Data.Linq.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\Coders.pdb
 C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\obj\Debug\Coders.Repositories.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\obj\Debug\Coders.Repositories.pdb
-C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\Remotion.Data.Linq.dll
-C:\Users\Mike\Desktop\Netcoders\Coders.Repositories\bin\Debug\Ninject.dll

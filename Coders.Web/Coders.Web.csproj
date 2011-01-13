@@ -1,0 +1,197 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B6DBB1B8-ED20-43DA-9EBD-A68F3DADD5B3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Coders.Web</RootNamespace>
+    <AssemblyName>Coders.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>Coders.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentValidation">
+      <HintPath>..\Dependencies\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\Dependencies\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
+      <HintPath>..\..\NHibernate.Profiler-Build-766\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Dependencies\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 3\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\Assemblies\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionFilters\SessionFilterAttribute.cs" />
+    <Compile Include="ActionResults\Enums\MessageScope.cs" />
+    <Compile Include="ActionResults\ErrorResult.cs" />
+    <Compile Include="ActionResults\NotAuthorizedResult.cs" />
+    <Compile Include="ActionResults\StatusResult.cs" />
+    <Compile Include="Application.cs" />
+    <Compile Include="CodersControllers.cs" />
+    <Compile Include="ApplicationSession.cs" />
+    <Compile Include="Authentication\WebPrivilegePrincipal.cs" />
+    <Compile Include="Authentication\WebUserIdentity.cs" />
+    <Compile Include="ControllerFactory.cs" />
+    <Compile Include="ApplicationHttpModule.cs" />
+    <Compile Include="Controllers\Administration\AttachmentRuleController.cs" />
+    <Compile Include="Controllers\Administration\CountryController.cs" />
+    <Compile Include="Controllers\Administration\HomeController.cs" />
+    <Compile Include="Controllers\Administration\SettingController.cs" />
+    <Compile Include="Controllers\Administration\TimeZoneController.cs" />
+    <Compile Include="Controllers\AttachmentController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Masters.cs" />
+    <Compile Include="Controllers\SecureDefaultController.cs" />
+    <Compile Include="Controllers\Users\Administration\BanController.cs" />
+    <Compile Include="Controllers\Users\Administration\HomeController.cs" />
+    <Compile Include="Controllers\Users\Administration\HostSearchController.cs" />
+    <Compile Include="Controllers\Users\Administration\RoleController.cs" />
+    <Compile Include="Controllers\Users\Administration\SearchController.cs" />
+    <Compile Include="Controllers\Users\AuthController.cs" />
+    <Compile Include="Controllers\Users\AvatarController.cs" />
+    <Compile Include="Controllers\Users\PreferenceController.cs" />
+    <Compile Include="Controllers\Users\SearchController.cs" />
+    <Compile Include="Extensions\DateExtension.cs" />
+    <Compile Include="Extensions\HtmlExtension.cs" />
+    <Compile Include="Extensions\SelectExtension.cs" />
+    <Compile Include="Extensions\StringExtension.cs" />
+    <Compile Include="Extensions\UserExtension.cs" />
+    <Compile Include="Extensions\ValidatorExtension.cs" />
+    <Compile Include="Extensions\WidgetExtension.cs" />
+    <Compile Include="Helpers\MessageHelper.cs" />
+    <Compile Include="Helpers\PagerHelper.cs" />
+    <Compile Include="Helpers\RouteHelper.cs" />
+    <Compile Include="Models\Attachments\AttachmentRuleCreateOrUpdate.cs" />
+    <Compile Include="Models\Attachments\AttachmentRuleDelete.cs" />
+    <Compile Include="Models\Countries\CountryCreateOrUpdate.cs" />
+    <Compile Include="Models\Countries\CountryDelete.cs" />
+    <Compile Include="Models\Settings\SettingCreateOrUpdate.cs" />
+    <Compile Include="Models\Settings\SettingDelete.cs" />
+    <Compile Include="Models\TimeZones\TimeZoneCreateOrUpdate.cs" />
+    <Compile Include="Models\TimeZones\TimeZoneDelete.cs" />
+    <Compile Include="Models\Users\UserAdminCreate.cs" />
+    <Compile Include="Models\Users\UserAdminUpdate.cs" />
+    <Compile Include="Models\Users\UserAuthentication.cs" />
+    <Compile Include="Models\Users\UserAuthenticationReset.cs" />
+    <Compile Include="Models\Users\UserAuthenticationUpdate.cs" />
+    <Compile Include="Models\Users\UserAvatarCreate.cs" />
+    <Compile Include="Models\Users\UserAvatarDelete.cs" />
+    <Compile Include="Models\Users\UserBanCreateOrUpdate.cs" />
+    <Compile Include="Models\Users\UserBanDelete.cs" />
+    <Compile Include="Models\Users\UserHostSearchCreate.cs" />
+    <Compile Include="Models\Users\UserHostSearchDelete.cs" />
+    <Compile Include="Models\Users\UserPreferenceUpdate.cs" />
+    <Compile Include="Models\Users\UserRoleCreateOrUpdate.cs" />
+    <Compile Include="Models\Users\UserRoleDelete.cs" />
+    <Compile Include="Models\Users\UserSearchCreate.cs" />
+    <Compile Include="Models\Users\UserSearchDelete.cs" />
+    <Compile Include="Routes\AdministrationRoutes.cs" />
+    <Compile Include="Routes\UsersAdministrationRoutes.cs" />
+    <Compile Include="Routes\CommonRoutes.cs" />
+    <Compile Include="Routes\UsersRoutes.cs" />
+    <Compile Include="Controllers\Users\HomeController.cs" />
+    <Compile Include="Controllers\Views.cs" />
+    <Compile Include="Extensions\RouteExtension.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="Models\IValue.cs" />
+    <Compile Include="Models\Users\UserCreate.cs" />
+    <Compile Include="Models\Users\UserSession.cs" />
+    <Compile Include="Models\Users\UserUpdate.cs" />
+    <Compile Include="Models\Value.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\CharacterValidator.cs" />
+    <Compile Include="Validators\DateValidator.cs" />
+    <Compile Include="Validators\EmailValidator.cs" />
+    <Compile Include="Validators\ImageDimensionMaxValidator.cs" />
+    <Compile Include="Validators\ImageDimensionMinValidator.cs" />
+    <Compile Include="Validators\ImageValidator.cs" />
+    <Compile Include="Validators\SettingUniqueValidator.cs" />
+    <Compile Include="Validators\UserAuthorizeValidator.cs" />
+    <Compile Include="Validators\UserEmailAddressMustExistValidator.cs" />
+    <Compile Include="Validators\UserNameMustExistValidator.cs" />
+    <Compile Include="Validators\UserNameNotProtectedValidator.cs" />
+    <Compile Include="Validators\UserUniqueEmailAddressValidator.cs" />
+    <Compile Include="Validators\UserUniqueNameValidator.cs" />
+    <Compile Include="ViewModels\ErrorViewModel.cs" />
+    <Compile Include="ViewModels\MessageViewModel.cs" />
+    <Compile Include="ViewModels\StatusViewModel.cs" />
+    <Compile Include="ViewModels\UserPermissionViewModel.cs" />
+    <Compile Include="Widgets\IWidget.cs" />
+    <Compile Include="Widgets\UserLoginView.cs" />
+    <Compile Include="Widgets\WidgetAttribute.cs" />
+    <Compile Include="Widgets\WidgetBase.cs" />
+    <Compile Include="Widgets\WidgetModule.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Coders.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Coders.DependencyResolution\Coders.DependencyResolution.csproj">
+      <Project>{3154E2EC-87F0-4B57-A0BF-0E9DEC4803FC}</Project>
+      <Name>Coders.DependencyResolution</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Coders\Coders.csproj">
+      <Project>{0580C019-23F8-473C-9386-9BF07334A655}</Project>
+      <Name>Coders</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

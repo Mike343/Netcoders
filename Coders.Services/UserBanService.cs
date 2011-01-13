@@ -18,6 +18,7 @@
 #region Using Directives
 using System;
 using Coders.Extensions;
+using Coders.Models;
 using Coders.Models.Common;
 using Coders.Models.Users;
 #endregion
@@ -32,11 +33,13 @@ namespace Coders.Services
 		/// <param name="authenticationService">The authentication service.</param>
 		/// <param name="repository">The repository.</param>
 		public UserBanService(
-			IAuthenticationService authenticationService, 
-			IUserBanRepository repository)
+			IAuthenticationService authenticationService,
+			IUserService userService,
+			IRepository<UserBan> repository)
 			: base(repository)
 		{
 			this.AuthenticationService = authenticationService;
+			this.UserService = userService;
 		}
 
 		/// <summary>
@@ -44,6 +47,16 @@ namespace Coders.Services
 		/// </summary>
 		/// <value>The authentication service.</value>
 		public IAuthenticationService AuthenticationService
+		{
+			get;
+			private set;
+		}
+
+		/// <summary>
+		/// Gets or sets the user service.
+		/// </summary>
+		/// <value>The user service.</value>
+		public IUserService UserService
 		{
 			get;
 			private set;
@@ -71,6 +84,47 @@ namespace Coders.Services
 			var identity = this.AuthenticationService.Identity;
 
 			return !identity.IsAuthenticated() ? null : this.GetBy(new UserBanUserSpecification(identity.Id));
+		}
+
+		/// <summary>
+		/// Inserts or updates the specified user ban.
+		/// </summary>
+		/// <param name="ban">The ban.</param>
+		public void InsertOrUpdate(UserBan ban)
+		{
+			this.InsertOrUpdate(ban, string.Empty);
+		}
+
+		/// <summary>
+		/// Inserts or updates the specified user ban.
+		/// </summary>
+		/// <param name="ban">The ban.</param>
+		/// <param name="name">The name.</param>
+		public void InsertOrUpdate(UserBan ban, string name)
+		{
+			if (ban == null)
+			{
+				throw new ArgumentNullException("ban");
+			}
+
+			if (ban.Id > 0)
+			{
+				this.Update(ban);
+			}
+			else
+			{
+				var identity = this.AuthenticationService.Identity;
+
+				if (!identity.IsAuthenticated())
+				{
+					return;
+				}
+
+				ban.User = this.UserService.GetBy(new UserNameSpecification(name));
+				ban.Admin = this.UserService.GetById(identity.Id);
+
+				this.Insert(ban);
+			}
 		}
 
 		/// <summary>

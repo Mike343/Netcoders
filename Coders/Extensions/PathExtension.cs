@@ -34,11 +34,16 @@ namespace Coders.Extensions
 		/// <returns></returns>
 		public static string AsPath(this string path)
 		{
-			var context = HttpContext.Current;
+			var current = HttpContext.Current;
 
-			return context == null 
-				? Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, path) 
-				: GetPath(context, path);
+			if (current == null)
+			{
+				return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, path);
+			}
+
+			var context = new HttpContextWrapper(current);
+
+			return GetPath(context, path);
 		}
 
 		/// <summary>
@@ -47,7 +52,7 @@ namespace Coders.Extensions
 		/// <param name="path">The path.</param>
 		/// <param name="context">The context.</param>
 		/// <returns></returns>
-		public static string AsPath(this string path, HttpContext context)
+		public static string AsPath(this string path, HttpContextBase context)
 		{
 			if (context == null)
 			{
@@ -64,12 +69,28 @@ namespace Coders.Extensions
 		/// <returns></returns>
 		public static string AsRoot(this string path)
 		{
-			if (HttpContext.Current.Request.ApplicationPath == null)
+			return AsRoot(path, new HttpContextWrapper(HttpContext.Current));
+		}
+
+		/// <summary>
+		/// Returns the website root path for the specified path.
+		/// </summary>
+		/// <param name="path">The path.</param>
+		/// <param name="context">The context.</param>
+		/// <returns></returns>
+		public static string AsRoot(this string path, HttpContextBase context)
+		{
+			if (context == null)
+			{
+				throw new ArgumentNullException("context");
+			}
+
+			if (context.Request.ApplicationPath == null)
 			{
 				throw new PathException(Errors.PathFailed.FormatInvariant(path));
 			}
 
-			return Path.Combine(HttpContext.Current.Request.ApplicationPath, path);
+			return Path.Combine(context.Request.ApplicationPath, path).Replace("\\", "/");
 		}
 
 		/// <summary>
@@ -78,7 +99,7 @@ namespace Coders.Extensions
 		/// <param name="context">The context.</param>
 		/// <param name="path">The path.</param>
 		/// <returns></returns>
-		private static string GetPath(HttpContext context, string path)
+		private static string GetPath(HttpContextBase context, string path)
 		{
 			if (context.Request.PhysicalApplicationPath != null)
 			{

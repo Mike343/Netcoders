@@ -15,6 +15,10 @@
 //	limitations under the License.
 #endregion
 
+#region Using Directives
+using System.Web;
+#endregion
+
 namespace Coders.Models.Users
 {
 	public interface IUserAvatarService : IEntityService<UserAvatar>
@@ -24,5 +28,12 @@ namespace Coders.Models.Users
 		/// </summary>
 		/// <param name="avatar">The avatar.</param>
 		void Assign(UserAvatar avatar);
+
+		/// <summary>
+		/// Inserts the specified avatar.
+		/// </summary>
+		/// <param name="avatar">The avatar.</param>
+		/// <param name="file">The file.</param>
+		void Insert(UserAvatar avatar, HttpPostedFileBase file);
 	}
 }

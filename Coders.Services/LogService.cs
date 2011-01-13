@@ -16,6 +16,7 @@
 #endregion
 
 #region Using Directives
+using Coders.Models;
 using Coders.Models.Logs;
 #endregion
 
@@ -27,7 +28,7 @@ namespace Coders.Services
 		/// Initializes a new instance of the <see cref="LogService"/> class.
 		/// </summary>
 		/// <param name="repository">The repository.</param>
-		public LogService(ILogRepository repository)
+		public LogService(IRepository<Log> repository)
 			: base(repository)
 		{
 

@@ -19,6 +19,10 @@ namespace Coders.Models.TimeZones
 {
 	public interface ITimeZoneService : IEntityService<TimeZone>
 	{
-
+		/// <summary>
+		/// Inserts or updates the specified time zone.
+		/// </summary>
+		/// <param name="timeZone">The time zone.</param>
+		void InsertOrUpdate(TimeZone timeZone);
 	}
 }

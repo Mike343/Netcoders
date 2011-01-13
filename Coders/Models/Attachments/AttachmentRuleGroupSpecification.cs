@@ -15,13 +15,9 @@
 //	limitations under the License.
 #endregion
 
-#region Using Directives
-using Coders.Specifications;
-#endregion
-
 namespace Coders.Models.Attachments
 {
-	public class AttachmentRuleGroupSpecification : Specification<AttachmentRule>
+	public class AttachmentRuleGroupSpecification : AttachmentRuleSpecification
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AttachmentRuleGroupSpecification"/> class.

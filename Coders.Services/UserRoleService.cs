@@ -16,11 +16,11 @@
 #endregion
 
 #region Using Directives
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Coders.Authentication;
+using Coders.Models;
 using Coders.Models.Users;
 using Coders.Specifications;
 #endregion
@@ -32,11 +32,11 @@ namespace Coders.Services
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UserRoleService"/> class.
 		/// </summary>
-		/// <param name="userRolePrivilegeRepository">The user role privilege repository.</param>
 		/// <param name="repository">The repository.</param>
+		/// <param name="userRolePrivilegeRepository">The user role privilege repository.</param>
 		public UserRoleService(
-			IUserRolePrivilegeRepository userRolePrivilegeRepository, 
-			IUserRoleRepository repository)
+			IRepository<UserRole> repository,
+			IRepository<UserRoleRelation> userRolePrivilegeRepository)
 			: base(repository)
 		{
 			this.UserRolePrivilegeRepository = userRolePrivilegeRepository;
@@ -46,7 +46,7 @@ namespace Coders.Services
 		/// Gets or sets the user role privilege repository.
 		/// </summary>
 		/// <value>The user role privilege repository.</value>
-		public IUserRolePrivilegeRepository UserRolePrivilegeRepository
+		public IRepository<UserRoleRelation> UserRolePrivilegeRepository
 		{
 			get; 
 			private set; 
@@ -57,18 +57,42 @@ namespace Coders.Services
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-		public IList<UserRolePrivilege> GetPrivileges(ISpecification<UserRolePrivilege> specification)
+		public IList<UserRoleRelation> GetPrivileges(ISpecification<UserRoleRelation> specification)
 		{
 			return this.UserRolePrivilegeRepository.GetAll(specification);
 		}
 
 		/// <summary>
+		/// Inserts or updates the specified role.
+		/// </summary>
+		/// <param name="role">The role.</param>
+		/// <param name="privileges">The privileges.</param>
+		public void InsertOrUpdate(UserRole role, IList<UserRoleRelationUpdateValue> privileges)
+		{
+			if (role == null)
+			{
+				throw new ArgumentNullException("role");
+			}
+
+			role.Privilege = (Privileges)privileges.Where(x => x.Selected).Aggregate(0, (value, x) => value | x.Privilege);
+
+			if (role.Id > 0)
+			{
+				this.Update(role);
+			}
+			else
+			{
+				this.Insert(role);
+			}
+		}
+
+		/// <summary>
 		/// Inserts the privilege.
 		/// </summary>
-		/// <param name="privilege">The privilege.</param>
-		public void InsertPrivilege(UserRolePrivilege privilege)
+		/// <param name="relation">The relation.</param>
+		public void InsertPrivilege(UserRoleRelation relation)
 		{
-			this.UserRolePrivilegeRepository.Insert(privilege);
+			this.UserRolePrivilegeRepository.Insert(relation);
 		}
 
 		/// <summary>
@@ -76,7 +100,7 @@ namespace Coders.Services
 		/// </summary>
 		/// <param name="user">The user.</param>
 		/// <param name="values">The values.</param>
-		public void UpdatePrivileges(User user, UserRolePrivilegeUpdate[] values)
+		public void UpdatePrivileges(User user, UserRoleRelationUpdate[] values)
 		{
 			if (user == null)
 			{
@@ -91,8 +115,8 @@ namespace Coders.Services
 			foreach (var value in values)
 			{
 				var permission = this.UserRolePrivilegeRepository.GetBy(
-					new UserRolePrivilegeUserSpecification(user.Id).And(
-						new UserRolePrivilegeRoleSpecification(value.RoleId)
+					new UserRoleRelationUserSpecification(user.Id).And(
+						new UserRoleRelationRoleSpecification(value.RoleId)
 					)
 				);
 
@@ -109,7 +133,7 @@ namespace Coders.Services
 							return;
 						}
 
-						this.UserRolePrivilegeRepository.Insert(new UserRolePrivilege
+						this.UserRolePrivilegeRepository.Insert(new UserRoleRelation
 						{
 							Privilege = (Privileges)action,
 							User = user,

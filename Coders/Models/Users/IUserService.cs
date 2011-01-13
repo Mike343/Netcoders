@@ -15,10 +15,38 @@
 //	limitations under the License.
 #endregion
 
+#region Using Directives
+using Coders.Specifications;
+#endregion
+
 namespace Coders.Models.Users
 {
 	public interface IUserService : IEntityService<User>
 	{
+		/// <summary>
+		/// Gets the user preference by specified specification.
+		/// </summary>
+		/// <param name="specification">The specification.</param>
+		/// <returns></returns>
+		UserPreference GetPreferenceBy(ISpecification<UserPreference> specification);
 
+		/// <summary>
+		/// Inserts the specified user and the specified user preference.
+		/// </summary>
+		/// <param name="user">The user.</param>
+		/// <param name="preference">The preference.</param>
+		void Insert(User user, UserPreference preference);
+
+		/// <summary>
+		/// Inserts the preference.
+		/// </summary>
+		/// <param name="preference">The preference.</param>
+		void InsertPreference(UserPreference preference);
+
+		/// <summary>
+		/// Updates the preference.
+		/// </summary>
+		/// <param name="preference">The preference.</param>
+		void UpdatePreference(UserPreference preference);
 	}
 }

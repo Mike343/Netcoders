@@ -4,43 +4,12 @@
  <Namespaces>
   <Namespace Name="Coders.Services.Formatters">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-05 04:06:57Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:37Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Services.Formatters' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
  </Namespaces>
- <Targets>
-  <Target Name="C:\Users\Mike\Desktop\Netcoders\Coders.Services\bin\Debug\Coders.Services.dll">
-   <Modules>
-    <Module Name="coders.services.dll">
-     <Namespaces>
-      <Namespace Name="Coders.Services">
-       <Types>
-        <Type Name="EmailService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
-         <Members>
-          <Member Name="#Send(System.String,System.String,System.String,System.String,System.Object)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
-           <Messages>
-            <Message TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822" Status="Active" Created="2011-01-05 04:06:57Z" FixCategory="DependsOnFix">
-             <Issue Certainty="95" Level="Warning" Path="C:\Users\Mike\Desktop\Netcoders\Coders.Services" File="EmailService.cs" Line="71">The 'this' parameter (or 'Me' in Visual Basic) of 'EmailService.Send(string, string, string, string, object)' is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Issue>
-            </Message>
-            <Message Id="model" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2011-01-05 04:06:57Z" FixCategory="DependsOnFix">
-             <Issue Certainty="95" Level="Warning" Path="C:\Users\Mike\Desktop\Netcoders\Coders.Services" File="EmailService.cs" Line="71">Parameter 'model' of 'EmailService.Send(string, string, string, string, object)' is never used. Remove the parameter or use it in the method body.</Issue>
-            </Message>
-            <Message Id="template" TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801" Status="Active" Created="2011-01-05 04:06:57Z" FixCategory="DependsOnFix">
-             <Issue Certainty="95" Level="Warning" Path="C:\Users\Mike\Desktop\Netcoders\Coders.Services" File="EmailService.cs" Line="71">Parameter 'template' of 'EmailService.Send(string, string, string, string, object)' is never used. Remove the parameter or use it in the method body.</Issue>
-            </Message>
-           </Messages>
-          </Member>
-         </Members>
-        </Type>
-       </Types>
-      </Namespace>
-     </Namespaces>
-    </Module>
-   </Modules>
-  </Target>
- </Targets>
  <Rules>
   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
    <Name>Avoid namespaces with few types</Name>
@@ -51,26 +20,6 @@
    <Email>[none]</Email>
    <MessageLevel Certainty="50">Warning</MessageLevel>
    <File Name="designrules.dll" Version="10.0.0.0" />
-  </Rule>
-  <Rule TypeName="MarkMembersAsStatic" Category="Microsoft.Performance" CheckId="CA1822">
-   <Name>Mark members as static</Name>
-   <Description>Methods which do not access instance data or call instance methods can be marked as static (Shared in Visual Basic). After doing so, the compiler will emit non-virtual call sites to these members which will prevent a check at runtime for each call that ensures the current object pointer is non-null. This can result in a measurable performance gain for performance-sensitive code. In some cases, the failure to access the current object instance represents a correctness issue.</Description>
-   <Resolution Name="Default">The 'this' parameter (or 'Me' in Visual Basic) of {0} is never used. Mark the member as static (or Shared in Visual Basic) or use 'this'/'Me' in the method body or at least one property accessor, if appropriate.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/ms245046(VS.100).aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="95">Warning</MessageLevel>
-   <File Name="performancerules.dll" Version="10.0.0.0" />
-  </Rule>
-  <Rule TypeName="ReviewUnusedParameters" Category="Microsoft.Usage" CheckId="CA1801">
-   <Name>Review unused parameters</Name>
-   <Description>Review parameters in non-virtual methods that are not used in the method body to ensure no correctness exists around failure to access them. Unused parameters incur maintenance and performance costs. Sometimes a violation of this rule can point to an implementation bug in the method (i.e. the parameter should actually have been used in the method body). Exclude warnings of this rule if the parameter has to exist because of backward compatibility.</Description>
-   <Resolution Name="Default">Parameter {0} of {1} is never used. Remove the parameter or use it in the method body.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/ms182268(VS.100).aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="95">Warning</MessageLevel>
-   <File Name="usagerules.dll" Version="10.0.0.0" />
   </Rule>
  </Rules>
  <Localized>

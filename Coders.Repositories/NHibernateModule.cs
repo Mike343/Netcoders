@@ -34,7 +34,7 @@ namespace Coders.Repositories
 	public class NHibernateModule : NinjectModule
     {
 		// private constants
-		private const string SessionKey = "Coders.Repositories.HibernateModule.Key";
+		public const string SessionKey = "Coders.Repositories.HibernateModule.Key";
 
 		// private static fields
 		private static ISession _session;
@@ -70,29 +70,49 @@ namespace Coders.Repositories
 			});
 
 			Bind<ISessionFactory>().ToConstant(fluent.BuildConfiguration().BuildSessionFactory());
-            Bind<ISession>().ToMethod(GetSession);
+			Bind<ISession>().ToMethod(OnSessionStart).InRequestScope().OnDeactivation(OnSessionEnd);
         }
 
 		/// <summary>
-		/// Gets the session.
+		/// Starts and adds the session the the cache.
 		/// </summary>
 		/// <param name="context">The context.</param>
 		/// <returns></returns>
-		private static ISession GetSession(IContext context)
+		private static ISession OnSessionStart(IContext context)
 		{
 			if (HttpContext.Current == null)
 			{
 				return _session ?? (_session = context.Kernel.Get<ISessionFactory>().OpenSession());
 			}
 
+			ISession session;
+
 			var cache = HttpContext.Current.Items;
 
-			if (!cache.Contains(SessionKey)) 
-            {
-				cache.Add(SessionKey, context.Kernel.Get<ISessionFactory>().OpenSession());
+			if (!cache.Contains(SessionKey))
+			{
+				session = context.Kernel.Get<ISessionFactory>().OpenSession();
+				cache.Add(SessionKey, session);
             }
+			else
+			{
+				session = cache[SessionKey] as ISession;
+			}
 
-			return cache[SessionKey] as ISession;
-        }
+			return session;
+		}
+
+		/// <summary>
+		/// Ends the session
+		/// </summary>
+		private static void OnSessionEnd(ISession session)
+		{
+			if (session != null)
+			{
+				session.Dispose();
+			}
+
+			HttpContext.Current.Items[SessionKey] = null;
+		}
     }
 }

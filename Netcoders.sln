@@ -22,13 +22,36 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{A260D95B-0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core Tests", "Core Tests", "{6ECB85D3-86F5-4456-BF40-1704E44C5119}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Messaging Queue", "Messaging Queue", "{2AAB1C06-3190-401E-928F-FD4CDCE428C0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core Processors", "Core Processors", "{2AAB1C06-3190-401E-928F-FD4CDCE428C0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coders.MailerProcessor", "Coders.MailerProcessor\Coders.MailerProcessor.csproj", "{B28DA324-C8ED-4CB2-B932-7A31A8511DB4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coders.DependencyResolution", "Coders.DependencyResolution\Coders.DependencyResolution.csproj", "{3154E2EC-87F0-4B57-A0BF-0E9DEC4803FC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coders.Web", "Coders.Web\Coders.Web.csproj", "{B6DBB1B8-ED20-43DA-9EBD-A68F3DADD5B3}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Site", "Site\", "{3415F8DF-35EF-4E72-B618-BA42AC97AC02}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		ProjectReferences = "{0580C019-23F8-473C-9386-9BF07334A655}|Coders.dll;{3154E2EC-87F0-4B57-A0BF-0E9DEC4803FC}|Coders.DependencyResolution.dll;{DFC59B36-D60A-491C-B709-89D8473109CF}|Coders.Repositories.dll;{B26E83D5-C556-4DBE-A758-72C663CFB702}|Coders.Services.dll;{B6DBB1B8-ED20-43DA-9EBD-A68F3DADD5B3}|Coders.Web.dll;"
+		Debug.AspNetCompiler.VirtualPath = "/Site"
+		Debug.AspNetCompiler.PhysicalPath = "Site\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Site\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Site"
+		Release.AspNetCompiler.PhysicalPath = "Site\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Site\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "63794"
+		VWDVirtualPath = "/"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
@@ -123,6 +146,16 @@ Global
 		{B6DBB1B8-ED20-43DA-9EBD-A68F3DADD5B3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B6DBB1B8-ED20-43DA-9EBD-A68F3DADD5B3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{B6DBB1B8-ED20-43DA-9EBD-A68F3DADD5B3}.Release|x86.ActiveCfg = Release|Any CPU
+		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Release|x86.ActiveCfg = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

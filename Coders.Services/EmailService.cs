@@ -17,12 +17,13 @@
 
 #region Using Directives
 using System;
+using System.IO;
 using System.Messaging;
 using Coders.Extensions;
 using Coders.Models;
 using Coders.Models.Common;
 using Coders.Models.Settings;
-
+using RazorEngine;
 #endregion
 
 namespace Coders.Services
@@ -30,21 +31,27 @@ namespace Coders.Services
 	public class EmailService : IEmailService
 	{
 		// private constants
-		private const string QueueName = @".\private$\{0}-mail";
+		private const string QueueName = @".\private$\mail";
 
 		/// <summary>
 		/// Sends the email using the specified email.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
-		/// <param name="email">The email.</param>
-		public void Send<T>(T email) where T : class, IEmail
+		/// <param name="model">The model.</param>
+		public void Send<T>(T model) where T : class, IEmail
 		{
-			if (email == null)
+			if (model == null)
 			{
 				return;
 			}
 
-			Send(email.Template, email.Recipient, email.From, email.Subject, email.Build());
+			using (TextReader reader = new StreamReader("{0}.cshtml".FormatInvariant(model.Template).AsPath(), true))
+			{
+				var template = reader.ReadToEnd();
+				var result = Razor.Parse(template, model);
+
+				Process(model.Recipient, model.From, model.Subject, result);
+			}
 		}
 
 		/// <summary>
@@ -60,19 +67,6 @@ namespace Coders.Services
 		}
 
 		/// <summary>
-		/// Send the specified email
-		/// </summary>
-		/// <param name="template">The template.</param>
-		/// <param name="recipient">The recipient.</param>
-		/// <param name="from">The sender.</param>
-		/// <param name="subject">The subject.</param>
-		/// <param name="model">The model.</param>
-		public void Send(string template, string recipient, string from, string subject, object model)
-		{
-			Process(recipient, from, subject, null);
-		}
-
-		/// <summary>
 		/// Processes the specified email.
 		/// </summary>
 		/// <param name="recipient">The recipient.</param>
@@ -83,17 +77,15 @@ namespace Coders.Services
 		{
 			try
 			{
-				var name = QueueName.FormatInvariant(Setting.SiteTitle.Value.Slug());
-
-				if (!MessageQueue.Exists(name))
+				if (!MessageQueue.Exists(QueueName))
 				{
-					using (var queue = MessageQueue.Create(name))
+					using (var queue = MessageQueue.Create(QueueName))
 					{
 						Send(queue, new EmailResult(recipient, from, subject, body));
 					}
 				}
 
-				using (var queue = new MessageQueue(name))
+				using (var queue = new MessageQueue(QueueName))
 				{
 					Send(queue, new EmailResult(recipient, from, subject, body));
 				}

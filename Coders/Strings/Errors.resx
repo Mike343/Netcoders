@@ -121,14 +121,26 @@
     <value>Activation error occurred while trying to get instance of type '{0}'.</value>
     <comment>Error message to be shown when activation fails</comment>
   </data>
+  <data name="AttachmentContentTypeNotValid" xml:space="preserve">
+    <value>This file type '{0}' or extension is not allowed. Valid extensions are: {1}</value>
+  </data>
+  <data name="AttachmentImageDimensionMaxNotValid" xml:space="preserve">
+    <value>The image must not be greater then {0}x{1} pixels.</value>
+  </data>
+  <data name="AttachmentImageDimensionMinNotValid" xml:space="preserve">
+    <value>The image must be greater then {0}x{1} pixels.</value>
+  </data>
+  <data name="AttachmentLengthNotValid" xml:space="preserve">
+    <value>The file size must not be greater than {0}.</value>
+  </data>
   <data name="CharacterNotValid" xml:space="preserve">
     <value>{0} contains characters that are not valid. Valid characters are letters, numbers and spaces.</value>
   </data>
   <data name="DateNotValid" xml:space="preserve">
-    <value>This date is not valid. A valid example would be: "01/01/2010"</value>
+    <value>This date is not valid. A valid example would be mm/dd/yyyy</value>
   </data>
   <data name="EmailNotValid" xml:space="preserve">
-    <value>{0} is not valid a valid email address. A valid email address is name@example.com.</value>
+    <value>{0} is not valid a valid email address. A valid email address is 'name@example.com'.</value>
   </data>
   <data name="Equal" xml:space="preserve">
     <value>{0} is not equal to or does not match {1}.</value>
@@ -161,12 +173,39 @@
     <value>Page must be greater then zero.</value>
   </data>
   <data name="PathFailed" xml:space="preserve">
-    <value>Error occurred while trying to build the path '{0}'.</value>
+    <value>Could not build the '{0}' path.</value>
   </data>
   <data name="Required" xml:space="preserve">
     <value>{0} is a required field.</value>
   </data>
+  <data name="SessionNull" xml:space="preserve">
+    <value>The property 'Session' for argument 'context' of type 'HttpContext' is null.</value>
+  </data>
+  <data name="SettingKeyTaken" xml:space="preserve">
+    <value>This setting key has already been taken.</value>
+  </data>
   <data name="TotalGreaterThanOrEqualZero" xml:space="preserve">
     <value>Total must be greater then or equal to zero.</value>
+  </data>
+  <data name="UserAuthenticationFailed" xml:space="preserve">
+    <value>Your email address or password is incorrect.</value>
+  </data>
+  <data name="UserAvatarCreateFileNull" xml:space="preserve">
+    <value>The property 'File' for type 'UserAvatarCreate' is null.</value>
+  </data>
+  <data name="UserEmailAddressNotFound" xml:space="preserve">
+    <value>We could not locate an account with this email address.</value>
+  </data>
+  <data name="UserEmailAddressTaken" xml:space="preserve">
+    <value>This email address has already been used.</value>
+  </data>
+  <data name="UserNameNotFound" xml:space="preserve">
+    <value>We could not locate an account with this name.</value>
+  </data>
+  <data name="UserNameTaken" xml:space="preserve">
+    <value>This name has already been taken.</value>
+  </data>
+  <data name="UserProtected" xml:space="preserve">
+    <value>This user is protected and cannot be modified except by the user.</value>
   </data>
 </root>

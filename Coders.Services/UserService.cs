@@ -18,10 +18,12 @@
 #region Using Directives
 using System;
 using Coders.Extensions;
+using Coders.Models;
 using Coders.Models.Common;
 using Coders.Models.Settings;
 using Coders.Models.Users;
 using Coders.Models.Users.Enums;
+using Coders.Specifications;
 #endregion
 
 namespace Coders.Services
@@ -36,18 +38,22 @@ namespace Coders.Services
 		/// <param name="userHostService">The user host service.</param>
 		/// <param name="userRoleService">The user role service.</param>
 		/// <param name="repository">The repository.</param>
+		/// <param name="userPreferenceRepository">The user preference repository.</param>
+		/// <param name="?">The ?.</param>
 		public UserService(
 			IAuthenticationService authenticationService,
 			ITextFormattingService textFormattingService,
 			IUserHostService userHostService,
 			IUserRoleService userRoleService,
-			IUserRepository repository) 
+			IRepository<User> repository,
+			IRepository<UserPreference> userPreferenceRepository) 
 			: base(repository)
 		{
 			this.AuthenticationService = authenticationService;
 			this.TextFormattingService = textFormattingService;
 			this.UserHostService = userHostService;
 			this.UserRoleService = userRoleService;
+			this.UserPreferenceRepository = userPreferenceRepository;
 		}
 
 		/// <summary>
@@ -91,6 +97,26 @@ namespace Coders.Services
 		}
 
 		/// <summary>
+		/// Gets or sets the user preference repository.
+		/// </summary>
+		/// <value>The user preference repository.</value>
+		public IRepository<UserPreference> UserPreferenceRepository
+		{
+			get;
+			private set;
+		}
+
+		/// <summary>
+		/// Gets the user preference by specified specification.
+		/// </summary>
+		/// <param name="specification">The specification.</param>
+		/// <returns></returns>
+		public UserPreference GetPreferenceBy(ISpecification<UserPreference> specification)
+		{
+			return this.UserPreferenceRepository.GetBy(specification);
+		}
+
+		/// <summary>
 		/// Creates this instance.
 		/// </summary>
 		/// <returns></returns>
@@ -125,6 +151,7 @@ namespace Coders.Services
 			entity.HostAddress = this.UserHostService.GetAddress();
 			entity.Salt = salt;
 			entity.SignatureParsed = this.TextFormattingService.Parse(entity.Signature, false);
+			entity.Status = UserStatus.Activated;
 
 			base.Insert(entity);
 
@@ -132,13 +159,46 @@ namespace Coders.Services
 
 			foreach (var role in roles)
 			{
-				this.UserRoleService.InsertPrivilege(new UserRolePrivilege
+				this.UserRoleService.InsertPrivilege(new UserRoleRelation
 				{
 					Privilege = role.Privilege,
 					User = entity,
 					Role = role
 				});
 			}
+		}
+
+		/// <summary>
+		/// Inserts the specified user and the specified user preference.
+		/// </summary>
+		/// <param name="user">The user.</param>
+		/// <param name="preference">The preference.</param>
+		public void Insert(User user, UserPreference preference)
+		{
+			if (user == null)
+			{
+				throw new ArgumentNullException("user");
+			}
+
+			if (preference == null)
+			{
+				throw new ArgumentNullException("preference");
+			}
+
+			this.InsertPreference(preference);
+
+			user.Preference = preference;
+
+			this.Insert(user);
+		}
+
+		/// <summary>
+		/// Inserts the preference.
+		/// </summary>
+		/// <param name="preference">The preference.</param>
+		public void InsertPreference(UserPreference preference)
+		{
+			this.UserPreferenceRepository.Insert(preference);
 		}
 
 		/// <summary>
@@ -156,6 +216,15 @@ namespace Coders.Services
 			entity.SignatureParsed = this.TextFormattingService.Parse(entity.Signature, false);
 
 			base.Update(entity);
+		}
+
+		/// <summary>
+		/// Updates the preference.
+		/// </summary>
+		/// <param name="preference">The preference.</param>
+		public void UpdatePreference(UserPreference preference)
+		{
+			this.UserPreferenceRepository.Update(preference);
 		}
 	}
 }

@@ -16,7 +16,6 @@
 #endregion
 
 #region Using Directives
-using System;
 using Coders.Authentication;
 using Coders.Models.Users;
 #endregion
@@ -29,13 +28,13 @@ namespace Coders.Models.Common
 		/// Gets the return URL.
 		/// </summary>
 		/// <value>The return URL.</value>
-		Uri ReturnUrl { get; }
+		string ReturnUrl { get; }
 
 		/// <summary>
 		/// Gets the log on URL.
 		/// </summary>
 		/// <value>The log on URL.</value>
-		Uri LogOnUrl { get; }
+		string LogOnUrl { get; }
 
 		/// <summary>
 		/// Generates the password.
@@ -57,6 +56,12 @@ namespace Coders.Models.Common
 		/// <param name="password">The password.</param>
 		/// <returns></returns>
 		bool Authenticate(User user, string password);
+
+		/// <summary>
+		/// Gets the principal.
+		/// </summary>
+		/// <value>The principal.</value>
+		PrivilegePrincipal Principal { get; }
 
 		/// <summary>
 		/// Gets the identity.

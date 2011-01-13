@@ -29,19 +29,26 @@ namespace Coders.Models.Users
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-		IList<UserRolePrivilege> GetPrivileges(ISpecification<UserRolePrivilege> specification);
+		IList<UserRoleRelation> GetPrivileges(ISpecification<UserRoleRelation> specification);
+
+		/// <summary>
+		/// Inserts or updates the specified role.
+		/// </summary>
+		/// <param name="role">The role.</param>
+		/// <param name="privileges">The privileges.</param>
+		void InsertOrUpdate(UserRole role, IList<UserRoleRelationUpdateValue> privileges);
 
 		/// <summary>
 		/// Inserts the privilege.
 		/// </summary>
-		/// <param name="privilege">The privilege.</param>
-		void InsertPrivilege(UserRolePrivilege privilege);
+		/// <param name="relation">The relation.</param>
+		void InsertPrivilege(UserRoleRelation relation);
 
 		/// <summary>
 		/// Updates the privileges for the specified user.
 		/// </summary>
 		/// <param name="user">The user.</param>
 		/// <param name="values">The values.</param>
-		void UpdatePrivileges(User user, UserRolePrivilegeUpdate[] values);
+		void UpdatePrivileges(User user, UserRoleRelationUpdate[] values);
 	}
 }

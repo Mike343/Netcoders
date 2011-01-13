@@ -17,9 +17,7 @@
 
 #region Using Directives
 using System;
-using System.Linq;
 using System.Linq.Expressions;
-using Coders.Specifications;
 #endregion
 
 namespace Coders.Extensions
@@ -27,33 +25,7 @@ namespace Coders.Extensions
 	public static class SpecificationExtension
 	{
 		/// <summary>
-		/// Composes the specified first.
-		/// </summary>
-		/// <typeparam name="T"></typeparam>
-		/// <param name="first">The first.</param>
-		/// <param name="second">The second.</param>
-		/// <param name="merge">The merge.</param>
-		/// <returns></returns>
-		public static Expression<T> Compose<T>(this LambdaExpression first, Expression<T> second, Func<Expression, Expression, Expression> merge)
-		{
-			if (first == null)
-			{
-				throw new ArgumentNullException("first");
-			}
-
-			if (merge == null)
-			{
-				throw new ArgumentNullException("merge");
-			}
-
-			var map = first.Parameters.Select((v, i) => new { v, p = second.Parameters[i] }).ToDictionary(x => x.p, k => k.v);
-			var body = SpecificationParameterBinder.ReplaceParameters(map, second.Body);
-
-			return Expression.Lambda<T>(merge(first.Body, body), first.Parameters);
-		}
-
-		/// <summary>
-		/// Ands the specified first.
+		/// Builds the query for the specified first expression and the specified second expression.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="first">The first.</param>
@@ -61,8 +33,18 @@ namespace Coders.Extensions
 		/// <returns></returns>
 		public static Expression<Func<T, bool>> And<T>(this LambdaExpression first, Expression<Func<T, bool>> second)
 		{
-			return first.Compose(second, Expression.And);
+			if (first == null)
+			{
+				throw new ArgumentNullException("first");
+			}
 
+			return Expression.Lambda<Func<T, bool>>(
+				Expression.AndAlso(
+					first.Body, 
+					Expression.Invoke(second, first.Parameters)
+				), 
+				first.Parameters
+			);
 		}
 
 		/// <summary>
@@ -74,7 +56,18 @@ namespace Coders.Extensions
 		/// <returns></returns>
 		public static Expression<Func<T, bool>> Or<T>(this LambdaExpression first, Expression<Func<T, bool>> second)
 		{
-			return first.Compose(second, Expression.Or);
+			if (first == null)
+			{
+				throw new ArgumentNullException("first");
+			}
+
+			return Expression.Lambda<Func<T, bool>>(
+				Expression.Or(
+					first.Body,
+					Expression.Invoke(second, first.Parameters)
+				),
+				first.Parameters
+			);
 		}
 	} 
 }

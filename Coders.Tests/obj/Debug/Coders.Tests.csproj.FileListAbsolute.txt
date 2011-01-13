@@ -6,3 +6,4 @@ C:\Users\Mike\Desktop\Netcoders\Coders.Tests\bin\Debug\Coders.pdb
 C:\Users\Mike\Desktop\Netcoders\Coders.Tests\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Desktop\Netcoders\Coders.Tests\obj\Debug\Coders.Tests.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Tests\obj\Debug\Coders.Tests.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders.Tests\bin\Debug\Rhino.Mocks.dll

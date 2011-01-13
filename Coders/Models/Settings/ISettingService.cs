@@ -25,6 +25,12 @@ namespace Coders.Models.Settings
 		void Rebuild();
 
 		/// <summary>
+		/// Inserts or updates the specified setting.
+		/// </summary>
+		/// <param name="setting">The setting.</param>
+		void InsertOrUpdate(Setting setting);
+
+		/// <summary>
 		/// Updates the setting specified key and value.
 		/// </summary>
 		/// <param name="key">The key.</param>

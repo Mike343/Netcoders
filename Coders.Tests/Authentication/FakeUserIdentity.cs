@@ -8,5 +8,10 @@ namespace Coders.Tests.Authentication
 		{
 			base.IsAuthenticated = true;
 		}
+
+		public override bool Authenticate(IAuthenticationToken token)
+		{
+			return true;
+		}
 	}
 }
