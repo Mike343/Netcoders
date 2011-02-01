@@ -235,10 +235,10 @@ ol.decimal  { list-style-type: decimal; }
 	-moz-border-radius-topright: 4px;
 }
 
-#container #header #menu ul ul
+#container #header #menu li ul
 {
 	top: 37px;
-	right: 10px;
+	right: 8px;
 	margin: 0;
 	padding: 0;
 	height: auto;
@@ -257,12 +257,7 @@ ol.decimal  { list-style-type: decimal; }
 	-moz-border-radius-bottomright: 4px;
 }
 
-#container #header #menu ul li.last ul
-{
-	right: 8px;
-}
-
-#container #header #menu ul li ul li
+#container #header #menu li ul li
 {
 	padding: 0;
 	background: transparent;
@@ -270,14 +265,14 @@ ol.decimal  { list-style-type: decimal; }
 	border-bottom: 1px dotted #bbbbbb;
 }
 
-#container #header #menu ul li ul li.first
+#container #header #menu li ul li.first
 {
 	padding: 0;
 	border-top-left-radius: 4px;
 	-moz-border-radius-topleft: 4px;	
 }
 
-#container #header #menu ul li ul li.last
+#container #header #menu li ul li.last
 {
 	padding: 0;
 	border-bottom: none;
@@ -285,13 +280,13 @@ ol.decimal  { list-style-type: decimal; }
 	-moz-border-radius-bottomleft: 4px;
 }
 
-#container #header #menu ul li ul li a,
-#container #header #menu ul li.selected ul li a
+#container #header #menu li ul li a,
+#container #header #menu li.selected ul li a
 {
 	margin: 0;
 	padding: 9px;
 	height: 1%;
-	width: 162px;
+	width: 182px;
 	height: auto;
 	display: block;
 	float: left;
@@ -301,19 +296,54 @@ ol.decimal  { list-style-type: decimal; }
 	font-weight: normal;
 }
 
-#container #header #menu ul li ul li a:hover,
-#container #header #menu ul li.selected ul li a:hover
+#container #header #menu li ul li a.childs
 {
-	color: #437093;
+	margin: 0;
+	padding: 9px 9px 9px 24px;
+	width: 157px;
+	background: url("/content/images/administration/icons/plus.png") no-repeat 8px 11px;
+	font-weight: bold;
+}
+
+#container #header #menu li ul li a:hover
+{
+	color: #000000;
+}
+
+#container #header #menu li ul li.selected a,
+#container #header #menu li ul li a.childs:hover
+{
+	background: url("/content/images/administration/icons/minus.png") no-repeat 8px 11px;
+}
+
+#container #header #menu li ul
+{
+	top: auto;
+}	
+
+#container #header #menu li ul li ul 
+{
+	right: 200px;
+	border-top: 1px solid #b5b5b5;
+}
+
+#container #header #menu li ul li.selected ul li a,
+#container #header #menu li ul li.selected ul li a:hover
+{
 	background: transparent;
 }
 
-#container #header #menu ul li:hover ul
+#container #header #menu li:hover ul ul, 
+#container #header #menu li:hover ul ul ul, 
+#container #header #menu li:hover ul ul ul ul 
 {
 	display: none;
 }
 
-#container #header #menu ul li:hover ul
+#container #header #menu li:hover ul, 
+#container #header #menu li li:hover ul, 
+#container #header #menu li li li:hover ul, 
+#container #header #menu li li li li:hover ul
 {
 	display: block;
 }

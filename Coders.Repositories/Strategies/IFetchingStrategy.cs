@@ -28,6 +28,6 @@ namespace Coders.Repositories.Strategies
 		/// </summary>
 		/// <param name="entities">The entities.</param>
 		/// <returns></returns>
-		IQueryable<TEntity> Get(IQueryable<TEntity> entities);
+		IQueryable<TEntity> GetStrategy(IQueryable<TEntity> entities);
 	}
 }

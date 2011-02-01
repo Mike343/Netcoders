@@ -7,3 +7,4 @@ C:\Users\Mike\Desktop\Netcoders\Coders.MailerProcessor\bin\Debug\Coders.pdb
 C:\Users\Mike\Desktop\Netcoders\Coders.MailerProcessor\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Desktop\Netcoders\Coders.MailerProcessor\obj\x86\Debug\Coders.MailerProcessor.exe
 C:\Users\Mike\Desktop\Netcoders\Coders.MailerProcessor\obj\x86\Debug\Coders.MailerProcessor.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders.MailerProcessor\bin\Debug\Coders.MailerProcessor.exe.config

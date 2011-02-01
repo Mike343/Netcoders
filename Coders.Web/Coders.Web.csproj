@@ -86,7 +86,9 @@
     <Compile Include="Controllers\Administration\AttachmentRuleController.cs" />
     <Compile Include="Controllers\Administration\CountryController.cs" />
     <Compile Include="Controllers\Administration\HomeController.cs" />
+    <Compile Include="Controllers\Administration\Queries\SettingIndexQuery.cs" />
     <Compile Include="Controllers\Administration\SettingController.cs" />
+    <Compile Include="Controllers\Administration\Queries\HistoryQuery.cs" />
     <Compile Include="Controllers\Administration\TimeZoneController.cs" />
     <Compile Include="Controllers\AttachmentController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -102,6 +104,7 @@
     <Compile Include="Controllers\Users\AvatarController.cs" />
     <Compile Include="Controllers\Users\PreferenceController.cs" />
     <Compile Include="Controllers\Users\SearchController.cs" />
+    <Compile Include="Extensions\CountryExtension.cs" />
     <Compile Include="Extensions\DateExtension.cs" />
     <Compile Include="Extensions\HtmlExtension.cs" />
     <Compile Include="Extensions\SelectExtension.cs" />
@@ -111,6 +114,7 @@
     <Compile Include="Extensions\UserExtension.cs" />
     <Compile Include="Extensions\ValidatorExtension.cs" />
     <Compile Include="Extensions\WidgetExtension.cs" />
+    <Compile Include="Filters\CountryFilter.cs" />
     <Compile Include="Filters\FilterBase.cs" />
     <Compile Include="Filters\SettingFilter.cs" />
     <Compile Include="Helpers\MessageHelper.cs" />

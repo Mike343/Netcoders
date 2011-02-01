@@ -22,7 +22,11 @@ using Coders.Extensions;
 using Coders.Models.Common.Enums;
 using Coders.Models.Countries;
 using Coders.Models.Countries.Enums;
+using Coders.Models.Logs;
+using Coders.Models.Logs.Enums;
 using Coders.Models.Settings;
+using Coders.Strings;
+using Coders.Web.Controllers.Administration.Queries;
 using Coders.Web.Models.Countries;
 using Coders.Web.Routes;
 #endregion
@@ -31,9 +35,18 @@ namespace Coders.Web.Controllers.Administration
 {
 	public class CountryController : SecureDefaultController
 	{
-		public CountryController(ICountryService countryService)
+		public CountryController(
+			ILogService logService,
+			ICountryService countryService)
 		{
+			this.LogService = logService;
 			this.CountryService = countryService;
+		}
+
+		public ILogService LogService
+		{
+			get;
+			private set;
 		}
 
 		public ICountryService CountryService
@@ -43,29 +56,40 @@ namespace Coders.Web.Controllers.Administration
 		}
 
 		[HttpGet]
-		public ActionResult Index(int? page)
+		public ActionResult Index(SortCountry sort, SortOrder order, int? page)
 		{
 			var countries = this.CountryService.GetPaged(new CountrySpecification
 			{
 				Page = page, 
 				Limit = Setting.CountryPageLimit.Value, 
-				Sort = SortCountry.Title, 
-				Order = SortOrder.Ascending
+				Sort = sort, 
+				Order = order
 			});
 
 			var country = countries.FirstOrDefault();
 			var privilege = new CountryPrivilege();
 
-			return privilege.CanView(country) ? View(Views.Index, countries) : NotAuthorized();
+			return privilege.CanView(country) ? base.View(Views.Index, countries) : NotAuthorized();
+		}
+
+		[HttpGet]
+		public ActionResult History(SortLog sort, SortOrder order, int? page, int? id)
+		{
+			var query = new HistoryQuery(Log.Countries, sort, order, page, id);
+			var logs = this.LogService.GetPaged(query.Specification);
+			var log = logs.FirstOrDefault();
+			var privilege = new LogPrivilege();
+
+			return privilege.CanView(log) ? base.View(Views.History, logs) : NotAuthorized();
 		}
 
 		[HttpGet]
 		public ActionResult Create()
 		{
-			var country = CountryService.Create();
+			var country = this.CountryService.Create();
 			var privilege = new CountryPrivilege();
 
-			return privilege.CanCreate(country) ? View(Views.Create, new CountryCreateOrUpdate()) : NotAuthorized();
+			return privilege.CanCreate(country) ? base.View(Views.Create, new CountryCreateOrUpdate()) : NotAuthorized();
 		}
 
 		[HttpPost]
@@ -78,10 +102,10 @@ namespace Coders.Web.Controllers.Administration
 
 			if (!ModelState.IsValid)
 			{
-				return View(Views.Create, value);
+				return base.View(Views.Create, value);
 			}
 
-			var country = CountryService.Create();
+			var country = this.CountryService.Create();
 			var privilege = new CountryPrivilege();
 
 			if (!privilege.CanCreate(country))
@@ -93,13 +117,17 @@ namespace Coders.Web.Controllers.Administration
 
 			this.CountryService.InsertOrUpdate(country);
 
-			return RedirectToRoute(AdministrationRoutes.CountryUpdate, new { id = country.Id });
+			var model = new CountryCreateOrUpdate(country);
+
+			model.SuccessMessage(Messages.CountryCreated.FormatInvariant(country.Title));
+
+			return base.View(Views.Update, model);
 		}
 
 		[HttpGet]
 		public ActionResult Update(int id)
 		{
-			var country = CountryService.GetById(id);
+			var country = this.CountryService.GetById(id);
 
 			if (country == null)
 			{
@@ -108,7 +136,7 @@ namespace Coders.Web.Controllers.Administration
 
 			var privilege = new CountryPrivilege();
 
-			return privilege.CanUpdate(country) ? View(Views.Update, new CountryCreateOrUpdate(country)) : NotAuthorized();
+			return privilege.CanUpdate(country) ? base.View(Views.Update, new CountryCreateOrUpdate(country)) : NotAuthorized();
 		}
 
 		[HttpPost]
@@ -121,10 +149,10 @@ namespace Coders.Web.Controllers.Administration
 
 			if (!ModelState.IsValid)
 			{
-				return View(Views.Update, value);
+				return base.View(Views.Update, value);
 			}
 
-			var country = CountryService.GetById(value.Id);
+			var country = this.CountryService.GetById(value.Id);
 
 			if (country == null)
 			{
@@ -142,7 +170,9 @@ namespace Coders.Web.Controllers.Administration
 
 			this.CountryService.InsertOrUpdate(country);
 
-			return RedirectToRoute(AdministrationRoutes.CountryUpdate, new { id = country.Id });
+			value.SuccessMessage(Messages.CountryUpdated.FormatInvariant(country.Title));
+
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -173,7 +203,7 @@ namespace Coders.Web.Controllers.Administration
 				return View(Views.Delete, value);
 			}
 
-			var country = CountryService.GetById(value.Id);
+			var country = this.CountryService.GetById(value.Id);
 
 			if (country == null)
 			{
@@ -189,7 +219,7 @@ namespace Coders.Web.Controllers.Administration
 
 			this.CountryService.Delete(country);
 
-			return RedirectToRoute(AdministrationRoutes.CountryIndex);
+			return base.RedirectToRoute(AdministrationRoutes.CountryIndex);
 		}
 	}
 }

@@ -25,7 +25,10 @@ namespace Coders.Models.Logs
 	public class Log : EntityBase
 	{
 		// public constants
+		public const string Attachments = "Attachments";
+		public const string Countries = "Countries";
 		public const string Settings = "Settings";
+		public const string TimeZones = "TimeZones";
 
 		/// <summary>
 		/// Gets or sets the group id.

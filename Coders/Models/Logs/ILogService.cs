@@ -23,17 +23,17 @@ namespace Coders.Models.Logs
 		/// Logs the specified action.
 		/// </summary>
 		/// <param name="groupId">The group id.</param>
-		/// <param name="group">The group.</param>
+		/// <param name="groupKey">The group key.</param>
 		/// <param name="action">The action.</param>
-		void Log(int groupId, string group, string action);
+		void Log(int groupId, string groupKey, string action);
 
 		/// <summary>
 		/// Logs the specified action.
 		/// </summary>
 		/// <param name="groupId">The group id.</param>
-		/// <param name="group">The group.</param>
+		/// <param name="groupKey">The group key.</param>
 		/// <param name="action">The action.</param>
 		/// <param name="data">The data.</param>
-		void Log(int groupId, string group, string action, object data);
+		void Log(int groupId, string groupKey, string action, object data);
 	}
 }

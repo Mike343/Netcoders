@@ -17,6 +17,7 @@
 
 #region Using Directives
 using System;
+using System.Globalization;
 using System.IO;
 using System.Xml.Serialization;
 using Coders.Extensions;
@@ -104,7 +105,7 @@ namespace Coders.Services
 
 			if (data != null)
 			{
-				using (var writer = new StringWriter())
+				using (var writer = new StringWriter(CultureInfo.InvariantCulture))
 				{
 					var serializer = new XmlSerializer(data.GetType());
 

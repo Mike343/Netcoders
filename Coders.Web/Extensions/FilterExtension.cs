@@ -26,6 +26,23 @@ namespace Coders.Web.Extensions
 	public static class FilterExtension
 	{
 		/// <summary>
+		/// Renders the filter for the countries.
+		/// </summary>
+		/// <param name="helper">The helper.</param>
+		public static void CountryFilter(this HtmlHelper helper)
+		{
+			if (helper == null)
+			{
+				throw new ArgumentNullException("helper");
+			}
+
+			var filter = new CountryFilter(helper.ViewContext);
+
+			filter.Initialize();
+			filter.Render();
+		}
+
+		/// <summary>
 		/// Renders the filter for the settings.
 		/// </summary>
 		/// <param name="helper">The helper.</param>

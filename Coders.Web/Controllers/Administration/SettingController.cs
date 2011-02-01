@@ -25,6 +25,7 @@ using Coders.Models.Logs.Enums;
 using Coders.Models.Settings;
 using Coders.Models.Settings.Enums;
 using Coders.Strings;
+using Coders.Web.Controllers.Administration.Queries;
 using Coders.Web.Models.Settings;
 using Coders.Web.Routes;
 #endregion
@@ -56,8 +57,8 @@ namespace Coders.Web.Controllers.Administration
 		[HttpGet]
 		public ActionResult Index(string group, SortSetting sort, SortOrder order, int? page)
 		{
-			var specification = GetIndexSpecification(group, sort, order, page);
-			var settings = this.SettingService.GetPaged(specification);
+			var query = new SettingIndexQuery(group, sort, order, page);
+			var settings = this.SettingService.GetPaged(query.Specification);
 			var setting = settings.FirstOrDefault();
 			var privilege = new SettingPrivilege();
 
@@ -67,8 +68,8 @@ namespace Coders.Web.Controllers.Administration
 		[HttpGet]
 		public ActionResult History(SortLog sort, SortOrder order, int? page, int? id)
 		{
-			var specification = GetHistorySpecification(sort, order, page, id);
-			var logs = this.LogService.GetPaged(specification);
+			var query = new HistoryQuery(Log.Settings, sort, order, page, id);
+			var logs = this.LogService.GetPaged(query.Specification);
 			var log = logs.FirstOrDefault();
 			var privilege = new LogPrivilege();
 
@@ -214,34 +215,6 @@ namespace Coders.Web.Controllers.Administration
 			this.SettingService.Delete(setting);
 
 			return base.RedirectToRoute(AdministrationRoutes.SettingIndex);
-		}
-
-		private static ISettingSpecification GetIndexSpecification(string group, SortSetting sort, SortOrder order, int? page)
-		{
-			var specification = string.IsNullOrEmpty(group)
-				? new SettingSpecification()
-				: new SettingGroupSpecification(group);
-
-			specification.Page = page;
-			specification.Limit = Setting.SettingPageLimit.Value;
-			specification.Sort = sort;
-			specification.Order = order;
-
-			return specification;
-		}
-
-		private static ILogSpecification GetHistorySpecification(SortLog sort, SortOrder order, int? page, int? id)
-		{
-			var specification = id.HasValue
-				? new LogGroupSpecification(id.Value, Log.Settings)
-				: new LogGroupSpecification(Log.Settings);
-
-			specification.Page = page;
-			specification.Limit = Setting.LogPageLimit.Value;
-			specification.Sort = sort;
-			specification.Order = order;
-
-			return specification;
 		}
 	}
 }

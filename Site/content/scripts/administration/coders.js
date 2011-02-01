@@ -1,20 +1,32 @@
 function menu_normal(item) {
-	if (item.attr("class") == "last") {
-		item.attr("class", "last");
-	} else if (item.attr("class") == "last selected") {
-		item.attr("class", "last");
-	} else {
+	var options = [];
+
+	options["first"] = "first";
+	options["first selected"] = "first";
+	options["last"] = "last";
+	options["last selected"] = "last";
+	options["normal"] = "normal";
+	options["selected"] = "normal";
+
+	if (item.attr("class") == "") {
 		item.attr("class", "normal");
+	} else {
+		item.attr("class", options[item.attr("class")]);
 	}
 }
 
 function menu_selected(item) {
-	if (item.attr("class") == "last") {
-		item.attr("class", "last selected");
-	} else if (item.attr("class") == "last selected") {
-		item.attr("class", "last selected");
-	} else {
+	var options = [];
+
+	options["first"] = "first selected";
+	options["first selected"] = "first selected";
+	options["last"] = "last selected";
+	options["last selected"] = "last selected";
+
+	if (item.attr("class") == "") {
 		item.attr("class", "selected");
+	} else {
+		item.attr("class", options[item.attr("class")]);
 	}
 }
 

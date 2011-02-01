@@ -12,7 +12,7 @@
          <Members>
           <Member Name="#Load()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="AvoidExcessiveClassCoupling" Category="Microsoft.Maintainability" CheckId="CA1506" Status="Active" Created="2011-02-01 00:20:02Z" FixCategory="Breaking">
+            <Message TypeName="AvoidExcessiveClassCoupling" Category="Microsoft.Maintainability" CheckId="CA1506" Status="Active" Created="2011-02-01 04:56:52Z" FixCategory="Breaking">
              <Issue Name="Method" Certainty="75" Level="Warning" Path="C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution" File="CodersServices.cs" Line="38">'CodersServices.Load()' is coupled with 34 different types from 9 different namespaces. Rewrite or refactor the method to decrease its class coupling, or consider moving the method to one of the other types it is tightly coupled with. A class coupling above 40 indicates poor maintainability, a class coupling between 40 and 30 indicates moderate maintainability, and a class coupling below 30 indicates good maintainability.</Issue>
             </Message>
            </Messages>

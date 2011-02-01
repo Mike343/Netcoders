@@ -18,6 +18,7 @@
 #region Using Directives
 using System;
 using System.Collections.Generic;
+using Coders.Extensions;
 using Coders.Models.Logs;
 using Coders.Models.Settings;
 using Coders.Strings;
@@ -41,6 +42,10 @@ namespace Coders.Services
 			this.SettingRepository = repository;
 		}
 
+		/// <summary>
+		/// Gets or sets the log service.
+		/// </summary>
+		/// <value>The log service.</value>
 		public ILogService LogService
 		{
 			get; 
@@ -90,13 +95,18 @@ namespace Coders.Services
 			if (setting.Id > 0)
 			{
 				this.Update(setting);
-				this.LogService.Log(setting.Id, Log.Settings, Logs.SettingUpdated, setting);
 			}
 			else
 			{
 				this.Insert(setting);
-				this.LogService.Log(setting.Id, Log.Settings, Logs.SettingCreated, setting);
 			}
+
+			this.LogService.Log(
+				setting.Id,
+				Log.Settings,
+				((setting.Id > 0) ? Logs.SettingUpdated : Logs.SettingCreated).FormatInvariant(setting.Title),
+				setting
+			);
 		}
 
 		/// <summary>

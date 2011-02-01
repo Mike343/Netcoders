@@ -30,7 +30,7 @@ namespace Coders.Repositories.Strategies
 		/// </summary>
 		/// <param name="entities">The entities.</param>
 		/// <returns></returns>
-		public IQueryable<Log> Get(IQueryable<Log> entities)
+		public IQueryable<Log> GetStrategy(IQueryable<Log> entities)
 		{
 			return entities.Fetch(x => x.User);
 		}

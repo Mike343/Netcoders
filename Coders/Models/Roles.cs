@@ -24,7 +24,6 @@ namespace Coders.Models
 		public const string AttachmentsRules = "AttachmentsRules";
 		public const string Comments = "Comments";
 		public const string Countries = "Countries";
-		public const string Histories = "Histories";
 		public const string Logs = "Logs";
 		public const string Settings = "Settings";
 		public const string TimeZones = "TimeZones";

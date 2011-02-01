@@ -1,0 +1,49 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Countries.Country>
+@section scripts
+{
+    <script src="/content/scripts/administration/coders.filter.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li class="last">@Resources.Titles.Countries</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Countries)</h5>
+	<ul>
+		<li><a href="@Url.Route(AdministrationRoutes.CountryHistory, new { sort = "created", order = "descending", page = "1" }).Value"><span>@Resources.Titles.History</span></a></li>
+		<li class="last"><a href="@Url.Route(AdministrationRoutes.CountryCreate).Value"><span>@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Country)</span></a></li>
+	</ul>
+</div>
+<div class="content">
+	<div class="table table-filtered">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.Title</th>
+					<th>@Resources.Titles.Code</th>
+					<th></th>
+					<th></th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var country in Model) {
+				<tr>
+					<td>@country.Title</td>
+					<td class="center">@country.Code</td>
+					<td class="center">@country.FlagImage()</td>
+					<td class="link">@Url.Route(AdministrationRoutes.CountryUpdate, new { id = country.Id }).Link(Resources.Titles.Update)</td>
+					<td class="link last">@Url.Route(AdministrationRoutes.CountryDelete, new { id = country.Id }).Link(Resources.Titles.Delete)</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, AdministrationRoutes.CountryIndex);}
+	</div>
+	@{Html.CountryFilter();}
+</div>

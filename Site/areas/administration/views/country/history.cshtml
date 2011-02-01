@@ -1,0 +1,70 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Logs.Log>
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(AdministrationRoutes.CountryIndex, new { sort = "title", order = "ascending", page = "1" }).Link(Resources.Titles.Countries)</li>
+			<li class="last">@Resources.Titles.History</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.HistoriesWith.FormatInvariant(Resources.Titles.Countries)</h5>
+</div>
+<div class="content">
+	<div class="table table-history">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.Action</th>
+					<th>@Resources.Titles.User</th>
+					<th>@Resources.Titles.Date</th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var log in Model) {
+				<tr>
+					<td>@log.Action</td>
+					<td class="center">@log.User.Name</td>
+					<td class="center">@log.Created.Personalize(User.Identity)</td>
+					<td class="link last"><a href="#history-@log.Id" class="compare">@Resources.Titles.Values</a></td>
+				</tr>
+				<tr id="history-@log.Id" class="compare">
+					<td colspan="5" class="values">
+						@{ var country = log.Deserialize<Coders.Models.Countries.Country>(); }
+						<table>
+							<tbody>
+								<tr>
+									<td class="title">@Resources.Titles.Title:</td>
+									<td class="last">@country.Title</td>
+								</tr>
+								<tr>
+									<td class="title">@Resources.Titles.Code:</td>
+									<td class="last">@country.Code</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, AdministrationRoutes.CountryHistory);}
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("tr.compare").hide();
+
+		$("a.compare").live("click", function (event) {
+			var anchor = $(this);
+
+			$("tr.compare").hide();
+			$(anchor.attr("href")).show();
+
+			return false;
+		});
+	});
+</script>

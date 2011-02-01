@@ -117,10 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="CountryCreated" xml:space="preserve">
+    <value>The country '{0}' was created.</value>
+  </data>
+  <data name="CountryUpdated" xml:space="preserve">
+    <value>The country '{0}' was updated.</value>
+  </data>
   <data name="SettingCreated" xml:space="preserve">
-    <value>Setting was created.</value>
+    <value>The setting '{0}' was created.</value>
   </data>
   <data name="SettingUpdated" xml:space="preserve">
-    <value>Setting was updated.</value>
+    <value>The setting '{0}' was updated.</value>
   </data>
 </root>

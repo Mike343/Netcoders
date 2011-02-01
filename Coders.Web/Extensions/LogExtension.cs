@@ -16,6 +16,8 @@
 #endregion
 
 #region Using Directives
+
+using System;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
@@ -32,16 +34,19 @@ namespace Coders.Web.Extensions
 		/// <typeparam name="T"></typeparam>
 		/// <param name="log">The log.</param>
 		/// <returns></returns>
-		public static T Deserialize<T>(this Log log)
+		public static T Deserialize<T>(this Log log) where T : class
 		{
-			var serializer = new XmlSerializer(typeof(T));
-
-			using (var reader = new StringReader(log.Data))
+			if (log == null)
 			{
-				using (XmlReader xml = new XmlTextReader(reader))
-				{
-					return (T)serializer.Deserialize(xml);
-				}
+				throw new ArgumentNullException("log");
+			}
+
+			var serializer = new XmlSerializer(typeof(T));
+			var reader = new StringReader(log.Data);
+
+			using (XmlReader xml = new XmlTextReader(reader))
+			{
+				return serializer.Deserialize(xml) as T;
 			}
 		}
 	}

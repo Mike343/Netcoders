@@ -104,6 +104,18 @@ namespace Coders.Models.Settings
 		}
 
 		/// <summary>
+		/// Gets the country flag path.
+		/// </summary>
+		/// <value>The country flag path.</value>
+		public static SettingValue CountryFlagPath
+		{
+			get
+			{
+				return new SettingValue("country.flag.path");
+			}
+		}
+
+		/// <summary>
 		/// Gets the country default.
 		/// </summary>
 		/// <value>The country default.</value>

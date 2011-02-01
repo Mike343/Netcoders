@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conventions\EnumConvention.cs" />
-    <Compile Include="Extension\NHibernateExtesion.cs" />
+    <Compile Include="Extension\NHibernateExtension.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Mappings\AttachmentMapping.cs" />
     <Compile Include="Mappings\AttachmentPendingMapping.cs" />

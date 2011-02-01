@@ -61,7 +61,25 @@ namespace Coders.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setting was created..
+        ///   Looks up a localized string similar to The country &apos;{0}&apos; was created..
+        /// </summary>
+        public static string CountryCreated {
+            get {
+                return ResourceManager.GetString("CountryCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country &apos;{0}&apos; was updated..
+        /// </summary>
+        public static string CountryUpdated {
+            get {
+                return ResourceManager.GetString("CountryUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The setting &apos;{0}&apos; was created..
         /// </summary>
         public static string SettingCreated {
             get {
@@ -70,7 +88,7 @@ namespace Coders.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Setting was updated..
+        ///   Looks up a localized string similar to The setting &apos;{0}&apos; was updated..
         /// </summary>
         public static string SettingUpdated {
             get {

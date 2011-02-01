@@ -18,8 +18,11 @@
 #region Using Directives
 using System;
 using System.Collections.Generic;
+using Coders.Extensions;
 using Coders.Models;
 using Coders.Models.Countries;
+using Coders.Models.Logs;
+using Coders.Strings;
 #endregion
 
 namespace Coders.Services
@@ -29,11 +32,24 @@ namespace Coders.Services
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CountryService"/> class.
 		/// </summary>
+		/// <param name="logService">The log service.</param>
 		/// <param name="repository">The repository.</param>
-		public CountryService(IRepository<Country> repository)
+		public CountryService(
+			ILogService logService, 
+			IRepository<Country> repository)
 			: base(repository)
 		{
+			this.LogService = logService;
+		}
 
+		/// <summary>
+		/// Gets or sets the log service.
+		/// </summary>
+		/// <value>The log service.</value>
+		public ILogService LogService
+		{
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -73,6 +89,13 @@ namespace Coders.Services
 			{
 				this.Insert(country);
 			}
+
+			this.LogService.Log(
+				country.Id, 
+				Log.Countries,
+				((country.Id > 0) ? Logs.CountryUpdated : Logs.CountryCreated).FormatInvariant(country.Title), 
+				country
+			);
 		}
 	}
 }

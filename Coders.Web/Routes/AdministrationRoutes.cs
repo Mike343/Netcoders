@@ -37,6 +37,7 @@ namespace Coders.Web.Routes
 		public const string SettingUpdate = "administration.setting.update";
 		public const string SettingDelete = "administration.setting.delete";
 		public const string CountryIndex = "administration.country.index";
+		public const string CountryHistory = "administration.country.history";
 		public const string CountryCreate = "administration.country.create";
 		public const string CountryUpdate = "administration.country.update";
 		public const string CountryDelete = "administration.country.delete";
@@ -58,7 +59,8 @@ namespace Coders.Web.Routes
 
 			#region Country
 			routes.CreateArea("administration", "Coders.Web.Controllers.Administration",
-				routes.MapRoute(CountryIndex, "administration/countries/all/{page}", new { controller = "country", action = "index", page = "1" }),
+				routes.MapRoute(CountryIndex, "administration/countries/all/{sort}/{order}/{page}", new { controller = "country", action = "index", sort = "title", order = "ascending", page = "1" }),
+				routes.MapRoute(CountryHistory, "administration/countries/history/{sort}/{order}/{page}/{id}", new { controller = "country", action = "history", sort = "created", order = "descending", page = "1", id = "" }),
 				routes.MapRoute(CountryUpdate, "administration/countries/update/{id}", new { controller = "country", action = "update", id = "" }),
 				routes.MapRoute(CountryDelete, "administration/countries/delete/{id}", new { controller = "country", action = "delete", id = "" }),
 				routes.MapRoute(CountryCreate, "administration/countries/create", new { controller = "country", action = "create" })

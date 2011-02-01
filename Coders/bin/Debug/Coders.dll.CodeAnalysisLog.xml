@@ -4,49 +4,49 @@
  <Namespaces>
   <Namespace Name="Coders.Collections">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Collections' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Exceptions">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Exceptions' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.Common.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Common.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.Countries.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Countries.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.Logs.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Logs.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.Settings.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Settings.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.TimeZones.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.TimeZones.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
@@ -63,7 +63,7 @@
          <Members>
           <Member Name="#.ctor(System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;Coders.Models.Logs.Log,System.Boolean&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
              <Issue Certainty="95" Level="CriticalError" Path="C:\Users\Mike\Desktop\Netcoders\Coders\Models\Logs" File="LogSpecification.cs" Line="42">Consider a design where 'LogSpecification.LogSpecification(Expression&lt;Func&lt;Log, bool&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;Log, bool&gt;&gt;'.</Issue>
             </Message>
            </Messages>
@@ -78,7 +78,7 @@
          <Members>
           <Member Name="#GetGroups()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="Warning">Change 'ISettingRepository.GetGroups()' to a property if appropriate.</Issue>
             </Message>
            </Messages>
@@ -89,8 +89,19 @@
          <Members>
           <Member Name="#GetGroups()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="Warning">Change 'ISettingService.GetGroups()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="Setting" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#CountryFlagPath" Kind="Property" Static="True" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="Flag" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
+             <Issue Name="MemberNoAlternate" Certainty="95" Level="Error" Path="C:\Users\Mike\Desktop\Netcoders\Coders\Models\Settings" File="SettingAsValue.cs" Line="113">Replace the term 'Flag' in member name 'Setting.CountryFlagPath' with an appropriate alternate or remove it entirely.</Issue>
             </Message>
            </Messages>
           </Member>
@@ -102,7 +113,7 @@
      <Resources>
       <Resource Name="Coders.Strings.Errors.resources">
        <Messages>
-        <Message Id="yyyy" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="NonBreaking">
+        <Message Id="yyyy" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="NonBreaking">
          <Issue Name="StringResource" Certainty="50" Level="CriticalWarning">In resource 'Coders.Strings.Errors.resx', referenced by name 'DateNotValid', correct the spelling of 'yyyy' in string value 'This date is not valid. A valid example would be mm/dd/yyyy'.</Issue>
         </Message>
        </Messages>
@@ -141,6 +152,16 @@
    <Url>http://msdn.microsoft.com/library/bb264483(VS.100).aspx</Url>
    <Email>[none]</Email>
    <MessageLevel Certainty="50">CriticalWarning</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726">
+   <Name>Use preferred terms</Name>
+   <Description>Use preferred terms over deprecated alternates.</Description>
+   <Resolution Name="MemberNoAlternate">Replace the term '{0}' in member name {1} with an appropriate alternate or remove it entirely.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182258(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
    <File Name="namingrules.dll" Version="10.0.0.0" />
   </Rule>
   <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
