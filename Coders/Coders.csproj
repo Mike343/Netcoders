@@ -76,8 +76,10 @@
     <Compile Include="Models\Attachments\IAttachmentRuleService.cs" />
     <Compile Include="Models\Attachments\IAttachmentService.cs" />
     <Compile Include="Models\Common\EmailResult.cs" />
+    <Compile Include="Models\Common\Enums\HistoryAction.cs" />
     <Compile Include="Models\Common\Enums\SortOrder.cs" />
     <Compile Include="Models\Common\FileResult.cs" />
+    <Compile Include="Models\Common\History.cs" />
     <Compile Include="Models\Common\IAuthenticationService.cs" />
     <Compile Include="Models\Common\IEmailService.cs" />
     <Compile Include="Models\Common\IFileService.cs" />
@@ -110,18 +112,46 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IInstaller.cs" />
     <Compile Include="IServiceLocator.cs" />
+    <Compile Include="Models\Logs\Enums\SortLog.cs" />
     <Compile Include="Models\Logs\ILogService.cs" />
+    <Compile Include="Models\Logs\ILogSpecification.cs" />
     <Compile Include="Models\Logs\Log.cs" />
+    <Compile Include="Models\Logs\LogGroupSpecification.cs" />
+    <Compile Include="Models\Logs\LogSpecification.cs" />
+    <Compile Include="Models\Logs\LogPrivilege.cs" />
     <Compile Include="Models\Roles.cs" />
-    <Compile Include="Models\Settings\ISettingService.cs" />
-    <Compile Include="Models\Settings\Setting.cs" />
-    <Compile Include="Models\Settings\SettingAsValue.cs" />
-    <Compile Include="Models\Settings\SettingKeySpecification.cs" />
-    <Compile Include="Models\Settings\SettingPrivilege.cs" />
-    <Compile Include="Models\Settings\SettingSpecification.cs" />
-    <Compile Include="Models\Settings\SettingValue.cs" />
-    <Compile Include="Models\Settings\SettingValueAsBoolean.cs" />
-    <Compile Include="Models\Settings\SettingValueAsInt.cs" />
+    <Compile Include="Models\Settings\Enums\SortSetting.cs" />
+    <Compile Include="Models\Settings\Enums\SortSettingHistory.cs" />
+    <Compile Include="Models\Settings\ISettingRepository.cs" />
+    <Compile Include="Models\Settings\ISettingService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Settings\ISettingSpecification.cs" />
+    <Compile Include="Models\Settings\Setting.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Settings\SettingAsValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Settings\SettingGroupSpecification.cs" />
+    <Compile Include="Models\Settings\SettingKeySpecification.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Settings\SettingPrivilege.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Settings\SettingSpecification.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Settings\SettingValue.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Settings\SettingValueAsBoolean.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\Settings\SettingValueAsInt.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Models\TimeZones\CountrySpecification.cs" />
     <Compile Include="Models\TimeZones\Enums\SortTimeZone.cs" />
     <Compile Include="Models\TimeZones\ITimeZoneSpecification.cs" />
@@ -198,6 +228,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Errors.resx</DependentUpon>
     </Compile>
+    <Compile Include="Strings\Logs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Logs.resx</DependentUpon>
+    </Compile>
     <Compile Include="Strings\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -218,6 +253,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Errors.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Strings\Logs.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Logs.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Strings\Messages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
@@ -230,6 +269,7 @@
   <ItemGroup>
     <None Include="Coders.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

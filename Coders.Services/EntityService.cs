@@ -28,7 +28,6 @@ namespace Coders.Services
 		where TEntity : class, IEntity, new()
 	{
 		// private fields
-		private readonly IRepository<TEntity> _repository;
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="EntityService&lt;TEntity&gt;"/> class.
@@ -36,7 +35,17 @@ namespace Coders.Services
 		/// <param name="repository">The repository.</param>
 		public EntityService(IRepository<TEntity> repository)
 		{
-			_repository = repository;
+			this.Repository = repository;
+		}
+
+		/// <summary>
+		/// Gets the repository.
+		/// </summary>
+		/// <value>The repository.</value>
+		public IRepository<TEntity> Repository
+		{
+			get; 
+			private set;
 		}
 
 		/// <summary>
@@ -46,7 +55,7 @@ namespace Coders.Services
 		/// <returns></returns>
 		public virtual TEntity GetBy(ISpecification<TEntity> specification)
 		{
-			return _repository.GetBy(specification);
+			return this.Repository.GetBy(specification);
 		}
 
 		/// <summary>
@@ -56,7 +65,7 @@ namespace Coders.Services
 		/// <returns></returns>
 		public virtual TEntity GetById(int id)
 		{
-			return _repository.GetById(id);
+			return this.Repository.GetById(id);
 		}
 
 		/// <summary>
@@ -65,7 +74,7 @@ namespace Coders.Services
 		/// <returns></returns>
 		public virtual IList<TEntity> GetAll()
 		{
-			return _repository.GetAll();
+			return this.Repository.GetAll();
 		}
 
 		/// <summary>
@@ -75,7 +84,7 @@ namespace Coders.Services
 		/// <returns></returns>
 		public virtual IList<TEntity> GetAll(ISpecification<TEntity> specification)
 		{
-			return _repository.GetAll(specification);
+			return this.Repository.GetAll(specification);
 		}
 
 		/// <summary>
@@ -85,7 +94,7 @@ namespace Coders.Services
 		/// <returns></returns>
 		public virtual IPagedCollection<TEntity> GetPaged(ISpecification<TEntity> specification)
 		{
-			return _repository.GetPaged(specification);
+			return this.Repository.GetPaged(specification);
 		}
 
 		/// <summary>
@@ -103,7 +112,7 @@ namespace Coders.Services
 		/// <returns></returns>
 		public virtual int Count()
 		{
-			return _repository.Count();
+			return this.Repository.Count();
 		}
 
 		/// <summary>
@@ -113,7 +122,7 @@ namespace Coders.Services
 		/// <returns></returns>
 		public virtual int Count(ISpecification<TEntity> specification)
 		{
-			return _repository.Count(specification);
+			return this.Repository.Count(specification);
 		}
 
 		/// <summary>
@@ -122,7 +131,7 @@ namespace Coders.Services
 		/// <param name="entity">The entity.</param>
 		public virtual void Insert(TEntity entity)
 		{
-			_repository.Insert(entity);
+			this.Repository.Insert(entity);
 		}
 
 		/// <summary>
@@ -131,7 +140,7 @@ namespace Coders.Services
 		/// <param name="entity">The entity.</param>
 		public virtual void Update(TEntity entity)
 		{
-			_repository.Update(entity);
+			this.Repository.Update(entity);
 		}
 
 		/// <summary>
@@ -140,7 +149,7 @@ namespace Coders.Services
 		/// <param name="entity">The entity.</param>
 		public virtual void Delete(TEntity entity)
 		{
-			_repository.Delete(entity);
+			this.Repository.Delete(entity);
 		}
 	}
 }

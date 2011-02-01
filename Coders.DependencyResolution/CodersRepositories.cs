@@ -17,7 +17,10 @@
 
 #region Using Directives
 using Coders.Models;
+using Coders.Models.Logs;
+using Coders.Models.Settings;
 using Coders.Repositories;
+using Coders.Repositories.Strategies;
 using Ninject.Modules;
 #endregion
 
@@ -25,9 +28,16 @@ namespace Coders.DependencyResolution
 {
 	public class CodersRepositories : NinjectModule
 	{
+		/// <summary>
+		/// Loads this instance.
+		/// </summary>
 		public override void Load()
 		{
 			Bind(typeof(IRepository<>)).To(typeof(NHibernateRepository<>));
+			Bind<ISettingRepository>().To<SettingRepository>();
+
+			// fetching strategies
+			Bind<IFetchingStrategy<Log>>().To<LogStrategy>();
 		}
 	}
 }

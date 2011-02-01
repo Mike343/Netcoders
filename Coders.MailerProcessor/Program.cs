@@ -33,12 +33,6 @@ namespace Coders.MailerProcessor
 		/// </summary>
 		static void Main()
 		{
-			// configures the application
-			Application.Configure();
-
-			// initialize the application
-			Application.Initialize();
-
 			using (var queue = new MessageQueue(QueueName))
 			{
 				queue.Formatter = new XmlMessageFormatter(new[] { typeof(EmailResult) });

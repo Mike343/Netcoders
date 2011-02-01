@@ -20,6 +20,7 @@ namespace Coders.Web.Controllers
 	public static class Views
 	{
 		public const string Index = "Index";
+		public const string History = "History";
 		public const string Detail = "Detail";
 		public const string Create = "Create";
 		public const string Update = "Update";

@@ -15,13 +15,9 @@
 //	limitations under the License.
 #endregion
 
-#region Using Directives
-using Coders.Specifications;
-#endregion
-
 namespace Coders.Models.Settings
 {
-	public class SettingKeySpecification : Specification<Setting>
+	public class SettingKeySpecification : SettingSpecification
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SettingKeySpecification"/> class.

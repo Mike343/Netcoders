@@ -39,7 +39,7 @@ namespace Coders.DependencyResolution
 
 		protected override T TryGetInstance<T>(string key)
 		{
-			return string.IsNullOrEmpty(key) ? this.Kernel.Get<T>() : this.Kernel.Get<T>(key, new IParameter[0]);
+			return string.IsNullOrEmpty(key) ? this.Kernel.TryGet<T>() : this.Kernel.TryGet<T>(key, new IParameter[0]);
 		}
 
 		protected override IEnumerable<T> TryGetInstances<T>(string key)
@@ -49,7 +49,7 @@ namespace Coders.DependencyResolution
 
 		protected override object TryGetInstance(Type type, string key)
 		{
-			return string.IsNullOrEmpty(key) ? this.Kernel.Get(type) : this.Kernel.Get(type, key, new IParameter[0]);
+			return string.IsNullOrEmpty(key) ? this.Kernel.TryGet(type) : this.Kernel.TryGet(type, key, new IParameter[0]);
 		}
 
 		protected override void TryRelease(object instance)

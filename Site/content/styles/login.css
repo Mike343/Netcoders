@@ -1,0 +1,510 @@
+﻿body
+{
+	margin: 0;
+	padding: 0;
+    background: #fafafa url("/content/images/background.png") repeat;
+	color: #000000;
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 13px;
+}
+
+form
+{
+	margin: 0;
+	padding: 0;
+}
+
+/* -----------------------------------------------------------
+	images
+----------------------------------------------------------- */ 
+
+img
+{
+	border: none;	
+}
+
+/* -----------------------------------------------------------
+	anchors
+----------------------------------------------------------- */ 
+
+a
+{
+	color: #0066CC;	
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:hover
+{
+	color: #000000;	
+	text-decoration: underline;
+}
+
+/* -----------------------------------------------------------
+	headings
+----------------------------------------------------------- */ 
+
+h1, h2, h3, h4, h5, h6
+{
+	color: #292929;
+	font-weight: bold;
+}
+
+h1
+{
+	font-size: 25px;
+}
+
+h2
+{
+	font-size: 23px;
+}
+
+h3
+{
+	font-size: 21px;  
+}
+
+h4
+{
+	font-size: 18px;
+}
+
+h5
+{
+	font-size: 15px; 
+}
+
+h6
+{
+	font-size: 13px; 
+}
+
+/* -----------------------------------------------------------
+	forms
+----------------------------------------------------------- */
+
+form
+{
+	margin: 0;
+	padding: 0;
+}
+
+input
+{
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 13px;
+}
+
+select
+{
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 13px;
+}
+
+textarea
+{
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 13px;
+}
+
+/* -----------------------------------------------------------
+	login
+----------------------------------------------------------- */
+
+#login
+{
+	margin: 10% auto 0 auto;
+	padding: 0;
+	width: 420px;
+}
+
+/* -----------------------------------------------------------
+	login -> title
+----------------------------------------------------------- */ 
+
+#login div.title
+{
+	margin: 0 auto;
+	padding: 0;
+	width: 422px;
+	clear: both;
+	overflow: hidden;
+	position: relative;
+    background: #d5d5d5 url("/content/images/content_title.png") repeat-x;
+	border: 2px solid #303030;
+	border-radius: 6px 6px 0 0;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-topright: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+}
+
+#login div.title h5
+{
+	margin: 0;
+	padding: 10px;
+	color: #454545;
+}
+
+/* -----------------------------------------------------------
+	login -> messages
+----------------------------------------------------------- */
+
+#login div.messages
+{
+	margin: 0;
+	padding: 0;
+	width: 422px;
+	clear: both;
+	overflow: hidden;
+	background: #ffffff;
+	border-left: 2px solid #303030;
+	border-right: 2px solid #303030;
+}
+
+#login div.message
+{
+	margin: 20px 20px 0 20px;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#login div.message div.image
+{
+	margin: 0;
+	padding: 8px 6px 8px 10px;
+	width: 36px;
+	float: left;
+}
+
+#login div.message div.image img
+{
+	margin: 0;
+	vertical-align: middle;
+}
+
+#login div.message div.text
+{
+	margin: 0;
+	padding: 10px 6px 10px 6px;
+	width: 270px;
+	float: left;
+}
+
+#login div.message div.text ol
+{
+	margin: 0 0 0 19px;
+	padding: 0;
+	list-style-type: decimal;	
+}
+
+#login div.message div.text li
+{
+	margin: 0;
+	padding: 7px 0 0 0;
+}
+
+#login div.message div.dismiss
+{
+	margin: 0;
+	padding: 0;
+	width: 44px;
+	float: right;
+}
+
+#login div.message div.dismiss a
+{
+	margin: 15px 14px 0 14px;
+	padding: 0;
+	height: 16px;
+	width: 16px;
+	display: block;
+	background: url("/content/images/icons/cross.png") no-repeat;
+}
+
+#login div.message div.text h1,
+#login div.message div.text h2,
+#login div.message div.text h3,
+#login div.message div.text h4,
+#login div.message div.text h5,
+#login div.message div.text h6
+{
+	margin: 0;
+	padding: 0px;
+	border: none;
+}
+
+#login div.message div.text span
+{
+	margin: 0;
+	padding: 5px 0 0 0;
+	height: 1%;
+	display: block;
+}
+
+#login div.message-error
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #FBE3E4;
+	border: 2px solid #FBC2C4;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	color: #860006;
+}
+
+#login div.message-error h6
+{
+	color: #860006;
+}
+
+#login div.message-warning
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #FFF6BF;
+	border: 1px solid #FFD324;
+	color: #5f5200;
+}
+
+#login div.message-warning h6
+{
+	color: #5f5200;
+}
+
+#login div.message-notice
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #8FBDE0;
+	border: 1px solid #6BACDE;
+	color: #003863;
+}
+
+#login div.message-notice h6
+{
+	color: #003863;
+}
+
+#login div.message-success
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #E6EFC2;
+	border: 1px solid #C6D880;
+	color: #4e6100;
+}
+
+#login div.message-success h6
+{
+	color: #4e6100;
+}
+
+/* -----------------------------------------------------------
+	login -> inner
+----------------------------------------------------------- */
+
+#login div.inner
+{
+	margin: 0 auto;
+	padding: 20px;
+	width: 382px;
+	background: #ffffff url("/content/images/icons/login.png") no-repeat top left;
+	border: 2px solid #303030;
+	border-top: none;
+	border-radius: 0 0 6px 6px;
+	-moz-border-radius-bottomleft: 6px;
+	-moz-border-radius-bottomright: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+}
+
+/* -----------------------------------------------------------
+	login -> form
+----------------------------------------------------------- */
+
+#login div.form
+{
+	margin: 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#login div.form div.fields
+{
+	margin: 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#login div.form div.fields div.field
+{
+	margin: 0;
+	padding: 0 0 10px 0; 
+	clear: both;
+	overflow: hidden;
+}
+
+#login div.form div.fields div.field span.error
+{
+	margin: 8px 0 0 0;
+	padding: 0;
+	height: 1%;
+	display: block;
+	color: #FF0000;
+}
+
+#login div.form div.fields div.field label.error
+{
+	margin: 8px 0 0 0;
+	padding: 0;
+	height: 1%;
+	display: block;
+	color: #FF0000;
+}
+
+#login div.form div.fields div.field div.label
+{
+	margin: 2px 10px 0 0;
+	padding: 6px 0 0 5px;
+	width: 173px;
+	float: left;
+	text-align: right;
+}
+
+#login div.form div.fields div.field div.label label
+{
+	color: #000000;
+	font-weight: bold;
+}
+
+#login  div.form div.fields div.field div.label span
+{
+	margin: 0;
+	padding: 2px 0 0 0;
+	height: 1%;
+	display: block;
+	color: #363636;
+}
+
+#login div.form div.fields div.field div.input
+{
+	margin: 0;
+	padding: 0;
+	float: left;
+}
+
+#login div.form div.fields div.field div.input input
+{
+	margin: 0;
+	padding: 6px;
+	width: 176px;
+	background: #FFFFFF;
+	border: 2px solid #303030;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	color: #000000;
+}
+
+#login div.form div.fields div.field div.input  input.error
+{
+	background: #FBE3E4;
+	border-top: 1px solid #e1b2b3;
+	border-left: 1px solid #e1b2b3;
+	border-right: 1px solid #FBC2C4;
+	border-bottom: 1px solid #FBC2C4;
+}
+
+#login div.form div.fields div.field div.input  input.success
+{
+	background: #E6EFC2;
+	border-top: 1px solid #cebb98;
+	border-left: 1px solid #cebb98;
+	border-right: 1px solid #c6d880;
+	border-bottom: 1px solid #c6d880;
+}
+
+#login div.form div.fields div.field div.input div.link
+{
+	margin: 6px 0 0 0;
+	padding: 0;
+	text-align: right;
+}
+
+#login div.form div.fields div.field div.checkbox
+{
+	margin: 0 0 0 184px;
+	padding: 0;
+}
+
+#login div.form div.fields div.field div.checkbox label
+{
+	color: #565656;
+	font-weight: bold;
+}
+
+#login div.form div.fields div.buttons
+{
+	margin: 0;
+	padding: 10px 0 0 0;
+	clear: both;
+	overflow: hidden;
+	border-top: 1px solid #DDDDDD;
+	text-align: right;
+}
+
+#login div.form div.fields div.buttons input
+{
+	margin: 0;
+	padding: 4px 12px 5px 12px;
+	background: #ffffff;
+	border: 2px solid #303030;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #515151;
+	font-weight: bold;
+	text-transform: lowercase;
+	cursor: pointer;
+}
+
+#login div.form div.fields div.buttons input.ui-state-default
+{
+	margin: 0;
+	padding: 4px 12px 5px 12px;
+	background: #ffffff;
+	border: 2px solid #303030;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #515151;
+	font-weight: bold;
+	text-transform: lowercase;
+	cursor: pointer;
+}
+
+#login div.form div.fields div.buttons input.ui-state-hover
+{
+	margin: 0;
+	background: #e6e6e6;
+	color: #515151;
+}
+
+/* -----------------------------------------------------------
+	login -> links
+----------------------------------------------------------- */
+
+#login div.form div.links
+{
+	margin: 10px 0 0 0;
+	padding: 0 0 2px 0;
+	clear: both;
+	overflow: hidden;
+}

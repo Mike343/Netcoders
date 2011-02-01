@@ -4,42 +4,49 @@
  <Namespaces>
   <Namespace Name="Coders.Collections">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Collections' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Exceptions">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Exceptions' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.Common.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Common.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.Countries.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Countries.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
-  <Namespace Name="Coders.Models.Logs">
+  <Namespace Name="Coders.Models.Logs.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
-     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Logs' with another namespace.</Issue>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Logs.Enums' with another namespace.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="Coders.Models.Settings.Enums">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Settings.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.TimeZones.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.TimeZones.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
@@ -52,12 +59,42 @@
      <Namespaces>
       <Namespace Name="Coders.Models.Logs">
        <Types>
-        <Type Name="ILogService" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
-         <Messages>
-          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="Breaking">
-           <Issue Certainty="90" Level="Warning">Define a custom attribute to replace 'ILogService'.</Issue>
-          </Message>
-         </Messages>
+        <Type Name="LogSpecification" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#.ctor(System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;Coders.Models.Logs.Log,System.Boolean&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\Mike\Desktop\Netcoders\Coders\Models\Logs" File="LogSpecification.cs" Line="42">Consider a design where 'LogSpecification.LogSpecification(Expression&lt;Func&lt;Log, bool&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;Log, bool&gt;&gt;'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Coders.Models.Settings">
+       <Types>
+        <Type Name="ISettingRepository" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetGroups()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning">Change 'ISettingRepository.GetGroups()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="ISettingService" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetGroups()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning">Change 'ISettingService.GetGroups()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
         </Type>
        </Types>
       </Namespace>
@@ -65,7 +102,7 @@
      <Resources>
       <Resource Name="Coders.Strings.Errors.resources">
        <Messages>
-        <Message Id="yyyy" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Active" Created="2011-01-13 13:57:33Z" FixCategory="NonBreaking">
+        <Message Id="yyyy" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Active" Created="2011-02-01 00:19:47Z" FixCategory="NonBreaking">
          <Issue Name="StringResource" Certainty="50" Level="CriticalWarning">In resource 'Coders.Strings.Errors.resx', referenced by name 'DateNotValid', correct the spelling of 'yyyy' in string value 'This date is not valid. A valid example would be mm/dd/yyyy'.</Issue>
         </Message>
        </Messages>
@@ -76,16 +113,6 @@
   </Target>
  </Targets>
  <Rules>
-  <Rule TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040">
-   <Name>Avoid empty interfaces</Name>
-   <Description>Interfaces are meant to contain members that specify a set of behaviors. To mark or label a class, use an attribute instead of an empty interface.</Description>
-   <Resolution Name="Default">Define a custom attribute to replace {0}.</Resolution>
-   <Owner />
-   <Url>http://msdn.microsoft.com/library/ms182128(VS.100).aspx</Url>
-   <Email>[none]</Email>
-   <MessageLevel Certainty="90">Warning</MessageLevel>
-   <File Name="designrules.dll" Version="10.0.0.0" />
-  </Rule>
   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
    <Name>Avoid namespaces with few types</Name>
    <Description>A namespace should generally have more than five types.</Description>
@@ -94,6 +121,16 @@
    <Url>http://msdn.microsoft.com/library/ms182130(VS.100).aspx</Url>
    <Email>[none]</Email>
    <MessageLevel Certainty="50">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006">
+   <Name>Do not nest generic types in member signatures</Name>
+   <Description>Avoid API that require users to instantiate a generic type with another generic type as type argument. The syntax gets too complex.</Description>
+   <Resolution Name="Default">Consider a design where {0} doesn't nest generic type {1}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182144(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">CriticalError</MessageLevel>
    <File Name="designrules.dll" Version="10.0.0.0" />
   </Rule>
   <Rule TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703">
@@ -105,6 +142,16 @@
    <Email>[none]</Email>
    <MessageLevel Certainty="50">CriticalWarning</MessageLevel>
    <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
+   <Name>Use properties where appropriate</Name>
+   <Description>Properties should be used instead of Get/Set methods in most situations. Methods are preferable to properties in the following situations: the operation is a conversion, is expensive or has an observable side-effect; the order of execution is important; calling the member twice in succession creates different results; a member is static but returns a mutable value; or the member returns an array.</Description>
+   <Resolution Name="Default">Change {0} to a property if appropriate.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182181(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
   </Rule>
  </Rules>
  <Localized>

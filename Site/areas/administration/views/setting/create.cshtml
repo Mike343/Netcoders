@@ -1,0 +1,70 @@
+﻿@model Coders.Web.Models.Settings.SettingCreateOrUpdate
+@section scripts
+{
+	<script src="/content/scripts/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(AdministrationRoutes.SettingIndex).Link(Resources.Titles.Settings)</li>
+			<li class="last">@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Setting)</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Setting)</h5>
+</div>
+<div class="content">
+	@{Html.Message(Model);}
+	@{Html.ValidationResult();}
+	@{Html.BeginRouteForm(AdministrationRoutes.SettingCreate);}
+	<div class="form">
+		<div class="fields">
+			<div class="field field-first">
+				<div class="label">
+					<label for="Title">@Resources.Titles.Title:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.Title, new { @class = "large" })
+					@Html.ValidationMessageFor(x => x.Title)
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label for="Group">@Resources.Titles.Group:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.Group)
+					@Html.ValidationMessageFor(x => x.Group)
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label for="ItemKey">@Resources.Titles.Key:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.ItemKey, new { @class = "medium" })
+					@Html.ValidationMessageFor(x => x.ItemKey)
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label for="ItemValue">@Resources.Titles.Value:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.ItemValue, new { @class = "medium" })
+					@Html.ValidationMessageFor(x => x.ItemValue)
+				</div>
+			</div>
+			<div class="buttons">
+				@Html.AntiForgeryToken()
+				<input type="submit" value="@Resources.Titles.Submit" />
+				<input type="reset" value="@Resources.Titles.Reset" />
+			</div>
+		</div>
+	</div>
+	@{Html.EndForm();}
+</div>

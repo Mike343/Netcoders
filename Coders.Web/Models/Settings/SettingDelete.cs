@@ -44,7 +44,7 @@ namespace Coders.Web.Models.Settings
 			}
 
 			this.Id = setting.Id;
-			this.Title = setting.Key;
+			this.Title = setting.Title;
 		}
 
 		/// <summary>

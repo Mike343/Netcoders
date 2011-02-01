@@ -1,0 +1,78 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Logs.Log>
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(AdministrationRoutes.SettingIndex, new { sort = "group", order = "ascending", page = "1" }).Link(Resources.Titles.Settings)</li>
+			<li class="last">@Resources.Titles.History</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.HistoriesWith.FormatInvariant(Resources.Titles.Settings)</h5>
+</div>
+<div class="content">
+	<div class="table table-history">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.Action</th>
+					<th>@Resources.Titles.User</th>
+					<th>@Resources.Titles.Date</th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var log in Model) {
+				<tr>
+					<td>@log.Action</td>
+					<td class="center">@log.User.Name</td>
+					<td class="center">@log.Created.Personalize(User.Identity)</td>
+					<td class="link last"><a href="#history-@log.Id" class="compare">@Resources.Titles.Values</a></td>
+				</tr>
+				<tr id="history-@log.Id" class="compare">
+					<td colspan="5" class="values">
+						@{ var setting = log.Deserialize<Setting>(); }
+						<table>
+							<tbody>
+								<tr>
+									<td class="title">@Resources.Titles.Title:</td>
+									<td class="last">@setting.Title</td>
+								</tr>
+								<tr>
+									<td class="title">@Resources.Titles.Group:</td>
+									<td class="last">@setting.Group</td>
+								</tr>
+								<tr>
+									<td class="title">@Resources.Titles.Key:</td>
+									<td class="last">@setting.Key</td>
+								</tr>
+								<tr class="last">
+									<td class="title">@Resources.Titles.Value:</td>
+									<td class="last">@setting.Value</td>
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, AdministrationRoutes.SettingHistory);}
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("tr.compare").hide();
+
+		$("a.compare").live("click", function (event) {
+			var anchor = $(this);
+
+			$("tr.compare").hide();
+			$(anchor.attr("href")).show();
+
+			return false;
+		});
+	});
+</script>

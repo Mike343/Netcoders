@@ -1,0 +1,30 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Users.User>
+<div class="users">
+    <h2>@Resources.Titles.Users</h2>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th class="left">@Resources.Titles.Name</th>
+                <th>@Resources.Titles.LastOnline</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in Model) {
+            <tr>
+                <td class="avatar">
+                    @user.AvatarImage(new { height = 40 })
+                </td>
+                <td class="name">
+                    @Url.Route(UsersRoutes.Detail, new { id = user.Id, slug = user.Slug }).Link(@user.Name)
+                    <span>@user.Title.ValueWhenNullOrEmpty(Resources.Titles.Member)</span>
+                </td>
+                <td class="online">
+                    @user.LastVisit.Personalize(User.Identity)
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    @{Html.Pager(Model, UsersRoutes.Index);}
+</div>

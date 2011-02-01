@@ -11,6 +11,7 @@ C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\Ninject.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\Coders.Services.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\Coders.Repositories.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\log4net.dll
+C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\RazorEngine.Core.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\FluentNHibernate.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\NHibernate.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\Iesi.Collections.dll
@@ -23,4 +24,3 @@ C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\Coders.Repositories.pdb
 C:\Users\Mike\Desktop\Netcoders\Coders.Web\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Desktop\Netcoders\Coders.Web\obj\Debug\Coders.Web.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Web\obj\Debug\Coders.Web.pdb
-C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\RazorEngine.Core.dll

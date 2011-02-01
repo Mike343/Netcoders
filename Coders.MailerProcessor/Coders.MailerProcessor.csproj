@@ -52,26 +52,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Coders.DependencyResolution\Coders.DependencyResolution.csproj">
-      <Project>{3154E2EC-87F0-4B57-A0BF-0E9DEC4803FC}</Project>
-      <Name>Coders.DependencyResolution</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Coders.Repositories\Coders.Repositories.csproj">
-      <Project>{DFC59B36-D60A-491C-B709-89D8473109CF}</Project>
-      <Name>Coders.Repositories</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Coders\Coders.csproj">
       <Project>{0580C019-23F8-473C-9386-9BF07334A655}</Project>
       <Name>Coders</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="Coders.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

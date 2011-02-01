@@ -1,0 +1,47 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Settings.Setting>
+@section scripts
+{
+    <script src="/content/scripts/administration/coders.filter.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li class="last">@Resources.Titles.Settings</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Settings)</h5>
+	<ul>
+		<li><a href="@Url.Route(AdministrationRoutes.SettingHistory, new { sort = "created", order = "descending", page = "1" }).Value"><span>@Resources.Titles.History</span></a></li>
+		<li class="last"><a href="@Url.Route(AdministrationRoutes.SettingCreate).Value"><span>@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Setting)</span></a></li>
+	</ul>
+</div>
+<div class="content">
+	<div class="table table-filtered table-settings">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.Title</th>
+					<th>@Resources.Titles.Group</th>
+					<th></th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var setting in Model) {
+				<tr>
+					<td>@setting.Title</td>
+					<td class="center">@setting.Group</td>
+					<td class="link">@Url.Route(AdministrationRoutes.SettingUpdate, new { id = setting.Id }).Link(Resources.Titles.Update)</td>
+					<td class="link last">@Url.Route(AdministrationRoutes.SettingDelete, new { id = setting.Id }).Link(Resources.Titles.Delete)</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, AdministrationRoutes.SettingIndex);}
+	</div>
+	@{Html.SettingFilter();}
+</div>

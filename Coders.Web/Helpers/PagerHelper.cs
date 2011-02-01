@@ -115,6 +115,7 @@ namespace Coders.Web.Helpers
 
 					if (path != null)
 					{
+						html.AddAttribute(HtmlTextWriterAttribute.Class, "prev");
 						html.RenderBeginTag(HtmlTextWriterTag.Li);
 
 						html.AddAttribute(HtmlTextWriterAttribute.Href, path.VirtualPath.AsRoot());
@@ -127,7 +128,7 @@ namespace Coders.Web.Helpers
 				}
 				else
 				{
-					html.AddAttribute(HtmlTextWriterAttribute.Class, "disabled");
+					html.AddAttribute(HtmlTextWriterAttribute.Class, "disabled prev");
 					html.RenderBeginTag(HtmlTextWriterTag.Li);
 					html.Write("&laquo; prev");
 					html.RenderEndTag();
@@ -172,11 +173,12 @@ namespace Coders.Web.Helpers
 
 					if (path != null)
 					{
+						html.AddAttribute(HtmlTextWriterAttribute.Class, "next");
 						html.RenderBeginTag(HtmlTextWriterTag.Li);
 
 						html.AddAttribute(HtmlTextWriterAttribute.Href, path.VirtualPath.AsRoot());
 						html.RenderBeginTag(HtmlTextWriterTag.A);
-						html.Write("next &laquo;");
+						html.Write("next &raquo;");
 						html.RenderEndTag();
 
 						html.RenderEndTag();
@@ -184,7 +186,7 @@ namespace Coders.Web.Helpers
 				}
 				else
 				{
-					html.AddAttribute(HtmlTextWriterAttribute.Class, "disabled");
+					html.AddAttribute(HtmlTextWriterAttribute.Class, "disabled next");
 					html.RenderBeginTag(HtmlTextWriterTag.Li);
 					html.Write("next &laquo;");
 					html.RenderEndTag();

@@ -17,13 +17,15 @@
 
 #region Using Directives
 using System;
+using System.Linq;
 using System.Linq.Expressions;
+using Coders.Models.Settings.Enums;
 using Coders.Specifications;
 #endregion
 
 namespace Coders.Models.Settings
 {
-	public class SettingSpecification : Specification<Setting>
+	public class SettingSpecification : Specification<Setting>, ISettingSpecification
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SettingSpecification"/> class.
@@ -41,6 +43,40 @@ namespace Coders.Models.Settings
 			: base(predicate)
 		{
 
+		}
+
+		/// <summary>
+		/// Gets or sets the sort.
+		/// </summary>
+		/// <value>The sort.</value>
+		public SortSetting Sort
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Sorts the specified entities.
+		/// </summary>
+		/// <param name="entities">The entities.</param>
+		/// <param name="specification">The specification.</param>
+		/// <returns></returns>
+		public override IQueryable<Setting> OrderEntities(IQueryable<Setting> entities, ISpecification<Setting> specification)
+		{
+			var spec = specification as ISettingSpecification;
+
+			if (spec == null)
+			{
+				return entities;
+			}
+
+			switch (spec.Sort)
+			{
+				case SortSetting.Title:
+					return base.OrderBy(entities, x => x.Title, spec.Order);
+				default:
+					return base.OrderBy(entities, x => x.Group, spec.Order);
+			}
 		}
 	}
 }

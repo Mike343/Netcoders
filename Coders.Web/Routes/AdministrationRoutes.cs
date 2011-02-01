@@ -28,21 +28,22 @@ namespace Coders.Web.Routes
 		// constants
 		public const string HomeIndex = "administration.home.index";
 		public const string TimeZoneIndex = "administration.timezone.index";
+		public const string TimeZoneCreate = "administration.timezone.create";
 		public const string TimeZoneUpdate = "administration.timezone.update";
 		public const string TimeZoneDelete = "administration.timezone.delete";
-		public const string TimeZoneCreate = "administration.timezone.create";
 		public const string SettingIndex = "administration.setting.index";
+		public const string SettingHistory = "administration.setting.history";
+		public const string SettingCreate = "administration.setting.create";
 		public const string SettingUpdate = "administration.setting.update";
 		public const string SettingDelete = "administration.setting.delete";
-		public const string SettingCreate = "administration.setting.create";
 		public const string CountryIndex = "administration.country.index";
+		public const string CountryCreate = "administration.country.create";
 		public const string CountryUpdate = "administration.country.update";
 		public const string CountryDelete = "administration.country.delete";
-		public const string CountryCreate = "administration.country.create";
 		public const string AttachmentRuleIndex = "administration.attachment.rule.index";
+		public const string AttachmentRuleCreate = "administration.attachment.rule.create";
 		public const string AttachmentRuleUpdate = "administration.attachment.rule.update";
 		public const string AttachmentRuleDelete = "administration.attachment.rule.delete";
-		public const string AttachmentRuleCreate = "administration.attachment.rule.create";
 
 		public static void RegisterRoutes(RouteCollection routes)
 		{
@@ -66,7 +67,8 @@ namespace Coders.Web.Routes
 
 			#region Setting
 			routes.CreateArea("administration", "Coders.Web.Controllers.Administration",
-				routes.MapRoute(SettingIndex, "administration/settings/all/{page}", new { controller = "setting", action = "index", page = "1" }),
+				routes.MapRoute(SettingIndex, "administration/settings/all/{sort}/{order}/{page}", new { controller = "setting", action = "index", sort = "group", order = "ascending", page = "1" }),
+				routes.MapRoute(SettingHistory, "administration/settings/history/{sort}/{order}/{page}/{id}", new { controller = "setting", action = "history", sort = "created", order = "descending", page = "1", id = "" }),
 				routes.MapRoute(SettingUpdate, "administration/settings/update/{id}", new { controller = "setting", action = "update", id = "" }),
 				routes.MapRoute(SettingDelete, "administration/settings/delete/{id}", new { controller = "setting", action = "delete", id = "" }),
 				routes.MapRoute(SettingCreate, "administration/settings/create", new { controller = "setting", action = "create" })

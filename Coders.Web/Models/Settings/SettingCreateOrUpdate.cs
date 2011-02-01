@@ -125,7 +125,7 @@ namespace Coders.Web.Models.Settings
 		{
 			get
 			{
-				return !this.ItemKey.Equals(this.CurrentKey);
+				return this.ItemKey != this.CurrentKey;
 			}
 		}
 
@@ -172,7 +172,7 @@ namespace Coders.Web.Models.Settings
 
 			RuleFor(x => x.ItemKey)
 				.SettingUnique()
-				.When(x => x.Id > 0 && x.KeyChanged);
+				.When(x => x.Id == 0 || x.KeyChanged);
 		}
 	}
 }

@@ -61,6 +61,24 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The country {0}&apos; has been successfully created..
+        /// </summary>
+        public static string CountryCreated {
+            get {
+                return ResourceManager.GetString("CountryCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country &apos;{0}&apos; has been successfully updated..
+        /// </summary>
+        public static string CountryUpdated {
+            get {
+                return ResourceManager.GetString("CountryUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your account is not authorized to access this page. This can happen if your account not have the proper privileges..
         /// </summary>
         public static string NotAuthorized {
@@ -70,11 +88,47 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The setting &apos;{0}&apos; has been successfully created..
+        /// </summary>
+        public static string SettingCreated {
+            get {
+                return ResourceManager.GetString("SettingCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The setting &apos;{0}&apos; has been successfully updated..
+        /// </summary>
+        public static string SettingUpdated {
+            get {
+                return ResourceManager.GetString("SettingUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Showing results {0} of {1}-{2}.
         /// </summary>
         public static string ShowingResults {
             get {
                 return ResourceManager.GetString("ShowingResults", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The time zone {0}&apos; has been successfully created..
+        /// </summary>
+        public static string TimeZoneCreated {
+            get {
+                return ResourceManager.GetString("TimeZoneCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The time zone &apos;{0}&apos; has been successfully updated..
+        /// </summary>
+        public static string TimeZoneUpdated {
+            get {
+                return ResourceManager.GetString("TimeZoneUpdated", resourceCulture);
             }
         }
         

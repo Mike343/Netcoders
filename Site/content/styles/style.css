@@ -1,0 +1,2043 @@
+body
+{
+	margin: 0;
+	padding: 0;
+    background: #fafafa url("/content/images/background.png") repeat;
+	color: #000000;
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 13px;
+}
+
+/* -----------------------------------------------------------
+	images
+----------------------------------------------------------- */
+
+img
+{
+	border: none;
+}
+
+/* -----------------------------------------------------------
+	anchors
+----------------------------------------------------------- */
+
+a
+{
+	color: #D56B47;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:hover
+{
+	color: #000000;
+	text-decoration: underline;
+}
+
+/* -----------------------------------------------------------
+	headings
+----------------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6
+{
+	color: #292929;
+	font-weight: bold;
+}
+
+h1
+{
+	font-size: 25px;
+}
+
+h2
+{
+	font-size: 23px;
+}
+
+h3
+{
+	font-size: 21px;  
+}
+
+h4
+{
+	font-size: 18px;
+}
+
+h5
+{
+	font-size: 15px; 
+}
+
+h6
+{
+	font-size: 13px; 
+}
+
+/* -----------------------------------------------------------
+	lists
+----------------------------------------------------------- */
+
+ul.circle { list-style-type: circle; }
+ul.disc { list-style-type: disc; }
+ul.square { list-style-type: square; }
+ol.lower-roman { list-style-type: lower-roman; }
+ol.upper-roman { list-style-type: upper-roman; }
+ol.lower-alpha { list-style-type: lower-alpha; }
+ol.upper-alpha { list-style-type: upper-alpha; }
+ol.decimal  { list-style-type: decimal; }
+
+/* -----------------------------------------------------------
+	forms
+----------------------------------------------------------- */
+
+form
+{
+	margin: 0;
+	padding: 0;
+}
+
+input
+{
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 13px;
+}
+
+select
+{
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 13px;
+}
+
+textarea
+{
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 13px;
+}
+
+/* -----------------------------------------------------------
+	container
+----------------------------------------------------------- */
+
+#container
+{
+	margin: 0 auto;
+	padding: 0;
+	width: 980px;
+	clear: both;
+	overflow: hidden;
+	background: transparent;
+}
+
+#dashboard
+{
+    margin: 0;
+    padding: 10px 0 10px 0;
+	float: right;
+}
+
+#dashboard ul
+{
+    margin: 0;
+    padding: 0;  
+}
+
+#dashboard li
+{
+    margin: 0;
+    padding: 0 6px 0 6px;
+    list-style: none;
+    border-right: 1px solid #b9b9b9;
+    float: left;   
+}
+
+#dashboard li.first
+{
+    padding: 0 6px 0 0;
+}
+
+#dashboard li.last
+{
+    padding: 0 0 0 6px;
+    border: none;   
+}
+
+#content
+{
+	margin: 0 auto;
+	padding: 40px 0 0 0;
+	clear: both;
+}
+
+#content h2
+{
+    margin: 0;
+    padding: 10px;
+    background: #d5d5d5 url("/content/images/content_title.png") repeat-x;
+	border: 2px solid #303030;
+	border-bottom: none;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-topright: 6px;
+    clear: both;
+    overflow: hidden;
+	font-size: 14px;
+}
+
+#content div.title
+{
+    margin: 0;
+    padding: 0;
+    background: #d5d5d5 url("/content/images/content_title.png") repeat-x;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	-moz-border-radius-topright: 6px;
+    clear: both;
+    overflow: hidden;
+}
+
+#content div.title h2
+{
+    margin: 0;
+    padding: 10px;
+    float: left;
+    background: transparent;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	font-size: 14px;
+}
+
+#content div.title ul
+{
+    margin: 0;
+    padding: 5px 5px 5px 0;
+    float: right;   
+}
+
+#content div.title li
+{
+    margin: 0;
+    padding: 0;
+    float: left;
+    list-style: none;  
+}
+
+#content div.title li a
+{
+    margin: 0;
+    padding: 6px 10px 8px 10px;
+    height: 1%;
+    display: block;
+	background: #ffffff url("/content/images/content_title_button.png") repeat-x bottom left;
+	border: none;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #3f3f3f;
+	font-weight: bold;
+	text-decoration: none;
+	text-transform: lowercase;
+}
+
+#content div.title li a:hover
+{
+	background: #fefefe url("/content/images/content_title_button_selected.png") repeat-x top left;
+}
+
+#content div.left
+{
+    margin: 0;
+    padding: 0;
+    width: 650px;
+    float: left;
+}
+
+#content div.right
+{
+    margin: 0;
+    padding: 0;
+    width: 320px;
+    float: right;   
+}
+
+#content div.right div.menu
+{
+	margin: 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+	background: #ffffff;
+	border: 1px solid #d5d5d5;
+	border-bottom: none;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	-moz-border-radius-bottomright: 6px;
+}
+
+#content div.right div.menu h3
+{
+    margin: 0;
+    padding: 8px;
+    background: #f6f6f6;
+    border-bottom: 1px solid #d5d5d5;
+    font-size: 13px;
+}
+
+#content div.right div.menu ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+#content div.right div.menu li
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-left: 10px solid #f6f6f6;
+    border-bottom: 1px solid #d5d5d5;   
+}
+
+#content div.right div.menu li.last
+{
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	-moz-border-radius-bottomright: 6px;
+}
+
+#content div.right div.menu li a
+{
+    margin: 0 0 0 8px;
+    padding: 8px 8px 8px 12px;
+    height: 1%;
+    display: block;
+    background: url("/content/images/menu_bullet.png") no-repeat 0 10px;
+}
+
+#content div.right div.menu li a:hover
+{
+    background: #f6f6f6 url("/content/images/menu_bullet_selected.png") no-repeat 0 10px;
+    text-decoration: none;
+}
+
+#content div.right div.menu li h4
+{
+    margin: 0 0 0 8px;
+    padding: 8px 8px 8px 12px;
+    background: url("/content/images/menu_bullet.png") no-repeat 0 10px;
+    font-size: 11px;
+}
+
+#content div.right div.menu li ul
+{
+    margin: 0;
+    padding: 0; 
+}
+
+#content div.right div.menu li ul li
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: none;
+}
+
+#content div.right div.menu li ul li a
+{
+    margin: 0 0 0 16px;
+}
+
+div.form
+{
+	margin: 0 0 10px 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+	background: #ffffff;
+	border: 2px solid #303030;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	-moz-border-radius-bottomright: 6px;
+}
+
+div.form div.messages
+{
+	margin: 16px 16px 0 16px;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+div.form div.message
+{
+	margin: 0 0 10px 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+div.form div.message div.image
+{
+	margin: 0;
+	padding: 10px 0 10px 10px;
+	width: 48px;
+	float: left;
+}
+
+div.form div.message div.image img
+{
+	margin: 0;
+	vertical-align: middle;
+}
+
+div.form div.message div.text
+{
+	margin: 0;
+	padding: 10px 6px 10px 0;
+	width: 520px;
+	float: left;
+}
+
+div.form div.message div.text ol
+{
+	margin: 0 0 0 19px;
+	padding: 0;
+	list-style-type: decimal;	
+}
+
+div.form div.message div.text li
+{
+	margin: 0;
+	padding: 7px 0 0 0;	
+}
+
+div.form div.message div.dismiss
+{
+	margin: 0;
+	padding: 19px 14px 0 0;
+	width: 16px;
+	float: right;
+}
+
+div.form div.message div.dismiss a
+{
+	margin: 0;
+	padding: 0;
+	height: 16px;
+	width: 16px;
+	display: block;
+	background: url("/content/images/icons/cross.png") no-repeat;
+}
+
+div.form div.message div.text h1,
+div.form div.message div.text h2,
+div.form div.message div.text h3,
+div.form div.message div.text h4,
+div.form div.message div.text h5,
+div.form div.message div.text h6
+{
+	margin: 0;
+	padding: 0px;
+	border: none;
+}
+
+div.form div.message div.text span
+{
+	margin: 0;
+	padding: 5px 0 0 0;
+	height: 1%;
+	display: block;
+}
+
+div.form div.message-error
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #FBE3E4;
+	border: 1px solid #FBC2C4;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #860006;
+}
+
+div.form div.message-error h6
+{
+	color: #860006;
+}
+
+div.form div.message-warning
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #FFF6BF;
+	border: 1px solid #FFD324;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #5f5200;
+}
+
+div.form div.message-warning h6
+{
+	color: #5f5200;
+}
+
+div.form div.message-notice
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #8FBDE0;
+	border: 1px solid #6BACDE;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #003863;
+}
+
+div.form div.message-notice h6
+{
+	color: #003863;
+}
+
+div.form div.message-success
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #E6EFC2;
+	border: 1px solid #C6D880;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #4e6100;
+}
+
+div.form div.message-success h6
+{
+	color: #4e6100;
+}
+
+div.form div.fields
+{
+	margin: 0;
+	padding: 10px 20px 10px 20px;
+	clear: both;
+	overflow: hidden;
+}
+
+div.form div.fields div.field
+{
+	margin: 0;
+	padding: 10px 0 10px 0;
+	clear: both;
+	overflow: hidden;
+	border-bottom: 1px solid #d5d5d5;
+}
+
+div.form div.fields div.field div.field-group
+{
+	margin: 0 14px 0 0;
+	padding: 0;
+	float: left;
+}
+
+div.form div.fields div.field label
+{
+	margin: 0;
+	padding: 10px 0 5px 0;
+	height: 1%;
+	width: 240px;
+	display: block;
+	float: left;
+	color: #000000;
+	font-weight: bold;
+}
+
+div.form div.fields div.field-input input
+{
+	margin: 0;
+	padding: 5px;
+	width: 176px;
+	float: left;
+	background: #FFFFFF;
+	border: 2px solid #303030;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #000000;
+}
+
+div.form div.fields div.field-input-file input
+{
+	width: 240px;
+}
+
+div.form div.fields div.field-input div.button
+{
+    margin: 0;
+    padding: 10px 0 0 0;
+    float: right;   
+}
+
+div.form div.fields div.field-input div.button-attach
+{
+    margin: 0;
+    padding: 0 0 0 6px;
+}
+
+div.form div.fields div.field-input div.button input
+{
+	margin: 0;
+	padding: 6px 12px 6px 12px;
+	background: #e5e3e3;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #c6c6c6;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #c6c6c6;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #515151;
+	font-weight: bold;
+	text-transform: lowercase;
+	cursor: pointer;
+}
+
+div.form div.fields div.field-input div.button input.ui-state-default
+{
+	margin: 0;
+	padding: 6px 12px 6px 12px;
+	width: auto;
+	background: #e5e3e3 url("/content/images/button.png") repeat-x;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #c6c6c6;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #c6c6c6;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	color: #515151;
+}
+
+div.form div.fields div.field-input div.button input.ui-state-hover
+{
+	margin: 0;
+	padding: 6px 12px 6px 12px;
+	background: #b4b4b4 url("/content/images/button_selected.png") repeat-x;
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #bebebe;
+	border-right: 1px solid #b1b1b1;
+	border-bottom: 1px solid #afafaf;
+	color: #515151;
+}
+
+div.form div.fields div.field-input a.ui-input-file
+{
+	margin: 0 0 0 6px;
+	padding: 0;
+	width: 28px;
+	height: 28px;
+	display: inline;
+	position: absolute;
+	overflow: hidden;
+	cursor: pointer;
+	background: #e5e3e3 url("/content/images/button_browse.png") no-repeat;
+    border-top: 1px solid #eaeaea;
+	border-left: 1px solid #eaeaea;
+	border-right: 1px solid #b3b3b3;
+	border-bottom: 1px solid #b3b3b3;
+	text-decoration: none;
+}
+
+div.form div.fields div.field-input a:hover.ui-input-file
+{
+	background: #e5e3e3 url("/content/images/button_browse_selected.png") no-repeat;
+}
+
+div.form div.fields div.field-input div.attachments
+{
+    margin: 0;
+    padding: 10px 0 0 0;
+    clear: both;
+    overflow: hidden;
+}
+
+div.form div.fields div.field-input div.attachments table td.icon
+{
+    width: 10%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.form div.fields div.field-input div.attachments table td.title
+{
+    width: 82%;
+    text-align: left;
+    vertical-align: middle;
+}
+
+div.form div.fields div.field-input div.attachments table td.delete
+{
+    padding: 0;
+    width: 8%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.form div.fields div.field-input div.attachments table td.delete input
+{
+    margin: 0;
+    padding: 0;
+    width: auto;
+    float: none;
+    background: transparent;
+    border: none;
+}
+
+div.form div.fields div.field-input input.input-validation-error
+{
+	background: #FBE3E4;
+	border: 2px solid #fb9ea1;
+}
+
+div.form div.fields div.field-input div.group
+{
+	margin: 0;
+	padding: 0 10px 0 0;
+    float: left;    
+}
+
+div.form div.fields div.field-input div.group label
+{
+    padding: 8px;
+    width: auto;
+	background: #e5e3e3 url("/content/images/button.png") repeat-x;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #c6c6c6;
+	border-bottom: 1px solid #c6c6c6;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	color: #515151;
+}
+
+div.form div.fields div.field-input div.group input.date
+{
+    border-right: none;
+	border-radius: 0;
+	-moz-border-radius: 0;
+    width: 100px;   
+}
+
+div.form div.fields div.field-input div.group button
+{
+	margin: 0;
+	padding: 0;
+	height: 29px;
+	float: left;
+	background: #FFFFFF;
+	border-top: 1px solid #b3b3b3;
+	border-left: none;
+	border-right: 1px solid #eaeaea;
+	border-bottom: 1px solid #eaeaea;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+}
+
+div.form div.fields div.field-input div.group button span
+{
+	margin: 0;
+	padding: 0;
+	width: 20px;
+	height: 29px;
+	display: block;
+	background: url("/content/images/ui/calendar.png") no-repeat 0 5px;
+}
+
+div.form div.fields div.field-input div.checkbox
+{
+    margin: 0;
+    padding: 10px 0 0 240px;
+    clear: both;
+    overflow: hidden;    
+}
+
+div.form div.fields div.field-input div.checkbox input
+{
+	margin: 0;
+	padding: 0;
+	width: auto;
+	float: left;
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	color: #000000;
+}
+
+div.form div.fields div.field-input div.checkbox label
+{
+	margin: 0;
+	padding: 0 0 0 8px;
+	width: auto;
+}
+
+div.form div.fields div.field-input-check label
+{
+	padding: 8px 0 5px 0;
+}
+
+div.form div.fields div.field-input-check input
+{
+	margin: 6px 0 0 0;
+	padding: 0;
+	width: auto;
+	float: left;
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	-moz-border-radius: 0;
+}
+
+div.form div.fields div.field-input-check div.group
+{
+    margin: 0;
+    padding: 0;
+    float: left;   
+}
+
+div.form div.fields div.field-input-check div.group label
+{
+    margin: 0;
+    padding: 6px 10px 0 6px;
+    width: auto;
+	background: transparent;
+	border: none;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	color: #515151;
+}
+
+div.form div.fields div.field-select label
+{
+	padding: 6px 0 5px 0;
+}
+
+div.form div.fields div.field-select div.select-group
+{
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+div.form div.fields div.field-select div.select-group .ui-selectmenu
+{
+    margin: 0;
+    padding: 0;
+    float: left;
+}
+
+div.form div.fields div.field-select div.select-group input
+{
+	margin: 0 0 0 10px;
+	padding: 7px;
+	width: 176px;
+	float: left;
+	background: #FFFFFF;
+	border-top: 1px solid #b3b3b3;
+	border-left: 1px solid #b3b3b3;
+	border-right: 1px solid #eaeaea;
+	border-bottom: 1px solid #eaeaea;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #000000;
+}
+
+div.form div.fields div.field-select div.select-group input.reputation
+{
+    width: 60px;
+}
+
+
+
+div.form div.fields div.field-textarea textarea
+{
+	margin: 0;
+	padding: 10px;
+	width: 594px;
+	clear: both;
+	overflow: auto;
+	background: #FFFFFF;
+	border: 2px solid #303030;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #000000;
+}
+
+div.form div.fields div.field-button
+{
+    margin: 0;
+    padding: 10px 0 10px 240px;
+	border-bottom: none;
+}
+
+div.form div.fields div.field-button-left
+{
+    margin: 0;
+    padding: 10px 0 10px 0;
+	border-bottom: none;
+}
+
+div.form div.fields div.field-button input
+{
+	margin: 0;
+	padding: 4px 12px 5px 12px;
+	float: left;
+	background: #ffffff;
+	border: 2px solid #303030;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #515151;
+	font-weight: bold;
+	text-transform: lowercase;
+	cursor: pointer;
+}
+
+div.form div.fields div.field-button input.ui-state-default
+{
+	margin: 0;
+	padding: 4px 12px 5px 12px;
+	background: #ffffff;
+	border: 2px solid #303030;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	color: #515151;
+}
+
+div.form div.fields div.field-button input.ui-state-hover
+{
+	margin: 0;
+	background: #e6e6e6;
+	color: #515151;
+}
+
+div.form div.fields div.field span.hint
+{
+	margin: 0;
+	padding: 7px 0 0 7px;
+	height: 1%;
+	display: block;
+	float: left;
+}
+
+div.form div.fields div.field span.field-validation-error
+{
+	margin: 0;
+	padding: 8px 0 0 240px;
+	height: 1%;
+	clear: both;
+	display: block;
+	color: #FF0000;
+}
+
+div.form div.fields div.field span.success
+{
+	margin: 8px 0 0 0;
+	padding: 0;
+	height: 1%;
+	display: block;
+	color: #316309;
+}
+
+table
+{
+    margin: 0;
+    padding: 0;
+	width: 100%;
+	border-collapse: collapse;
+	border: 2px solid #303030;
+}
+
+table th
+{
+	padding: 10px;
+    background: #d5d5d5 url("/content/images/content_title.png") repeat-x;
+}
+
+table th.left
+{
+    text-align: left;
+}
+
+table th.right
+{
+    text-align: right;
+}
+
+table th.center
+{
+    text-align: center;
+}
+
+table td
+{
+	padding: 10px;
+	background: #ffffff;
+	border: 2px solid #303030;
+}
+
+table td div.l
+{
+    float: left;   
+}
+
+table td div.r
+{
+    float: right;   
+}
+
+div.users table td.avatar
+{
+    width: 5%;
+    text-align: center;
+}
+
+div.users table td.name
+{
+    width: 75%;
+    text-align: left;
+    vertical-align: middle;
+}
+
+div.users table td.name span
+{
+    margin: 0;
+    padding: 4px 0 0 0;
+    height: 1%;
+    display: block;
+    font-size: 11px;   
+}
+
+div.users table td.online
+{
+    width: 20%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.messages
+{
+    margin: 0;
+    padding: 0;
+    clear: both;
+    overflow: hidden;
+}
+
+#content div.messages div.title div.folder
+{
+    margin: 6px 5px 4px 0;
+    padding: 6px 10px 8px 10px;
+    float: right; 
+	background: #ffffff url("/content/images/content_title_button.png") repeat-x bottom left;
+	border: none;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #3f3f3f;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+#content div.messages div.title div.folder span
+{
+    color: #707070;
+}
+
+div.messages table th.check
+{
+    padding: 0;
+    text-align: center;
+    vertical-align: middle; 
+}
+
+div.messages table td.group-title
+{
+    background: #f6f6f6;
+    color: #3f3f3f;
+    font-weight: bold;
+}
+
+div.messages table td.group-check
+{
+    padding: 0;
+    background: #f6f6f6;
+    text-align: center;
+    vertical-align: middle; 
+}
+
+div.messages table td.icon
+{
+    width: 5%;
+    text-align: center;
+    vertical-align: middle; 
+}
+
+div.messages table td.title
+{
+    width: 90%;
+    text-align: left;
+    vertical-align: middle; 
+}
+
+div.messages table td.title div.r
+{
+    text-align: right;
+}
+
+div.messages table td.title a
+{
+    font-size: 12px;
+}
+
+div.messages table td.title span
+{
+    margin: 0;
+    padding: 4px 0 0 0;
+    height: 1%;
+    display: block;   
+}
+
+div.messages table td.title span a
+{
+    color: #3f3f3f;
+    font-size: 11px;
+}
+
+div.messages table td.check
+{
+    padding: 0;
+    width: 5%;
+    text-align: center;
+    vertical-align: middle; 
+}
+
+div.messages div.legend
+{
+	margin: 0;
+	padding: 10px 0 0 0;
+	width: 320px;
+	float: left;
+}
+
+div.messages div.legend table td
+{
+    padding: 8px;
+    width: 50%;
+    text-align: left;
+}
+
+div.messages div.legend table td img
+{
+    margin: 0 4px 0 0;
+    vertical-align: middle;
+}
+
+div.messages div.action
+{
+	margin: 0;
+	padding: 10px 0 0 0;
+	width: 320px;
+	float: right;
+	text-align: right;
+}
+
+div.messages div.action .ui-selectmenu
+{
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+div.messages div.action div.button
+{
+	margin: 0;
+	padding: 6px 0 0 0;
+	clear: both;
+	overflow: hidden;
+}
+
+div.messages div.action div.button input
+{
+	margin: 0;
+	padding: 4px 12px 4px 12px;
+	background: #e5e3e3;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #c6c6c6;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #c6c6c6;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #515151;
+	font-weight: bold;
+	text-transform: lowercase;
+	cursor: pointer;
+}
+
+div.messages div.action div.button input.ui-state-default
+{
+	margin: 0;
+	padding: 4px 12px 4px 12px;
+	background: #e5e3e3 url("/content/images/button.png") repeat-x;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #c6c6c6;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #c6c6c6;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+div.messages div.action div.button input.ui-state-hover
+{
+	background: #b4b4b4 url("/content/images/button_selected.png") repeat-x;
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #bebebe;
+	border-right: 1px solid #b1b1b1;
+	border-bottom: 1px solid #afafaf;
+}
+
+div.messages div.message table td.author
+{
+    padding: 16px;
+    width: 30%;
+}
+
+div.messages div.message table td.author h4
+{
+    padding: 0 0 6px 0;
+}
+
+div.messages div.message table td.author span
+{
+    margin: 0;
+    padding: 0 0 6px 0;
+    display: block;
+    clear: both;
+    overflow: hidden;
+}
+
+div.messages div.message table td.author div.avatar
+{
+    margin: 0;
+    padding: 10px 0 0 0;
+    clear: both;
+    overflow: hidden;
+}
+
+div.messages div.message table td.title
+{
+    width: 70%;
+    color: #3f3f3f;
+    font-weight: bold;
+    font-style: italic;
+}
+
+div.messages div.message table td.body
+{
+    padding: 14px;
+    width: 70%;
+    line-height: 18px
+}
+
+div.messages div.message table td.body p
+{
+    margin: 0;
+    padding: 0;
+    clear: both;
+    overflow: hidden;
+}
+
+div.messages div.message table td.body blockquote
+{
+    margin: 0 0 0 10px;
+    padding: 0 0 0 10px;
+    border-left: 6px solid #cdcdcd;
+    clear: both;
+    overflow: hidden;
+}
+
+div.messages div.message table td.body blockquote div.user
+{
+    margin: 0;
+    padding: 0 0 8px 0;
+    clear: both;
+    overflow: hidden;
+    color: #3f3f3f;
+    font-weight: bold;
+}
+
+div.messages div.message table td.body div.attachments
+{
+    margin: 0;
+    padding: 14px 0 0 0;
+    clear: both;
+    overflow: hidden;
+}
+
+div.messages div.message table td.body div.attachments h5
+{
+    margin: 0;
+    padding: 0 0 10px 0;
+    color: #3f3f3f;
+    font-size: 13px;
+    font-weight: bold;   
+}
+
+div.messages div.message table td.body div.attachments ul
+{
+    margin: 0;
+    padding: 8px 8px 4px 8px;
+    border: 1px solid #cdcdcd;
+}
+
+div.messages div.message table td.body div.attachments li
+{
+    margin: 0;
+    padding: 0 0 4px 0;
+    list-style: none;
+}
+
+div.messages div.message table td.body div.attachments li img
+{
+    margin: 0 6px 0 0;
+    vertical-align: middle;    
+}
+
+div.messages div.message table td.links
+{
+    padding: 6px 0 6px 6px;
+    width: 70%;
+}
+
+div.messages div.message table td.links ul
+{
+    margin: 0;
+    padding: 0;
+    float: right;  
+}
+
+div.messages div.message table td.links li
+{
+    margin: 0;
+    padding: 0 6px 0 0;
+    list-style: none;
+    float: left; 
+}
+
+div.messages div.message table td.links li a
+{
+	margin: 0;
+	padding: 6px 12px 6px 12px;
+	height: 1%;
+	display: block;
+	background: #e5e3e3 url("/content/images/button.png") repeat-x;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #c6c6c6;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #c6c6c6;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #515151;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+div.messages div.message table td.links li a:hover
+{
+	background: #b4b4b4 url("/content/images/button_selected.png") repeat-x;
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #bebebe;
+	border-right: 1px solid #b1b1b1;
+	border-bottom: 1px solid #afafaf;
+	color: #515151;
+}
+
+div.messages table td.folder-title
+{
+    width: 55%;
+    text-align: left;
+}
+
+div.messages table td.folder-messages
+{
+    width: 15%;
+    text-align: center;
+}
+
+div.messages table td.folder-update
+{
+    width: 15%;
+    text-align: center;
+}
+
+div.messages table td.folder-delete
+{
+    width: 15%;
+    text-align: center;
+}
+
+div.avatars table td.image
+{
+    width: 40%;
+    text-align: center;
+}
+
+div.avatars table td.date
+{
+    width: 30%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.avatars table td.select
+{
+    width: 15%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.avatars table td.delete
+{
+    width: 15%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.users-contacts div.tabs
+{
+    margin: 0;
+    padding: 6px 6px 0 2px;
+    background: #d5d5d5 url("/content/images/content_title.png") repeat-x;
+	clear: both;
+	overflow: hidden;
+}
+
+div.users-contacts div.tabs ul
+{
+    margin: 0;
+    padding: 0; 
+}
+
+div.users-contacts div.tabs li
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: left;
+}
+
+div.users-contacts div.tabs li a
+{
+    margin: 0 0 0 4px;
+    padding: 8px 10px 8px 10px;
+    height: 1%;
+    display: block;
+    background: #eeeeee;
+	border-radius: 4px 4px 0 0;
+	-moz-border-radius: 4px 4px 0 0;
+    color: #585858;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+div.users-contacts div.tabs li a:hover
+{
+    background: #ffffff;
+}
+
+div.users-contacts div.tabs li.selected a
+{
+    background: #ffffff;
+}
+
+div.users-contacts table td.avatar
+{
+    width: 8%;
+    text-align: center;
+}
+
+div.users-contacts table td.name
+{
+	width: 62%;
+	text-align: left;
+	vertical-align: middle;
+}
+
+div.users-contacts table td.name span
+{
+    margin: 0;
+    padding: 4px 0 0 0;
+    height: 1%;
+    display: block;
+    font-size: 11px;   
+}
+
+div.users-contacts table td.friend
+{
+	width: 15%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.users-contacts table td.checkbox
+{
+	width: 5%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.users-contacts table td.delete
+{
+	width: 15%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.users-contacts table td.approve
+{
+	width: 15%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.users-contacts table td.deny
+{
+	width: 15%;
+	text-align: center;
+	vertical-align: middle;
+}
+
+div.users-contacts div.action
+{
+	margin: 0;
+	padding: 10px 0 0 0;
+	width: 320px;
+	float: right;
+	text-align: right;
+}
+
+div.users-contacts div.action .ui-selectmenu
+{
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+div.users-contacts div.action div.button
+{
+	margin: 0;
+	padding: 6px 0 0 0;
+	clear: both;
+	overflow: hidden;
+}
+
+div.users-contacts div.action div.button input
+{
+	margin: 0;
+	padding: 4px 12px 4px 12px;
+	background: #e5e3e3;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #c6c6c6;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #c6c6c6;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #515151;
+	font-weight: bold;
+	text-transform: lowercase;
+	cursor: pointer;
+}
+
+div.users-contacts div.action div.button input.ui-state-default
+{
+	margin: 0;
+	padding: 4px 12px 4px 12px;
+	background: #e5e3e3 url("/content/images/button.png") repeat-x;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #c6c6c6;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #c6c6c6;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+div.users-contacts div.action div.button input.ui-state-hover
+{
+	background: #b4b4b4 url("/content/images/button_selected.png") repeat-x;
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #bebebe;
+	border-right: 1px solid #b1b1b1;
+	border-bottom: 1px solid #afafaf;
+}
+
+div.users-albums table td.image
+{
+    width: 15%;
+    text-align: center;
+}
+
+div.users-albums table td.title
+{
+    width: 85%;
+    text-align: left;
+    vertical-align: middle;
+}
+
+div.users-albums div.description
+{
+	margin: 0;
+	padding: 10px;
+    clear: both;
+    overflow: hidden;   
+	background: #eeeeee;
+    border: 1px solid #dddddd;
+    border-bottom: none;
+}
+
+div.users-albums div.photo
+{
+	margin: 0 34px 0 0;
+	padding: 10px;
+    clear: both;
+    overflow: hidden;  
+    border: 1px solid #dddddd; 
+}
+
+div.users-albums div.photos
+{
+	margin: 0;
+	padding: 34px 0 24px 34px;
+    clear: both;
+    overflow: hidden; 
+    border: 1px solid #dddddd; 
+}
+
+div.users-albums div.photos div.photo
+{
+	margin: 0 10px 10px 0;
+	padding: 6px;
+	float: left;
+	clear: none;
+	background: #dddddd;
+}
+
+div.users-albums-manage table td.title
+{
+    width: 46%;
+}
+
+div.users-albums-manage table td.view
+{
+    width: 12%;
+    text-align: center;
+}
+
+div.users-albums-manage table td.manage
+{
+    width: 18%;
+    text-align: center;
+}
+
+div.users-albums-manage table td.update
+{
+    width: 12%;
+    text-align: center;
+}
+
+div.users-albums-manage table td.delete
+{
+    width: 12%;
+    text-align: center;
+}
+
+div.users-albums-photos-manage table td.image
+{
+    width: 15%;
+    text-align: center;
+}
+
+div.users-albums-photos-manage table td.title
+{
+    width: 73%;
+    text-align: left;
+    vertical-align: middle;
+}
+
+div.users-albums-photos-manage table td.title input
+{
+	margin: 0;
+	padding: 7px;
+	width: 176px;
+	background: #FFFFFF;
+	border-top: 1px solid #b3b3b3;
+	border-left: 1px solid #b3b3b3;
+	border-right: 1px solid #eaeaea;
+	border-bottom: 1px solid #eaeaea;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #000000;
+}
+
+div.users-albums-photos-manage table td.delete
+{
+    width: 12%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+div.users-albums-photos-manage div.action
+{
+	margin: 0;
+	padding: 10px 0 0 0;
+	width: 320px;
+	float: right;
+	text-align: right;
+}
+
+div.users-albums-photos-manage div.action div.button input
+{
+	margin: 0;
+	padding: 4px 12px 4px 12px;
+	background: #e5e3e3;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #c6c6c6;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #c6c6c6;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #515151;
+	font-weight: bold;
+	text-transform: lowercase;
+	cursor: pointer;
+}
+
+div.users-albums-photos-manage div.action div.button input.ui-state-default
+{
+	margin: 0;
+	padding: 4px 12px 4px 12px;
+	background: #e5e3e3 url("/content/images/button.png") repeat-x;
+	border-top: 1px solid #DDDDDD;
+	border-left: 1px solid #c6c6c6;
+	border-right: 1px solid #DDDDDD;
+	border-bottom: 1px solid #c6c6c6;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+div.users-albums-photos-manage div.action div.button input.ui-state-hover
+{
+	background: #b4b4b4 url("/content/images/button_selected.png") repeat-x;
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #bebebe;
+	border-right: 1px solid #b1b1b1;
+	border-bottom: 1px solid #afafaf;
+}
+
+div.pagination
+{
+	margin: 10px 0 0 0;
+	padding: 0;
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+}
+
+div.pagination div.results
+{
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	float: left
+}
+
+div.pagination div.results span 
+{
+	margin: 0;
+	padding: 6px 8px 6px 8px;
+	height: 1%;
+	display: block;
+	float: left;
+	background: #ebebeb;
+	border: 2px solid #303030;
+	color: #4A4A4A;
+	font-weight: bold;
+}
+
+div.pagination ul.pager
+{
+	margin: 0;
+	padding: 0;
+	float: right;
+	text-align: right;
+}
+
+div.pagination ul.pager li
+{
+	margin: 0 0 0 4px;
+	padding: 0;
+	height: 1%;
+	float: left;
+	list-style: none;
+	background: #ebebeb;
+	border: 2px solid #303030;
+	color: #4A4A4A;
+	font-weight: bold;
+}
+
+div.pagination ul.pager li.separator
+{
+	padding: 6px;   
+}
+
+div.pagination ul.pager li.current
+{
+	padding: 6px;   
+	background: #d1d1d1;
+	border: 2px solid #303030;
+	color: #515151;
+}
+
+div.pagination ul.pager li.disabled
+{
+	padding: 6px;
+	color: #B4B4B4;
+}
+
+div.pagination ul.pager li a 
+{
+	margin: 0;
+	padding: 6px;
+	height: 1%;
+	display: block;
+	float: left;
+	color: #515151;
+	text-decoration: none;
+}
+
+div.pagination ul.pager li a:hover, 
+div.pagination ul.pager li a:active 
+{
+	margin: -1px;
+	background: #b4b4b4;
+	border: 2px solid #303030;
+}
+
+/* -----------------------------------------------------------
+	jquery ui -> select
+----------------------------------------------------------- */
+
+.ui-selectmenu
+{
+	margin: 0;
+	padding: 0;
+	height: 30px;
+	display: block;
+	position: relative;
+	overflow: hidden;
+	background: url("/content/images/select.png") repeat-x;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	text-align: left;
+	text-decoration: none;
+}
+
+.ui-state-active
+{
+	border-radius: 0;
+	-moz-border-radius: 0;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+}
+
+.ui-selectmenu:hover
+{
+	text-decoration: none;
+}
+
+.ui-selectmenu-icon
+{
+	top: 0;
+	right: 0;
+	position: absolute;
+	width: 30px;
+	height: 30px;
+	background: url("/content/images/select_button.png") no-repeat;
+	background-position: 0 0;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+}
+
+.ui-state-hover .ui-selectmenu-icon
+{
+	background: url("/content/images/select_button_selected.png") no-repeat;
+	background-position: 0 0;
+}
+
+.ui-state-active .ui-selectmenu-icon
+{
+	background: url("/content/images/select_button_selected.png") no-repeat;
+	background-position: 0 0;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	border-top-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+}
+
+.ui-selectmenu-menu
+{
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	overflow: auto;
+	visibility: hidden;
+	list-style:none;
+}
+
+.ui-selectmenu-open
+{
+	background: #dbdbdb;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	visibility: visible;
+}
+
+.ui-selectmenu-menu-popup
+{
+	margin-top: -1px;
+}
+
+.ui-selectmenu-menu li
+{
+	padding: 2px 0 2px 0;
+	margin: 0;
+	display: block;
+	border-bottom: 1px solid #b4b4b4;
+}
+
+.ui-selectmenu-menu li.ui-corner-bottom
+{
+	border: none;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+}
+
+.ui-selectmenu-menu li a,.ui-selectmenu-status
+{
+	padding: 6px 0 5px 8px;
+	display: block;
+	color: #555555;
+	text-decoration: none;
+}
+
+.ui-selectmenu-menu li.ui-selectmenu-hasIcon a,
+.ui-selectmenu-hasIcon .ui-selectmenu-status  { margin-left: 5px; padding-left: 20px; position: relative; }
+.ui-selectmenu-menu li .ui-icon,
+.ui-selectmenu-status .ui-icon { position: absolute; top: 1em; margin-top: -8px; left: 0; }
+.ui-selectmenu-status { line-height: 18px; }
+.ui-selectmenu-open li.ui-selectmenu-item-focus { background: #cccccc; }
+.ui-selectmenu-open li.ui-selectmenu-item-focus a { color: #555555; }
+.ui-selectmenu-open li.ui-selectmenu-item-selected { background: #cccccc; }
+.ui-selectmenu-open li.ui-selectmenu-item-selected a { color: #555555; }
+.ui-selectmenu-menu li span,.ui-selectmenu-status span { display:block; margin-bottom: .2em; }
+.ui-selectmenu-menu .ui-selectmenu-group .ui-selectmenu-group-label { line-height: 1.4em; display:block; padding:.6em .5em 0; }
+.ui-selectmenu-menu .ui-selectmenu-group ul { margin: 0; padding: 0; }
+
+/* -----------------------------------------------------------
+	jquery ui
+----------------------------------------------------------- */
+
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute; left: -99999999px; }
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+
+/* -----------------------------------------------------------
+	jquery ui -> tabs
+----------------------------------------------------------- */
+.ui-tabs .ui-tabs-hide { display: none; }
+
+/* -----------------------------------------------------------
+	jquery ui -> datepicker
+----------------------------------------------------------- */
+.ui-datepicker  
+{
+    padding: 2px;
+    width: 200px; 
+    background: #FFFFFF; 
+	border: 1px solid #b3b3b3;
+}
+
+.ui-datepicker .ui-datepicker-header { position:relative; padding: 2px; background: #F6F6F6; }
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next { position:absolute; top: 1px; width: 1.8em; height: 1.8em; }
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px; }
+.ui-datepicker .ui-datepicker-prev { left: 0; }
+.ui-datepicker .ui-datepicker-next { right: 0; }
+.ui-datepicker .ui-datepicker-prev-hover { left: 0; }
+.ui-datepicker .ui-datepicker-next-hover { right: 0; }
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span { display: block; position: absolute; left: 50%; margin-left: -8px; top: 50%; margin-top: -8px;  }
+.ui-datepicker .ui-datepicker-title { margin: 0 2.3em; line-height: 1.8em; text-align: center; }
+.ui-datepicker .ui-datepicker-title select { margin:1px 0; }
+.ui-datepicker select.ui-datepicker-month-year {width: 100%;}
+.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-year { width: 49%;}
+.ui-datepicker table {width: 100%; border-collapse: collapse; margin: 0; }
+.ui-datepicker th { padding: .7em .3em; text-align: center; border: 0;  }
+.ui-datepicker td { border: 0; padding: 0 4px 4px 4px; }
+.ui-datepicker td span, .ui-datepicker td a { display: block; padding: 3px; text-align: center;  text-decoration: none; }
+.ui-datepicker td span, .ui-datepicker td a:hover { background: #376ea6; color: #ffffff; }
+.ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
+.ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }
+.ui-datepicker td span, .ui-datepicker td.ui-datepicker-today a { background: #DDDDDD; color: #585858; }
+.ui-datepicker td span, .ui-datepicker td.ui-datepicker-current-day a { background: #376ea6; color: #ffffff; }
+
+/* -----------------------------------------------------------
+	jquery ui -> datepicker / multiple calenders
+----------------------------------------------------------- */
+.ui-datepicker.ui-datepicker-multi { width:auto; }
+.ui-datepicker-multi .ui-datepicker-group { float:left; }
+.ui-datepicker-multi .ui-datepicker-group table { width:95%; margin:0 auto .4em; }
+.ui-datepicker-multi-2 .ui-datepicker-group { width:50%; }
+.ui-datepicker-multi-3 .ui-datepicker-group { width:33.3%; }
+.ui-datepicker-multi-4 .ui-datepicker-group { width:25%; }
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header { border-left-width:0; }
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header { border-left-width:0; }
+.ui-datepicker-multi .ui-datepicker-buttonpane { clear:left; }
+.ui-datepicker-row-break { clear:both; width:100%; }
+
+/* -----------------------------------------------------------
+	jquery ui -> datepicker / rtl support
+----------------------------------------------------------- */
+.ui-datepicker-rtl { direction: rtl; }
+.ui-datepicker-rtl .ui-datepicker-prev { right: 2px; left: auto; }
+.ui-datepicker-rtl .ui-datepicker-next { left: 2px; right: auto; }
+.ui-datepicker-rtl .ui-datepicker-prev:hover { right: 1px; left: auto; }
+.ui-datepicker-rtl .ui-datepicker-next:hover { left: 1px; right: auto; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane { clear:right; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button { float: left; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current { float:right; }
+.ui-datepicker-rtl .ui-datepicker-group { float:right; }
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }

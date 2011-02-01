@@ -15,10 +15,20 @@
 //	limitations under the License.
 #endregion
 
+#region Using Directives
+using System.Collections.Generic;
+#endregion
+
 namespace Coders.Models.Settings
 {
 	public interface ISettingService : IEntityService<Setting>
 	{
+		/// <summary>
+		/// Gets the groups.
+		/// </summary>
+		/// <returns></returns>
+		IList<string> GetGroups();
+
 		/// <summary>
 		/// Rebuilds the settings cache
 		/// </summary>

@@ -35,13 +35,21 @@ namespace Coders.Repositories.Mappings
 				.Column("Id")
 				.GeneratedBy.Native();
 
-			base.Map(x => x.Reason)
-				.Column("Reason")
+			base.Map(x => x.GroupId)
+				.Column("GroupId")
 				.Not.Nullable();
 
-			base.Map(x => x.HostAddress)
-				.Column("HostAddress")
+			base.Map(x => x.GroupKey)
+				.Column("GroupKey")
 				.Not.Nullable();
+
+			base.Map(x => x.Action)
+				.Column("Action")
+				.Nullable();
+
+			base.Map(x => x.Data)
+				.Column("Data")
+				.Nullable();
 
 			base.Map(x => x.Created)
 				.Column("Created")

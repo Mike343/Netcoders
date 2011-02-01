@@ -16,13 +16,36 @@
 #endregion
 
 #region Using Directives
+using System.Collections.Generic;
+using System.Linq;
 using Coders.Models.Settings;
+using NHibernate.Linq;
 #endregion
 
 namespace Coders.Repositories
 {
-	public class SettingRepository : NHibernateEntityRepository<Setting>, ISettingRepository
+	public class SettingRepository : NHibernateRepository<Setting>, ISettingRepository
 	{
+		/// <summary>
+		/// Gets the groups.
+		/// </summary>
+		/// <returns></returns>
+		public IList<string> GetGroups()
+		{
+			var session = base.Session;
 
+			using (var transaction = session.BeginTransaction())
+			{
+				var entities = session.Query<Setting>()
+					.GroupBy(x => x.Group)
+					.Select(x => x.Key)
+					.Distinct()
+					.ToList();
+
+				transaction.Commit();
+
+				return entities;
+			}
+		}
 	}
 }

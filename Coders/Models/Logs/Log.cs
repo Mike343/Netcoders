@@ -24,6 +24,29 @@ namespace Coders.Models.Logs
 {
 	public class Log : EntityBase
 	{
+		// public constants
+		public const string Settings = "Settings";
+
+		/// <summary>
+		/// Gets or sets the group id.
+		/// </summary>
+		/// <value>The group id.</value>
+		public virtual int GroupId
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the group key.
+		/// </summary>
+		/// <value>The group key.</value>
+		public virtual string GroupKey
+		{
+			get;
+			set;
+		}
+
 		/// <summary>
 		/// Gets or sets the action.
 		/// </summary>
@@ -35,20 +58,10 @@ namespace Coders.Models.Logs
 		}
 
 		/// <summary>
-		/// Gets or sets the reason.
+		/// Gets or sets the data.
 		/// </summary>
-		/// <value>The reason.</value>
-		public virtual string Reason
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the host address.
-		/// </summary>
-		/// <value>The host address.</value>
-		public virtual string HostAddress
+		/// <value>The data.</value>
+		public virtual string Data
 		{
 			get;
 			set;

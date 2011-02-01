@@ -19,6 +19,21 @@ namespace Coders.Models.Logs
 {
 	public interface ILogService : IEntityService<Log>
 	{
+		/// <summary>
+		/// Logs the specified action.
+		/// </summary>
+		/// <param name="groupId">The group id.</param>
+		/// <param name="group">The group.</param>
+		/// <param name="action">The action.</param>
+		void Log(int groupId, string group, string action);
 
+		/// <summary>
+		/// Logs the specified action.
+		/// </summary>
+		/// <param name="groupId">The group id.</param>
+		/// <param name="group">The group.</param>
+		/// <param name="action">The action.</param>
+		/// <param name="data">The data.</param>
+		void Log(int groupId, string group, string action, object data);
 	}
 }

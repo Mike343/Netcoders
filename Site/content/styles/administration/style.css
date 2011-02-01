@@ -1,0 +1,1070 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	background: #ffffff;
+	font-family: Lucida Grande, Verdana, Lucida Sans Regular, Lucida Sans Unicode, Arial, sans-serif;
+	font-size: 11px;
+}
+
+/* -----------------------------------------------------------
+	images
+----------------------------------------------------------- */ 
+
+img
+{
+	border: none;	
+}
+
+/* -----------------------------------------------------------
+	anchors
+----------------------------------------------------------- */ 
+
+a
+{
+	color: #0066CC;	
+	text-decoration: none;
+	cursor: pointer;
+}
+
+a:hover
+{
+	color: #000000;	
+	text-decoration: underline;
+}
+
+/* -----------------------------------------------------------
+	headings
+----------------------------------------------------------- */ 
+
+h1, h2, h3, h4, h5, h6
+{
+	color: #292929;
+	font-weight: bold;
+}
+
+h1
+{
+	font-size: 22px;
+}
+
+h2
+{
+	font-size: 20px;
+}
+
+h3
+{
+	font-size: 18px;  
+}
+
+h4
+{
+	font-size: 16px;
+}
+
+h5
+{
+	font-size: 14px; 
+}
+
+h6
+{
+	font-size: 11px; 
+}
+
+/* -----------------------------------------------------------
+	forms
+----------------------------------------------------------- */
+
+form
+{
+	margin: 0;
+	padding: 0;
+}
+
+input
+{
+	font-family: Lucida Grande, Verdana, Lucida Sans Regular, Lucida Sans Unicode, Arial, sans-serif;
+	font-size: 11px;
+}
+
+select
+{
+	font-family: Lucida Grande, Verdana, Lucida Sans Regular, Lucida Sans Unicode, Arial, sans-serif;
+	font-size: 11px;
+}
+
+textarea
+{
+	font-family: Lucida Grande, Verdana, Lucida Sans Regular, Lucida Sans Unicode, Arial, sans-serif;
+	font-size: 11px;
+}
+
+
+/* -----------------------------------------------------------
+	lists
+----------------------------------------------------------- */ 
+
+ul.circle { list-style-type: circle; }
+ul.disc { list-style-type: disc; }
+ul.square { list-style-type: square; }
+ol.lower-roman { list-style-type: lower-roman; }
+ol.upper-roman { list-style-type: upper-roman; }
+ol.lower-alpha { list-style-type: lower-alpha; }
+ol.upper-alpha { list-style-type: upper-alpha; }
+ol.decimal  { list-style-type: decimal; }
+
+/* -----------------------------------------------------------
+	container
+----------------------------------------------------------- */ 
+
+#container
+{
+	margin: 20px auto 0 auto;
+	padding: 0;
+	width: 80%;
+}
+
+#container #header
+{
+	margin: 0;
+	padding: 0;
+	height: 46px;
+    background: #0e0e0e url("/content/images/administration/header.png") repeat-x top left;
+	border-top: 1px solid #0c0c0c;
+	border-left: 1px solid #0c0c0c;
+	border-right: 1px solid #141414;
+	border-bottom: 1px solid #0c0c0c;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+#container #header #logo
+{
+	float: left;
+}
+
+#container #header #logo h1
+{
+	margin: 0;
+	padding: 16px;
+	color: #ffffff;
+	font-size: 14px;
+}
+
+#container #header #menu
+{
+	float: right;
+}
+
+#container #header #menu ul
+{
+	margin: 1px 0 0 0;
+	padding: 0;
+	height: 46px;
+    background: transparent url("/content/images/administration/header_seperator.png") no-repeat top left;
+}
+
+#container #header #menu li
+{
+	margin: 0;
+	padding: 8px 10px 8px 10px;
+	float: left;
+	position: relative;
+	list-style: none;
+    background: transparent url("/content/images/administration/header_seperator.png") no-repeat top right;
+}
+
+#container #header #menu li.last
+{
+	padding: 8px;
+	background: transparent;
+}
+
+#container #header #menu li a
+{
+	margin: 0;
+	padding: 0;
+	height: 1%;
+	display: block;
+    background: #292929 url("/content/images/administration/menu_item.png") repeat-x top left;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#container #header #menu li a span
+{
+	margin: 0;
+	padding: 9px 34px 9px 10px;
+	height: 1%;
+	display: block;
+    background: transparent url("/content/images/administration/menu_item_arrow.png") no-repeat top right;
+    border-right: 1px solid transparent;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+#container #header #menu li a:hover,
+#container #header #menu li.selected a
+{
+	background: #fefefe url("/content/images/administration/menu_item_selected.png") repeat-x top left;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	color: #6f6f6f;
+}
+
+#container #header #menu li a:hover span,
+#container #header #menu li.selected a span
+{
+	background: transparent url("/content/images/administration/menu_item_arrow_selected.png") no-repeat top right;
+	border-right: 1px solid #9c9c9c;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+}
+
+#container #header #menu ul ul
+{
+	top: 37px;
+	right: 10px;
+	margin: 0;
+	padding: 0;
+	height: auto;
+	display: none;
+	position: absolute;
+	z-index: 100;
+	background: #ffffff;
+	border-left: 1px solid #b5b5b5;
+	border-right: 1px solid #9c9c9c;	
+	border-bottom: 1px solid #9b9b9b;
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+}
+
+#container #header #menu ul li.last ul
+{
+	right: 8px;
+}
+
+#container #header #menu ul li ul li
+{
+	padding: 0;
+	background: transparent;
+	border-left: 10px solid #f5f5f5;
+	border-bottom: 1px dotted #bbbbbb;
+}
+
+#container #header #menu ul li ul li.first
+{
+	padding: 0;
+	border-top-left-radius: 4px;
+	-moz-border-radius-topleft: 4px;	
+}
+
+#container #header #menu ul li ul li.last
+{
+	padding: 0;
+	border-bottom: none;
+	border-bottom-left-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+}
+
+#container #header #menu ul li ul li a,
+#container #header #menu ul li.selected ul li a
+{
+	margin: 0;
+	padding: 9px;
+	height: 1%;
+	width: 162px;
+	height: auto;
+	display: block;
+	float: left;
+	background: transparent;
+	color: #6b6b6b;
+	font-size: 11px;
+	font-weight: normal;
+}
+
+#container #header #menu ul li ul li a:hover,
+#container #header #menu ul li.selected ul li a:hover
+{
+	color: #437093;
+	background: transparent;
+}
+
+#container #header #menu ul li:hover ul
+{
+	display: none;
+}
+
+#container #header #menu ul li:hover ul
+{
+	display: block;
+}
+
+#container #location
+{
+	margin: 10px 0 10px 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+	background: #f0f0f0;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+#container #location ul
+{
+	margin: 0;
+	padding: 0;
+}
+
+#container #location li
+{
+	margin: 0;
+	padding: 11px 14px 12px 8px;
+	float: left;
+	list-style: none;
+	background: url("/content/images/administration/location.png") no-repeat center right;
+}
+
+#container #location li.first
+{
+	padding: 11px 14px 12px 11px;
+}
+
+#container #location li.last
+{
+	padding: 11px 0 12px 8px;
+	background: transparent;
+}
+
+#container #content
+{
+	margin: 0;
+	padding: 0;
+}
+
+#container #content div.title
+{
+	margin: 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;	
+	background: #dddddd url("/content/images/administration/content_title.png") repeat-x top left;
+	border: 1px solid #acacac;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+}
+
+#container #content div.title h5
+{
+	margin: 0;
+	padding: 12px;
+	float: left;
+	color: #5f5f5f;
+	font-size: 12px;
+}
+
+#container #content div.title ul
+{
+	margin: 0;
+	padding: 0;
+	float: right;
+	border-left: 1px solid #c0c0c0;
+}
+
+#container #content div.title li
+{
+	margin: 0;
+	padding: 6px;
+	float: left;
+	list-style: none;
+	border-left: 1px solid #f4f4f4;
+	border-right: 1px solid #c0c0c0;	
+}
+
+#container #content div.title li.last
+{
+	border-right: none;
+}
+
+#container #content div.title li a
+{
+	margin: 0;
+	padding: 0;
+	height: 22px;
+	display: block;
+    background: #ffffff url("/content/images/administration/content_title_button.png") repeat-x bottom left;
+    border: 1px solid #ffffff;
+    border-right: 1px solid #a3a3a3;
+    border-bottom: 1px solid #a3a3a3;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+    color: #777777;
+    font-size: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    text-transform: lowercase;
+    text-shadow: 1px 1px 0px #ffffff;
+}
+
+#container #content div.title li a span
+{
+	margin: 0;
+	padding: 5px 36px 9px 10px;
+	height: 8px;
+	display: block;
+    background: transparent url("/content/images/administration/content_title_button_add.png") no-repeat bottom right;
+    border-right: 1px solid transparent;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+#container #content div.title li a:hover
+{
+    background: #fcfcfc url("/content/images/administration/content_title_button_selected.png") repeat-x bottom left;
+    border: 1px solid #fcfcfc;
+    border-right: 1px solid #a3a3a3;
+    border-bottom: 1px solid #a3a3a3;
+}
+
+#container #content div.title li a:hover span
+{
+    background: transparent url("/content/images/administration/content_title_button_selected_add.png") no-repeat bottom right;
+    border-right: 1px solid transparent;
+}
+
+#container #content div.content
+{
+	margin: 0;
+	padding: 14px;
+	position: relative;
+	background: #ffffff;
+	border: 1px solid #acacac;
+	border-top: none;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+}
+
+#container #content div.content div.messages
+{
+	margin: 10px 10px 0 10px;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+	border-bottom: 1px solid #DDDDDD;
+}
+
+#container #content div.content div.message
+{
+	margin: 0 0 10px 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.message div.image
+{
+	margin: 0;
+	padding: 10px 0 10px 10px;
+	width: 48px;
+	float: left;
+}
+
+#container #content div.content div.message div.image img
+{
+	margin: 0;
+	vertical-align: middle;
+}
+
+#container #content div.content div.message div.text
+{
+	margin: 0;
+	padding: 10px 6px 10px 0;
+	width: 520px;
+	float: left;
+}
+
+#container #content div.content div.message div.text ol
+{
+	margin: 0 0 0 19px;
+	padding: 0;
+	list-style-type: decimal;	
+}
+
+#container #content div.content div.message div.text li
+{
+	margin: 0;
+	padding: 7px 0 0 0;	
+}
+
+#container #content div.content div.message div.dismiss
+{
+	margin: 0;
+	padding: 19px 14px 0 0;
+	width: 16px;
+	float: right;
+}
+
+#container #content div.content div.message div.dismiss a
+{
+	margin: 0;
+	padding: 0;
+	height: 16px;
+	width: 16px;
+	display: block;
+	background: url("/content/images/icons/cross.png") no-repeat;
+}
+
+#container #content div.content div.message div.text h1,
+#container #content div.content div.message div.text h2,
+#container #content div.content div.message div.text h3,
+#container #content div.content div.message div.text h4,
+#container #content div.content div.message div.text h5,
+#container #content div.content div.message div.text h6
+{
+	margin: 0;
+	padding: 0px;
+	border: none;
+}
+
+#container #content div.content div.message div.text span
+{
+	margin: 0;
+	padding: 5px 0 0 0;
+	height: 1%;
+	display: block;
+}
+
+#container #content div.content div.message-error
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #FBE3E4;
+	border: 1px solid #FBC2C4;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #860006;
+}
+
+#container #content div.content div.message-error h6
+{
+	color: #860006;
+}
+
+#container #content div.content div.message-warning
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #FFF6BF;
+	border: 1px solid #FFD324;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #5f5200;
+}
+
+#container #content div.content div.message-warning h6
+{
+	color: #5f5200;
+}
+
+#container #content div.content div.message-notice
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #8FBDE0;
+	border: 1px solid #6BACDE;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #003863;
+}
+
+#container #content div.content div.message-notice h6
+{
+	color: #003863;
+}
+
+#container #content div.content div.message-success
+{
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+	background: #E6EFC2;
+	border: 1px solid #C6D880;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #4e6100;
+}
+
+#container #content div.content div.message-success h6
+{
+	color: #4e6100;
+}
+
+#container #content div.content div.form
+{
+	margin: 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.form div.fields
+{
+	margin: 0;
+	padding: 4px 10px 10px 10px;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.form div.fields div.field
+{
+	margin: 0;
+	padding: 10px 0 10px 0;
+	clear: both;
+	overflow: hidden;
+	border-bottom: 1px solid #d5d5d5;
+}
+
+#container #content div.content div.form div.fields div.field div.label
+{
+	margin: 0;
+	padding: 0 0 8px 0;
+}
+
+#container #content div.content div.form div.fields div.field div.label label
+{
+	color: #000000;
+	font-weight: bold;
+}
+
+#container #content div.content div.form div.fields div.field div.input
+{
+	margin: 0;
+	padding: 0;
+}
+
+#container #content div.content div.form div.fields div.field div.input input
+{
+	margin: 0;
+	padding: 6px;
+	width: 200px;
+	float: left;
+	background: #FFFFFF;
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #f2f2f2;
+	border-bottom: 1px solid #f2f2f2;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #000000;
+}
+
+#container #content div.content div.form div.fields div.field div.input input.medium
+{
+	width: 300px;
+}
+
+#container #content div.content div.form div.fields div.field div.input input.large
+{
+	width: 400px;
+}
+
+#container #content div.content div.form div.fields div.field div.input input.input-validation-error
+{
+	background: #FBE3E4;
+	border-top: 1px solid #fb9ea1;
+	border-left: 1px solid #fb9ea1;
+	border-right: 1px solid #ffccce;
+	border-bottom: 1px solid #ffccce;
+}
+
+#container #content div.content div.form div.fields div.field span.field-validation-error
+{
+	margin: 0;
+	padding: 8px 0 0 0;
+	height: 1%;
+	clear: both;
+	display: block;
+	color: #FF0000;
+}
+
+#container #content div.content div.form div.fields div.buttons
+{
+	margin: 0;
+	padding: 10px 0 0 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.form div.fields div.buttons input
+{
+	margin: 0 8px 0 0;
+	padding: 6px 12px 6px 12px;
+	float: left;
+	background: #b2b2b2 url("/content/images/administration/content_form_button.png") repeat-x top left;
+	border: none;
+	border-right: 1px solid #5f5f5f;
+	border-bottom: 1px solid #5f5f5f;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #545454;
+	font-weight: bold;
+	text-transform: lowercase;
+	text-shadow: 1px 1px 0px #e7e7e7;
+	cursor: pointer;
+}
+
+#container #content div.content div.form div.fields div.buttons input.ui-state-hover
+{
+	background: #b2b2b2 url("/content/images/administration/content_form_button_selected.png") repeat-x bottom left;
+}
+
+#container #content div.content div.form div.fields div.buttons a
+{
+	margin: 0 8px 0 0;
+	padding: 7px 12px 7px 12px;
+	height: 1%;
+	display: block;
+	float: left;
+	background: #b2b2b2 url("/content/images/administration/content_form_button.png") repeat-x top left;
+	border: none;
+	border-right: 1px solid #5f5f5f;
+	border-bottom: 1px solid #5f5f5f;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #545454;
+	font-weight: bold;
+	text-transform: lowercase;
+	text-decoration: none;
+}
+	
+#container #content div.content div.form div.fields div.buttons a:hover
+{
+	background: #b2b2b2 url("/content/images/administration/content_form_button_selected.png") repeat-x bottom left;
+}	
+
+#container #content div.content div.table
+{
+	margin: 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.table-filtered
+{
+	margin: 0 216px 0 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.table table
+{
+    margin: 0;
+    padding: 0;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#container #content div.content div.table table th
+{
+	padding: 10px;
+    background: #e5e5e5;
+}
+
+#container #content div.content div.table table th.left
+{
+    text-align: left;
+}
+
+#container #content div.content div.table table th.right
+{
+    text-align: right;
+}
+
+#container #content div.content div.table table th.center
+{
+    text-align: center;
+}
+
+#container #content div.content div.table table td
+{
+	padding: 10px;
+	background: #ffffff;
+	border-right: 1px solid #acacac;
+	border-bottom: 1px solid #acacac;
+}
+
+#container #content div.content div.table table td.center
+{
+	text-align: center;	
+}
+
+#container #content div.content div.table table td.right
+{
+	text-align: right;	
+}
+
+#container #content div.content div.table table td.last
+{
+	border-right: none;
+}
+
+#container #content div.content div.table table td.link
+{
+	text-align: center;	
+}
+
+#container #content div.content div.table-history td.values
+{
+	padding: 0;
+}
+
+#container #content div.content div.table-history td.values table td
+{
+
+}
+
+#container #content div.content div.table-history td.values table td.title
+{
+	width: 140px;
+	background: #f6f6f6;
+	font-weight: bold;
+}
+
+#container #content div.content div.table-history td.values table tr.last td
+{
+	border-bottom: none;
+}
+
+#container #content div.content div.pagination
+{
+	margin: 10px 0 0 0;
+	padding: 0;
+	height: 1%;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.pagination div.results
+{
+	margin: 0;
+	padding: 0;
+	text-align: left;
+	float: left
+}
+
+#container #content div.content div.pagination div.results span 
+{
+	margin: 0;
+	padding: 6px 8px 6px 8px;
+	height: 1%;
+	display: block;
+	float: left;
+    background: #ffffff url("/content/images/administration/content_title_button.png") repeat-x bottom left;
+    border: 1px solid #dfdddd;
+    border-right: 1px solid #a3a3a3;
+    border-bottom: 1px solid #a3a3a3;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #4A4A4A;
+	font-weight: bold;
+	text-shadow: 1px 1px 0px #ffffff;
+}
+
+#container #content div.content div.pagination ul.pager
+{
+	margin: 0;
+	padding: 0;
+	float: right;
+	text-align: right;
+}
+
+#container #content div.content div.pagination ul.pager li
+{
+	margin: 0 0 0 4px;
+	padding: 0;
+	height: 1%;
+	float: left;
+	list-style: none;
+    background: #ffffff url("/content/images/administration/content_title_button.png") repeat-x bottom left;
+    border: 1px solid #dfdddd;
+    border-right: 1px solid #a3a3a3;
+    border-bottom: 1px solid #a3a3a3;
+	color: #4A4A4A;
+	font-weight: bold;
+	text-shadow: 1px 1px 0px #ffffff;
+}
+
+#container #content div.content div.pagination ul.pager li.separator
+{
+	padding: 6px;   
+}
+
+#container #content div.content div.pagination ul.pager li.current
+{
+	padding: 6px;   
+    background: #fcfcfc url("/content/images/administration/content_title_button_selected.png") repeat-x bottom left;
+    border: 1px solid #dfdddd;
+    border-right: 1px solid #a3a3a3;
+    border-bottom: 1px solid #a3a3a3;
+	color: #515151;
+	text-shadow: 1px 1px 0px #ffffff;
+}
+
+#container #content div.content div.pagination ul.pager li.disabled
+{
+	padding: 6px;
+	color: #B4B4B4;
+}
+
+#container #content div.content div.pagination ul.pager li.prev
+{
+	border-top-left-radius: 4px;
+	border-bottom-left-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-bottomleft: 4px;
+}
+
+#container #content div.content div.pagination ul.pager li.next
+{
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+}
+
+#container #content div.content div.pagination ul.pager li a 
+{
+	margin: 0;
+	padding: 6px;
+	height: 1%;
+	display: block;
+	float: left;
+	color: #7f7f7f;
+	text-decoration: none;
+	text-shadow: 1px 1px 0px #ffffff;
+}
+
+#container #content div.content div.pagination ul.pager li a:hover, 
+#container #content div.content div.pagination ul.pager li a:active 
+{
+	margin: -1px;
+    background: #fcfcfc url("/content/images/administration/content_title_button_selected.png") repeat-x bottom left;
+    border: 1px solid #dfdddd;
+    border-right: 1px solid #a3a3a3;
+    border-bottom: 1px solid #a3a3a3;
+}
+
+#container #content div.content div.filter
+{
+	top: 14px;
+	right: 14px;
+	margin: 0;
+	padding: 0;
+	width: 200px;
+	position: absolute;
+	background: #e5e5e5;
+	border: 1px solid #b2b2b2;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+}
+
+#container #content div.content div.filter h5
+{
+	margin: 0;
+	padding: 8px;
+    background: #b5b5b5 url("/content/images/administration/content_right_title.png") repeat-x top left;
+    border-bottom: 1px solid #abaaaa;
+	color: #515151;
+	font-size: 12px;
+}
+
+#container #content div.content div.filter h6
+{
+	margin: 0;
+	padding: 12px 12px 6px 12px;
+	color: #000000;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+#container #content div.content div.filter ul
+{
+	margin: 0;
+	padding: 0 0 12px 0;
+}
+
+#container #content div.content div.filter li
+{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#container #content div.content div.filter li a
+{
+	margin: 0;
+	padding: 6px 8px 2px 26px;
+	height: 1%;
+	display: block;
+    background: transparent url("/content/images/administration/content_right_filter.png") no-repeat;
+    background-position: 14px 9px;
+	text-decoration: none;
+}
+
+#container #content div.content div.filter li a:hover
+{
+    background: transparent url("/content/images/administration/content_right_filter_selected.png") no-repeat;
+    background-position: 14px 9px;
+    color: #000000;
+}
+
+#container #content div.content div.filter li.selected a
+{
+    background: transparent url("/content/images/administration/content_right_filter_selected.png") no-repeat;
+    background-position: 14px 9px;
+    color: #000000;
+}
+
+#container #footer
+{
+	margin: 0;
+	padding: 10px 0 0 0;
+	clear: both;
+	overflow: hidden;
+	text-align: right;
+}
+
+#container #footer p
+{
+	margin: 0;
+	padding: 0;
+	line-height: 16px;
+}

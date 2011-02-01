@@ -30,7 +30,7 @@ namespace Coders.Web.Extensions
 	public static class HtmlExtension
 	{
 		/// <summary>
-		/// Returns the pager for the specified collection.
+		/// Renders the pager for the specified collection.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="helper">The helper.</param>
@@ -50,7 +50,7 @@ namespace Coders.Web.Extensions
 		}
 
 		/// <summary>
-		/// Gets the message.
+		/// Renders the message.
 		/// </summary>
 		/// <typeparam name="T"></typeparam>
 		/// <param name="helper">The helper.</param>
@@ -78,7 +78,7 @@ namespace Coders.Web.Extensions
 		}
 
 		/// <summary>
-		/// Returns the validation result when errors have occurred.
+		/// Renders the validation result when errors have occurred.
 		/// </summary>
 		/// <param name="helper">The helper.</param>
 		/// <returns></returns>

@@ -1,0 +1,11 @@
+﻿@model Coders.Web.Models.Users.UserSession
+@{
+    Layout = null;
+}
+<div id="dashboard">
+    <ul>
+        <li class="first">@Url.Route(UsersRoutes.Detail, new { id = Model.Id, slug = Model.Slug }).Link(Model.Name)</li>
+        <li>@Url.Route(UsersRoutes.Update).Link(Resources.Titles.Account)</li>
+        <li class="last">@Url.Route(UsersRoutes.AuthLogOff).Link(Resources.Titles.LogOff)</li>
+    </ul>
+</div>

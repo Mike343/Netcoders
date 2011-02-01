@@ -1,0 +1,71 @@
+﻿@model Coders.Web.Models.Users.UserAuthentication
+@{
+    Layout = null;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>@Setting.SiteTitle.Value - @Resources.Titles.SignIn</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="/content/styles/reset.css" />
+        <link rel="stylesheet" type="text/css" href="/content/styles/login.css" media="screen, projection" />
+		<!-- scripts -->
+		<script src="/content/scripts/jquery-1.4.2.min.js" type="text/javascript"></script>
+		<!--[if IE]><script language="javascript" type="text/javascript" src="/content/scripts/excanvas.min.js"></script><![endif]-->
+		<script src="/content/scripts/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
+		<script src="/content/scripts/coders.js" type="text/javascript"></script>
+		<script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+	</head>
+	<body>
+        <div id="login">
+	        <!-- login -->
+	        <div class="title">
+		        <h5>@Resources.Titles.SignIn</h5>
+	        </div>
+			@{Html.ValidationResult();}
+	        <div class="inner">
+		        @{Html.BeginRouteForm(UsersRoutes.AuthLogOn);}
+		        <div class="form">
+			        <!-- fields -->
+			        <div class="fields">
+				        <div class="field">
+					        <div class="label">
+						        <label for="EmailAddress">@Resources.Titles.EmailAddress:</label>
+					        </div>
+					        <div class="input">
+						        @Html.TextBoxFor(x => x.EmailAddress)
+					        </div>
+				        </div>
+				        <div class="field">
+					        <div class="label">
+						        <label for="Password">@Resources.Titles.Password:</label>
+					        </div>
+					        <div class="input">
+						        @Html.PasswordFor(x => x.Password)
+					        </div>
+				        </div>
+				        <div class="field">
+					        <div class="checkbox">
+						        @Html.CheckBoxFor(x => x.IsPersistent)
+						        <label for="IsPersistent">@Resources.Titles.RememberMe</label>
+					        </div>
+				        </div>
+				        <div class="buttons">
+					        @Html.HiddenFor(x => x.Redirect)
+					        @Html.AntiForgeryToken()
+					        <input type="submit" value="@Resources.Titles.SignIn" />
+				        </div>
+			        </div>
+			        <!-- end fields -->
+			        <!-- links -->
+			        <div class="links">
+				        @Url.Route(UsersRoutes.AuthReset).Link(Resources.Titles.ForgotYourPassword)
+			        </div>
+			        <!-- end links -->
+		        </div>
+		        @{Html.EndForm();}
+	        </div>
+	        <!-- end login -->
+        </div>
+	</body>
+</html>

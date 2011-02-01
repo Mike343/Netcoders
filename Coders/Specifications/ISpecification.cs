@@ -66,7 +66,7 @@ namespace Coders.Specifications
 		/// Gets the order.
 		/// </summary>
 		/// <value>The order.</value>
-		SortOrder Order { get; }
+		SortOrder Order { get; set; }
 
 		/// <summary>
 		/// Satisfies the entity from.

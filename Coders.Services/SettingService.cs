@@ -17,8 +17,10 @@
 
 #region Using Directives
 using System;
-using Coders.Models;
+using System.Collections.Generic;
+using Coders.Models.Logs;
 using Coders.Models.Settings;
+using Coders.Strings;
 #endregion
 
 namespace Coders.Services
@@ -28,11 +30,40 @@ namespace Coders.Services
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SettingService"/> class.
 		/// </summary>
+		/// <param name="logService">The log service.</param>
 		/// <param name="repository">The repository.</param>
-		public SettingService(IRepository<Setting> repository)
+		public SettingService(
+			ILogService logService, 
+			ISettingRepository repository)
 			: base(repository)
 		{
+			this.LogService = logService;
+			this.SettingRepository = repository;
+		}
 
+		public ILogService LogService
+		{
+			get; 
+			private set;
+		}
+
+		/// <summary>
+		/// Gets or sets the setting repository.
+		/// </summary>
+		/// <value>The setting repository.</value>
+		public ISettingRepository SettingRepository
+		{
+			get; 
+			private set;
+		}
+
+		/// <summary>
+		/// Gets the groups.
+		/// </summary>
+		/// <returns></returns>
+		public IList<string> GetGroups()
+		{
+			return this.SettingRepository.GetGroups();
 		}
 
 		/// <summary>
@@ -59,10 +90,12 @@ namespace Coders.Services
 			if (setting.Id > 0)
 			{
 				this.Update(setting);
+				this.LogService.Log(setting.Id, Log.Settings, Logs.SettingUpdated, setting);
 			}
 			else
 			{
 				this.Insert(setting);
+				this.LogService.Log(setting.Id, Log.Settings, Logs.SettingCreated, setting);
 			}
 		}
 
@@ -83,6 +116,7 @@ namespace Coders.Services
 			setting.Value = value.ToString();
 
 			this.Update(setting);
+			this.LogService.Log(setting.Id, Log.Settings, Logs.SettingUpdated, setting);
 		}
 	}
 }

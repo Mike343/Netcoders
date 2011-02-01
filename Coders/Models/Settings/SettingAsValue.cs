@@ -128,6 +128,18 @@ namespace Coders.Models.Settings
 		}
 
 		/// <summary>
+		/// Gets the log page limit.
+		/// </summary>
+		/// <value>The log page limit.</value>
+		public static SettingValueAsInt LogPageLimit
+		{
+			get
+			{
+				return new SettingValueAsInt("log.page.limit");
+			}
+		}
+
+		/// <summary>
 		/// Gets the setting page limit.
 		/// </summary>
 		/// <value>The setting page limit.</value>

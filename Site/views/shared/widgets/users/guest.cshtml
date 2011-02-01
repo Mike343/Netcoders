@@ -1,0 +1,6 @@
+﻿@{
+    Layout = null;
+}
+<div id="dashboard">
+    @Url.Route(UsersRoutes.AuthLogOn).Link(Resources.Titles.SignIn) @Resources.Titles.Or @Url.Route(UsersRoutes.Create).Link(Resources.Titles.CreateAnAccount)
+</div>

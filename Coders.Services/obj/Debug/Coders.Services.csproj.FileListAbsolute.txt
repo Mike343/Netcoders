@@ -3,8 +3,8 @@ C:\Users\Mike\Desktop\Netcoders\Coders.Services\bin\Debug\Coders.Services.pdb
 C:\Users\Mike\Desktop\Netcoders\Coders.Services\bin\Debug\Coders.Services.dll.CodeAnalysisLog.xml
 C:\Users\Mike\Desktop\Netcoders\Coders.Services\bin\Debug\Coders.Services.dll.lastcodeanalysissucceeded
 C:\Users\Mike\Desktop\Netcoders\Coders.Services\bin\Debug\Coders.dll
+C:\Users\Mike\Desktop\Netcoders\Coders.Services\bin\Debug\RazorEngine.Core.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Services\bin\Debug\Coders.pdb
 C:\Users\Mike\Desktop\Netcoders\Coders.Services\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Desktop\Netcoders\Coders.Services\obj\Debug\Coders.Services.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Services\obj\Debug\Coders.Services.pdb
-C:\Users\Mike\Desktop\Netcoders\Coders.Services\bin\Debug\RazorEngine.Core.dll

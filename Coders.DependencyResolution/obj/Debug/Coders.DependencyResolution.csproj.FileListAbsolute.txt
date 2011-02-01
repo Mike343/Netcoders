@@ -8,6 +8,7 @@ C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\Coders.Ser
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\Ninject.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\FluentNHibernate.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\NHibernate.dll
+C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\RazorEngine.Core.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\Iesi.Collections.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\Antlr3.Runtime.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\Remotion.Data.Linq.dll
@@ -17,4 +18,3 @@ C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\Coders.pdb
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\obj\Debug\Coders.DependencyResolution.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\obj\Debug\Coders.DependencyResolution.pdb
-C:\Users\Mike\Desktop\Netcoders\Coders.DependencyResolution\bin\Debug\RazorEngine.Core.dll

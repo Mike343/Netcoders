@@ -84,6 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conventions\EnumConvention.cs" />
+    <Compile Include="Extension\NHibernateExtesion.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Mappings\AttachmentMapping.cs" />
     <Compile Include="Mappings\AttachmentPendingMapping.cs" />
@@ -104,6 +105,9 @@
     <Compile Include="NHibernateModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NHibernateRepository.cs" />
+    <Compile Include="SettingRepository.cs" />
+    <Compile Include="Strategies\IFetchingStrategy.cs" />
+    <Compile Include="Strategies\LogStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Coders\Coders.csproj">

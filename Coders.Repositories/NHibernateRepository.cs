@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Coders.Collections;
 using Coders.Models;
+using Coders.Repositories.Extension;
 using Coders.Specifications;
 using NHibernate;
 using NHibernate.Linq;
@@ -110,7 +111,9 @@ namespace Coders.Repositories
 
 			using (var transaction = session.BeginTransaction())
 			{
-				var entities = session.Query<TEntity>().ToList();
+				var entities = session.Query<TEntity>()
+					.FetchingStrategy()
+					.ToList();
 
 				transaction.Commit();
 
@@ -134,7 +137,9 @@ namespace Coders.Repositories
 
 			using (var transaction = session.BeginTransaction())
 			{
-				var entities = specification.SatisfyEntitiesFrom(session.Query<TEntity>()).ToList();
+				var entities = specification.SatisfyEntitiesFrom(session.Query<TEntity>())
+					.FetchingStrategy()
+					.ToList();
 
 				transaction.Commit();
 
@@ -163,6 +168,7 @@ namespace Coders.Repositories
 
 				var results = ((specification.PageOrDefault > 1) ? entities.Skip(specification.First) : entities)
 					.Take(specification.LimitOrDefault)
+					.FetchingStrategy()
 					.ToList();
 
 				transaction.Commit();

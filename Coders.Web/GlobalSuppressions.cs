@@ -36,3 +36,4 @@
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Dsts", Scope = "member", Target = "Coders.Web.Models.Users.UserPreferenceUpdate.#Dsts")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Dsts", Scope = "member", Target = "Coders.Web.Models.Users.UserAdminUpdate.#Dsts")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters", Scope = "member", Target = "Coders.Web.Controllers.Users.Administration.HomeController.#Create(Coders.Web.Models.Users.UserAdminCreate)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Scope = "member", Target = "Coders.Web.Filters.FilterBase.#Filters")]

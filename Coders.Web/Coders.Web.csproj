@@ -105,10 +105,14 @@
     <Compile Include="Extensions\DateExtension.cs" />
     <Compile Include="Extensions\HtmlExtension.cs" />
     <Compile Include="Extensions\SelectExtension.cs" />
+    <Compile Include="Extensions\FilterExtension.cs" />
+    <Compile Include="Extensions\LogExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\UserExtension.cs" />
     <Compile Include="Extensions\ValidatorExtension.cs" />
     <Compile Include="Extensions\WidgetExtension.cs" />
+    <Compile Include="Filters\FilterBase.cs" />
+    <Compile Include="Filters\SettingFilter.cs" />
     <Compile Include="Helpers\MessageHelper.cs" />
     <Compile Include="Helpers\PagerHelper.cs" />
     <Compile Include="Helpers\RouteHelper.cs" />
@@ -116,6 +120,7 @@
     <Compile Include="Models\Attachments\AttachmentRuleDelete.cs" />
     <Compile Include="Models\Countries\CountryCreateOrUpdate.cs" />
     <Compile Include="Models\Countries\CountryDelete.cs" />
+    <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\Settings\SettingCreateOrUpdate.cs" />
     <Compile Include="Models\Settings\SettingDelete.cs" />
     <Compile Include="Models\TimeZones\TimeZoneCreateOrUpdate.cs" />
@@ -174,9 +179,6 @@
     <Compile Include="Widgets\WidgetModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Coders.pfx" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Coders.DependencyResolution\Coders.DependencyResolution.csproj">
       <Project>{3154E2EC-87F0-4B57-A0BF-0E9DEC4803FC}</Project>
       <Name>Coders.DependencyResolution</Name>
@@ -185,6 +187,9 @@
       <Project>{0580C019-23F8-473C-9386-9BF07334A655}</Project>
       <Name>Coders</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Coders.pfx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

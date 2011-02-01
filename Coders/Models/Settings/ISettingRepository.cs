@@ -15,10 +15,18 @@
 //	limitations under the License.
 #endregion
 
+#region Using Directives
+using System.Collections.Generic;
+#endregion
+
 namespace Coders.Models.Settings
 {
 	public interface ISettingRepository : IRepository<Setting>
 	{
-
+		/// <summary>
+		/// Gets the groups.
+		/// </summary>
+		/// <returns></returns>
+		IList<string> GetGroups();
 	}
 }

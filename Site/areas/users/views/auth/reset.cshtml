@@ -1,0 +1,23 @@
+﻿@model Coders.Web.Models.Users.UserAuthenticationReset
+@section scripts
+{
+    <script src="/content/scripts/coders.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+}
+<h2>@Resources.Titles.ResetPassword</h2>
+<div class="form">
+	@{Html.ValidationResult();}
+	@{Html.BeginRouteForm(UsersRoutes.AuthReset);}
+	<div class="fields">
+		<div class="field field-input">
+			<label for="EmailAddress">@Resources.Titles.EmailAddress:</label>
+			@Html.TextBoxFor(x => x.EmailAddress)
+			@Html.ValidationMessageFor(x => x.EmailAddress)
+		</div>
+		<div class="field field-button">
+			@Html.AntiForgeryToken()
+			<input type="submit" value="@Resources.Titles.ResetPassword" />
+		</div>
+	</div>
+	@{Html.EndForm();}
+</div>

@@ -70,6 +70,24 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ascending.
+        /// </summary>
+        public static string Ascending {
+            get {
+                return ResourceManager.GetString("Ascending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By {0}.
+        /// </summary>
+        public static string ByWith {
+            get {
+                return ResourceManager.GetString("ByWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Code.
         /// </summary>
         public static string Code {
@@ -84,6 +102,15 @@ namespace Coders.Strings {
         public static string ContentType {
             get {
                 return ResourceManager.GetString("ContentType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descending.
+        /// </summary>
+        public static string Descending {
+            get {
+                return ResourceManager.GetString("Descending", resourceCulture);
             }
         }
         
@@ -142,6 +169,15 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Group.
         /// </summary>
         public static string Group {
@@ -178,6 +214,15 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order By.
+        /// </summary>
+        public static string OrderBy {
+            get {
+                return ResourceManager.GetString("OrderBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Password.
         /// </summary>
         public static string Password {
@@ -192,6 +237,15 @@ namespace Coders.Strings {
         public static string Reason {
             get {
                 return ResourceManager.GetString("Reason", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort By.
+        /// </summary>
+        public static string SortBy {
+            get {
+                return ResourceManager.GetString("SortBy", resourceCulture);
             }
         }
         

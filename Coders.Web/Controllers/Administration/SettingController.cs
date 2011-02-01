@@ -19,7 +19,12 @@
 using System;
 using System.Web.Mvc;
 using Coders.Extensions;
+using Coders.Models.Common.Enums;
+using Coders.Models.Logs;
+using Coders.Models.Logs.Enums;
 using Coders.Models.Settings;
+using Coders.Models.Settings.Enums;
+using Coders.Strings;
 using Coders.Web.Models.Settings;
 using Coders.Web.Routes;
 #endregion
@@ -28,9 +33,18 @@ namespace Coders.Web.Controllers.Administration
 {
 	public class SettingController : SecureDefaultController
 	{
-		public SettingController(ISettingService settingService)
+		public SettingController(
+			ILogService logService, 
+			ISettingService settingService)
 		{
+			this.LogService = logService;
 			this.SettingService = settingService;
+		}
+
+		public ILogService LogService
+		{
+			get;
+			private set;
 		}
 
 		public ISettingService SettingService
@@ -40,14 +54,10 @@ namespace Coders.Web.Controllers.Administration
 		}
 
 		[HttpGet]
-		public ActionResult Index(int? page)
+		public ActionResult Index(string group, SortSetting sort, SortOrder order, int? page)
 		{
-			var settings = SettingService.GetPaged(new SettingSpecification
-			{
-				Page = page,
-				Limit = Setting.SettingPageLimit.Value
-			});
-
+			var specification = GetIndexSpecification(group, sort, order, page);
+			var settings = this.SettingService.GetPaged(specification);
 			var setting = settings.FirstOrDefault();
 			var privilege = new SettingPrivilege();
 
@@ -55,12 +65,23 @@ namespace Coders.Web.Controllers.Administration
 		}
 
 		[HttpGet]
+		public ActionResult History(SortLog sort, SortOrder order, int? page, int? id)
+		{
+			var specification = GetHistorySpecification(sort, order, page, id);
+			var logs = this.LogService.GetPaged(specification);
+			var log = logs.FirstOrDefault();
+			var privilege = new LogPrivilege();
+
+			return privilege.CanView(log) ? base.View(Views.History, logs) : NotAuthorized();
+		}
+
+		[HttpGet]
 		public ActionResult Create()
 		{
-			var setting = SettingService.Create();
+			var setting = this.SettingService.Create();
 			var privilege = new SettingPrivilege();
 
-			return privilege.CanCreate(setting) ? View(Views.Create, new SettingCreateOrUpdate()) : NotAuthorized();
+			return privilege.CanCreate(setting) ? base.View(Views.Create, new SettingCreateOrUpdate()) : NotAuthorized();
 		}
 
 		[HttpPost]
@@ -73,10 +94,10 @@ namespace Coders.Web.Controllers.Administration
 
 			if (!ModelState.IsValid)
 			{
-				return View(Views.Create, value);
+				return base.View(Views.Create, value);
 			}
 
-			var setting = SettingService.Create();
+			var setting = this.SettingService.Create();
 			var privilege = new SettingPrivilege();
 
 			if (!privilege.CanCreate(setting))
@@ -89,22 +110,26 @@ namespace Coders.Web.Controllers.Administration
 			this.SettingService.InsertOrUpdate(setting);
 			this.SettingService.Rebuild();
 
-			return RedirectToRoute(AdministrationRoutes.SettingUpdate, new { id = setting.Id });
+			var model = new SettingCreateOrUpdate(setting);
+
+			model.SuccessMessage(Messages.SettingCreated.FormatInvariant(setting.Title));
+
+			return base.View(Views.Update, model);
 		}
 
 		[HttpGet]
 		public ActionResult Update(int id)
 		{
-			var setting = SettingService.GetById(id);
+			var setting = this.SettingService.GetById(id);
 
 			if (setting == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new SettingPrivilege();
 
-			return privilege.CanUpdate(setting) ? View(Views.Update, new SettingCreateOrUpdate(setting)) : NotAuthorized();
+			return privilege.CanUpdate(setting) ? base.View(Views.Update, new SettingCreateOrUpdate(setting)) : NotAuthorized();
 		}
 
 		[HttpPost]
@@ -117,10 +142,10 @@ namespace Coders.Web.Controllers.Administration
 
 			if (!ModelState.IsValid)
 			{
-				return View(Views.Update, value);
+				return base.View(Views.Update, value);
 			}
 
-			var setting = SettingService.GetById(value.Id);
+			var setting = this.SettingService.GetById(value.Id);
 
 			if (setting == null)
 			{
@@ -139,7 +164,9 @@ namespace Coders.Web.Controllers.Administration
 			this.SettingService.InsertOrUpdate(setting);
 			this.SettingService.Rebuild();
 
-			return RedirectToRoute(AdministrationRoutes.SettingUpdate, new { id = setting.Id });
+			value.SuccessMessage(Messages.SettingUpdated.FormatInvariant(setting.Title));
+
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -149,7 +176,7 @@ namespace Coders.Web.Controllers.Administration
 
 			if (setting == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new SettingPrivilege();
@@ -170,7 +197,7 @@ namespace Coders.Web.Controllers.Administration
 				return View(Views.Delete, value);
 			}
 
-			var setting = SettingService.GetById(value.Id);
+			var setting = this.SettingService.GetById(value.Id);
 
 			if (setting == null)
 			{
@@ -186,7 +213,35 @@ namespace Coders.Web.Controllers.Administration
 
 			this.SettingService.Delete(setting);
 
-			return RedirectToRoute(AdministrationRoutes.SettingIndex);
+			return base.RedirectToRoute(AdministrationRoutes.SettingIndex);
+		}
+
+		private static ISettingSpecification GetIndexSpecification(string group, SortSetting sort, SortOrder order, int? page)
+		{
+			var specification = string.IsNullOrEmpty(group)
+				? new SettingSpecification()
+				: new SettingGroupSpecification(group);
+
+			specification.Page = page;
+			specification.Limit = Setting.SettingPageLimit.Value;
+			specification.Sort = sort;
+			specification.Order = order;
+
+			return specification;
+		}
+
+		private static ILogSpecification GetHistorySpecification(SortLog sort, SortOrder order, int? page, int? id)
+		{
+			var specification = id.HasValue
+				? new LogGroupSpecification(id.Value, Log.Settings)
+				: new LogGroupSpecification(Log.Settings);
+
+			specification.Page = page;
+			specification.Limit = Setting.LogPageLimit.Value;
+			specification.Sort = sort;
+			specification.Order = order;
+
+			return specification;
 		}
 	}
 }

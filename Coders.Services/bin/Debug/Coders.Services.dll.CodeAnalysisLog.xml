@@ -4,12 +4,47 @@
  <Namespaces>
   <Namespace Name="Coders.Services.Formatters">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-01-13 13:57:37Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 00:19:51Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Services.Formatters' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
  </Namespaces>
+ <Targets>
+  <Target Name="C:\Users\Mike\Desktop\Netcoders\Coders.Services\bin\Debug\Coders.Services.dll">
+   <Modules>
+    <Module Name="coders.services.dll">
+     <Namespaces>
+      <Namespace Name="Coders.Services">
+       <Types>
+        <Type Name="LogService" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Log(System.Int32,System.String,System.String)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="1#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Status="Active" Created="2011-02-01 00:19:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\Mike\Desktop\Netcoders\Coders.Services" File="LogService.cs" Line="76">In member 'LogService.Log(int, string, string)', change parameter name 'groupKey' to 'group' in order to match the identifier as it has been declared in 'ILogService.Log(int, string, string)'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#Log(System.Int32,System.String,System.String,System.Object)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message Id="1#" TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725" Status="Active" Created="2011-02-01 00:19:51Z" FixCategory="Breaking">
+             <Issue Certainty="95" Level="Error" Path="C:\Users\Mike\Desktop\Netcoders\Coders.Services" File="LogService.cs" Line="88">In member 'LogService.Log(int, string, string, object)', change parameter name 'groupKey' to 'group' in order to match the identifier as it has been declared in 'ILogService.Log(int, string, string, object)'.</Issue>
+            </Message>
+            <Message Id="System.IO.StringWriter.#ctor" TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305" Status="Active" Created="2011-02-01 00:19:51Z" FixCategory="NonBreaking">
+             <Issue Name="IFormatProviderAlternate" Certainty="95" Level="Error" Path="C:\Users\Mike\Desktop\Netcoders\Coders.Services" File="LogService.cs" Line="107">Because the behavior of 'StringWriter.StringWriter()' could vary based on the current user's locale settings, replace this call in 'LogService.Log(int, string, string, object)' with a call to 'StringWriter.StringWriter(IFormatProvider)'. If the result of 'StringWriter.StringWriter(IFormatProvider)' will be based on input from the user, specify 'CultureInfo.CurrentCulture' as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify 'CultureInfo.InvariantCulture'.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+     </Namespaces>
+    </Module>
+   </Modules>
+  </Target>
+ </Targets>
  <Rules>
   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
    <Name>Avoid namespaces with few types</Name>
@@ -20,6 +55,26 @@
    <Email>[none]</Email>
    <MessageLevel Certainty="50">Warning</MessageLevel>
    <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="ParameterNamesShouldMatchBaseDeclaration" Category="Microsoft.Naming" CheckId="CA1725">
+   <Name>Parameter names should match base declaration</Name>
+   <Description>For usability reasons, parameter names in overridden methods should match those of the base declaration.</Description>
+   <Resolution Name="Default">In member {0}, change parameter name {1} to {2} in order to match the identifier as it has been declared in {3}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182251(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="SpecifyIFormatProvider" Category="Microsoft.Globalization" CheckId="CA1305">
+   <Name>Specify IFormatProvider</Name>
+   <Description>If an overload exists that takes an IFormatProvider argument, it should always be called in favor of an overload that does not. Some methods in the runtime convert a value to or from a string representation and take a string parameter that contains one or more characters, called format specifiers, which indicate how the value is to be converted. If the meaning of the format specifier varies by culture, a formatting object supplies the actual characters used in the string representation. In scenarios where sorting and comparison behavior should never change between cultures, specify CultureInfo.InvariantCulture, otherwise, specify CultureInfo.CurrentCulture.</Description>
+   <Resolution Name="IFormatProviderAlternate">Because the behavior of {0} could vary based on the current user's locale settings, replace this call in {1} with a call to {2}. If the result of {2} will be based on input from the user, specify {3} as the 'IFormatProvider' parameter. Otherwise, if the result will based on input stored and accessed by software, such as when it is loaded from disk or from a database, specify {4}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182190(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="10.0.0.0" />
   </Rule>
  </Rules>
  <Localized>
