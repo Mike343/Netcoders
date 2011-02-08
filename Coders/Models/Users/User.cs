@@ -22,7 +22,7 @@ using Coders.Models.Users.Enums;
 
 namespace Coders.Models.Users
 {
-	public class User : EntityBase
+	public class User : EntityBase, IUser
 	{
 		// public constants
 		public const string Guest = "Guest";

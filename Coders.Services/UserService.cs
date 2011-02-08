@@ -20,6 +20,7 @@ using System;
 using Coders.Extensions;
 using Coders.Models;
 using Coders.Models.Common;
+using Coders.Models.Common.Enums;
 using Coders.Models.Settings;
 using Coders.Models.Users;
 using Coders.Models.Users.Enums;
@@ -33,27 +34,38 @@ namespace Coders.Services
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UserService"/> class.
 		/// </summary>
+		/// <param name="auditService">The audit service.</param>
 		/// <param name="authenticationService">The authentication service.</param>
 		/// <param name="textFormattingService">The text formatting service.</param>
 		/// <param name="userHostService">The user host service.</param>
 		/// <param name="userRoleService">The user role service.</param>
 		/// <param name="repository">The repository.</param>
 		/// <param name="userPreferenceRepository">The user preference repository.</param>
-		/// <param name="?">The ?.</param>
 		public UserService(
+			IAuditService<User, UserAudit> auditService,
 			IAuthenticationService authenticationService,
 			ITextFormattingService textFormattingService,
 			IUserHostService userHostService,
 			IUserRoleService userRoleService,
 			IRepository<User> repository,
-			IRepository<UserPreference> userPreferenceRepository) 
+			IRepository<UserPreference> userPreferenceRepository)
 			: base(repository)
 		{
+			this.AuditService = auditService;
 			this.AuthenticationService = authenticationService;
 			this.TextFormattingService = textFormattingService;
 			this.UserHostService = userHostService;
 			this.UserRoleService = userRoleService;
 			this.UserPreferenceRepository = userPreferenceRepository;
+		}
+
+		/// <summary>
+		/// Gets the audit service.
+		/// </summary>
+		public IAuditService<User, UserAudit> AuditService
+		{
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -166,6 +178,8 @@ namespace Coders.Services
 					Role = role
 				});
 			}
+
+			this.AuditService.Audit(entity, AuditAction.Create);
 		}
 
 		/// <summary>
@@ -216,6 +230,8 @@ namespace Coders.Services
 			entity.SignatureParsed = this.TextFormattingService.Parse(entity.Signature, false);
 
 			base.Update(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Update);
 		}
 
 		/// <summary>
@@ -225,6 +241,22 @@ namespace Coders.Services
 		public void UpdatePreference(UserPreference preference)
 		{
 			this.UserPreferenceRepository.Update(preference);
+		}
+
+		/// <summary>
+		/// Deletes the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Delete(User entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Delete(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Delete);
 		}
 	}
 }

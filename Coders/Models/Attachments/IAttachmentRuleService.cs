@@ -15,10 +15,20 @@
 //	limitations under the License.
 #endregion
 
+#region Using Directives
+using System.Collections.Generic;
+#endregion
+
 namespace Coders.Models.Attachments
 {
 	public interface IAttachmentRuleService : IEntityService<AttachmentRule>
 	{
+		/// <summary>
+		/// Gets the groups.
+		/// </summary>
+		/// <returns></returns>
+		IList<string> GetGroups();
+
 		/// <summary>
 		/// Inserts or updates the specified attachment rule.
 		/// </summary>

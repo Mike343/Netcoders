@@ -17,8 +17,10 @@
 
 #region Using Directives
 using System;
-using Coders.Models;
+using System.Collections.Generic;
 using Coders.Models.Attachments;
+using Coders.Models.Common;
+using Coders.Models.Common.Enums;
 #endregion
 
 namespace Coders.Services
@@ -28,11 +30,74 @@ namespace Coders.Services
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AttachmentRuleService"/> class.
 		/// </summary>
-		/// <param name="repository">The repository.</param>
-		public AttachmentRuleService(IRepository<AttachmentRule> repository)
-			: base(repository)
+		/// <param name="auditService">The audit service.</param>
+		/// <param name="attachmentRuleRepository">The attachment rule repository.</param>
+		public AttachmentRuleService(
+			IAuditService<AttachmentRule, AttachmentRuleAudit> auditService,
+			IAttachmentRuleRepository attachmentRuleRepository)
+			: base(attachmentRuleRepository)
 		{
+			this.AuditService = auditService;
+			this.AttachmentRuleRepository = attachmentRuleRepository;
+		}
 
+		/// <summary>
+		/// Gets the audit service.
+		/// </summary>
+		public IAuditService<AttachmentRule, AttachmentRuleAudit> AuditService
+		{
+			get;
+			private set;
+		}
+
+		/// <summary>
+		/// Gets the attachment rule repository.
+		/// </summary>
+		public IAttachmentRuleRepository AttachmentRuleRepository
+		{
+			get; 
+			private set;
+		}
+
+		/// <summary>
+		/// Gets the groups.
+		/// </summary>
+		/// <returns></returns>
+		public IList<string> GetGroups()
+		{
+			return this.AttachmentRuleRepository.GetGroups();
+		}
+
+		/// <summary>
+		/// Inserts the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Insert(AttachmentRule entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Insert(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Create);
+		}
+
+		/// <summary>
+		/// Updates the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Update(AttachmentRule entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Update(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Update);
 		}
 
 		/// <summary>
@@ -54,6 +119,22 @@ namespace Coders.Services
 			{
 				this.Insert(rule);
 			}
+		}
+
+		/// <summary>
+		/// Deletes the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Delete(AttachmentRule entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Delete(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Delete);
 		}
 	}
 }

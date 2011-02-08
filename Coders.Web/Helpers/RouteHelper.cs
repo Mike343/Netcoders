@@ -144,14 +144,28 @@ namespace Coders.Web.Helpers
 		/// <returns></returns>
 		private MvcHtmlString GetLink(string text, IDictionary<string, object> attributes)
 		{
+			var clickable = true;
+
 			if (attributes == null)
 			{
 				throw new ArgumentNullException("attributes");
 			}
 
+			if (attributes.ContainsKey("clickable"))
+			{
+				clickable = attributes["clickable"].AsBoolean();
+
+				attributes.Remove("clickable");
+			}
+
+			if (!clickable)
+			{
+				return new MvcHtmlString(text);
+			}
+
 			var link = new TagBuilder("a");
 
-			link.MergeAttribute("href", (attributes.ContainsKey("append_url")) ? string.Concat(this.Value, attributes["append_url"]) : this.Value);
+			link.MergeAttribute("href", this.Value);
 			link.MergeAttribute("title", text);
 
 			if (attributes.Count > 0)
@@ -181,7 +195,7 @@ namespace Coders.Web.Helpers
 
 			var link = new TagBuilder("a");
 
-			link.MergeAttribute("href", (attributes.ContainsKey("append_url")) ? string.Concat(this.Value, attributes["append_url"]) : this.Value);
+			link.MergeAttribute("href", this.Value);
 
 			var image = new TagBuilder("img");
 

@@ -24,6 +24,7 @@ using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Coders.DependencyResolution;
+using Coders.Extensions;
 using Coders.Models.Settings;
 using Coders.Web.ActionFilters;
 using Coders.Web.Routes;
@@ -68,21 +69,19 @@ namespace Coders.Web
 		/// </summary>
 		public void RegisterModules()
 		{
+			// assembly search path
 			var path = string.IsNullOrEmpty(AppDomain.CurrentDomain.RelativeSearchPath) 
 				? AppDomain.CurrentDomain.BaseDirectory 
 				: Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.RelativeSearchPath);
 
+			// find all the assemblies ending in web
 			var assemblies = Directory.GetFiles(path, "*.Web.dll")
 				.Select(Path.GetFileNameWithoutExtension);
 
-			var instances = assemblies.Select(Assembly.Load)
-				.SelectMany(
-					assembly => assembly.GetTypes().Where(
-						type => (typeof(IInstaller).IsAssignableFrom(type) && !type.IsInterface) && !type.IsAbstract
-					)
-					.Select(type => Activator.CreateInstance(type) as IInstaller).Where(instance => instance != null)
-				);
+			// get the installer instances
+			var instances = assemblies.GetInstances();
 
+			// finally add the installer instances for later use
 			foreach (var instance in instances.Where(instance => instance.IsActive))
 			{
 				this.Modules.Add(instance);
@@ -107,6 +106,7 @@ namespace Coders.Web
 				module.RegisterRoutes(routes);
 			}
 
+			UsersAdministrationRoutes.RegisterRoutes(routes);
 			UsersRoutes.RegisterRoutes(routes);
 			AdministrationRoutes.RegisterRoutes(routes);
 			CommonRoutes.RegisterRoutes(routes);

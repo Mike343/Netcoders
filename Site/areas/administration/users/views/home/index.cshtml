@@ -1,0 +1,51 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Users.User>
+@section scripts
+{
+    <script src="/content/scripts/administration/coders.filter.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li class="last">@Resources.Titles.Users</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Users)</h5>
+	<ul>
+		<li><a href="@Url.Route(UsersAdministrationRoutes.HomeHistory, new { sort = "created", order = "descending", page = "1" }).Value"><span>@Resources.Titles.History</span></a></li>
+		<li class="last"><a href="@Url.Route(UsersAdministrationRoutes.HomeCreate).Value"><span>@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.User)</span></a></li>
+	</ul>
+</div>
+<div class="content">
+	<div class="table table-filtered">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.Name</th>
+					<th>@Resources.Titles.EmailAddress</th>
+					<th>@Resources.Titles.Status</th>
+					<th>@Resources.Titles.LastVisit</th>
+					<th></th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var user in Model) {
+				<tr>
+					<td>@user.Name</td>
+					<td class="center">@user.EmailAddress</td>
+					<td class="center">@user.Status</td>
+					<td class="center">@user.LastVisit.Personalize(User.Identity)</td>
+					<td class="link">@Url.Route(UsersAdministrationRoutes.HomeUpdate, new { id = user.Id }).Link(Resources.Titles.Update)</td>
+					<td class="link last">@Url.Route(UsersAdministrationRoutes.HomeDelete, new { id = user.Id }).Link(Resources.Titles.Delete)</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, UsersAdministrationRoutes.HomeIndex);}
+	</div>
+	@{Html.Widget("user.filter");}
+</div>

@@ -47,6 +47,10 @@ namespace Coders.Repositories.Mappings
 				.Column("FileHeight")
 				.Not.Nullable();
 
+			base.Map(x => x.Status)
+				.Column("Status")
+				.Not.Nullable();
+
 			base.Map(x => x.FileName)
 				.Column("FileName")
 				.Not.Nullable();

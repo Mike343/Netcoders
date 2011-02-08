@@ -16,6 +16,8 @@
 #endregion
 
 #region Using Directives
+using System;
+using Coders.Models.Users;
 using Coders.Web.Extensions;
 using FluentValidation;
 using FluentValidation.Attributes;
@@ -27,6 +29,18 @@ namespace Coders.Web.Models.Users
 	public class UserAuthenticationReset
 	{
 		/// <summary>
+		/// Gets or sets the id.
+		/// </summary>
+		/// <value>
+		/// The id.
+		/// </value>
+		public int Id
+		{
+			get; 
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the email address.
 		/// </summary>
 		/// <value>The email address.</value>
@@ -34,6 +48,30 @@ namespace Coders.Web.Models.Users
 		{
 			get;
 			set;
+		}
+
+		/// <summary>
+		/// Gets the user.
+		/// </summary>
+		public User User
+		{
+			get; 
+			private set;
+		}
+
+		/// <summary>
+		/// Initializes the specified user.
+		/// </summary>
+		/// <param name="user">The user.</param>
+		public void Initialize(User user)
+		{
+			if (user == null)
+			{
+				throw new ArgumentNullException("user");
+			}
+
+			this.Id = user.Id;
+			this.User = user;
 		}
 	}
 
@@ -44,7 +82,9 @@ namespace Coders.Web.Models.Users
 		/// </summary>
 		public UserAuthenticationResetValidatorCollection()
 		{
-			RuleFor(x => x.EmailAddress).UserEmailAddressMustExist();
+			RuleFor(x => x.EmailAddress)
+				.UserEmailAddressMustExist()
+				.When(x => x.Id <= 0);
 		}
 	}
 }

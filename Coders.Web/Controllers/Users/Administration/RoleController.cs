@@ -77,17 +77,17 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Create, value);
-			}
-
 			var role = UserRoleService.Create();
 			var privilege = new UserRolePrivilege();
 
 			if (!privilege.CanCreate(role))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Create, value);
 			}
 
 			value.ValueToModel(role);
@@ -120,11 +120,6 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
-			}
-
 			var role = UserRoleService.GetById(value.Id);
 
 			if (role == null)
@@ -137,6 +132,11 @@ namespace Coders.Web.Controllers.Users.Administration
 			if (!privilege.CanUpdate(role))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Update, value);
 			}
 
 			value.ValueToModel(role);
@@ -169,11 +169,6 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
-			}
-
 			var role = UserRoleService.GetById(value.Id);
 
 			if (role == null)
@@ -186,6 +181,11 @@ namespace Coders.Web.Controllers.Users.Administration
 			if (!privilege.CanDelete(role))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Update, value);
 			}
 
 			this.UserRoleService.Delete(role);

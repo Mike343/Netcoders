@@ -18,11 +18,10 @@
 #region Using Directives
 using System;
 using System.Collections.Generic;
-using Coders.Extensions;
 using Coders.Models;
+using Coders.Models.Common;
+using Coders.Models.Common.Enums;
 using Coders.Models.Countries;
-using Coders.Models.Logs;
-using Coders.Strings;
 #endregion
 
 namespace Coders.Services
@@ -32,21 +31,20 @@ namespace Coders.Services
 		/// <summary>
 		/// Initializes a new instance of the <see cref="CountryService"/> class.
 		/// </summary>
-		/// <param name="logService">The log service.</param>
-		/// <param name="repository">The repository.</param>
+		/// <param name="auditService">The audit service.</param>
+		/// <param name="countryRepository">The country repository.</param>
 		public CountryService(
-			ILogService logService, 
-			IRepository<Country> repository)
-			: base(repository)
+			IAuditService<Country, CountryAudit> auditService,
+			IRepository<Country> countryRepository)
+			: base(countryRepository)
 		{
-			this.LogService = logService;
+			this.AuditService = auditService;
 		}
 
 		/// <summary>
-		/// Gets or sets the log service.
+		/// Gets the audit service.
 		/// </summary>
-		/// <value>The log service.</value>
-		public ILogService LogService
+		public IAuditService<Country, CountryAudit> AuditService
 		{
 			get;
 			private set;
@@ -71,6 +69,38 @@ namespace Coders.Services
 		}
 
 		/// <summary>
+		/// Inserts the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Insert(Country entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Insert(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Create);
+		}
+
+		/// <summary>
+		/// Updates the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Update(Country entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Update(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Update);
+		}
+
+		/// <summary>
 		/// Inserts or updates the specified country.
 		/// </summary>
 		/// <param name="country">The country.</param>
@@ -89,13 +119,22 @@ namespace Coders.Services
 			{
 				this.Insert(country);
 			}
+		}
 
-			this.LogService.Log(
-				country.Id, 
-				Log.Countries,
-				((country.Id > 0) ? Logs.CountryUpdated : Logs.CountryCreated).FormatInvariant(country.Title), 
-				country
-			);
+		/// <summary>
+		/// Deletes the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Delete(Country entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Delete(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Delete);
 		}
 	}
 }

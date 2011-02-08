@@ -1,0 +1,81 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Common.Audit>
+@section scripts
+{
+    <script src="/content/scripts/administration/coders.history.js" type="text/javascript"></script>
+}  
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(AdministrationRoutes.AttachmentIndex, new { sort = "created", order = "descending", page = 1 }).Link(Resources.Titles.Attachments)</li>
+			<li>@Url.Route(AdministrationRoutes.AttachmentRuleIndex, new { page = 1 }).Link(Resources.Titles.Rules)</li>
+			<li class="last">@Resources.Titles.History</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.HistoriesWith.FormatInvariant(Resources.Titles.Rules)</h5>
+</div>
+<div class="content">
+	<div class="table table-history">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.Rule</th>
+					<th>@Resources.Titles.Group</th>
+					<th>@Resources.Titles.Action</th>
+					<th>@Resources.Titles.User</th>
+					<th>@Resources.Titles.Date</th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var audit in Model) {
+					var value = audit.GetEntity<Coders.Models.Attachments.AttachmentRuleAudit>();
+					<tr>
+						<td>@Url.Route(AdministrationRoutes.AttachmentRuleUpdate, new { id = audit.ParentId }).Link(value.FileType, new { clickable = (audit.Action != AuditAction.Delete) })</td>
+						<td class="center">@value.Group</td>
+						<td class="center">@audit.Action</td>
+						<td class="center">@audit.User.Name</td>
+						<td class="center">@audit.Created.Personalize(User.Identity)</td>
+						<td class="link last"><a href="#history-@audit.Id" class="compare">@Resources.Titles.Values</a></td>
+					</tr>
+					<tr id="history-@audit.Id" class="compare">
+						<td colspan="6" class="values">
+							<table>
+								<tbody>
+									<tr>
+										<td class="title">@Resources.Titles.Group:</td>
+										<td class="last">@value.Group</td>
+									</tr>
+									<tr>
+										<td class="title">@Resources.Titles.FileType:</td>
+										<td class="last">@value.FileType</td>
+									</tr>
+									<tr>
+										<td class="title">@Resources.Titles.FileExtension:</td>
+										<td class="last">@value.FileExtension</td>
+									</tr>
+									<tr>
+										<td class="title">@Resources.Titles.FileSize:</td>
+										<td class="last">@value.FileSize @Resources.Titles.Bytes</td>
+									</tr>
+									<tr>
+										<td class="title">@Resources.Titles.Width:</td>
+										<td class="last">@value.FileWidth @Resources.Titles.Pixels</td>
+									</tr>
+									<tr class="last">
+										<td class="title">@Resources.Titles.Height:</td>
+										<td class="last">@value.FileHeight @Resources.Titles.Pixels</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, AdministrationRoutes.AttachmentRuleHistory);}
+	</div>
+</div>

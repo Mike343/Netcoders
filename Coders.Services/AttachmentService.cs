@@ -24,7 +24,9 @@ using System.Web;
 using Coders.Extensions;
 using Coders.Models;
 using Coders.Models.Attachments;
+using Coders.Models.Attachments.Enums;
 using Coders.Models.Common;
+using Coders.Models.Common.Enums;
 using Coders.Models.Settings;
 using Coders.Specifications;
 #endregion
@@ -39,23 +41,36 @@ namespace Coders.Services
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AttachmentService"/> class.
 		/// </summary>
+		/// <param name="auditService">The audit service.</param>
 		/// <param name="fileService">The file service.</param>
 		/// <param name="imageService">The image service.</param>
 		/// <param name="attachmentRuleService">The attachment rule service.</param>
 		/// <param name="repository">The repository.</param>
 		/// <param name="attachmentPendingRepository">The attachment pending repository.</param>
 		public AttachmentService(
+			IAuditService<Attachment, AttachmentAudit> auditService,
 			IFileService fileService,
 			IImageService imageService,
 			IAttachmentRuleService attachmentRuleService, 
-			IRepository<Attachment> repository,
+			IAttachmentRepository repository,
 			IRepository<AttachmentPending> attachmentPendingRepository)
 			: base(repository)
 		{
+			this.AuditService = auditService;
 			this.FileService = fileService;
 			this.ImageService = imageService;
 			this.AttachmentRuleService = attachmentRuleService;
+			this.AttachmentRepository = repository;
 			this.AttachmentPendingRepository = attachmentPendingRepository;
+		}
+
+		/// <summary>
+		/// Gets the audit service.
+		/// </summary>
+		public IAuditService<Attachment, AttachmentAudit> AuditService
+		{
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -89,6 +104,15 @@ namespace Coders.Services
 		}
 
 		/// <summary>
+		/// Gets the attachment repository.
+		/// </summary>
+		public IAttachmentRepository AttachmentRepository
+		{
+			get;
+			private set;
+		}
+
+		/// <summary>
 		/// Gets or sets the attachment pending repository.
 		/// </summary>
 		/// <value>The attachment pending repository.</value>
@@ -106,6 +130,15 @@ namespace Coders.Services
 		public AttachmentPending GetPendingById(int id)
 		{
 			return this.AttachmentPendingRepository.GetById(id);
+		}
+
+		/// <summary>
+		/// Gets the file types.
+		/// </summary>
+		/// <returns></returns>
+		public IList<string> GetFileTypes()
+		{
+			return this.AttachmentRepository.GetFileTypes();
 		}
 
 		/// <summary>
@@ -218,6 +251,64 @@ namespace Coders.Services
 		public void InsertPending(AttachmentPending pending)
 		{
 			this.AttachmentPendingRepository.Insert(pending);
+		}
+
+		/// <summary>
+		/// Updates the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Update(Attachment entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			entity.Updated = DateTime.Now;
+
+			base.Update(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Update);
+		}
+
+		/// <summary>
+		/// Deletes the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Delete(Attachment entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Delete(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Delete);
+		}
+
+		/// <summary>
+		/// Deletes the specified attachment.
+		/// </summary>
+		/// <param name="attachment">The attachment.</param>
+		/// <param name="soft">if set to <c>true</c> [soft].</param>
+		public void Delete(Attachment attachment, bool soft)
+		{
+			if (attachment == null)
+			{
+				throw new ArgumentNullException("attachment");
+			}
+
+			attachment.Status = AttachmentStatus.Deleted;
+
+			if (soft)
+			{
+				this.Update(attachment);
+			}
+			else
+			{
+				this.Delete(attachment);
+			}
 		}
 
 		/// <summary>

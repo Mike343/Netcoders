@@ -68,6 +68,17 @@ namespace Coders.Models.Settings
 		}
 
 		/// <summary>
+		/// Gets the audit page limit.
+		/// </summary>
+		public static SettingValueAsInt AuditPageLimit
+		{
+			get
+			{
+				return new SettingValueAsInt("audit.page.limit");
+			}
+		}
+
+		/// <summary>
 		/// Gets the attachment path.
 		/// </summary>
 		/// <value>The attachment path.</value>
@@ -76,6 +87,17 @@ namespace Coders.Models.Settings
 			get
 			{
 				return new SettingValue("attachment.path");
+			}
+		}
+
+		/// <summary>
+		/// Gets the attachment page limit.
+		/// </summary>
+		public static SettingValueAsInt AttachmentPageLimit
+		{
+			get
+			{
+				return new SettingValueAsInt("attachment.page.limit");
 			}
 		}
 
@@ -136,18 +158,6 @@ namespace Coders.Models.Settings
 			get
 			{
 				return new SettingValueAsInt("country.page.limit");
-			}
-		}
-
-		/// <summary>
-		/// Gets the log page limit.
-		/// </summary>
-		/// <value>The log page limit.</value>
-		public static SettingValueAsInt LogPageLimit
-		{
-			get
-			{
-				return new SettingValueAsInt("log.page.limit");
 			}
 		}
 
@@ -316,6 +326,72 @@ namespace Coders.Models.Settings
 			get
 			{
 				return new SettingValue("template.email.user.reset.password");
+			}
+		}
+
+		/// <summary>
+		/// Gets the template widget attachment filter.
+		/// </summary>
+		public static SettingValue TemplateWidgetAttachmentFilter
+		{
+			get
+			{
+				return new SettingValue("template.widgets.attachment.filter");
+			}
+		}
+
+		/// <summary>
+		/// Gets the template widget attachment rule filter.
+		/// </summary>
+		public static SettingValue TemplateWidgetAttachmentRuleFilter
+		{
+			get
+			{
+				return new SettingValue("template.widgets.attachment.rule.filter");
+			}
+		}
+
+		/// <summary>
+		/// Gets the template widget country filter.
+		/// </summary>
+		public static SettingValue TemplateWidgetCountryFilter
+		{
+			get
+			{
+				return new SettingValue("template.widgets.country.filter");
+			}
+		}
+
+		/// <summary>
+		/// Gets the template widget setting filter.
+		/// </summary>
+		public static SettingValue TemplateWidgetSettingFilter
+		{
+			get
+			{
+				return new SettingValue("template.widgets.setting.filter");
+			}
+		}
+
+		/// <summary>
+		/// Gets the template widget time zone filter.
+		/// </summary>
+		public static SettingValue TemplateWidgetTimeZoneFilter
+		{
+			get
+			{
+				return new SettingValue("template.widgets.timezone.filter");
+			}
+		}
+
+		/// <summary>
+		/// Gets the template widget user filter.
+		/// </summary>
+		public static SettingValue TemplateWidgetUserFilter
+		{
+			get
+			{
+				return new SettingValue("template.widgets.user.filter");
 			}
 		}
 

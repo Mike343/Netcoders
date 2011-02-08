@@ -19,8 +19,13 @@
 using System;
 using System.Web.Mvc;
 using Coders.Extensions;
-using Coders.Models.Settings;
+using Coders.Models.Common;
+using Coders.Models.Common.Enums;
 using Coders.Models.Users;
+using Coders.Models.Users.Enums;
+using Coders.Strings;
+using Coders.Web.Controllers.Administration.Queries;
+using Coders.Web.Controllers.Users.Administration.Queries;
 using Coders.Web.Models.Users;
 using Coders.Web.Routes;
 #endregion
@@ -30,9 +35,18 @@ namespace Coders.Web.Controllers.Users.Administration
 	[Authorize]
 	public class HomeController : DefaultController
 	{
-		public HomeController(IUserService userService)
+		public HomeController(
+			IAuditService<User, UserAudit> auditService,
+			IUserService userService)
 		{
+			this.AuditService = auditService;
 			this.UserService = userService;
+		}
+
+		public IAuditService<User, UserAudit> AuditService
+		{
+			get;
+			private set;
 		}
 
 		public IUserService UserService
@@ -42,18 +56,25 @@ namespace Coders.Web.Controllers.Users.Administration
 		}
 
 		[HttpGet]
-		public ActionResult Index(int? page)
+		public ActionResult Index(string status, SortUser sort, SortOrder order, int? page)
 		{
-			var users = UserService.GetPaged(new UserSpecification
-			{
-				Page = page, 
-				Limit = Setting.UserPageLimit.Value
-			});
-
+			var query = new HomeQuery(status, sort, order, page);
+			var users = UserService.GetPaged(query.Specification);
 			var user = users.FirstOrDefault();
 			var privilege = new UserPrivilege();
 
 			return privilege.CanViewAny(user) ? View(Views.Index, users) : NotAuthorized();
+		}
+
+		[HttpGet]
+		public ActionResult History(SortAudit sort, SortOrder order, int? page, int? id)
+		{
+			var query = new AuditQuery<User>(sort, order, page, id);
+			var audits = this.AuditService.GetPaged(query.Specification);
+			var audit = audits.FirstOrDefault();
+			var privilege = new AuditPrivilege();
+
+			return privilege.CanView(audit) ? base.View(Views.History, audits) : NotAuthorized();
 		}
 
 		[HttpGet]
@@ -88,9 +109,13 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			value.ValueToModel(user);
 
-			this.UserService.Insert(user);
+			this.UserService.Insert(user, value.Preference);
 
-			return RedirectToRoute(UsersAdministrationRoutes.HomeUpdate, new { id = user.Id });
+			var model = new UserAdminUpdate(user);
+
+			model.SuccessMessage(Messages.UserCreated.FormatInvariant(user.Name));
+
+			return base.View(Views.Update, model);
 		}
 
 		[HttpGet]
@@ -141,6 +166,12 @@ namespace Coders.Web.Controllers.Users.Administration
 			// update user
 			this.UserService.Update(user);
 
+			// update password if needed
+			if (!string.IsNullOrEmpty(value.Password))
+			{
+				this.AuthenticationService.Update(user, value.Password);
+			}
+
 			// preference
 			var preference = user.Preference;
 
@@ -150,7 +181,71 @@ namespace Coders.Web.Controllers.Users.Administration
 			// update user preference
 			this.UserService.UpdatePreference(preference);
 
-			return RedirectToRoute(UsersAdministrationRoutes.HomeUpdate, new { id = user.Id });
+			value.SuccessMessage(Messages.UserUpdated.FormatInvariant(user.Name));
+
+			return base.View(Views.Update, value);
+		}
+
+		[HttpGet]
+		public ActionResult Reset(int id)
+		{
+			var user = this.UserService.GetById(id);
+
+			if (user == null)
+			{
+				return HttpNotFound();
+			}
+
+			var privilege = new UserPrivilege();
+
+			if (!privilege.CanUpdateAny(user))
+			{
+				return NotAuthorized();
+			}
+
+			var value = new UserAuthenticationReset();
+
+			value.Initialize(user);
+
+			return View(Views.Reset, value);
+		}
+
+		[HttpPost, ValidateAntiForgeryToken]
+		public ActionResult Reset(UserAuthenticationReset value)
+		{
+			if (value == null)
+			{
+				throw new ArgumentNullException("value");
+			}
+
+			var user = this.UserService.GetById(value.Id);
+
+			if (user == null)
+			{
+				return HttpNotFound();
+			}
+
+			var privilege = new UserPrivilege();
+
+			if (!privilege.CanUpdateAny(user))
+			{
+				return NotAuthorized();
+			}
+
+			value.Initialize(user);
+
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Reset, value);
+			}
+
+			this.AuthenticationService.Reset(user);
+
+			var model = new UserAdminUpdate(user);
+
+			model.SuccessMessage(Messages.UserPasswordReset.FormatInvariant(user.Name));
+
+			return base.View(Views.Update, model);
 		}
 	}
 }

@@ -1,0 +1,58 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Common.Audit>
+@section scripts
+{
+    <script src="/content/scripts/administration/coders.history.js" type="text/javascript"></script>
+}  
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(AdministrationRoutes.AttachmentIndex, new { sort = "created", order = "descending", page = 1 }).Link(Resources.Titles.Attachments)</li>
+			<li class="last">@Resources.Titles.History</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.HistoriesWith.FormatInvariant(Resources.Titles.Attachments)</h5>
+</div>
+<div class="content">
+	<div class="table table-history">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.Attachment</th>
+					<th>@Resources.Titles.Action</th>
+					<th>@Resources.Titles.User</th>
+					<th>@Resources.Titles.Date</th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var audit in Model) {
+					var value = audit.GetEntity<Coders.Models.Attachments.AttachmentAudit>();
+					<tr>
+						<td>@Url.Route(AdministrationRoutes.AttachmentUpdate, new { id = audit.ParentId }).Link(value.FileName, new { clickable = (audit.Action != AuditAction.Delete) })</td>
+						<td class="center">@audit.Action</td>
+						<td class="center">@audit.User.Name</td>
+						<td class="center">@audit.Created.Personalize(User.Identity)</td>
+						<td class="link last"><a href="#history-@audit.Id" class="compare">@Resources.Titles.Values</a></td>
+					</tr>
+					<tr id="history-@audit.Id" class="compare">
+						<td colspan="5" class="values">
+							<table>
+								<tbody>
+									<tr class="last">
+										<td class="title">@Resources.Titles.FileName:</td>
+										<td class="last">@value.FileName</td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, AdministrationRoutes.AttachmentHistory);}
+	</div>
+</div>

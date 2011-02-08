@@ -61,7 +61,34 @@ namespace Coders.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The country {0}&apos; has been successfully created..
+        ///   Looks up a localized string similar to The attachment rule &apos;{0}&apos; for group &apos;{1}&apos; has been successfully created..
+        /// </summary>
+        public static string AttachmentRuleCreated {
+            get {
+                return ResourceManager.GetString("AttachmentRuleCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The attachment rule &apos;{0}&apos; for group &apos;{1}&apos; has been successfully updated..
+        /// </summary>
+        public static string AttachmentRuleUpdated {
+            get {
+                return ResourceManager.GetString("AttachmentRuleUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The attachment has been successfully updated..
+        /// </summary>
+        public static string AttachmentUpdated {
+            get {
+                return ResourceManager.GetString("AttachmentUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The country &apos;{0}&apos; has been successfully created..
         /// </summary>
         public static string CountryCreated {
             get {
@@ -106,7 +133,7 @@ namespace Coders.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Showing results {0} of {1}-{2}.
+        ///   Looks up a localized string similar to Showing results {0} to {1} of {2}.
         /// </summary>
         public static string ShowingResults {
             get {
@@ -142,6 +169,15 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your password has been successfully reset. We have sent you an email which contains your new password..
+        /// </summary>
+        public static string UserAccountPasswordReset {
+            get {
+                return ResourceManager.GetString("UserAccountPasswordReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your account was successfully updated.
         /// </summary>
         public static string UserAccountUpdated {
@@ -151,11 +187,29 @@ namespace Coders.Strings {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Your password has been successfully reset. We have sent you an email which contains your new password..
+        ///   Looks up a localized string similar to The user &apos;{0}&apos; has been successfully created..
+        /// </summary>
+        public static string UserCreated {
+            get {
+                return ResourceManager.GetString("UserCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password has been successfully reset for the user &apos;{0}&apos;. We have sent the user an email which contains thier new password..
         /// </summary>
         public static string UserPasswordReset {
             get {
                 return ResourceManager.GetString("UserPasswordReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The user &apos;{0}&apos; has been successfully updated..
+        /// </summary>
+        public static string UserUpdated {
+            get {
+                return ResourceManager.GetString("UserUpdated", resourceCulture);
             }
         }
     }

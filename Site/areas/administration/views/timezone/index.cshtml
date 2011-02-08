@@ -1,0 +1,47 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.TimeZones.TimeZone>
+@section scripts
+{
+    <script src="/content/scripts/administration/coders.filter.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li class="last">@Resources.Titles.TimeZones</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.TimeZones)</h5>
+	<ul>
+		<li><a href="@Url.Route(AdministrationRoutes.TimeZoneHistory, new { sort = "created", order = "descending", page = "1" }).Value"><span>@Resources.Titles.History</span></a></li>
+		<li class="last"><a href="@Url.Route(AdministrationRoutes.TimeZoneCreate).Value"><span>@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.TimeZone)</span></a></li>
+	</ul>
+</div>
+<div class="content">
+	<div class="table table-filtered">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.Title</th>
+					<th>@Resources.Titles.Code</th>
+					<th></th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var timeZone in Model) {
+				<tr>
+					<td>@timeZone.Title</td>
+					<td class="center">@timeZone.Display</td>
+					<td class="link">@Url.Route(AdministrationRoutes.TimeZoneUpdate, new { id = timeZone.Id }).Link(Resources.Titles.Update)</td>
+					<td class="link last">@Url.Route(AdministrationRoutes.TimeZoneDelete, new { id = timeZone.Id }).Link(Resources.Titles.Delete)</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, AdministrationRoutes.TimeZoneIndex);}
+	</div>
+	@{Html.Widget("timezone.filter");}
+</div>

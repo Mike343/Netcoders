@@ -20,6 +20,7 @@ using System;
 using System.Web;
 using Coders.Authentication;
 using Coders.Extensions;
+using Coders.Models;
 using Coders.Models.Users;
 using Coders.Models.Users.Enums;
 using Coders.Web.Authentication;
@@ -38,19 +39,9 @@ namespace Coders.Web
 		/// </summary>
 		public ApplicationSession()
 		{
-			this.UserService = ServiceLocator.Current.GetInstance<IUserService>();
 			this.UserRoleService = ServiceLocator.Current.GetInstance<IUserRoleService>();
 			this.UserHostService = ServiceLocator.Current.GetInstance<IUserHostService>();
-		}
-
-		/// <summary>
-		/// Gets or sets the user service.
-		/// </summary>
-		/// <value>The user service.</value>
-		public IUserService UserService
-		{
-			get; 
-			private set;
+			this.UserRepository = ServiceLocator.Current.GetInstance<IRepository<User>>();
 		}
 
 		/// <summary>
@@ -68,6 +59,15 @@ namespace Coders.Web
 		/// </summary>
 		/// <value>The user host service.</value>
 		public IUserHostService UserHostService
+		{
+			get;
+			private set;
+		}
+
+		/// <summary>
+		/// Gets the user repository.
+		/// </summary>
+		public IRepository<User> UserRepository
 		{
 			get;
 			private set;
@@ -142,7 +142,7 @@ namespace Coders.Web
 				return Guest();
 			}
 
-			var user = this.UserService.GetBy(new UserEmailAddressSpecification(address));
+			var user = this.UserRepository.GetBy(new UserEmailAddressSpecification(address));
 
 			if (user == null)
 			{
@@ -166,7 +166,7 @@ namespace Coders.Web
 			user.HostAddress = this.UserHostService.GetAddress();
 			user.LastVisit = DateTime.Now;
 
-			this.UserService.Update(user);
+			this.UserRepository.Update(user);
 
 			return session;
 		}

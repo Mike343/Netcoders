@@ -1,0 +1,48 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Attachments.AttachmentRule>
+@section scripts
+{
+    <script src="/content/scripts/administration/coders.filter.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(AdministrationRoutes.AttachmentIndex, new { sort = "created", order = "descending", page = 1 }).Link(Resources.Titles.Attachments)</li>
+			<li class="last">@Resources.Titles.Rules</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Rules)</h5>
+	<ul>
+		<li><a href="@Url.Route(AdministrationRoutes.AttachmentRuleHistory).Value"><span>@Resources.Titles.History</span></a></li>
+		<li class="last"><a href="@Url.Route(AdministrationRoutes.AttachmentRuleCreate).Value"><span>@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Rule)</span></a></li>
+	</ul>
+</div>
+<div class="content">
+	<div class="table table-filtered">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.Group</th>
+					<th>@Resources.Titles.FileType</th>
+					<th></th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var rule in Model) {
+				<tr>
+					<td>@rule.Group</td>
+					<td class="center">@rule.FileType</td>
+					<td class="link">@Url.Route(AdministrationRoutes.AttachmentRuleUpdate, new { id = rule.Id }).Link(Resources.Titles.Update)</td>
+					<td class="link last">@Url.Route(AdministrationRoutes.AttachmentRuleDelete, new { id = rule.Id }).Link(Resources.Titles.Delete)</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, AdministrationRoutes.AttachmentRuleIndex);}
+	</div>
+	@{Html.Widget("attachment.rule.filter");}
+</div>

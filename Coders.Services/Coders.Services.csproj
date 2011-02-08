@@ -36,7 +36,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Coders.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Coders.Services.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="RazorEngine.Core">
@@ -68,8 +68,8 @@
     <Compile Include="Formatters\SearchReplaceFormatter.cs" />
     <Compile Include="FormsAuthenticationService.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="AuditService.cs" />
     <Compile Include="ImageService.cs" />
-    <Compile Include="LogService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingService.cs" />
     <Compile Include="EmailService.cs" />
@@ -88,7 +88,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Coders.pfx" />
+    <None Include="Coders.Services.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

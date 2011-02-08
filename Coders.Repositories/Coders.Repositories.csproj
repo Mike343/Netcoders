@@ -36,7 +36,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Coders.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Coders.Repositories.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Antlr3.Runtime, Version=3.1.0.39271, Culture=neutral, PublicKeyToken=3a9cab8f8d22bfb7, processorArchitecture=MSIL">
@@ -83,6 +83,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttachmentRepository.cs" />
+    <Compile Include="AttachmentRuleRepository.cs" />
     <Compile Include="Conventions\EnumConvention.cs" />
     <Compile Include="Extension\NHibernateExtension.cs" />
     <Compile Include="GlobalSuppressions.cs" />
@@ -90,7 +92,8 @@
     <Compile Include="Mappings\AttachmentPendingMapping.cs" />
     <Compile Include="Mappings\AttachmentRuleMapping.cs" />
     <Compile Include="Mappings\CountryMapping.cs" />
-    <Compile Include="Mappings\LogMapping.cs" />
+    <Compile Include="Strategies\Joins\UserMinimum.cs" />
+    <Compile Include="Mappings\AuditMapping.cs" />
     <Compile Include="Mappings\SettingMapping.cs" />
     <Compile Include="Mappings\TimeZoneMapping.cs" />
     <Compile Include="Mappings\UserAvatarMapping.cs" />
@@ -107,7 +110,7 @@
     <Compile Include="NHibernateRepository.cs" />
     <Compile Include="SettingRepository.cs" />
     <Compile Include="Strategies\IFetchingStrategy.cs" />
-    <Compile Include="Strategies\LogStrategy.cs" />
+    <Compile Include="Strategies\AuditStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Coders\Coders.csproj">
@@ -116,7 +119,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Coders.pfx" />
+    <None Include="Coders.Repositories.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

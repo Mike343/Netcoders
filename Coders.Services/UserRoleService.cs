@@ -74,6 +74,11 @@ namespace Coders.Services
 				throw new ArgumentNullException("role");
 			}
 
+			if (privileges == null)
+			{
+				throw new ArgumentNullException("privileges");
+			}
+
 			role.Privilege = (Privileges)privileges.Where(x => x.Selected).Aggregate(0, (value, x) => value | x.Privilege);
 
 			if (role.Id > 0)

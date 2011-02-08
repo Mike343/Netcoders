@@ -103,12 +103,12 @@ namespace Coders.Extensions
 		{
 			if (context.Request.PhysicalApplicationPath != null)
 			{
-				return Path.Combine(context.Request.PhysicalApplicationPath, path);
+				return Path.Combine(context.Request.PhysicalApplicationPath, path.Replace("/", "\\"));
 			}
 
 			if (context.Request.ApplicationPath != null)
 			{
-				return Path.Combine(context.Request.ApplicationPath, path);
+				return Path.Combine(context.Request.ApplicationPath, path.Replace("/", "\\"));
 			}
 
 			throw new PathException(Errors.PathFailed.FormatInvariant(path));

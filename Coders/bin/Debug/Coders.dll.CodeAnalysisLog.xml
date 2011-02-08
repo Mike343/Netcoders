@@ -4,71 +4,133 @@
  <Namespaces>
   <Namespace Name="Coders.Collections">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Collections' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Exceptions">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Exceptions' with another namespace.</Issue>
+    </Message>
+   </Messages>
+  </Namespace>
+  <Namespace Name="Coders.Models.Attachments.Enums">
+   <Messages>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Attachments.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.Common.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Common.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.Countries.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Countries.Enums' with another namespace.</Issue>
-    </Message>
-   </Messages>
-  </Namespace>
-  <Namespace Name="Coders.Models.Logs.Enums">
-   <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
-     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Logs.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.Settings.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.Settings.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Models.TimeZones.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Models.TimeZones.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
  </Namespaces>
  <Targets>
-  <Target Name="C:\Users\Mike\Desktop\Netcoders\Coders\bin\Debug\Coders.dll">
+  <Target Name="K:\Applications\Netcoders\Coders\bin\Debug\Coders.dll">
    <Modules>
     <Module Name="coders.dll">
      <Namespaces>
-      <Namespace Name="Coders.Models.Logs">
+      <Namespace Name="Coders.Models.Attachments">
        <Types>
-        <Type Name="LogSpecification" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+        <Type Name="IAttachmentRepository" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
          <Members>
-          <Member Name="#.ctor(System.Linq.Expressions.Expression`1&lt;System.Func`2&lt;Coders.Models.Logs.Log,System.Boolean&gt;&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+          <Member Name="#GetFileTypes()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
-             <Issue Certainty="95" Level="CriticalError" Path="C:\Users\Mike\Desktop\Netcoders\Coders\Models\Logs" File="LogSpecification.cs" Line="42">Consider a design where 'LogSpecification.LogSpecification(Expression&lt;Func&lt;Log, bool&gt;&gt;)' doesn't nest generic type 'Expression&lt;Func&lt;Log, bool&gt;&gt;'.</Issue>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning">Change 'IAttachmentRepository.GetFileTypes()' to a property if appropriate.</Issue>
             </Message>
            </Messages>
           </Member>
          </Members>
+        </Type>
+        <Type Name="IAttachmentRuleRepository" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetGroups()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning">Change 'IAttachmentRuleRepository.GetGroups()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IAttachmentRuleService" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetGroups()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning">Change 'IAttachmentRuleService.GetGroups()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IAttachmentRuleSpecification" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
+           <Issue Certainty="90" Level="Warning">Define a custom attribute to replace 'IAttachmentRuleSpecification'.</Issue>
+          </Message>
+         </Messages>
+        </Type>
+        <Type Name="IAttachmentService" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GetFileTypes()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning">Change 'IAttachmentService.GetFileTypes()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Coders.Models.Common">
+       <Types>
+        <Type Name="Audit" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Type" Kind="Property" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="PropertyNamesShouldNotMatchGetMethods" Category="Microsoft.Naming" CheckId="CA1721" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
+             <Issue Name="BaseType" Certainty="95" Level="Error">The property name 'Audit.Type' is confusing given the existence of inherited method 'object.GetType()'. Rename or remove this property.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="IAuditService`2" Kind="Interface" Accessibility="Public" ExternallyVisible="True">
+         <Messages>
+          <Message Id="K" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="NonBreaking">
+           <Issue Name="TypeTypeParameterMoreMeaningfulName" Certainty="75" Level="CriticalWarning">On type 'IAuditService&lt;T, TK&gt;', consider providing a more meaningful name than generic type parameter name 'TK'.</Issue>
+          </Message>
+         </Messages>
         </Type>
        </Types>
       </Namespace>
@@ -78,7 +140,7 @@
          <Members>
           <Member Name="#GetGroups()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="Warning">Change 'ISettingRepository.GetGroups()' to a property if appropriate.</Issue>
             </Message>
            </Messages>
@@ -89,7 +151,7 @@
          <Members>
           <Member Name="#GetGroups()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
              <Issue Certainty="50" Level="Warning">Change 'ISettingService.GetGroups()' to a property if appropriate.</Issue>
             </Message>
            </Messages>
@@ -100,8 +162,8 @@
          <Members>
           <Member Name="#CountryFlagPath" Kind="Property" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message Id="Flag" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="Breaking">
-             <Issue Name="MemberNoAlternate" Certainty="95" Level="Error" Path="C:\Users\Mike\Desktop\Netcoders\Coders\Models\Settings" File="SettingAsValue.cs" Line="113">Replace the term 'Flag' in member name 'Setting.CountryFlagPath' with an appropriate alternate or remove it entirely.</Issue>
+            <Message Id="Flag" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="Breaking">
+             <Issue Name="MemberNoAlternate" Certainty="95" Level="Error" Path="K:\Applications\Netcoders\Coders\Models\Settings" File="SettingAsValue.cs" Line="135">Replace the term 'Flag' in member name 'Setting.CountryFlagPath' with an appropriate alternate or remove it entirely.</Issue>
             </Message>
            </Messages>
           </Member>
@@ -113,8 +175,15 @@
      <Resources>
       <Resource Name="Coders.Strings.Errors.resources">
        <Messages>
-        <Message Id="yyyy" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Active" Created="2011-02-01 04:56:37Z" FixCategory="NonBreaking">
+        <Message Id="yyyy" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="NonBreaking">
          <Issue Name="StringResource" Certainty="50" Level="CriticalWarning">In resource 'Coders.Strings.Errors.resx', referenced by name 'DateNotValid', correct the spelling of 'yyyy' in string value 'This date is not valid. A valid example would be mm/dd/yyyy'.</Issue>
+        </Message>
+       </Messages>
+      </Resource>
+      <Resource Name="Coders.Strings.Messages.resources">
+       <Messages>
+        <Message Id="thier" TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703" Status="Active" Created="2011-02-07 05:18:36Z" FixCategory="NonBreaking">
+         <Issue Name="StringResource" Certainty="50" Level="CriticalWarning">In resource 'Coders.Strings.Messages.resx', referenced by name 'UserPasswordReset', correct the spelling of 'thier' in string value 'The password has been successfully reset for the user '{0}'. We have sent the user an email which contains thier new password.'.</Issue>
         </Message>
        </Messages>
       </Resource>
@@ -124,6 +193,16 @@
   </Target>
  </Targets>
  <Rules>
+  <Rule TypeName="AvoidEmptyInterfaces" Category="Microsoft.Design" CheckId="CA1040">
+   <Name>Avoid empty interfaces</Name>
+   <Description>Interfaces are meant to contain members that specify a set of behaviors. To mark or label a class, use an attribute instead of an empty interface.</Description>
+   <Resolution Name="Default">Define a custom attribute to replace {0}.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182128(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Warning</MessageLevel>
+   <File Name="designrules.dll" Version="10.0.0.0" />
+  </Rule>
   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
    <Name>Avoid namespaces with few types</Name>
    <Description>A namespace should generally have more than five types.</Description>
@@ -134,15 +213,26 @@
    <MessageLevel Certainty="50">Warning</MessageLevel>
    <File Name="designrules.dll" Version="10.0.0.0" />
   </Rule>
-  <Rule TypeName="DoNotNestGenericTypesInMemberSignatures" Category="Microsoft.Design" CheckId="CA1006">
-   <Name>Do not nest generic types in member signatures</Name>
-   <Description>Avoid API that require users to instantiate a generic type with another generic type as type argument. The syntax gets too complex.</Description>
-   <Resolution Name="Default">Consider a design where {0} doesn't nest generic type {1}.</Resolution>
+  <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+   <Name>Identifiers should be spelled correctly</Name>
+   <Description>The individual words that make up an identifier should not be abbreviated and should be spelled correctly. If this rule generates a false positive on a term that should be recognized, add the word to the FxCop custom dictionary.</Description>
+   <Resolution Name="Member">Correct the spelling of '{0}' in member name {1} or remove it entirely if it represents any sort of Hungarian notation.</Resolution>
+   <Resolution Name="TypeTypeParameterMoreMeaningfulName">On type {0}, consider providing a more meaningful name than generic type parameter name {1}.</Resolution>
    <Owner />
-   <Url>http://msdn.microsoft.com/library/ms182144(VS.100).aspx</Url>
+   <Url>http://msdn.microsoft.com/library/bb264492(VS.100).aspx</Url>
    <Email>[none]</Email>
-   <MessageLevel Certainty="95">CriticalError</MessageLevel>
-   <File Name="designrules.dll" Version="10.0.0.0" />
+   <MessageLevel Certainty="75">CriticalWarning</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
+  </Rule>
+  <Rule TypeName="PropertyNamesShouldNotMatchGetMethods" Category="Microsoft.Naming" CheckId="CA1721">
+   <Name>Property names should not match get methods</Name>
+   <Description>A Get method was found with the same name as a property. Get methods and properties should have names that clearly distinguish their function. See the design guidelines for information regarding choosing properties over methods.</Description>
+   <Resolution Name="BaseType">The property name {0} is confusing given the existence of inherited method {1}. Rename or remove this property.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182253(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="95">Error</MessageLevel>
+   <File Name="namingrules.dll" Version="10.0.0.0" />
   </Rule>
   <Rule TypeName="ResourceStringsShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1703">
    <Name>Resource strings should be spelled correctly</Name>

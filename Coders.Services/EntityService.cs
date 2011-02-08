@@ -27,8 +27,6 @@ namespace Coders.Services
 	public class EntityService<TEntity> : IEntityService<TEntity>
 		where TEntity : class, IEntity, new()
 	{
-		// private fields
-
 		/// <summary>
 		/// Initializes a new instance of the <see cref="EntityService&lt;TEntity&gt;"/> class.
 		/// </summary>

@@ -17,8 +17,10 @@
 
 #region Using Directives
 using System;
+using System.Linq;
 using System.Web.Mvc;
-using Coders.Web.Filters;
+using System.Web.Routing;
+using Filter = Coders.Web.Models.Filter;
 #endregion
 
 namespace Coders.Web.Extensions
@@ -26,37 +28,65 @@ namespace Coders.Web.Extensions
 	public static class FilterExtension
 	{
 		/// <summary>
-		/// Renders the filter for the countries.
+		/// Determines whether the specified filter is selected.
 		/// </summary>
+		/// <param name="filter">The filter.</param>
 		/// <param name="helper">The helper.</param>
-		public static void CountryFilter(this HtmlHelper helper)
+		/// <returns>
+		///   <c>true</c> if the specified filter is selected; otherwise, <c>false</c>.
+		/// </returns>
+		public static bool IsSelected(this Filter filter, HtmlHelper helper)
 		{
+			if (filter == null)
+			{
+				throw new ArgumentNullException("filter");
+			}
+
 			if (helper == null)
 			{
 				throw new ArgumentNullException("helper");
 			}
 
-			var filter = new CountryFilter(helper.ViewContext);
+			var conditions = new RouteValueDictionary(filter.Conditions);
 
-			filter.Initialize();
-			filter.Render();
-		}
-
-		/// <summary>
-		/// Renders the filter for the settings.
-		/// </summary>
-		/// <param name="helper">The helper.</param>
-		public static void SettingFilter(this HtmlHelper helper)
-		{
-			if (helper == null)
+			if (conditions.Count <= 0)
 			{
-				throw new ArgumentNullException("helper");
+				return false;
 			}
 
-			var filter = new SettingFilter(helper.ViewContext);
+			var selected = false;
 
-			filter.Initialize();
-			filter.Render();
+			foreach (var condition in conditions)
+			{
+				string value = null;
+
+				if (helper.ViewContext.RouteData.Values.ContainsKey(condition.Key))
+				{
+					value = helper.ViewContext.RouteData.Values[condition.Key] as string;
+				}
+				else if (!string.IsNullOrEmpty(helper.ViewContext.HttpContext.Request[condition.Key]))
+				{
+					value = helper.ViewContext.HttpContext.Request[condition.Key];
+				}
+
+				var compare = condition.Value as string;
+
+				if (string.IsNullOrEmpty(value) || string.IsNullOrEmpty(compare))
+				{
+					continue;
+				}
+
+				if (compare.Contains(","))
+				{
+					selected = compare.Split(',').Any(item => item == value);
+				}
+				else
+				{
+					selected = (value == compare);
+				}
+			}
+
+			return selected;
 		}
 	}
 }

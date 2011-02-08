@@ -19,11 +19,10 @@
 using System;
 using System.Web.Mvc;
 using Coders.Extensions;
+using Coders.Models.Common;
 using Coders.Models.Common.Enums;
 using Coders.Models.Countries;
 using Coders.Models.Countries.Enums;
-using Coders.Models.Logs;
-using Coders.Models.Logs.Enums;
 using Coders.Models.Settings;
 using Coders.Strings;
 using Coders.Web.Controllers.Administration.Queries;
@@ -36,14 +35,14 @@ namespace Coders.Web.Controllers.Administration
 	public class CountryController : SecureDefaultController
 	{
 		public CountryController(
-			ILogService logService,
+			IAuditService<Country, CountryAudit> auditService,
 			ICountryService countryService)
 		{
-			this.LogService = logService;
+			this.AuditService = auditService;
 			this.CountryService = countryService;
 		}
 
-		public ILogService LogService
+		public IAuditService<Country, CountryAudit> AuditService
 		{
 			get;
 			private set;
@@ -73,14 +72,14 @@ namespace Coders.Web.Controllers.Administration
 		}
 
 		[HttpGet]
-		public ActionResult History(SortLog sort, SortOrder order, int? page, int? id)
+		public ActionResult History(SortAudit sort, SortOrder order, int? page, int? id)
 		{
-			var query = new HistoryQuery(Log.Countries, sort, order, page, id);
-			var logs = this.LogService.GetPaged(query.Specification);
-			var log = logs.FirstOrDefault();
-			var privilege = new LogPrivilege();
+			var query = new AuditQuery<Country>(sort, order, page, id);
+			var audits = this.AuditService.GetPaged(query.Specification);
+			var audit = audits.FirstOrDefault();
+			var privilege = new AuditPrivilege();
 
-			return privilege.CanView(log) ? base.View(Views.History, logs) : NotAuthorized();
+			return privilege.CanView(audit) ? base.View(Views.History, audits) : NotAuthorized();
 		}
 
 		[HttpGet]
@@ -100,17 +99,17 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return base.View(Views.Create, value);
-			}
-
 			var country = this.CountryService.Create();
 			var privilege = new CountryPrivilege();
 
 			if (!privilege.CanCreate(country))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Create, value);
 			}
 
 			value.ValueToModel(country);
@@ -147,11 +146,6 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return base.View(Views.Update, value);
-			}
-
 			var country = this.CountryService.GetById(value.Id);
 
 			if (country == null)
@@ -164,6 +158,11 @@ namespace Coders.Web.Controllers.Administration
 			if (!privilege.CanUpdate(country))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Update, value);
 			}
 
 			value.ValueToModel(country);
@@ -198,11 +197,6 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Delete, value);
-			}
-
 			var country = this.CountryService.GetById(value.Id);
 
 			if (country == null)
@@ -215,6 +209,11 @@ namespace Coders.Web.Controllers.Administration
 			if (!privilege.CanDelete(country))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Delete, value);
 			}
 
 			this.CountryService.Delete(country);

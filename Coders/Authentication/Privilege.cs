@@ -25,7 +25,7 @@ namespace Coders.Authentication
 	/// 
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public abstract class Privilege<T> : IPrivilege<T>
+	public class Privilege<T> : IPrivilege<T>
 	{
 		// private fields
 		private readonly PrivilegePrincipal _principal;
@@ -34,7 +34,7 @@ namespace Coders.Authentication
 		/// Initializes a new instance of the <see cref="Privilege&lt;T&gt;"/> class.
 		/// </summary>
 		/// <param name="role">The role.</param>
-		protected Privilege(string role)
+		public Privilege(string role)
 		{
 			_principal = PrivilegePrincipalPermission.Current;
 
@@ -74,7 +74,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance can view the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanView(T entity)
+		public virtual bool CanView(T entity)
 		{
 			return this.CanView(entity, this.Identity);
 		}
@@ -87,7 +87,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance can view the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanView(T entity, UserIdentity identity)
+		public virtual bool CanView(T entity, UserIdentity identity)
 		{
 			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.View);
 		}
@@ -99,7 +99,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance [can view any] the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanViewAny(T entity)
+		public virtual bool CanViewAny(T entity)
 		{
 			return this.CanViewAny(entity, this.Identity);
 		}
@@ -112,7 +112,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance [can view any] the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanViewAny(T entity, UserIdentity identity)
+		public virtual bool CanViewAny(T entity, UserIdentity identity)
 		{
 			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.ViewAny);
 		}
@@ -124,7 +124,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance can create the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanCreate(T entity)
+		public virtual bool CanCreate(T entity)
 		{
 			return this.CanCreate(entity, this.Identity);
 		}
@@ -137,7 +137,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance can create the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanCreate(T entity, UserIdentity identity)
+		public virtual bool CanCreate(T entity, UserIdentity identity)
 		{
 			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.Create);
 		}
@@ -149,7 +149,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance can update the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanUpdate(T entity)
+		public virtual bool CanUpdate(T entity)
 		{
 			return this.CanUpdate(entity, this.Identity);
 		}
@@ -162,7 +162,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance can update the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanUpdate(T entity, UserIdentity identity)
+		public virtual bool CanUpdate(T entity, UserIdentity identity)
 		{
 			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.Update);
 		}
@@ -174,7 +174,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance [can update any] the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanUpdateAny(T entity)
+		public virtual bool CanUpdateAny(T entity)
 		{
 			return this.CanUpdateAny(entity, this.Identity);
 		}
@@ -187,7 +187,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance [can update any] the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanUpdateAny(T entity, UserIdentity identity)
+		public virtual bool CanUpdateAny(T entity, UserIdentity identity)
 		{
 			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.UpdateAny);
 		}
@@ -199,7 +199,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance can delete the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanDelete(T entity)
+		public virtual bool CanDelete(T entity)
 		{
 			return this.CanDelete(entity, this.Identity);
 		}
@@ -212,7 +212,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance can delete the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanDelete(T entity, UserIdentity identity)
+		public virtual bool CanDelete(T entity, UserIdentity identity)
 		{
 			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.Delete);
 		}
@@ -224,7 +224,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance [can delete any] the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanDeleteAny(T entity)
+		public virtual bool CanDeleteAny(T entity)
 		{
 			return this.CanDeleteAny(entity, this.Identity);
 		}
@@ -237,7 +237,7 @@ namespace Coders.Authentication
 		/// <returns>
 		/// 	<c>true</c> if this instance [can delete any] the specified entity; otherwise, <c>false</c>.
 		/// </returns>
-		public bool CanDeleteAny(T entity, UserIdentity identity)
+		public virtual bool CanDeleteAny(T entity, UserIdentity identity)
 		{
 			return _principal.ContainsRole(this.Role) && _principal.Privileges[this.Role].AllowedTo(Privileges.DeleteAny);
 		}

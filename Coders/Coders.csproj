@@ -32,14 +32,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <RunCodeAnalysis>true</RunCodeAnalysis>
+    <RunCodeAnalysis>false</RunCodeAnalysis>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Coders.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Coders.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -64,28 +64,47 @@
     <Compile Include="Collections\IPagedCollection.cs" />
     <Compile Include="Collections\PagedCollection.cs" />
     <Compile Include="Extensions\EnumerableExtension.cs" />
+    <Compile Include="Extensions\InstallerExtension.cs" />
     <Compile Include="Extensions\ObjectExtension.cs" />
     <Compile Include="Extensions\ResourceExtension.cs" />
     <Compile Include="Extensions\TypeExtension.cs" />
+    <Compile Include="Models\Attachments\AttachmentFileTypeSpecification.cs" />
     <Compile Include="Models\Attachments\AttachmentPrivilege.cs" />
     <Compile Include="Models\Attachments\AttachmentRuleGroupSpecification.cs" />
     <Compile Include="Models\Attachments\AttachmentRulePrivilege.cs" />
     <Compile Include="Models\Attachments\AttachmentPendingUserSpecification.cs" />
     <Compile Include="Models\Attachments\AttachmentPendingGroupSpecification.cs" />
     <Compile Include="Models\Attachments\AttachmentRuleSpecification.cs" />
+    <Compile Include="Models\Attachments\AttachmentSpecification.cs" />
+    <Compile Include="Models\Attachments\AttachmentStatusSpecification.cs" />
+    <Compile Include="Models\Attachments\AttachmentAudit.cs" />
+    <Compile Include="Models\Attachments\AttachmentRuleAudit.cs" />
+    <Compile Include="Models\Attachments\IAttachmentRuleSpecification.cs" />
+    <Compile Include="Models\Attachments\Enums\AttachmentStatus.cs" />
+    <Compile Include="Models\Attachments\Enums\SortAttachment.cs" />
+    <Compile Include="Models\Attachments\IAttachmentRuleRepository.cs" />
     <Compile Include="Models\Attachments\IAttachmentRuleService.cs" />
     <Compile Include="Models\Attachments\IAttachmentService.cs" />
+    <Compile Include="Models\Attachments\IAttachmentSpecification.cs" />
+    <Compile Include="Models\Attachments\IAttachmentRepository.cs" />
+    <Compile Include="Models\Common\AuditTypeSpecification.cs" />
     <Compile Include="Models\Common\EmailResult.cs" />
-    <Compile Include="Models\Common\Enums\HistoryAction.cs" />
+    <Compile Include="Models\Common\Enums\AuditAction.cs" />
+    <Compile Include="Models\Common\Enums\SortAudit.cs" />
     <Compile Include="Models\Common\Enums\SortOrder.cs" />
     <Compile Include="Models\Common\FileResult.cs" />
-    <Compile Include="Models\Common\History.cs" />
+    <Compile Include="Models\Common\Audit.cs" />
+    <Compile Include="Models\Common\IAuditService.cs" />
     <Compile Include="Models\Common\IAuthenticationService.cs" />
     <Compile Include="Models\Common\IEmailService.cs" />
     <Compile Include="Models\Common\IFileService.cs" />
+    <Compile Include="Models\Common\IAuditable.cs" />
     <Compile Include="Models\Common\IImageService.cs" />
+    <Compile Include="Models\Common\IAuditSpecification.cs" />
     <Compile Include="Models\Common\ImageResult.cs" />
     <Compile Include="Models\Common\ITextFormattingService.cs" />
+    <Compile Include="Models\Common\AuditPrivilege.cs" />
+    <Compile Include="Models\Common\AuditSpecification.cs" />
     <Compile Include="Models\Countries\Country.cs" />
     <Compile Include="Models\Countries\CountryCodeSpecification.cs" />
     <Compile Include="Models\Countries\CountryPrivilege.cs" />
@@ -93,6 +112,7 @@
     <Compile Include="Models\Countries\Enums\SortCountry.cs" />
     <Compile Include="Models\Countries\ICountryService.cs" />
     <Compile Include="Models\Countries\ICountrySpecification.cs" />
+    <Compile Include="Models\Countries\CountryAudit.cs" />
     <Compile Include="Models\EmailBase.cs" />
     <Compile Include="Models\EntityBase.cs" />
     <Compile Include="Models\IEmail.cs" />
@@ -112,13 +132,6 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IInstaller.cs" />
     <Compile Include="IServiceLocator.cs" />
-    <Compile Include="Models\Logs\Enums\SortLog.cs" />
-    <Compile Include="Models\Logs\ILogService.cs" />
-    <Compile Include="Models\Logs\ILogSpecification.cs" />
-    <Compile Include="Models\Logs\Log.cs" />
-    <Compile Include="Models\Logs\LogGroupSpecification.cs" />
-    <Compile Include="Models\Logs\LogSpecification.cs" />
-    <Compile Include="Models\Logs\LogPrivilege.cs" />
     <Compile Include="Models\Roles.cs" />
     <Compile Include="Models\Settings\Enums\SortSetting.cs" />
     <Compile Include="Models\Settings\Enums\SortSettingHistory.cs" />
@@ -133,6 +146,7 @@
     <Compile Include="Models\Settings\SettingAsValue.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Models\Settings\SettingAudit.cs" />
     <Compile Include="Models\Settings\SettingGroupSpecification.cs" />
     <Compile Include="Models\Settings\SettingKeySpecification.cs">
       <SubType>Code</SubType>
@@ -152,7 +166,8 @@
     <Compile Include="Models\Settings\SettingValueAsInt.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Models\TimeZones\CountrySpecification.cs" />
+    <Compile Include="Models\TimeZones\TimeZoneAudit.cs" />
+    <Compile Include="Models\TimeZones\TimeZoneSpecification.cs" />
     <Compile Include="Models\TimeZones\Enums\SortTimeZone.cs" />
     <Compile Include="Models\TimeZones\ITimeZoneSpecification.cs" />
     <Compile Include="Models\TimeZones\ITimeZoneService.cs" />
@@ -160,12 +175,14 @@
     <Compile Include="Models\TimeZones\TimeZonePrivilege.cs" />
     <Compile Include="Models\TimeZones\TimeZone.cs" />
     <Compile Include="Models\Users\Enums\SortUser.cs" />
+    <Compile Include="Models\Users\IUser.cs" />
     <Compile Include="Models\Users\IUserAvatarService.cs" />
     <Compile Include="Models\Users\IUserBanService.cs" />
     <Compile Include="Models\Users\IUserHostSearchService.cs" />
     <Compile Include="Models\Users\IUserHostService.cs" />
     <Compile Include="Models\Users\IUserSearchService.cs" />
     <Compile Include="Models\Users\IUserSpecification.cs" />
+    <Compile Include="Models\Users\UserAudit.cs" />
     <Compile Include="Models\Users\UserAvatarPrivilege.cs" />
     <Compile Include="Models\Users\UserAvatarUserSpecification.cs" />
     <Compile Include="Models\Users\UserBanExpiredSpecification.cs" />
@@ -207,6 +224,7 @@
     <Compile Include="Models\Users\UserSearchSpecification.cs" />
     <Compile Include="Models\Users\UserSearchUserSpecification.cs" />
     <Compile Include="Models\Users\UserSpecification.cs" />
+    <Compile Include="Models\Users\UserStatusSpecification.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocator.cs" />
     <Compile Include="ServiceLocatorBase.cs" />
@@ -228,11 +246,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Errors.resx</DependentUpon>
     </Compile>
-    <Compile Include="Strings\Logs.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Logs.resx</DependentUpon>
-    </Compile>
     <Compile Include="Strings\Messages.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -253,10 +266,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Errors.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Strings\Logs.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Logs.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="Strings\Messages.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Messages.Designer.cs</LastGenOutput>
@@ -267,9 +276,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Coders.pfx" />
+    <None Include="Coders.snk" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

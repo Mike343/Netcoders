@@ -19,9 +19,8 @@
 using System;
 using System.Web.Mvc;
 using Coders.Extensions;
+using Coders.Models.Common;
 using Coders.Models.Common.Enums;
-using Coders.Models.Logs;
-using Coders.Models.Logs.Enums;
 using Coders.Models.Settings;
 using Coders.Models.Settings.Enums;
 using Coders.Strings;
@@ -35,14 +34,14 @@ namespace Coders.Web.Controllers.Administration
 	public class SettingController : SecureDefaultController
 	{
 		public SettingController(
-			ILogService logService, 
+			IAuditService<Setting, SettingAudit> auditService, 
 			ISettingService settingService)
 		{
-			this.LogService = logService;
+			this.AuditService = auditService;
 			this.SettingService = settingService;
 		}
 
-		public ILogService LogService
+		public IAuditService<Setting, SettingAudit> AuditService
 		{
 			get;
 			private set;
@@ -66,14 +65,14 @@ namespace Coders.Web.Controllers.Administration
 		}
 
 		[HttpGet]
-		public ActionResult History(SortLog sort, SortOrder order, int? page, int? id)
+		public ActionResult History(SortAudit sort, SortOrder order, int? page, int? id)
 		{
-			var query = new HistoryQuery(Log.Settings, sort, order, page, id);
-			var logs = this.LogService.GetPaged(query.Specification);
-			var log = logs.FirstOrDefault();
-			var privilege = new LogPrivilege();
+			var query = new AuditQuery<Setting>(sort, order, page, id);
+			var audits = this.AuditService.GetPaged(query.Specification);
+			var audit = audits.FirstOrDefault();
+			var privilege = new AuditPrivilege();
 
-			return privilege.CanView(log) ? base.View(Views.History, logs) : NotAuthorized();
+			return privilege.CanView(audit) ? base.View(Views.History, audits) : NotAuthorized();
 		}
 
 		[HttpGet]
@@ -93,17 +92,17 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return base.View(Views.Create, value);
-			}
-
 			var setting = this.SettingService.Create();
 			var privilege = new SettingPrivilege();
 
 			if (!privilege.CanCreate(setting))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Create, value);
 			}
 
 			value.ValueToModel(setting);
@@ -141,11 +140,6 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return base.View(Views.Update, value);
-			}
-
 			var setting = this.SettingService.GetById(value.Id);
 
 			if (setting == null)
@@ -158,6 +152,11 @@ namespace Coders.Web.Controllers.Administration
 			if (!privilege.CanUpdate(setting))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Update, value);
 			}
 
 			value.ValueToModel(setting);
@@ -193,11 +192,6 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Delete, value);
-			}
-
 			var setting = this.SettingService.GetById(value.Id);
 
 			if (setting == null)
@@ -210,6 +204,11 @@ namespace Coders.Web.Controllers.Administration
 			if (!privilege.CanDelete(setting))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Delete, value);
 			}
 
 			this.SettingService.Delete(setting);

@@ -20,13 +20,35 @@ namespace Coders.Web.Models
 	public class Filter
 	{
 		/// <summary>
-		/// Gets or sets the group.
+		/// Initializes a new instance of the <see cref="Filter"/> class.
 		/// </summary>
-		/// <value>The group.</value>
-		public string Group
+		public Filter()
 		{
-			get;
-			set;
+			
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Filter"/> class.
+		/// </summary>
+		/// <param name="title">The title.</param>
+		/// <param name="parameters">The parameters.</param>
+		public Filter(string title, object parameters) 
+			: this(title, parameters, null)
+		{
+
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="Filter"/> class.
+		/// </summary>
+		/// <param name="title">The title.</param>
+		/// <param name="parameters">The parameters.</param>
+		/// <param name="conditions">The conditions.</param>
+		public Filter(string title, object parameters, object conditions)
+		{
+			this.Title = title;
+			this.Parameters = parameters;
+			this.Conditions = conditions ?? this.Parameters;
 		}
 
 		/// <summary>
@@ -34,16 +56,6 @@ namespace Coders.Web.Models
 		/// </summary>
 		/// <value>The title.</value>
 		public string Title
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the route key.
-		/// </summary>
-		/// <value>The route key.</value>
-		public string RouteKey
 		{
 			get;
 			set;

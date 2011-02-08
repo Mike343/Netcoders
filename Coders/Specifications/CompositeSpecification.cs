@@ -24,7 +24,7 @@ namespace Coders.Specifications
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
-		protected CompositeSpecification(Specification<TEntity> left, Specification<TEntity> right)
+		protected CompositeSpecification(ISpecification<TEntity> left, ISpecification<TEntity> right)
 		{
 			this.Left = left;
 			this.Right = right;
@@ -34,7 +34,7 @@ namespace Coders.Specifications
 		/// Gets or sets the left.
 		/// </summary>
 		/// <value>The left.</value>
-		public Specification<TEntity> Left
+		public ISpecification<TEntity> Left
 		{
 			get; 
 			private set; 
@@ -44,7 +44,7 @@ namespace Coders.Specifications
 		/// Gets or sets the right.
 		/// </summary>
 		/// <value>The right.</value>
-		public Specification<TEntity> Right
+		public ISpecification<TEntity> Right
 		{
 			get;
 			private set;

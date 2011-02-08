@@ -1,0 +1,73 @@
+﻿@model Coders.Web.Models.Users.UserRoleCreateOrUpdate
+@section scripts
+{
+	<script src="/content/scripts/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(UsersAdministrationRoutes.RoleIndex).Link(Resources.Titles.Roles)</li>
+			<li class="last">@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Role)</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Role)</h5>
+</div>
+<div class="content">
+	@{Html.Message(Model);}
+	@{Html.ValidationResult();}
+	@{Html.BeginRouteForm(UsersAdministrationRoutes.RoleCreate);}
+	<div class="form">
+		<div class="fields">
+			<div class="field field-first">
+				<div class="label">
+					<label for="Title">@Resources.Titles.Title:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.Title, new { @class = "medium" })
+					@Html.ValidationMessageFor(x => x.Title)
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label>@Resources.Titles.Options:</label>
+				</div>
+				<div class="checkboxes">
+					<div class="checkbox">
+						@Html.CheckBoxFor(x => x.IsDefault)
+						<label for="IsDefault">@Resources.Titles.Default</label>
+					</div>
+					<div class="checkbox">
+						@Html.CheckBoxFor(x => x.IsAdministrator)
+						<label for="IsAdministrator">@Resources.Titles.Administrator</label>
+					</div>
+				</div>
+			</div>
+			<div class="field">
+				<div class="label label-checkbox">
+					<label>@Resources.Titles.DefaultPermissions:</label>
+				</div>
+				<div class="checkboxes">
+					@for (var i = 0; i < Model.PrivilegesValues.Count; i++) {
+					<div class="checkbox">
+						@Html.Hidden("Privileges.Index", i)
+						@Html.Hidden("Privileges[{0}].Privilege".FormatInvariant(i), Model.PrivilegesValues[i])
+						@Html.CheckBox("Privileges[{0}].Selected".FormatInvariant(i))
+						<label for="@("Permissions_{0}_Selected".FormatInvariant(i))">@Model.PrivilegesNames[i].Localize("Titles")</label>
+					</div>
+					}
+				</div>
+			</div>
+			<div class="buttons">
+				@Html.AntiForgeryToken()
+				<input type="submit" value="@Resources.Titles.Submit" />
+				<input type="reset" value="@Resources.Titles.Reset" />
+			</div>
+		</div>
+	</div>
+	@{Html.EndForm();}
+</div>

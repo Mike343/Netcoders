@@ -18,10 +18,9 @@
 #region Using Directives
 using System;
 using System.Collections.Generic;
-using Coders.Extensions;
-using Coders.Models.Logs;
+using Coders.Models.Common;
+using Coders.Models.Common.Enums;
 using Coders.Models.Settings;
-using Coders.Strings;
 #endregion
 
 namespace Coders.Services
@@ -31,22 +30,21 @@ namespace Coders.Services
 		/// <summary>
 		/// Initializes a new instance of the <see cref="SettingService"/> class.
 		/// </summary>
-		/// <param name="logService">The log service.</param>
-		/// <param name="repository">The repository.</param>
+		/// <param name="auditService">The audit service.</param>
+		/// <param name="settingRepository">The setting repository.</param>
 		public SettingService(
-			ILogService logService, 
-			ISettingRepository repository)
-			: base(repository)
+			IAuditService<Setting, SettingAudit> auditService,
+			ISettingRepository settingRepository)
+			: base(settingRepository)
 		{
-			this.LogService = logService;
-			this.SettingRepository = repository;
+			this.AuditService = auditService;
+			this.SettingRepository = settingRepository;
 		}
 
 		/// <summary>
-		/// Gets or sets the log service.
+		/// Gets the audit service.
 		/// </summary>
-		/// <value>The log service.</value>
-		public ILogService LogService
+		public IAuditService<Setting, SettingAudit> AuditService
 		{
 			get; 
 			private set;
@@ -82,6 +80,22 @@ namespace Coders.Services
 		}
 
 		/// <summary>
+		/// Inserts the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Insert(Setting entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Insert(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Create);
+		}
+
+		/// <summary>
 		/// Inserts or updates the specified setting.
 		/// </summary>
 		/// <param name="setting">The setting.</param>
@@ -100,13 +114,22 @@ namespace Coders.Services
 			{
 				this.Insert(setting);
 			}
+		}
 
-			this.LogService.Log(
-				setting.Id,
-				Log.Settings,
-				((setting.Id > 0) ? Logs.SettingUpdated : Logs.SettingCreated).FormatInvariant(setting.Title),
-				setting
-			);
+		/// <summary>
+		/// Updates the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Update(Setting entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Update(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Update);
 		}
 
 		/// <summary>
@@ -126,7 +149,22 @@ namespace Coders.Services
 			setting.Value = value.ToString();
 
 			this.Update(setting);
-			this.LogService.Log(setting.Id, Log.Settings, Logs.SettingUpdated, setting);
+		}
+
+		/// <summary>
+		/// Deletes the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Delete(Setting entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Delete(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Delete);
 		}
 	}
 }

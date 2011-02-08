@@ -17,6 +17,8 @@
 
 #region Using Directives
 using System;
+using Coders.Extensions;
+using Coders.Models.Attachments.Enums;
 #endregion
 
 namespace Coders.Models.Attachments
@@ -96,6 +98,17 @@ namespace Coders.Models.Attachments
 		}
 
 		/// <summary>
+		/// Gets the file disk path.
+		/// </summary>
+		public virtual string FileDiskPath
+		{
+			get
+			{
+				return this.FullPath.AsPath();
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets the type of the file.
 		/// </summary>
 		/// <value>The type of the file.</value>
@@ -112,6 +125,18 @@ namespace Coders.Models.Attachments
 		public virtual string FileExtension
 		{
 			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the status.
+		/// </summary>
+		/// <value>
+		/// The status.
+		/// </value>
+		public virtual AttachmentStatus Status
+		{
+			get; 
 			set;
 		}
 

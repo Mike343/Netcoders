@@ -69,6 +69,12 @@ namespace Coders.Specifications
 		SortOrder Order { get; set; }
 
 		/// <summary>
+		/// Gets or sets the predicate.
+		/// </summary>
+		/// <value>The predicate.</value>
+		Expression<Func<TEntity, bool>> Predicate { get; }
+
+		/// <summary>
 		/// Satisfies the entity from.
 		/// </summary>
 		/// <param name="query">The query.</param>

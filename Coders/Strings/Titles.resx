@@ -132,6 +132,12 @@
   <data name="ContentType" xml:space="preserve">
     <value>Content Type</value>
   </data>
+  <data name="Created" xml:space="preserve">
+    <value>Created</value>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted</value>
+  </data>
   <data name="Descending" xml:space="preserve">
     <value>Descending</value>
   </data>
@@ -153,6 +159,15 @@
   <data name="FileExtension" xml:space="preserve">
     <value>File Extension</value>
   </data>
+  <data name="FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="FileSize" xml:space="preserve">
+    <value>File Size</value>
+  </data>
+  <data name="FileType" xml:space="preserve">
+    <value>File Type</value>
+  </data>
   <data name="Filter" xml:space="preserve">
     <value>Filter</value>
   </data>
@@ -169,11 +184,20 @@
   <data name="NewPassword" xml:space="preserve">
     <value>NewPassword</value>
   </data>
+  <data name="Offset" xml:space="preserve">
+    <value>Offset</value>
+  </data>
   <data name="OrderBy" xml:space="preserve">
     <value>Order By</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="Published" xml:space="preserve">
+    <value>Published</value>
   </data>
   <data name="Reason" xml:space="preserve">
     <value>Reason</value>
@@ -181,11 +205,17 @@
   <data name="SortBy" xml:space="preserve">
     <value>Sort By</value>
   </data>
+  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>Success</value>
   </data>
   <data name="Title" xml:space="preserve">
     <value>Title</value>
+  </data>
+  <data name="Updated" xml:space="preserve">
+    <value>Updated</value>
   </data>
   <data name="Value" xml:space="preserve">
     <value>Value</value>

@@ -20,7 +20,10 @@ using System;
 using System.Web.Mvc;
 using Coders.Extensions;
 using Coders.Models.Attachments;
-using Coders.Models.Settings;
+using Coders.Models.Common;
+using Coders.Models.Common.Enums;
+using Coders.Strings;
+using Coders.Web.Controllers.Administration.Queries;
 using Coders.Web.Models.Attachments;
 using Coders.Web.Routes;
 #endregion
@@ -29,9 +32,18 @@ namespace Coders.Web.Controllers.Administration
 {
 	public class AttachmentRuleController : SecureDefaultController
 	{
-		public AttachmentRuleController(IAttachmentRuleService attachmentRuleService)
+		public AttachmentRuleController(
+			 IAuditService<AttachmentRule, AttachmentRuleAudit> auditService,
+			IAttachmentRuleService attachmentRuleService)
 		{
+			this.AuditService = auditService;
 			this.AttachmentRuleService = attachmentRuleService;
+		}
+
+		public IAuditService<AttachmentRule, AttachmentRuleAudit> AuditService
+		{
+			get;
+			private set;
 		}
 
 		public IAttachmentRuleService AttachmentRuleService
@@ -41,27 +53,34 @@ namespace Coders.Web.Controllers.Administration
 		}
 
 		[HttpGet]
-		public ActionResult Index(int? page)
+		public ActionResult Index(string group, int? page)
 		{
-			var rules = AttachmentRuleService.GetPaged(new AttachmentRuleSpecification
-			{
-				Page = page, 
-				Limit = Setting.AttachmentRulePageLimit.Value
-			});
-
+			var query = new AttachmentRuleQuery(group, page);
+			var rules = this.AttachmentRuleService.GetPaged(query.Specification);
 			var rule = rules.FirstOrDefault();
 			var privilege = new AttachmentRulePrivilege();
 
-			return privilege.CanView(rule) ? View(Views.Index, rules) : NotAuthorized();
+			return privilege.CanView(rule) ? base.View(Views.Index, rules) : NotAuthorized();
+		}
+
+		[HttpGet]
+		public ActionResult History(SortAudit sort, SortOrder order, int? page, int? id)
+		{
+			var query = new AuditQuery<AttachmentRule>(sort, order, page, id);
+			var audits = this.AuditService.GetPaged(query.Specification);
+			var audit = audits.FirstOrDefault();
+			var privilege = new AuditPrivilege();
+
+			return privilege.CanView(audit) ? base.View(Views.History, audits) : NotAuthorized();
 		}
 
 		[HttpGet]
 		public ActionResult Create()
 		{
-			var rule = AttachmentRuleService.Create();
+			var rule = this.AttachmentRuleService.Create();
 			var privilege = new AttachmentRulePrivilege();
 
-			return privilege.CanCreate(rule) ? View(Views.Create, new AttachmentRuleCreateOrUpdate()) : NotAuthorized();
+			return privilege.CanCreate(rule) ? base.View(Views.Create, new AttachmentRuleCreateOrUpdate()) : NotAuthorized();
 		}
 
 		[HttpPost]
@@ -72,12 +91,7 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Create, value);
-			}
-
-			var rule = AttachmentRuleService.Create();
+			var rule = this.AttachmentRuleService.Create();
 			var privilege = new AttachmentRulePrivilege();
 
 			if (!privilege.CanCreate(rule))
@@ -85,26 +99,35 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Create, value);
+			}
+
 			value.ValueToModel(rule);
 
 			this.AttachmentRuleService.InsertOrUpdate(rule);
 
-			return RedirectToRoute(AdministrationRoutes.AttachmentRuleUpdate, new { id = rule.Id });
+			var model = new AttachmentRuleCreateOrUpdate(rule);
+
+			model.SuccessMessage(Messages.AttachmentRuleCreated.FormatInvariant(rule.FileType, rule.Group));
+
+			return base.View(Views.Update, model);
 		}
 
 		[HttpGet]
 		public ActionResult Update(int id)
 		{
-			var rule = AttachmentRuleService.GetById(id);
+			var rule = this.AttachmentRuleService.GetById(id);
 
 			if (rule == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new AttachmentRulePrivilege();
 
-			return privilege.CanUpdate(rule) ? View(Views.Update, new AttachmentRuleCreateOrUpdate(rule)) : NotAuthorized();
+			return privilege.CanUpdate(rule) ? base.View(Views.Update, new AttachmentRuleCreateOrUpdate(rule)) : NotAuthorized();
 		}
 
 		[HttpPost]
@@ -115,16 +138,11 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
-			}
-
-			var rule = AttachmentRuleService.GetById(value.Id);
+			var rule = this.AttachmentRuleService.GetById(value.Id);
 
 			if (rule == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new AttachmentRulePrivilege();
@@ -134,11 +152,18 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Update, value);
+			}
+
 			value.ValueToModel(rule);
 
 			this.AttachmentRuleService.InsertOrUpdate(rule);
 
-			return RedirectToRoute(AdministrationRoutes.AttachmentRuleUpdate, new { id = rule.Id });
+			value.SuccessMessage(Messages.AttachmentRuleUpdated.FormatInvariant(rule.FileType, rule.Group));
+
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -148,7 +173,7 @@ namespace Coders.Web.Controllers.Administration
 
 			if (rule == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new AttachmentRulePrivilege();
@@ -164,16 +189,11 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Delete, value);
-			}
-
-			var rule = AttachmentRuleService.GetById(value.Id);
+			var rule = this.AttachmentRuleService.GetById(value.Id);
 
 			if (rule == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new AttachmentRulePrivilege();
@@ -183,9 +203,14 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Delete, value);
+			}
+
 			this.AttachmentRuleService.Delete(rule);
 
-			return RedirectToRoute(AdministrationRoutes.AttachmentRuleIndex);
+			return base.RedirectToRoute(AdministrationRoutes.AttachmentRuleIndex);
 		}
 	}
 }

@@ -97,10 +97,10 @@ namespace Coders.Specifications
 			{
 				if (this.PageOrDefault == 1)
 				{
-					return (this.PageOrDefault * this.LimitOrDefault) - this.LimitOrDefault;
+					return 0;
 				}
 
-				return ((this.PageOrDefault * this.LimitOrDefault) - this.LimitOrDefault) + 1;
+				return ((this.PageOrDefault * this.LimitOrDefault) - this.LimitOrDefault);
 			}
 		}
 
@@ -112,12 +112,7 @@ namespace Coders.Specifications
 		{
 			get
 			{
-				if (this.PageOrDefault == 1)
-				{
-					return (this.First + this.LimitOrDefault);
-				}
-
-				return (this.First + this.LimitOrDefault) - 1;
+				return this.First + this.LimitOrDefault;
 			}
 		}
 
@@ -146,7 +141,7 @@ namespace Coders.Specifications
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-		public AndSpecification<TEntity> And(Specification<TEntity> specification)
+		public AndSpecification<TEntity> And(ISpecification<TEntity> specification)
 		{
 			return new AndSpecification<TEntity>(this, specification);
 		}
@@ -156,7 +151,7 @@ namespace Coders.Specifications
 		/// </summary>
 		/// <param name="specification">The specification.</param>
 		/// <returns></returns>
-		public OrSpecification<TEntity> Or(Specification<TEntity> specification)
+		public OrSpecification<TEntity> Or(ISpecification<TEntity> specification)
 		{
 			return new OrSpecification<TEntity>(this, specification);
 		}

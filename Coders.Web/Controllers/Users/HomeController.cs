@@ -24,7 +24,6 @@ using Coders.Models.Users;
 using Coders.Models.Users.Enums;
 using Coders.Strings;
 using Coders.Web.Models.Users;
-using Coders.Web.Routes;
 #endregion
 
 namespace Coders.Web.Controllers.Users

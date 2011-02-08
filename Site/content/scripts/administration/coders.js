@@ -6,6 +6,7 @@ function menu_normal(item) {
 	options["last"] = "last";
 	options["last selected"] = "last";
 	options["normal"] = "normal";
+	options["normal selected"] = "normal";
 	options["selected"] = "normal";
 
 	if (item.attr("class") == "") {
@@ -20,6 +21,8 @@ function menu_selected(item) {
 
 	options["first"] = "first selected";
 	options["first selected"] = "first selected";
+	options["normal"] = "normal selected";
+	options["normal selected"] = "normal selected";
 	options["last"] = "last selected";
 	options["last selected"] = "last selected";
 

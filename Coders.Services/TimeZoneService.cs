@@ -19,6 +19,8 @@
 using System;
 using System.Collections.Generic;
 using Coders.Models;
+using Coders.Models.Common;
+using Coders.Models.Common.Enums;
 using Coders.Models.TimeZones;
 using TimeZone = Coders.Models.TimeZones.TimeZone;
 #endregion
@@ -30,11 +32,23 @@ namespace Coders.Services
 		/// <summary>
 		/// Initializes a new instance of the <see cref="TimeZoneService"/> class.
 		/// </summary>
-		/// <param name="repository">The repository.</param>
-		public TimeZoneService(IRepository<TimeZone> repository)
-			: base(repository)
+		/// <param name="auditService">The audit service.</param>
+		/// <param name="timeZoneRepository">The time zone repository.</param>
+		public TimeZoneService(
+			IAuditService<TimeZone, TimeZoneAudit> auditService,
+			IRepository<TimeZone> timeZoneRepository)
+			: base(timeZoneRepository)
 		{
+			this.AuditService = auditService;
+		}
 
+		/// <summary>
+		/// Gets the audit service.
+		/// </summary>
+		public IAuditService<TimeZone, TimeZoneAudit> AuditService
+		{
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -56,6 +70,38 @@ namespace Coders.Services
 		}
 
 		/// <summary>
+		/// Inserts the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Insert(TimeZone entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Insert(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Create);
+		}
+
+		/// <summary>
+		/// Updates the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Update(TimeZone entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Update(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Update);
+		}
+
+		/// <summary>
 		/// Inserts or updates the specified time zone.
 		/// </summary>
 		/// <param name="timeZone">The time zone.</param>
@@ -74,6 +120,22 @@ namespace Coders.Services
 			{
 				this.Insert(timeZone);
 			}
+		}
+
+		/// <summary>
+		/// Deletes the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Delete(TimeZone entity)
+		{
+			if (entity == null)
+			{
+				throw new ArgumentNullException("entity");
+			}
+
+			base.Delete(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Delete);
 		}
 	}
 }

@@ -645,4 +645,46 @@
   <data name="Compare" xml:space="preserve">
     <value>Compare</value>
   </data>
+  <data name="FileName" xml:space="preserve">
+    <value>File Name</value>
+  </data>
+  <data name="Attachment" xml:space="preserve">
+    <value>Attachment</value>
+  </data>
+  <data name="FileDiskName" xml:space="preserve">
+    <value>File Disk Name</value>
+  </data>
+  <data name="FilePath" xml:space="preserve">
+    <value>File Path</value>
+  </data>
+  <data name="FileType" xml:space="preserve">
+    <value>File Type</value>
+  </data>
+  <data name="FullPath" xml:space="preserve">
+    <value>Full Path</value>
+  </data>
+  <data name="FileInformation" xml:space="preserve">
+    <value>File Information</value>
+  </data>
+  <data name="FileDiskPath" xml:space="preserve">
+    <value>File Disk Path</value>
+  </data>
+  <data name="FileExtension" xml:space="preserve">
+    <value>File Extension</value>
+  </data>
+  <data name="OrderBy" xml:space="preserve">
+    <value>Order By</value>
+  </data>
+  <data name="Ascending" xml:space="preserve">
+    <value>Ascending</value>
+  </data>
+  <data name="Descending" xml:space="preserve">
+    <value>Descending</value>
+  </data>
+  <data name="LastVisit" xml:space="preserve">
+    <value>Last Visit</value>
+  </data>
+  <data name="ResetPasswordFor" xml:space="preserve">
+    <value>Reset Password for '{0}'</value>
+  </data>
 </root>

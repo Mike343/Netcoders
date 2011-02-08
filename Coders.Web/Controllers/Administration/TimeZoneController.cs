@@ -19,12 +19,16 @@
 using System;
 using System.Web.Mvc;
 using Coders.Extensions;
+using Coders.Models.Common;
 using Coders.Models.Common.Enums;
 using Coders.Models.Settings;
 using Coders.Models.TimeZones;
 using Coders.Models.TimeZones.Enums;
+using Coders.Strings;
+using Coders.Web.Controllers.Administration.Queries;
 using Coders.Web.Models.TimeZones;
 using Coders.Web.Routes;
+using TimeZone = Coders.Models.TimeZones.TimeZone;
 #endregion
 
 namespace Coders.Web.Controllers.Administration
@@ -32,9 +36,18 @@ namespace Coders.Web.Controllers.Administration
 	[Authorize]
 	public class TimeZoneController : SecureDefaultController
 	{
-		public TimeZoneController(ITimeZoneService timeZoneService)
+		public TimeZoneController(
+			IAuditService<TimeZone, TimeZoneAudit> auditService,
+			ITimeZoneService timeZoneService)
 		{
+			this.AuditService = auditService;
 			this.TimeZoneService = timeZoneService;
+		}
+
+		public IAuditService<TimeZone, TimeZoneAudit> AuditService
+		{
+			get;
+			private set;
 		}
 
 		public ITimeZoneService TimeZoneService
@@ -44,29 +57,40 @@ namespace Coders.Web.Controllers.Administration
 		}
 
 		[HttpGet]
-		public ActionResult Index(int? page)
+		public ActionResult Index(SortTimeZone sort, SortOrder order, int? page)
 		{
 			var timeZones = this.TimeZoneService.GetPaged(new TimeZoneSpecification
 			{
 				Page = page,
 				Limit = Setting.TimeZonePageLimit.Value,
-				Sort = SortTimeZone.Offset,
-				Order = SortOrder.Ascending
+				Sort = sort,
+				Order = order
 			});
 
 			var timeZone = timeZones.FirstOrDefault();
 			var privilege = new TimeZonePrivilege();
 
-			return privilege.CanView(timeZone) ? View(Views.Index, timeZones) : NotAuthorized();
+			return privilege.CanView(timeZone) ? base.View(Views.Index, timeZones) : NotAuthorized();
+		}
+
+		[HttpGet]
+		public ActionResult History(SortAudit sort, SortOrder order, int? page, int? id)
+		{
+			var query = new AuditQuery<TimeZone>(sort, order, page, id);
+			var audits = this.AuditService.GetPaged(query.Specification);
+			var audit = audits.FirstOrDefault();
+			var privilege = new AuditPrivilege();
+
+			return privilege.CanView(audit) ? base.View(Views.History, audits) : NotAuthorized();
 		}
 
 		[HttpGet]
 		public ActionResult Create()
 		{
-			var timeZone = TimeZoneService.Create();
+			var timeZone = this.TimeZoneService.Create();
 			var privilege = new TimeZonePrivilege();
 
-			return privilege.CanCreate(timeZone) ? View(Views.Create, new TimeZoneCreateOrUpdate()) : NotAuthorized();
+			return privilege.CanCreate(timeZone) ? base.View(Views.Create, new TimeZoneCreateOrUpdate()) : NotAuthorized();
 		}
 
 		[HttpPost]
@@ -77,12 +101,7 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Create, value);
-			}
-
-			var timeZone = TimeZoneService.Create();
+			var timeZone = this.TimeZoneService.Create();
 			var privilege = new TimeZonePrivilege();
 
 			if (!privilege.CanCreate(timeZone))
@@ -90,26 +109,35 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Create, value);
+			}
+
 			value.ValueToModel(timeZone);
 
 			this.TimeZoneService.InsertOrUpdate(timeZone);
 
-			return RedirectToRoute(AdministrationRoutes.TimeZoneUpdate, new { id = timeZone.Id });
+			var model = new TimeZoneCreateOrUpdate(timeZone);
+
+			model.SuccessMessage(Messages.TimeZoneCreated.FormatInvariant(timeZone.Title));
+
+			return base.View(Views.Update, model);
 		}
 
 		[HttpGet]
 		public ActionResult Update(int id)
 		{
-			var timeZone = TimeZoneService.GetById(id);
+			var timeZone = this.TimeZoneService.GetById(id);
 
 			if (timeZone == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new TimeZonePrivilege();
 
-			return privilege.CanUpdate(timeZone) ? View(Views.Update, new TimeZoneCreateOrUpdate(timeZone)) : NotAuthorized();
+			return privilege.CanUpdate(timeZone) ? base.View(Views.Update, new TimeZoneCreateOrUpdate(timeZone)) : NotAuthorized();
 		}
 
 		[HttpPost]
@@ -120,16 +148,11 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
-			}
-
-			var timeZone = TimeZoneService.GetById(value.Id);
+			var timeZone = this.TimeZoneService.GetById(value.Id);
 
 			if (timeZone == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new TimeZonePrivilege();
@@ -139,11 +162,18 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Update, value);
+			}
+
 			value.ValueToModel(timeZone);
 
 			this.TimeZoneService.InsertOrUpdate(timeZone);
 
-			return RedirectToRoute(AdministrationRoutes.TimeZoneUpdate, new { id = timeZone.Id });
+			value.SuccessMessage(Messages.TimeZoneUpdated.FormatInvariant(timeZone.Title));
+
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -153,7 +183,7 @@ namespace Coders.Web.Controllers.Administration
 
 			if (timeZone == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new TimeZonePrivilege();
@@ -169,16 +199,11 @@ namespace Coders.Web.Controllers.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Delete, value);
-			}
-
-			var timeZone = TimeZoneService.GetById(value.Id);
+			var timeZone = this.TimeZoneService.GetById(value.Id);
 
 			if (timeZone == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new TimeZonePrivilege();
@@ -188,9 +213,14 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Delete, value);
+			}
+
 			this.TimeZoneService.Delete(timeZone);
 
-			return RedirectToRoute(AdministrationRoutes.TimeZoneIndex);
+			return base.RedirectToRoute(AdministrationRoutes.TimeZoneIndex);
 		}
 	}
 }

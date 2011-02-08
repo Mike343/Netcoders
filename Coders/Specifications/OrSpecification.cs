@@ -29,7 +29,7 @@ namespace Coders.Specifications
 		/// </summary>
 		/// <param name="left">The left.</param>
 		/// <param name="right">The right.</param>
-		public OrSpecification(Specification<TEntity> left, Specification<TEntity> right)
+		public OrSpecification(ISpecification<TEntity> left, ISpecification<TEntity> right)
 			: base(left, right)
 		{
 

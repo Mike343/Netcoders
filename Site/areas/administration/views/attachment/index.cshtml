@@ -1,0 +1,58 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Attachments.Attachment>
+@section scripts
+{
+    <script src="/content/scripts/administration/coders.filter.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li class="last">@Resources.Titles.Attachments</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Attachments)</h5>
+	<ul>
+		<li class="last"><a href="@Url.Route(AdministrationRoutes.AttachmentHistory).Value"><span>@Resources.Titles.History</span></a></li>
+	</ul>
+</div>
+<div class="content">
+	<div class="table table-filtered">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.FileName</th>
+					<th>@Resources.Titles.ContentType</th>
+					<th>@Resources.Titles.FileSize</th>
+					<th>@Resources.Titles.Status</th>
+					<th>@Resources.Titles.Created</th>
+					<th></th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@if (Model.Total > 0) {
+					foreach (var attachment in Model) {
+					<tr>
+						<td>@attachment.FileName</td>
+						<td class="center">@attachment.FileType</td>
+						<td class="center">@attachment.FileSize.AsReadableSize()</td>
+						<td class="center">@attachment.Status</td>
+						<td class="center">@attachment.Created.Personalize(User.Identity)</td>
+						<td class="link">@Url.Route(AdministrationRoutes.AttachmentUpdate, new { id = attachment.Id }).Link(Resources.Titles.Update)</td>
+						<td class="link last">@Url.Route(AdministrationRoutes.AttachmentDelete, new { id = attachment.Id }).Link(Resources.Titles.Delete)</td>
+					</tr>
+					}
+				} else {
+					<tr>
+						<td colspan="7" class="center">@Resources.Messages.ZeroResult</td>
+					</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, AdministrationRoutes.AttachmentIndex);}
+	</div>
+	@{Html.Widget("attachment.filter");}
+</div>

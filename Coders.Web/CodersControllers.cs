@@ -28,10 +28,22 @@ namespace Coders.Web
 		/// </summary>
 		public override void Load()
 		{
+			Bind<Controllers.Administration.AttachmentController>().ToSelf().InTransientScope();
+			Bind<Controllers.Administration.AttachmentRuleController>().ToSelf().InTransientScope();
+			Bind<Controllers.Administration.CountryController>().ToSelf().InTransientScope();
 			Bind<Controllers.Administration.HomeController>().ToSelf().InTransientScope();
 			Bind<Controllers.Administration.SettingController>().ToSelf().InTransientScope();
+			Bind<Controllers.Administration.TimeZoneController>().ToSelf().InTransientScope();
+			Bind<Controllers.Users.Administration.BanController>().ToSelf().InTransientScope();
+			Bind<Controllers.Users.Administration.HomeController>().ToSelf().InTransientScope();
+			Bind<Controllers.Users.Administration.HostSearchController>().ToSelf().InTransientScope();
+			Bind<Controllers.Users.Administration.RoleController>().ToSelf().InTransientScope();
+			Bind<Controllers.Users.Administration.SearchController>().ToSelf().InTransientScope();
 			Bind<Controllers.Users.AuthController>().ToSelf().InTransientScope();
+			Bind<Controllers.Users.AvatarController>().ToSelf().InTransientScope();
 			Bind<Controllers.Users.HomeController>().ToSelf().InTransientScope();
+			Bind<Controllers.Users.PreferenceController>().ToSelf().InTransientScope();
+			Bind<Controllers.Users.SearchController>().ToSelf().InTransientScope();
 			Bind<Controllers.AttachmentController>().ToSelf().InTransientScope();
 			Bind<Controllers.HomeController>().ToSelf().InTransientScope();
 		}

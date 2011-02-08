@@ -34,6 +34,12 @@ namespace Coders.Models.Attachments
 		AttachmentPending GetPendingById(int id);
 
 		/// <summary>
+		/// Gets the file types.
+		/// </summary>
+		/// <returns></returns>
+		IList<string> GetFileTypes();
+
+		/// <summary>
 		/// Gets the pending attachments using the specified specification.
 		/// </summary>
 		/// <param name="specification">The specification.</param>
@@ -63,6 +69,13 @@ namespace Coders.Models.Attachments
 		/// </summary>
 		/// <param name="pending">The pending.</param>
 		void InsertPending(AttachmentPending pending);
+
+		/// <summary>
+		/// Deletes the specified attachment.
+		/// </summary>
+		/// <param name="attachment">The attachment.</param>
+		/// <param name="soft">if set to <c>true</c> [soft].</param>
+		void Delete(Attachment attachment, bool soft);
 
 		/// <summary>
 		/// Deletes the pending attachment.

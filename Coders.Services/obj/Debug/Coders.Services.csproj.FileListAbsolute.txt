@@ -8,3 +8,13 @@ C:\Users\Mike\Desktop\Netcoders\Coders.Services\bin\Debug\Coders.pdb
 C:\Users\Mike\Desktop\Netcoders\Coders.Services\obj\Debug\ResolveAssemblyReference.cache
 C:\Users\Mike\Desktop\Netcoders\Coders.Services\obj\Debug\Coders.Services.dll
 C:\Users\Mike\Desktop\Netcoders\Coders.Services\obj\Debug\Coders.Services.pdb
+K:\Applications\Netcoders\Coders.Services\bin\Debug\Coders.Services.dll
+K:\Applications\Netcoders\Coders.Services\bin\Debug\Coders.Services.pdb
+K:\Applications\Netcoders\Coders.Services\bin\Debug\Coders.Services.dll.CodeAnalysisLog.xml
+K:\Applications\Netcoders\Coders.Services\bin\Debug\Coders.Services.dll.lastcodeanalysissucceeded
+K:\Applications\Netcoders\Coders.Services\bin\Debug\Coders.dll
+K:\Applications\Netcoders\Coders.Services\bin\Debug\RazorEngine.Core.dll
+K:\Applications\Netcoders\Coders.Services\bin\Debug\Coders.pdb
+K:\Applications\Netcoders\Coders.Services\obj\Debug\ResolveAssemblyReference.cache
+K:\Applications\Netcoders\Coders.Services\obj\Debug\Coders.Services.dll
+K:\Applications\Netcoders\Coders.Services\obj\Debug\Coders.Services.pdb

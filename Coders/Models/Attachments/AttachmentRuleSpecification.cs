@@ -23,7 +23,7 @@ using Coders.Specifications;
 
 namespace Coders.Models.Attachments
 {
-	public class AttachmentRuleSpecification : Specification<AttachmentRule>
+	public class AttachmentRuleSpecification : Specification<AttachmentRule>, IAttachmentRuleSpecification
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="AttachmentRuleSpecification"/> class.

@@ -72,17 +72,17 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Create, value);
-			}
-
 			var ban = this.UserBanService.Create();
 			var privilege = new UserBanPrivilege();
 
 			if (!privilege.CanUpdate(ban))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Create, value);
 			}
 
 			value.ValueToModel(ban);
@@ -115,11 +115,6 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
-			}
-
 			var ban = this.UserBanService.GetById(value.Id);
 
 			if (ban == null)
@@ -132,6 +127,11 @@ namespace Coders.Web.Controllers.Users.Administration
 			if (!privilege.CanUpdate(ban))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Update, value);
 			}
 
 			value.ValueToModel(ban);
@@ -164,11 +164,6 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Delete, value);
-			}
-
 			var ban = this.UserBanService.GetById(value.Id);
 
 			if (ban == null)
@@ -181,6 +176,11 @@ namespace Coders.Web.Controllers.Users.Administration
 			if (!privilege.CanDelete(ban))
 			{
 				return NotAuthorized();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return View(Views.Delete, value);
 			}
 
 			this.UserBanService.Delete(ban);

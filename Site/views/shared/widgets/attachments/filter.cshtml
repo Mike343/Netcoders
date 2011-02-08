@@ -1,0 +1,31 @@
+﻿@model Coders.Web.ViewModels.AttachmentFilterViewModel
+@{
+    Layout = null;
+}
+<div class="filter">
+	<h5>@Resources.Titles.Filter</h5>
+	<h6>@Resources.Titles.ByWith.FormatInvariant(Resources.Titles.Group)</h6>
+	<ul>
+		@foreach (var filter in Model.Types) {
+			<li>@Url.Route(AdministrationRoutes.AttachmentIndex, filter.Parameters).Link(filter.Title, new { @class = filter.IsSelected(Html) ? "selected" : "normal" })</li>
+		}
+	</ul>
+	<h6>@Resources.Titles.ByWith.FormatInvariant(Resources.Titles.Status)</h6>
+	<ul>
+		@foreach (var filter in Model.Statuses) {
+			<li>@Url.Route(AdministrationRoutes.AttachmentIndex, filter.Parameters).Link(filter.Title, new { @class = filter.IsSelected(Html) ? "selected" : "normal" })</li>
+		}
+	</ul>
+	<h6>@Resources.Titles.SortBy</h6>
+	<ul>
+		@foreach (var filter in Model.Sorts) {
+			<li>@Url.Route(AdministrationRoutes.AttachmentIndex, filter.Parameters).Link(filter.Title, new { @class = filter.IsSelected(Html) ? "selected" : "normal" })</li>
+		}
+	</ul>
+	<h6>@Resources.Titles.OrderBy</h6>
+	<ul>
+		@foreach (var filter in Model.Orders) {
+			<li>@Url.Route(AdministrationRoutes.AttachmentIndex, filter.Parameters).Link(filter.Title, new { @class = filter.IsSelected(Html) ? "selected" : "normal" })</li>
+		}
+	</ul>
+</div>

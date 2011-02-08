@@ -1,0 +1,92 @@
+﻿@model Coders.Web.Models.Attachments.AttachmentRuleCreateOrUpdate
+@section scripts
+{
+	<script src="/content/scripts/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(AdministrationRoutes.AttachmentIndex, new { sort = "created", order = "descending", page = 1 }).Link(Resources.Titles.Attachments)</li>
+			<li>@Url.Route(AdministrationRoutes.AttachmentRuleIndex, new { page = 1 }).Link(Resources.Titles.Rules)</li>
+			<li class="last">@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Rule)</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Rule)</h5>
+</div>
+<div class="content">
+	@{Html.Message(Model);}
+	@{Html.ValidationResult();}
+	@{Html.BeginRouteForm(AdministrationRoutes.AttachmentRuleCreate);}
+	<div class="form">
+		<div class="fields">
+			<div class="field field-first">
+				<div class="label">
+					<label for="Group">@Resources.Titles.Group:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.Group, new { @class = "medium" })
+					@Html.ValidationMessageFor(x => x.Group)
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label for="FileType">@Resources.Titles.FileType:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.FileType, new { @class = "medium" })
+					@Html.ValidationMessageFor(x => x.FileType)
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label for="FileExtension">@Resources.Titles.FileExtension:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.FileExtension, new { @class = "medium" })
+					@Html.ValidationMessageFor(x => x.FileExtension)
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label for="FileSize">@Resources.Titles.FileSize:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.FileSize)
+					<span class="explain">@Resources.Titles.Bytes</span>
+					@Html.ValidationMessageFor(x => x.FileSize)
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label for="FileWidth">@Resources.Titles.Width:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.FileWidth)
+					<span class="explain">@Resources.Titles.Pixels</span>
+					@Html.ValidationMessageFor(x => x.FileWidth)
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label for="FileHeight">@Resources.Titles.Height:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.FileHeight)
+					<span class="explain">@Resources.Titles.Pixels</span>
+					@Html.ValidationMessageFor(x => x.FileHeight)
+				</div>
+			</div>
+			<div class="buttons">
+				@Html.AntiForgeryToken()
+				<input type="submit" value="@Resources.Titles.Submit" />
+				<input type="reset" value="@Resources.Titles.Reset" />
+			</div>
+		</div>
+	</div>
+	@{Html.EndForm();}
+</div>

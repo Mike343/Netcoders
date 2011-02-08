@@ -18,7 +18,6 @@
 #region Using Directives
 using System;
 using System.Web.Mvc;
-using Coders.Models.Common;
 using Coders.Models.Users;
 using Coders.Strings;
 using Coders.Web.Models.Users;
@@ -72,7 +71,12 @@ namespace Coders.Web.Controllers.Users
 
 			var url = value.Redirect;
 
-			return string.IsNullOrEmpty(url) ? (ActionResult)RedirectToRoute(CommonRoutes.Index) : Redirect(url);
+			if (base.Url.IsLocalUrl(url))
+			{
+				return base.Redirect(url);
+			}
+
+			return base.RedirectToRoute(CommonRoutes.Index);
 		}
 
 		[HttpGet]
@@ -111,7 +115,7 @@ namespace Coders.Web.Controllers.Users
 
 			this.AuthenticationService.Reset(user);
 
-			return Status(Messages.UserPasswordReset);
+			return Status(Messages.UserAccountPasswordReset);
 		}
 
 		[HttpGet, Authorize]
@@ -153,6 +157,7 @@ namespace Coders.Web.Controllers.Users
 			}
 
 			this.AuthenticationService.Update(user, value.NewPassword);
+			this.AuthenticationService.LogOff();
 
 			return RedirectToRoute(UsersRoutes.AuthLogOn);
 		}

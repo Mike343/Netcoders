@@ -28,6 +28,6 @@ namespace Coders.Models.Users
 		/// Gets the sort.
 		/// </summary>
 		/// <value>The sort.</value>
-		SortUser Sort { get; }
+		SortUser Sort { get; set; }
 	}
 }

@@ -16,7 +16,9 @@
 #endregion
 
 #region Using Directives
+using System.Security.Principal;
 using Coders.Authentication;
+using Coders.Models;
 #endregion
 
 namespace Coders.Extensions
@@ -46,6 +48,25 @@ namespace Coders.Extensions
 		public static bool ContainsRole(this PrivilegePrincipal principal, string role)
 		{
 			return principal != null && principal.Privileges != null && principal.Privileges.ContainsKey(role);
+		}
+
+		/// <summary>
+		/// Determines whether the specified principal is super.
+		/// </summary>
+		/// <param name="principal">The principal.</param>
+		/// <returns>
+		///   <c>true</c> if the specified principal is super; otherwise, <c>false</c>.
+		/// </returns>
+		public static bool IsSuper(this IPrincipal principal)
+		{
+			var prin = principal as PrivilegePrincipal;
+
+			if (prin == null)
+			{
+				return false;
+			}
+
+			return prin.ContainsRole(Roles.Privileges) && prin.Privileges[Roles.Privileges].AllowedTo(Privileges.UpdateAny);
 		}
 	}
 }

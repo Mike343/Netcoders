@@ -26,25 +26,27 @@ namespace Coders.Web.Routes
 	public static class UsersAdministrationRoutes
 	{
 		// constants
-		public const string HomeIndex = "system.user.home.index";
-		public const string HomeCreate = "system.user.home.create";
-		public const string HomeUpdate = "system.user.home.update";
-		public const string HomeDelete = "system.user.home.delete";
-		public const string RoleIndex = "system.user.role.index";
-		public const string RoleCreate = "system.user.role.create";
-		public const string RoleUpdate = "system.user.role.update";
-		public const string RoleDelete = "system.user.role.delete";
-		public const string RolePrivilege = "system.user.role.privilege";
-		public const string BanIndex = "system.user.ban.index";
-		public const string BanCreate = "system.user.ban.create";
-		public const string BanUpdate = "system.user.ban.update";
-		public const string BanDelete = "system.user.ban.delete";
-		public const string SearchIndex = "system.user.search.index";
-		public const string SearchCreate = "system.user.search.create";
-		public const string SearchDelete = "system.user.search.delete";
-		public const string HostSearchIndex = "system.user.host.search.index";
-		public const string HostSearchCreate = "system.user.host.search.create";
-		public const string HostSearchDelete = "system.user.host.search.delete";
+		public const string HomeIndex = "administration.user.home.index";
+		public const string HomeHistory = "administration.user.home.history";
+		public const string HomeCreate = "administration.user.home.create";
+		public const string HomeUpdate = "administration.user.home.update";
+		public const string HomeDelete = "administration.user.home.delete";
+		public const string HomeReset = "administration.user.home.reset";
+		public const string RoleIndex = "administration.user.role.index";
+		public const string RoleCreate = "administration.user.role.create";
+		public const string RoleUpdate = "administration.user.role.update";
+		public const string RoleDelete = "administration.user.role.delete";
+		public const string RolePrivilege = "administration.user.role.privilege";
+		public const string BanIndex = "administration.user.ban.index";
+		public const string BanCreate = "administration.user.ban.create";
+		public const string BanUpdate = "administration.user.ban.update";
+		public const string BanDelete = "administration.user.ban.delete";
+		public const string SearchIndex = "administration.user.search.index";
+		public const string SearchCreate = "administration.user.search.create";
+		public const string SearchDelete = "administration.user.search.delete";
+		public const string HostSearchIndex = "administration.user.host.search.index";
+		public const string HostSearchCreate = "administration.user.host.search.create";
+		public const string HostSearchDelete = "administration.user.host.search.delete";
 
 		public static void RegisterRoutes(RouteCollection routes)
 		{
@@ -85,9 +87,11 @@ namespace Coders.Web.Routes
 
 			#region User
 			routes.CreateArea("administration/users", "Coders.Web.Controllers.Users.Administration",
-				routes.MapRoute(HomeIndex, "administration/users/all/{page}", new { controller = "home", action = "index", page = "1" }),
+				routes.MapRoute(HomeIndex, "administration/users/all/{sort}/{order}/{page}", new { controller = "home", action = "index", sort = "name", order = "descending", page = "1" }),
+				routes.MapRoute(HomeHistory, "administration/users/history/{sort}/{order}/{page}/{id}", new { controller = "home", action = "history", sort = "created", order = "descending", page = "1", id = "" }),
 				routes.MapRoute(HomeUpdate, "administration/users/update/{id}", new { controller = "home", action = "update", id = "" }),
 				routes.MapRoute(HomeDelete, "administration/users/delete/{id}", new { controller = "home", action = "delete", id = "" }),
+				routes.MapRoute(HomeReset, "administration/users/reset/{id}", new { controller = "home", action = "reset", id = "" }),
 				routes.MapRoute(HomeCreate, "administration/users/create", new { controller = "home", action = "create" })
 			);
 			#endregion

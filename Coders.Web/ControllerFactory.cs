@@ -17,6 +17,7 @@
 
 #region Using Directives
 using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 #endregion
@@ -41,6 +42,11 @@ namespace Coders.Web
 			}
 
 			var type = GetControllerType(requestContext, controllerName);
+
+			if (type == null)
+			{
+				throw new HttpException(404, string.Empty);
+			}
 
 			return ServiceLocator.Current.GetInstance(type) as IController;
 		}

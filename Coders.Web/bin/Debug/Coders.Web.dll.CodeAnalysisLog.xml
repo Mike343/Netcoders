@@ -4,105 +4,91 @@
  <Namespaces>
   <Namespace Name="Coders.Web.ActionFilters">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.ActionFilters' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Web.ActionResults">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.ActionResults' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Web.ActionResults.Enums">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.ActionResults.Enums' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Web.Authentication">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Authentication' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Web.Controllers.Administration.Queries">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Controllers.Administration.Queries' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
-  <Namespace Name="Coders.Web.Filters">
+  <Namespace Name="Coders.Web.Controllers.Users.Administration.Queries">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
-     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Filters' with another namespace.</Issue>
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
+     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Controllers.Users.Administration.Queries' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Web.Helpers">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Helpers' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Web.Models">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Models' with another namespace.</Issue>
-    </Message>
-   </Messages>
-  </Namespace>
-  <Namespace Name="Coders.Web.Models.Attachments">
-   <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
-     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Models.Attachments' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Web.Models.Countries">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Models.Countries' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Web.Models.Settings">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Models.Settings' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Web.Models.TimeZones">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Models.TimeZones' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
   <Namespace Name="Coders.Web.Routes">
    <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
+    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
      <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.Routes' with another namespace.</Issue>
-    </Message>
-   </Messages>
-  </Namespace>
-  <Namespace Name="Coders.Web.ViewModels">
-   <Messages>
-    <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
-     <Issue Certainty="50" Level="Warning">Consider merging the types defined in 'Coders.Web.ViewModels' with another namespace.</Issue>
     </Message>
    </Messages>
   </Namespace>
  </Namespaces>
  <Targets>
-  <Target Name="C:\Users\Mike\Desktop\Netcoders\Coders.Web\bin\Debug\Coders.Web.dll">
+  <Target Name="K:\Applications\Netcoders\Coders.Web\bin\Debug\Coders.Web.dll">
    <Modules>
     <Module Name="coders.web.dll">
      <Namespaces>
@@ -112,19 +98,39 @@
          <Members>
           <Member Name="#FlagImage(Coders.Models.Countries.Country)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message Id="Flag" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="Breaking">
-             <Issue Name="MemberNoAlternate" Certainty="95" Level="Error" Path="C:\Users\Mike\Desktop\Netcoders\Coders.Web\Extensions" File="CountryExtension.cs" Line="37">Replace the term 'Flag' in member name 'CountryExtension.FlagImage(this Country)' with an appropriate alternate or remove it entirely.</Issue>
+            <Message Id="Flag" TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="Breaking">
+             <Issue Name="MemberNoAlternate" Certainty="95" Level="Error" Path="K:\Applications\Netcoders\Coders.Web\Extensions" File="CountryExtension.cs" Line="37">Replace the term 'Flag' in member name 'CountryExtension.FlagImage(this Country)' with an appropriate alternate or remove it entirely.</Issue>
             </Message>
            </Messages>
           </Member>
          </Members>
         </Type>
-        <Type Name="LogExtension" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+       </Types>
+      </Namespace>
+      <Namespace Name="Coders.Web.ViewModels">
+       <Types>
+        <Type Name="FilterViewModel" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
-          <Member Name="#Deserialize`1(Coders.Models.Logs.Log)" Kind="Method" Static="True" Accessibility="Public" ExternallyVisible="True">
+          <Member Name="#.ctor(System.Collections.Generic.IEnumerable`1&lt;Coders.Web.Models.Filter&gt;)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000" Status="Active" Created="2011-02-01 04:56:55Z" FixCategory="DependsOnFix">
-             <Issue Name="ExceptionEdge" Certainty="75" Level="Warning" Path="C:\Users\Mike\Desktop\Netcoders\Coders.Web\Extensions" File="LogExtension.cs" Line="45">In method 'LogExtension.Deserialize&lt;T&gt;(this Log)', object 'reader' is not disposed along all exception paths. Call System.IDisposable.Dispose on object 'reader' before all references to it are out of scope.</Issue>
+            <Message TypeName="NormalizeStringsToUppercase" Category="Microsoft.Globalization" CheckId="CA1308" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="NonBreaking">
+             <Issue Name="ToUpperInvariant" Certainty="90" Level="Error" Path="K:\Applications\Netcoders\Coders.Web\ViewModels" File="FilterViewModel.cs" Line="47">In method 'FilterViewModel.FilterViewModel(IEnumerable&lt;Filter&gt;)', replace the call to 'string.ToLowerInvariant()' with String.ToUpperInvariant().</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+       </Types>
+      </Namespace>
+      <Namespace Name="Coders.Web.Widgets">
+       <Types>
+        <Type Name="UserFilter" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#Render()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
+           <Messages>
+            <Message TypeName="NormalizeStringsToUppercase" Category="Microsoft.Globalization" CheckId="CA1308" Status="Active" Created="2011-02-07 05:18:56Z" FixCategory="NonBreaking">
+             <Issue Name="ToUpperInvariant" Certainty="90" Level="Error" Path="K:\Applications\Netcoders\Coders.Web\Widgets" File="UserFilter.cs" Line="39">In method 'UserFilter.Render()', replace the call to 'string.ToLowerInvariant()' with String.ToUpperInvariant().</Issue>
+             <Issue Name="ToUpperInvariant" Certainty="90" Level="Error" Path="K:\Applications\Netcoders\Coders.Web\Widgets" File="UserFilter.cs" Line="43">In method 'UserFilter.Render()', replace the call to 'string.ToLowerInvariant()' with String.ToUpperInvariant().</Issue>
             </Message>
            </Messages>
           </Member>
@@ -148,15 +154,15 @@
    <MessageLevel Certainty="50">Warning</MessageLevel>
    <File Name="designrules.dll" Version="10.0.0.0" />
   </Rule>
-  <Rule TypeName="Dispose objects before losing scope" Category="Microsoft.Reliability" CheckId="CA2000">
-   <Name>Dispose objects before losing scope</Name>
-   <Description>If a disposable object is not explicitly disposed before all references to it are out of scope, the object will be disposed at some indeterminate time when the garbage collector runs the finalizer of the object. Because an exceptional event might occur that will prevent the finalizer of the object from running, the object should be explicitly disposed instead.</Description>
-   <Resolution Name="ExceptionEdge">In method {0}, object {1} is not disposed along all exception paths. Call System.IDisposable.Dispose on object {1} before all references to it are out of scope.</Resolution>
-   <Owner>RuleOwner</Owner>
-   <Url>http://msdn.microsoft.com/library/ms182289(VS.100).aspx</Url>
-   <Email />
-   <MessageLevel Certainty="75">Warning</MessageLevel>
-   <File Name="dataflowrules.dll" Version="10.0.0.0" />
+  <Rule TypeName="NormalizeStringsToUppercase" Category="Microsoft.Globalization" CheckId="CA1308">
+   <Name>Normalize strings to uppercase</Name>
+   <Description>Strings should be normalized to upper-case.</Description>
+   <Resolution Name="ToUpperInvariant">In method {0}, replace the call to {1} with String.ToUpperInvariant().</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/bb386042(VS.100).aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="90">Error</MessageLevel>
+   <File Name="globalizationrules.dll" Version="10.0.0.0" />
   </Rule>
   <Rule TypeName="UsePreferredTerms" Category="Microsoft.Naming" CheckId="CA1726">
    <Name>Use preferred terms</Name>

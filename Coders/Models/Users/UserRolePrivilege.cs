@@ -27,7 +27,7 @@ namespace Coders.Models.Users
 		/// Initializes a new instance of the <see cref="UserRolePrivilege"/> class.
 		/// </summary>
 		public UserRolePrivilege()
-			: base(Roles.UsersRoles)
+			: base(Roles.Privileges)
 		{
 
 		}

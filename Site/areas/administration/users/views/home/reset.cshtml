@@ -1,0 +1,48 @@
+﻿@model Coders.Web.Models.Users.UserAuthenticationReset
+@section scripts
+{
+	<script src="/content/scripts/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(UsersAdministrationRoutes.HomeIndex, new { sort = "name", order = "ascending", page = 1 }).Link(Resources.Titles.Users)</li>
+			<li>@Url.Route(UsersAdministrationRoutes.HomeUpdate, new { id = Model.User.Id }).Link(Model.User.Name)</li>
+			<li class="last">@Resources.Titles.ResetPassword</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.ResetPasswordFor.FormatInvariant(Model.User.Name)</h5>
+</div>
+<div class="content">
+	<div class="messages" id="message">
+		<div class="message message-warning">
+			<div class="image">
+				<img src="/content/images/icons/warning.png" alt="@Resources.Titles.Warning" height="32" />
+			</div>
+			<div class="text">
+				<h6>@Resources.Titles.Warning</h6>
+				<ul>
+					<li>@Resources.Messages.UserResetPassword.FormatInvariant(Model.User.Name)</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	@{Html.ValidationResult();}
+	@{Html.BeginRouteForm(UsersAdministrationRoutes.HomeReset);}
+	<div class="form">
+		<div class="fields">
+			<div class="buttons">
+				@Html.HiddenFor(x => x.Id)
+				@Html.AntiForgeryToken()
+				<input type="submit" value="@Resources.Titles.Confirm" />
+				@Url.Route(UsersAdministrationRoutes.HomeUpdate, new { id = Model.User.Id }).Link(Resources.Titles.Cancel)
+			</div>
+		</div>
+	</div>
+	@{Html.EndForm();}
+</div>

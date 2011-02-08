@@ -48,7 +48,7 @@ namespace Coders.Repositories.Mappings
 				.Not.Nullable();
 
 			base.Map(x => x.Group)
-				.Column("Group")
+				.Column("[Group]")
 				.Not.Nullable();
 
 			base.Map(x => x.FileType)

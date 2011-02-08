@@ -1,0 +1,19 @@
+﻿@model Coders.Web.ViewModels.FilterViewModel
+@{
+    Layout = null;
+}
+<div class="filter">
+	<h5>@Resources.Titles.Filter</h5>
+	<h6>@Resources.Titles.SortBy</h6>
+	<ul>
+		@foreach (var filter in Model.Sorts) {
+			<li>@Url.Route(AdministrationRoutes.CountryIndex, filter.Parameters).Link(filter.Title, new { @class = filter.IsSelected(Html) ? "selected" : "normal" })</li>
+		}
+	</ul>
+	<h6>@Resources.Titles.OrderBy</h6>
+	<ul>
+		@foreach (var filter in Model.Orders) {
+			<li>@Url.Route(AdministrationRoutes.CountryIndex, filter.Parameters).Link(filter.Title, new { @class = filter.IsSelected(Html) ? "selected" : "normal" })</li>
+		}
+	</ul>
+</div>

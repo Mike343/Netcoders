@@ -19,7 +19,6 @@
 using Coders.Models.Attachments;
 using Coders.Models.Common;
 using Coders.Models.Countries;
-using Coders.Models.Logs;
 using Coders.Models.Settings;
 using Coders.Models.TimeZones;
 using Coders.Models.Users;
@@ -36,6 +35,7 @@ namespace Coders.DependencyResolution
 		/// </summary>
 		public override void Load()
 		{
+			Bind(typeof(IAuditService<,>)).To(typeof(AuditService<,>));
 			Bind<IAttachmentRuleService>().To<AttachmentRuleService>();
 			Bind<IAttachmentService>().To<AttachmentService>();
 			Bind<ICountryService>().To<CountryService>();
@@ -43,7 +43,6 @@ namespace Coders.DependencyResolution
 			Bind<IFileService>().To<FileService>();
 			Bind<IAuthenticationService>().To<FormsAuthenticationService>();
 			Bind<IImageService>().To<ImageService>();
-			Bind<ILogService>().To<LogService>();
 			Bind<ISettingService>().To<SettingService>();
 			Bind<ITextFormattingService>().To<TextFormattingService>();
 			Bind<ITimeZoneService>().To<TimeZoneService>();

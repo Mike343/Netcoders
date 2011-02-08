@@ -207,6 +207,26 @@ namespace Coders.Web.Models.Users
 		}
 
 		/// <summary>
+		/// Gets or sets the password.
+		/// </summary>
+		/// <value>The password.</value>
+		public string Password
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the verify password.
+		/// </summary>
+		/// <value>The verify password.</value>
+		public string VerifyPassword
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the signature.
 		/// </summary>
 		/// <value>The signature.</value>
@@ -417,6 +437,15 @@ namespace Coders.Web.Models.Users
 			RuleFor(x => x.EmailAddress)
 				.Email()
 				.WithMessage(Errors.EmailNotValid.FormatInvariant(Titles.EmailAddress));
+
+			RuleFor(x => x.Password)
+				.Length(6, int.MaxValue)
+				.WithMessage(Errors.LengthMin.FormatInvariant(Titles.Password, 6))
+				.When(x => !string.IsNullOrEmpty(x.Password));
+
+			RuleFor(x => x.VerifyPassword)
+				.Equal(x => x.Password)
+				.WithMessage(Errors.Equal.FormatInvariant(Titles.Password, Titles.VerifyWith.FormatInvariant(Titles.Password)));
 
 			RuleFor(x => x.VerifyEmailAddress)
 				.Equal(x => x.EmailAddress)

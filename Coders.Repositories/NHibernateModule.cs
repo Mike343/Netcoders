@@ -112,7 +112,12 @@ namespace Coders.Repositories
 				session.Dispose();
 			}
 
-			HttpContext.Current.Items[SessionKey] = null;
+			var context = HttpContext.Current;
+
+			if (context != null)
+			{
+				HttpContext.Current.Items[SessionKey] = null;
+			}
 		}
     }
 }

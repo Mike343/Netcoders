@@ -106,6 +106,24 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created.
+        /// </summary>
+        public static string Created {
+            get {
+                return ResourceManager.GetString("Created", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deleted.
+        /// </summary>
+        public static string Deleted {
+            get {
+                return ResourceManager.GetString("Deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descending.
         /// </summary>
         public static string Descending {
@@ -169,6 +187,33 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File Name.
+        /// </summary>
+        public static string FileName {
+            get {
+                return ResourceManager.GetString("FileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Size.
+        /// </summary>
+        public static string FileSize {
+            get {
+                return ResourceManager.GetString("FileSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File Type.
+        /// </summary>
+        public static string FileType {
+            get {
+                return ResourceManager.GetString("FileType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string Filter {
@@ -214,6 +259,15 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Offset.
+        /// </summary>
+        public static string Offset {
+            get {
+                return ResourceManager.GetString("Offset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order By.
         /// </summary>
         public static string OrderBy {
@@ -228,6 +282,24 @@ namespace Coders.Strings {
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pending.
+        /// </summary>
+        public static string Pending {
+            get {
+                return ResourceManager.GetString("Pending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Published.
+        /// </summary>
+        public static string Published {
+            get {
+                return ResourceManager.GetString("Published", resourceCulture);
             }
         }
         
@@ -250,6 +322,15 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string Status {
+            get {
+                return ResourceManager.GetString("Status", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Success.
         /// </summary>
         public static string Success {
@@ -264,6 +345,15 @@ namespace Coders.Strings {
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Updated.
+        /// </summary>
+        public static string Updated {
+            get {
+                return ResourceManager.GetString("Updated", resourceCulture);
             }
         }
         

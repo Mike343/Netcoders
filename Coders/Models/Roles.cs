@@ -19,6 +19,7 @@ namespace Coders.Models
 {
 	public static class Roles
 	{
+		public const string Audits = "Audits";
 		public const string Administrator = "Administrator";
 		public const string Attachments = "Attachments";
 		public const string AttachmentsRules = "AttachmentsRules";
@@ -27,10 +28,10 @@ namespace Coders.Models
 		public const string Logs = "Logs";
 		public const string Settings = "Settings";
 		public const string TimeZones = "TimeZones";
+		public const string Privileges = "Privileges";
 		public const string Users = "Users";
 		public const string UsersAvatars = "UsersAvatars";
 		public const string UsersBans = "UsersBans";
-		public const string UsersRoles = "UsersRoles";
 		public const string UsersSearches = "UsersSearches";
 		public const string UsersHostsSearches = "UsersHostsSearches";
 	}

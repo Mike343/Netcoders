@@ -36,7 +36,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Coders.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>Coders.Web.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="FluentValidation">
@@ -45,8 +45,9 @@
     <Reference Include="FluentValidation.Mvc">
       <HintPath>..\Dependencies\FluentValidation.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0">
-      <HintPath>..\..\NHibernate.Profiler-Build-766\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+    <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0774796e73ebf640, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\NHibernate.Profiler-Build-787\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
     </Reference>
     <Reference Include="Ninject, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -83,12 +84,15 @@
     <Compile Include="Authentication\WebUserIdentity.cs" />
     <Compile Include="ControllerFactory.cs" />
     <Compile Include="ApplicationHttpModule.cs" />
+    <Compile Include="Controllers\Administration\AttachmentController.cs" />
     <Compile Include="Controllers\Administration\AttachmentRuleController.cs" />
     <Compile Include="Controllers\Administration\CountryController.cs" />
     <Compile Include="Controllers\Administration\HomeController.cs" />
+    <Compile Include="Controllers\Administration\Queries\AttachmentQuery.cs" />
+    <Compile Include="Controllers\Administration\Queries\AttachmentRuleQuery.cs" />
+    <Compile Include="Controllers\Administration\Queries\AuditQuery.cs" />
     <Compile Include="Controllers\Administration\Queries\SettingIndexQuery.cs" />
     <Compile Include="Controllers\Administration\SettingController.cs" />
-    <Compile Include="Controllers\Administration\Queries\HistoryQuery.cs" />
     <Compile Include="Controllers\Administration\TimeZoneController.cs" />
     <Compile Include="Controllers\AttachmentController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -98,6 +102,7 @@
     <Compile Include="Controllers\Users\Administration\BanController.cs" />
     <Compile Include="Controllers\Users\Administration\HomeController.cs" />
     <Compile Include="Controllers\Users\Administration\HostSearchController.cs" />
+    <Compile Include="Controllers\Users\Administration\Queries\HomeQuery.cs" />
     <Compile Include="Controllers\Users\Administration\RoleController.cs" />
     <Compile Include="Controllers\Users\Administration\SearchController.cs" />
     <Compile Include="Controllers\Users\AuthController.cs" />
@@ -109,19 +114,17 @@
     <Compile Include="Extensions\HtmlExtension.cs" />
     <Compile Include="Extensions\SelectExtension.cs" />
     <Compile Include="Extensions\FilterExtension.cs" />
-    <Compile Include="Extensions\LogExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\UserExtension.cs" />
     <Compile Include="Extensions\ValidatorExtension.cs" />
     <Compile Include="Extensions\WidgetExtension.cs" />
-    <Compile Include="Filters\CountryFilter.cs" />
-    <Compile Include="Filters\FilterBase.cs" />
-    <Compile Include="Filters\SettingFilter.cs" />
     <Compile Include="Helpers\MessageHelper.cs" />
     <Compile Include="Helpers\PagerHelper.cs" />
     <Compile Include="Helpers\RouteHelper.cs" />
+    <Compile Include="Models\Attachments\AttachmentDelete.cs" />
     <Compile Include="Models\Attachments\AttachmentRuleCreateOrUpdate.cs" />
     <Compile Include="Models\Attachments\AttachmentRuleDelete.cs" />
+    <Compile Include="Models\Attachments\AttachmentUpdate.cs" />
     <Compile Include="Models\Countries\CountryCreateOrUpdate.cs" />
     <Compile Include="Models\Countries\CountryDelete.cs" />
     <Compile Include="Models\Filter.cs" />
@@ -172,11 +175,21 @@
     <Compile Include="Validators\UserNameNotProtectedValidator.cs" />
     <Compile Include="Validators\UserUniqueEmailAddressValidator.cs" />
     <Compile Include="Validators\UserUniqueNameValidator.cs" />
+    <Compile Include="ViewModels\AttachmentFilterViewModel.cs" />
+    <Compile Include="ViewModels\UserFilterViewModel.cs" />
+    <Compile Include="ViewModels\FilterViewModel.cs" />
     <Compile Include="ViewModels\ErrorViewModel.cs" />
     <Compile Include="ViewModels\MessageViewModel.cs" />
+    <Compile Include="ViewModels\SettingFilterViewModel.cs" />
     <Compile Include="ViewModels\StatusViewModel.cs" />
     <Compile Include="ViewModels\UserPermissionViewModel.cs" />
+    <Compile Include="Widgets\AttachmentFilter.cs" />
+    <Compile Include="Widgets\AttachmentRuleFilter.cs" />
+    <Compile Include="Widgets\UserFilter.cs" />
+    <Compile Include="Widgets\CountryFilter.cs" />
     <Compile Include="Widgets\IWidget.cs" />
+    <Compile Include="Widgets\SettingFilter.cs" />
+    <Compile Include="Widgets\TimeZoneFilter.cs" />
     <Compile Include="Widgets\UserLoginView.cs" />
     <Compile Include="Widgets\WidgetAttribute.cs" />
     <Compile Include="Widgets\WidgetBase.cs" />
@@ -193,7 +206,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Coders.pfx" />
+    <None Include="Coders.Web.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

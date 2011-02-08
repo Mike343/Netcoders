@@ -19,10 +19,37 @@
 				</div>
 				<div id="menu">
 					<ul>
-						<li class="last">
-							<a href="@Url.Route(AdministrationRoutes.SettingIndex, new { page = 1 }).Value" title="@Resources.Titles.Settings"><span>@Resources.Titles.Settings</span></a>
+						<li>
+							<a href="@Url.Route(UsersAdministrationRoutes.HomeIndex, new { sort = "name", order = "ascending", page = 1 }).Value" title="@Resources.Titles.Users"><span>@Resources.Titles.Users</span></a>
 							<ul>
-								<li class="first">@Url.Route(AdministrationRoutes.SettingIndex, new { page = 1 }).Link(Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Settings))</li>
+								<li class="first">@Url.Route(UsersAdministrationRoutes.HomeIndex, new { sort = "name", order = "ascending", page = 1 }).Link(Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Users))</li>
+								<li>@Url.Route(UsersAdministrationRoutes.HomeCreate).Link(Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.User))</li>
+								<li class="last">
+									@Url.Route(UsersAdministrationRoutes.RoleIndex).Link(Resources.Titles.Roles, new { @class = "childs" })
+									<ul>
+										<li>@Url.Route(UsersAdministrationRoutes.RoleIndex).Link(Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Roles))</li>
+										<li class="last">@Url.Route(UsersAdministrationRoutes.RoleCreate).Link(Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Role))</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<a href="@Url.Route(AdministrationRoutes.AttachmentIndex, new { sort = "created", order = "descending", page = 1 }).Value" title="@Resources.Titles.Attachments"><span>@Resources.Titles.Attachments</span></a>
+							<ul>
+								<li class="first">@Url.Route(AdministrationRoutes.AttachmentIndex, new { sort = "created", order = "descending", page = 1 }).Link(Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Attachments))</li>
+								<li class="last">
+									@Url.Route(AdministrationRoutes.AttachmentRuleIndex, new { page = "1" }).Link(Resources.Titles.Rules, new { @class = "childs" })
+									<ul>
+										<li>@Url.Route(AdministrationRoutes.AttachmentRuleIndex, new { page = "1" }).Link(Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Rules))</li>
+										<li class="last">@Url.Route(AdministrationRoutes.AttachmentRuleCreate).Link(Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Rule))</li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li class="last">
+							<a href="@Url.Route(AdministrationRoutes.SettingIndex, new { sort = "group", order = "ascending", page = 1 }).Value" title="@Resources.Titles.Settings"><span>@Resources.Titles.Settings</span></a>
+							<ul>
+								<li class="first">@Url.Route(AdministrationRoutes.SettingIndex, new { sort = "group", order = "ascending", page = 1 }).Link(Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Settings))</li>
 								<li>@Url.Route(AdministrationRoutes.SettingCreate).Link(Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Setting))</li>
 								<li>
 									@Url.Route(AdministrationRoutes.CountryIndex, new { sort = "title", order = "ascending", page = "1" }).Link(Resources.Titles.Countries, new { @class = "childs" })
@@ -32,9 +59,9 @@
 									</ul>
 								</li>
 								<li class="last">
-									@Url.Route(AdministrationRoutes.TimeZoneIndex, new { page = "1" }).Link(Resources.Titles.TimeZones, new { @class = "childs" })
+									@Url.Route(AdministrationRoutes.TimeZoneIndex, new { sort = "offset", order = "ascending", page = "1" }).Link(Resources.Titles.TimeZones, new { @class = "childs" })
 									<ul>
-										<li>@Url.Route(AdministrationRoutes.TimeZoneIndex, new { page = 1 }).Link(Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.TimeZones))</li>
+										<li>@Url.Route(AdministrationRoutes.TimeZoneIndex, new { sort = "offset", order = "ascending", page = 1 }).Link(Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.TimeZones))</li>
 										<li class="last">@Url.Route(AdministrationRoutes.TimeZoneCreate).Link(Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.TimeZone))</li>
 									</ul>
 								</li>

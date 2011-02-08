@@ -46,18 +46,6 @@ namespace Coders.Tests.Collections
 		}
 
 		[TestMethod]
-		public void Test_PagedCollection_FirstIndex()
-		{
-			Assert.AreEqual(0, _collection.FirstIndex);
-		}
-
-		[TestMethod]
-		public void Test_PagedCollection_LastIndex()
-		{
-			Assert.AreEqual(0, _collection.LastIndex);
-		}
-
-		[TestMethod]
 		public void Test_PagedCollection_StartIndex()
 		{
 			Assert.AreEqual(1, _collection.StartIndex);

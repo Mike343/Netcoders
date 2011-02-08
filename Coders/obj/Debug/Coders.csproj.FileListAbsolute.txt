@@ -12,3 +12,16 @@ C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\GenerateResource.read.1.tlog
 C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\GenerateResource.write.1.tlog
 C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\Coders.dll
 C:\Users\Mike\Desktop\Netcoders\Coders\obj\Debug\Coders.pdb
+K:\Applications\Netcoders\Coders\bin\Debug\Coders.dll
+K:\Applications\Netcoders\Coders\bin\Debug\Coders.pdb
+K:\Applications\Netcoders\Coders\bin\Debug\Coders.dll.CodeAnalysisLog.xml
+K:\Applications\Netcoders\Coders\bin\Debug\Coders.dll.lastcodeanalysissucceeded
+K:\Applications\Netcoders\Coders\obj\Debug\ResolveAssemblyReference.cache
+K:\Applications\Netcoders\Coders\obj\Debug\Coders.Strings.Emails.resources
+K:\Applications\Netcoders\Coders\obj\Debug\Coders.Strings.Errors.resources
+K:\Applications\Netcoders\Coders\obj\Debug\Coders.Strings.Messages.resources
+K:\Applications\Netcoders\Coders\obj\Debug\Coders.Strings.Titles.resources
+K:\Applications\Netcoders\Coders\obj\Debug\GenerateResource.read.1.tlog
+K:\Applications\Netcoders\Coders\obj\Debug\GenerateResource.write.1.tlog
+K:\Applications\Netcoders\Coders\obj\Debug\Coders.dll
+K:\Applications\Netcoders\Coders\obj\Debug\Coders.pdb

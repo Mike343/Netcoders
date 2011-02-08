@@ -1,0 +1,98 @@
+﻿@model Coders.Web.Models.Attachments.AttachmentUpdate
+@section scripts
+{
+	<script src="/content/scripts/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(AdministrationRoutes.AttachmentIndex, new { sort = "created", order = "descending", page = 1 }).Link(Resources.Titles.Attachments)</li>
+			<li class="last">@Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.Attachment)</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.Attachment)</h5>
+	<ul>
+		<li class="last"><a href="@Url.Route(AdministrationRoutes.AttachmentHistory).Value"><span>@Resources.Titles.History</span></a></li>
+	</ul>
+</div>
+<div class="content">
+	@{Html.Message(Model);}
+	@{Html.ValidationResult();}
+	@{Html.BeginRouteForm(AdministrationRoutes.AttachmentUpdate);}
+	<div class="form">
+		<div class="fields">
+			<div class="field field-first">
+				<div class="label">
+					<label for="Title">@Resources.Titles.FileName:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.FileName, new { @class = "medium" })
+					@Html.ValidationMessageFor(x => x.FileName)
+				</div>
+			</div>
+			<div class="table">
+				<table>
+					<thead>
+						<tr>
+							<th colspan="2" class="left">@Resources.Titles.FileInformation</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="title">@Resources.Titles.FileDiskName:</td>
+							<td class="left">@Model.Attachment.FileDiskName</td>
+						</tr>
+						<tr>
+							<td class="title">@Resources.Titles.FilePath:</td>
+							<td class="left">@Model.Attachment.FilePath</td>
+						</tr>
+						<tr>
+							<td class="title">@Resources.Titles.FullPath:</td>
+							<td class="left">@Model.Attachment.FullPath</td>
+						</tr>
+						<tr>
+							<td class="title">@Resources.Titles.FileDiskPath:</td>
+							<td class="left">@Model.Attachment.FileDiskPath</td>
+						</tr>
+						<tr>
+							<td class="title">@Resources.Titles.FileType:</td>
+							<td class="left">@Model.Attachment.FileType</td>
+						</tr>
+						<tr>
+							<td class="title">@Resources.Titles.FileSize:</td>
+							<td class="left">@Model.Attachment.FileSize.AsReadableSize()</td>
+						</tr>
+						<tr>
+							<td class="title">@Resources.Titles.Width:</td>
+							<td class="left">@Model.Attachment.FileWidth @Resources.Titles.Pixels</td>
+						</tr>
+						<tr>
+							<td class="title">@Resources.Titles.Height:</td>
+							<td class="left">@Model.Attachment.FileHeight @Resources.Titles.Pixels</td>
+						</tr>
+						<tr>
+							<td class="title">@Resources.Titles.Created:</td>
+							<td class="left">@Model.Attachment.Created.Personalize(User.Identity)</td>
+						</tr>
+						<tr>
+							<td class="title">@Resources.Titles.Updated:</td>
+							<td class="left">@Model.Attachment.Updated.Personalize(User.Identity)</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="buttons">
+				@Html.HiddenFor(x => x.Id)
+				@Html.AntiForgeryToken()
+				<input type="submit" value="@Resources.Titles.Submit" />
+				<input type="reset" value="@Resources.Titles.Reset" />
+			</div>
+		</div>
+	</div>
+	@{Html.EndForm();}
+</div>

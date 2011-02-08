@@ -17,7 +17,6 @@
 
 #region Using Directives
 using System;
-using Coders.Extensions;
 using Coders.Models.Attachments;
 #endregion
 
@@ -45,7 +44,8 @@ namespace Coders.Web.Models.Attachments
 			}
 
 			this.Id = rule.Id;
-			this.Title = "{0} [{1}]".FormatInvariant(rule.Group, rule.FileType);
+			this.Group = rule.Group;
+			this.FileType = rule.FileType;
 		}
 
 		/// <summary>
@@ -59,10 +59,24 @@ namespace Coders.Web.Models.Attachments
 		}
 
 		/// <summary>
-		/// Gets or sets the title.
+		/// Gets or sets the group.
 		/// </summary>
-		/// <value>The title.</value>
-		public string Title
+		/// <value>
+		/// The group.
+		/// </value>
+		public string Group
+		{
+			get;
+			set;
+		}
+
+		/// <summary>
+		/// Gets or sets the type of the file.
+		/// </summary>
+		/// <value>
+		/// The type of the file.
+		/// </value>
+		public string FileType
 		{
 			get;
 			set;

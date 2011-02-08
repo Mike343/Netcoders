@@ -117,8 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AttachmentRuleCreated" xml:space="preserve">
+    <value>The attachment rule '{0}' for group '{1}' has been successfully created.</value>
+  </data>
+  <data name="AttachmentRuleUpdated" xml:space="preserve">
+    <value>The attachment rule '{0}' for group '{1}' has been successfully updated.</value>
+  </data>
+  <data name="AttachmentUpdated" xml:space="preserve">
+    <value>The attachment has been successfully updated.</value>
+  </data>
   <data name="CountryCreated" xml:space="preserve">
-    <value>The country {0}' has been successfully created.</value>
+    <value>The country '{0}' has been successfully created.</value>
   </data>
   <data name="CountryUpdated" xml:space="preserve">
     <value>The country '{0}' has been successfully updated.</value>
@@ -133,7 +142,7 @@
     <value>The setting '{0}' has been successfully updated.</value>
   </data>
   <data name="ShowingResults" xml:space="preserve">
-    <value>Showing results {0} of {1}-{2}</value>
+    <value>Showing results {0} to {1} of {2}</value>
   </data>
   <data name="TimeZoneCreated" xml:space="preserve">
     <value>The time zone {0}' has been successfully created.</value>
@@ -144,10 +153,19 @@
   <data name="UserAccountCreated" xml:space="preserve">
     <value>Your account has been successfully created.</value>
   </data>
+  <data name="UserAccountPasswordReset" xml:space="preserve">
+    <value>Your password has been successfully reset. We have sent you an email which contains your new password.</value>
+  </data>
   <data name="UserAccountUpdated" xml:space="preserve">
     <value>Your account was successfully updated</value>
   </data>
+  <data name="UserCreated" xml:space="preserve">
+    <value>The user '{0}' has been successfully created.</value>
+  </data>
   <data name="UserPasswordReset" xml:space="preserve">
-    <value>Your password has been successfully reset. We have sent you an email which contains your new password.</value>
+    <value>The password has been successfully reset for the user '{0}'. We have sent the user an email which contains thier new password.</value>
+  </data>
+  <data name="UserUpdated" xml:space="preserve">
+    <value>The user '{0}' has been successfully updated.</value>
   </data>
 </root>

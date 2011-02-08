@@ -17,7 +17,8 @@
 
 #region Using Directives
 using Coders.Models;
-using Coders.Models.Logs;
+using Coders.Models.Attachments;
+using Coders.Models.Common;
 using Coders.Models.Settings;
 using Coders.Repositories;
 using Coders.Repositories.Strategies;
@@ -34,10 +35,12 @@ namespace Coders.DependencyResolution
 		public override void Load()
 		{
 			Bind(typeof(IRepository<>)).To(typeof(NHibernateRepository<>));
+			Bind<IAttachmentRepository>().To<AttachmentRepository>();
+			Bind<IAttachmentRuleRepository>().To<AttachmentRuleRepository>();
 			Bind<ISettingRepository>().To<SettingRepository>();
 
 			// fetching strategies
-			Bind<IFetchingStrategy<Log>>().To<LogStrategy>();
+			Bind<IFetchingStrategy<Audit>>().To<AuditStrategy>();
 		}
 	}
 }

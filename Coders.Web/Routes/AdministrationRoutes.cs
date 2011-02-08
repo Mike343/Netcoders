@@ -28,6 +28,7 @@ namespace Coders.Web.Routes
 		// constants
 		public const string HomeIndex = "administration.home.index";
 		public const string TimeZoneIndex = "administration.timezone.index";
+		public const string TimeZoneHistory = "administration.timezone.history";
 		public const string TimeZoneCreate = "administration.timezone.create";
 		public const string TimeZoneUpdate = "administration.timezone.update";
 		public const string TimeZoneDelete = "administration.timezone.delete";
@@ -41,7 +42,12 @@ namespace Coders.Web.Routes
 		public const string CountryCreate = "administration.country.create";
 		public const string CountryUpdate = "administration.country.update";
 		public const string CountryDelete = "administration.country.delete";
+		public const string AttachmentIndex = "administration.attachment.index";
+		public const string AttachmentHistory = "administration.attachment.history";
+		public const string AttachmentUpdate = "administration.attachment.update";
+		public const string AttachmentDelete = "administration.attachment.delete";
 		public const string AttachmentRuleIndex = "administration.attachment.rule.index";
+		public const string AttachmentRuleHistory = "administration.attachment.rule.history";
 		public const string AttachmentRuleCreate = "administration.attachment.rule.create";
 		public const string AttachmentRuleUpdate = "administration.attachment.rule.update";
 		public const string AttachmentRuleDelete = "administration.attachment.rule.delete";
@@ -51,9 +57,19 @@ namespace Coders.Web.Routes
 			#region AttachmentRule
 			routes.CreateArea("administration", "Coders.Web.Controllers.Administration",
 				routes.MapRoute(AttachmentRuleIndex, "administration/attachments/rules/all/{page}", new { controller = "attachmentrule", action = "index", page = "1" }),
+				routes.MapRoute(AttachmentRuleHistory, "administration/attachments/rules/history/{sort}/{order}/{page}/{id}", new { controller = "attachmentrule", action = "history", sort = "created", order = "descending", page = "1", id = "" }),
 				routes.MapRoute(AttachmentRuleUpdate, "administration/attachments/rules/update/{id}", new { controller = "attachmentrule", action = "update", id = "" }),
 				routes.MapRoute(AttachmentRuleDelete, "administration/attachments/rules/delete/{id}", new { controller = "attachmentrule", action = "delete", id = "" }),
 				routes.MapRoute(AttachmentRuleCreate, "administration/attachments/rules/create", new { controller = "attachmentrule", action = "create" })
+			);
+			#endregion
+
+			#region Attachment
+			routes.CreateArea("administration", "Coders.Web.Controllers.Administration",
+				routes.MapRoute(AttachmentIndex, "administration/attachments/all/{sort}/{order}/{page}", new { controller = "attachment", action = "index", sort = "created", order = "descending", page = "1" }),
+				routes.MapRoute(AttachmentHistory, "administration/attachments/history/{sort}/{order}/{page}/{id}", new { controller = "attachment", action = "history", sort = "created", order = "descending", page = "1", id = "" }),
+				routes.MapRoute(AttachmentUpdate, "administration/attachments/update/{id}", new { controller = "attachment", action = "update", id = "" }),
+				routes.MapRoute(AttachmentDelete, "administration/attachments/delete/{id}", new { controller = "attachment", action = "delete", id = "" })
 			);
 			#endregion
 
@@ -79,7 +95,8 @@ namespace Coders.Web.Routes
 
 			#region TimeZone
 			routes.CreateArea("administration", "Coders.Web.Controllers.Administration",
-				routes.MapRoute(TimeZoneIndex, "administration/timezones/all/{page}", new { controller = "timezone", action = "index", page = "1" }),
+				routes.MapRoute(TimeZoneIndex, "administration/timezones/all/{sort}/{order}/{page}", new { controller = "timezone", action = "index", sort = "offset", order = "ascending", page = "1" }),
+				routes.MapRoute(TimeZoneHistory, "administration/timezones/history/{sort}/{order}/{page}/{id}", new { controller = "timezone", action = "history", sort = "created", order = "descending", page = "1", id = "" }),
 				routes.MapRoute(TimeZoneUpdate, "administration/timezones/update/{id}", new { controller = "timezone", action = "update", id = "" }),
 				routes.MapRoute(TimeZoneDelete, "administration/timezones/delete/{id}", new { controller = "timezone", action = "delete", id = "" }),
 				routes.MapRoute(TimeZoneCreate, "administration/timezones/create", new { controller = "timezone", action = "create" })

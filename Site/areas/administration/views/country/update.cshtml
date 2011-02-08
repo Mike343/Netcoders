@@ -9,7 +9,7 @@
 	<div id="location">
 		<ul>
 			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
-			<li>@Url.Route(AdministrationRoutes.SettingIndex).Link(Resources.Titles.Countries)</li>
+			<li>@Url.Route(AdministrationRoutes.CountryIndex, new { sort = "title", order = "ascending", page = "1" }).Link(Resources.Titles.Countries)</li>
 			<li class="last">@Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.Country)</li>
 		</ul>
 	</div>

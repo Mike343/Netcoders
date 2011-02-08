@@ -238,7 +238,7 @@ ol.decimal  { list-style-type: decimal; }
 #container #header #menu li ul
 {
 	top: 37px;
-	right: 8px;
+	right: 10px;
 	margin: 0;
 	padding: 0;
 	height: auto;
@@ -255,6 +255,11 @@ ol.decimal  { list-style-type: decimal; }
 	-moz-border-radius-topleft: 4px;
 	-moz-border-radius-bottomleft: 4px;
 	-moz-border-radius-bottomright: 4px;
+}
+
+#container #header #menu li.last ul
+{
+	right: 8px;
 }
 
 #container #header #menu li ul li
@@ -286,7 +291,7 @@ ol.decimal  { list-style-type: decimal; }
 	margin: 0;
 	padding: 9px;
 	height: 1%;
-	width: 182px;
+	width: 167px;
 	height: auto;
 	display: block;
 	float: left;
@@ -296,24 +301,25 @@ ol.decimal  { list-style-type: decimal; }
 	font-weight: normal;
 }
 
-#container #header #menu li ul li a.childs
-{
-	margin: 0;
-	padding: 9px 9px 9px 24px;
-	width: 157px;
-	background: url("/content/images/administration/icons/plus.png") no-repeat 8px 11px;
-	font-weight: bold;
-}
-
 #container #header #menu li ul li a:hover
 {
 	color: #000000;
 }
 
-#container #header #menu li ul li.selected a,
+#container #header #menu li ul li a.childs
+{
+	margin: 0;
+	padding: 9px 9px 9px 24px;
+	width: 152px;
+	background: url("/content/images/administration/icons/plus.png") no-repeat 8px 11px;
+	font-weight: bold;
+}
+
+#container #header #menu li ul li.selected a.childs,
 #container #header #menu li ul li a.childs:hover
 {
 	background: url("/content/images/administration/icons/minus.png") no-repeat 8px 11px;
+	color: #000000;
 }
 
 #container #header #menu li ul
@@ -321,9 +327,11 @@ ol.decimal  { list-style-type: decimal; }
 	top: auto;
 }	
 
-#container #header #menu li ul li ul 
+#container #header #menu li ul li ul,
+#container #header #menu li ul li.last ul,
+#container #header #menu li.last ul li ul
 {
-	right: 200px;
+	right: 195px;
 	border-top: 1px solid #b5b5b5;
 }
 
@@ -703,7 +711,6 @@ ol.decimal  { list-style-type: decimal; }
 	margin: 0;
 	padding: 6px;
 	width: 200px;
-	float: left;
 	background: #FFFFFF;
 	border-top: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
@@ -712,6 +719,11 @@ ol.decimal  { list-style-type: decimal; }
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	color: #000000;
+}
+
+#container #content div.content div.form div.fields div.field div.input input.readonly
+{
+	color: #6b6b6b;
 }
 
 #container #content div.content div.form div.fields div.field div.input input.medium
@@ -733,6 +745,72 @@ ol.decimal  { list-style-type: decimal; }
 	border-bottom: 1px solid #ffccce;
 }
 
+#container #content div.content div.form div.fields div.field div.input span.explain
+{
+	margin: 0;
+	padding: 8px 0 8px 10px;
+	height: 1%;
+	display: block;
+	float: left;
+	color: #000000;	
+}
+
+#container #content div.content div.form div.fields div.field div.checkboxes
+{
+	margin: 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.form div.fields div.field div.checkboxes div.checkbox
+{
+	margin: 0;
+	padding: 4px 0 4px 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.form div.fields div.field div.checkboxes div.checkbox-single
+{
+	padding: 3px 0 4px 0;
+}
+
+#container #content div.content div.form div.fields div.field div.checkboxes div.checkbox input
+{
+	margin: 0;	
+	float: left;
+}
+
+#container #content div.content div.form div.fields div.field div.checkboxes div.checkbox label
+{
+	margin: 0 0 0 6px;
+	height: 1%;
+	display: block;
+	float: left;
+}
+
+#container #content div.content div.form div.fields div.field div.textarea
+{
+	margin: 0;
+	padding: 0;
+}
+
+#container #content div.content div.form div.fields div.field div.textarea textarea
+{
+	margin: 0;
+	padding: 10px;
+	float: left;
+	background: #FFFFFF;
+	border-top: 1px solid #cccccc;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #f2f2f2;
+	border-bottom: 1px solid #f2f2f2;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	color: #000000;
+}
+
 #container #content div.content div.form div.fields div.field span.field-validation-error
 {
 	margin: 0;
@@ -741,6 +819,42 @@ ol.decimal  { list-style-type: decimal; }
 	clear: both;
 	display: block;
 	color: #FF0000;
+}
+
+#container #content div.content div.form div.fields div.table
+{
+	margin: 0;
+	padding: 10px 0 10px 0;
+	clear: both;
+	overflow: hidden;
+	border-bottom: 1px solid #d5d5d5;
+}
+
+#container #content div.content div.form div.fields div.table table
+{
+	border: none;
+	border-collapse: collapse;
+}
+
+#container #content div.content div.form div.fields div.table table th
+{
+	background: #cccccc;
+	border: none;
+	border: 1px solid #cccccc;
+	color: #414141;
+}
+
+#container #content div.content div.form div.fields div.table table td
+{
+	border: none;
+	border: 1px solid #cccccc;
+}
+
+#container #content div.content div.form div.fields div.table table td.title
+{
+	width: 15%;
+	background: #e5e5e5;
+	font-weight: bold;
 }
 
 #container #content div.content div.form div.fields div.buttons
@@ -1076,7 +1190,8 @@ ol.decimal  { list-style-type: decimal; }
     color: #000000;
 }
 
-#container #content div.content div.filter li.selected a
+#container #content div.content div.filter li a.selected,
+#container #content div.content div.filter li a.selected:hover
 {
     background: transparent url("/content/images/administration/content_right_filter_selected.png") no-repeat;
     background-position: 14px 9px;

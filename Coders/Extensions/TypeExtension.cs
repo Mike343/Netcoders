@@ -15,7 +15,12 @@
 //	limitations under the License.
 #endregion
 
+#region Using Directives
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+#endregion
 
 namespace Coders.Extensions
 {
@@ -50,6 +55,33 @@ namespace Coders.Extensions
 			}
 
 			return null;
+		}
+
+		/// <summary>
+		/// Gets the types that implement the specified interface.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="assembly">The assembly.</param>
+		/// <returns></returns>
+		public static IEnumerable<Type> GetTypesThatImplement<T>(this Assembly assembly)
+		{
+			if (assembly == null)
+			{
+				throw new ArgumentNullException("assembly");
+			}
+
+			return assembly.GetTypes().Where(type => (typeof(T).IsAssignableFrom(type) && !type.IsInterface) && !type.IsAbstract);
+		}
+
+		/// <summary>
+		/// Activates the specified type.
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="type">The type.</param>
+		/// <returns></returns>
+		public static T Activate<T>(this Type type) where T : class
+		{
+			return Activator.CreateInstance(type) as T;
 		}
 	}
 }

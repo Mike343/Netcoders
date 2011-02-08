@@ -16,6 +16,7 @@
 #endregion
 
 #region Using Directives
+using System;
 using System.Globalization;
 #endregion
 
@@ -24,7 +25,7 @@ namespace Coders.Extensions
 	public static class ObjectExtension
 	{
 		/// <summary>
-		/// Returns the specified string as an integer.
+		/// Returns the specified value as an integer.
 		/// </summary>
 		/// <param name="value">The value.</param>
 		/// <returns></returns>
@@ -46,7 +47,7 @@ namespace Coders.Extensions
 		}
 
 		/// <summary>
-		/// Returns the specified string as an boolean.
+		/// Returns the specified value as an boolean.
 		/// </summary>
 		/// <param name="value">The value.</param>
 		/// <returns></returns>
@@ -65,6 +66,16 @@ namespace Coders.Extensions
 			}
 
 			return false;
+		}
+
+		/// <summary>
+		/// Returns the specified value as an boolean.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <returns></returns>
+		public static bool AsBoolean(this object value)
+		{
+			return Convert.ToBoolean(value, CultureInfo.InvariantCulture);
 		}
 	}
 }

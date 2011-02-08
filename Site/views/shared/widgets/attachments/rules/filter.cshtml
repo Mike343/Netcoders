@@ -1,0 +1,7 @@
+﻿@model IList<Coders.Web.Models.Filter>
+@{
+    Layout = null;
+}
+<div class="filter">
+	<h5>@Resources.Titles.Filter</h5>	<h6>@Resources.Titles.ByWith.FormatInvariant(Resources.Titles.Group)</h6>	<ul>		@foreach (var filter in Model) {			<li>@Url.Route(AdministrationRoutes.AttachmentRuleIndex, filter.Parameters).Link(filter.Title, new { @class = filter.IsSelected(Html) ? "selected" : "normal" })</li>		}	</ul>
+</div>

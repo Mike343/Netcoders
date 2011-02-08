@@ -31,6 +31,7 @@ namespace Coders.Services
 		/// Initializes a new instance of the <see cref="UserBanService"/> class.
 		/// </summary>
 		/// <param name="authenticationService">The authentication service.</param>
+		/// <param name="userService">The user service.</param>
 		/// <param name="repository">The repository.</param>
 		public UserBanService(
 			IAuthenticationService authenticationService,

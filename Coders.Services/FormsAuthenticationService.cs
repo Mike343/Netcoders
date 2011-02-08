@@ -313,9 +313,6 @@ namespace Coders.Services
 
 			// update user
 			this.UserRepository.Update(user);
-
-			// log the user off
-			this.LogOff();
 		}
 	}
 }

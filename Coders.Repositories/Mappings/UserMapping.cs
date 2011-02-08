@@ -17,6 +17,7 @@
 
 #region Using Directives
 using Coders.Models.Users;
+using Coders.Repositories.Strategies.Joins;
 using FluentNHibernate.Mapping;
 #endregion
 
@@ -24,9 +25,6 @@ namespace Coders.Repositories.Mappings
 {
 	public sealed class UserMapping : ClassMap<User>
 	{
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UserMapping"/> class.
-		/// </summary>
 		public UserMapping()
 		{
 			base.Table("Users");
@@ -34,10 +32,6 @@ namespace Coders.Repositories.Mappings
 			base.Id(x => x.Id)
 				.Column("Id")
 				.GeneratedBy.Native();
-
-			base.Map(x => x.Reputation)
-				.Column("Reputation")
-				.Not.Nullable();
 
 			base.Map(x => x.Name)
 				.Column("Name")
@@ -53,6 +47,10 @@ namespace Coders.Repositories.Mappings
 				.Column("Title")
 				.Length(255)
 				.Nullable();
+
+			base.Map(x => x.Reputation)
+				.Column("Reputation")
+				.Not.Nullable();
 
 			base.Map(x => x.EmailAddress)
 				.Column("EmailAddress")
@@ -113,6 +111,44 @@ namespace Coders.Repositories.Mappings
 			base.References(x => x.Preference)
 				.Column("PreferenceId")
 				.Not.Nullable();
+		}
+	}
+
+	public sealed class UserMinimumMapping : ClassMap<UserMinimum>
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UserMinimumMapping"/> class.
+		/// </summary>
+		public UserMinimumMapping()
+		{
+			base.Table("Users");
+
+			base.Id(x => x.Id)
+				.Column("Id")
+				.GeneratedBy.Native();
+
+			base.Map(x => x.Name)
+				.Column("Name")
+				.Length(255)
+				.Not.Nullable();
+
+			base.Map(x => x.Slug)
+				.Column("Slug")
+				.Length(255)
+				.Not.Nullable();
+
+			base.Map(x => x.Title)
+				.Column("Title")
+				.Length(255)
+				.Nullable();
+
+			base.Map(x => x.SignatureParsed)
+				.Column("SignatureParsed")
+				.Nullable();
+
+			base.References(x => x.Avatar)
+				.Column("AvatarId")
+				.Nullable();
 		}
 	}
 }
