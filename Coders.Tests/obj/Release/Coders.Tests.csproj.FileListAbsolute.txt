@@ -15,3 +15,4 @@ K:\Applications\Netcoders\Coders.Tests\bin\Release\Coders.pdb
 K:\Applications\Netcoders\Coders.Tests\obj\Release\ResolveAssemblyReference.cache
 K:\Applications\Netcoders\Coders.Tests\obj\Release\Coders.Tests.dll
 K:\Applications\Netcoders\Coders.Tests\obj\Release\Coders.Tests.pdb
+C:\Users\Mike\Desktop\Netcoders\Coders.Tests\bin\Release\Rhino.Mocks.dll
