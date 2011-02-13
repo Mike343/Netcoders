@@ -39,6 +39,9 @@
     <AssemblyOriginatorKeyFile>Coders.DependencyResolution.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\Dependencies\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\Dependencies\Ninject.dll</HintPath>
     </Reference>
@@ -53,7 +56,6 @@
     <Compile Include="CodersRepositories.cs" />
     <Compile Include="CodersServices.cs" />
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="NinjectHelper.cs" />
     <Compile Include="NinjectServiceLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

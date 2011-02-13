@@ -18,7 +18,6 @@
 #region Using Directives
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using Coders.Authentication;
 using Coders.Extensions;
 using Coders.Models.Users;
@@ -58,16 +57,6 @@ namespace Coders.Web.Models.Users
 			this.IsDefault = role.IsDefault;
 			this.IsAdministrator = role.IsAdministrator;
 			this.Privilege = role.Privilege;
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UserRoleCreateOrUpdate"/> class.
-		/// </summary>
-		/// <param name="privileges">The privileges.</param>
-		public UserRoleCreateOrUpdate(IList<UserRoleRelationUpdateValue> privileges) 
-			: this()
-		{
-			this.Privileges = privileges;
 		}
 
 		/// <summary>
@@ -122,16 +111,6 @@ namespace Coders.Web.Models.Users
 		{
 			get; 
 			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the privileges.
-		/// </summary>
-		/// <value>The privileges.</value>
-		public IList<UserRoleRelationUpdateValue> Privileges
-		{
-			get;
-			private set;
 		}
 
 		/// <summary>

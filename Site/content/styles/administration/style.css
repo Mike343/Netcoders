@@ -674,7 +674,7 @@ ol.decimal  { list-style-type: decimal; }
 #container #content div.content div.form div.fields
 {
 	margin: 0;
-	padding: 4px 10px 10px 10px;
+	padding: 0 10px 10px 10px;
 	clear: both;
 	overflow: hidden;
 }
@@ -682,7 +682,7 @@ ol.decimal  { list-style-type: decimal; }
 #container #content div.content div.form div.fields div.field
 {
 	margin: 0;
-	padding: 10px 0 10px 0;
+	padding: 12px 0 12px 0;
 	clear: both;
 	overflow: hidden;
 	border-bottom: 1px solid #d5d5d5;
@@ -709,8 +709,9 @@ ol.decimal  { list-style-type: decimal; }
 #container #content div.content div.form div.fields div.field div.input input
 {
 	margin: 0;
-	padding: 6px;
+	padding: 7px;
 	width: 200px;
+	float: left;
 	background: #FFFFFF;
 	border-top: 1px solid #cccccc;
 	border-left: 1px solid #cccccc;
@@ -719,6 +720,12 @@ ol.decimal  { list-style-type: decimal; }
 	border-radius: 4px;
 	-moz-border-radius: 4px;
 	color: #000000;
+}
+
+#container #content div.content div.form div.fields div.field div.input input:focus 
+{
+	background: #f6f6f6;
+	border: 1px solid #5f5f5f;
 }
 
 #container #content div.content div.form div.fields div.field div.input input.readonly
@@ -734,6 +741,26 @@ ol.decimal  { list-style-type: decimal; }
 #container #content div.content div.form div.fields div.field div.input input.large
 {
 	width: 400px;
+}
+
+#container #content div.content div.form div.fields div.field div.input input.date
+{
+	width: 198px;
+}
+
+#container #content div.content div.form div.fields div.field div.input input.date:focus 
+{
+	border-radius: 0;
+	-moz-border-radius: 0;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+}
+
+#container #content div.content div.form div.fields div.field div.input input.reputation
+{
+	width: 100px;
 }
 
 #container #content div.content div.form div.fields div.field div.input input.input-validation-error
@@ -752,6 +779,45 @@ ol.decimal  { list-style-type: decimal; }
 	height: 1%;
 	display: block;
 	float: left;
+	color: #000000;	
+}
+
+#container #content div.content div.form div.fields div.field div.input img.ui-datepicker-trigger
+{
+	margin: 0 0 0 6px;
+}
+
+#container #content div.content div.form div.fields div.field div.input select
+{
+	margin: 0 0 0 6px;
+	float: left;
+}
+
+#container #content div.content div.form div.fields div.field div.input .ui-selectmenu
+{
+	margin: -1px 0 0 6px;
+	float: left;
+}
+
+#container #content div.content div.form div.fields div.field div.input div.checkbox
+{
+	margin: 0;
+	padding: 7px 0 7px 10px;
+	float: left;
+}
+
+#container #content div.content div.form div.fields div.field div.input div.checkbox input
+{
+	margin: 0 6px 0 0;
+	padding: 0;
+	width: auto;
+	background: transparent;
+	border: none;
+}
+
+#container #content div.content div.form div.fields div.field div.input div.checkbox label
+{
+	display: inline;
 	color: #000000;	
 }
 
@@ -821,6 +887,13 @@ ol.decimal  { list-style-type: decimal; }
 	color: #FF0000;
 }
 
+#container #content div.content div.form div.fields div.field-group div.group
+{
+	margin: 0;
+	padding: 0 20px 0 0;
+	float: left;	
+}
+
 #container #content div.content div.form div.fields div.table
 {
 	margin: 0;
@@ -860,7 +933,7 @@ ol.decimal  { list-style-type: decimal; }
 #container #content div.content div.form div.fields div.buttons
 {
 	margin: 0;
-	padding: 10px 0 0 0;
+	padding: 12px 0 0 0;
 	clear: both;
 	overflow: hidden;
 }
@@ -910,7 +983,49 @@ ol.decimal  { list-style-type: decimal; }
 #container #content div.content div.form div.fields div.buttons a:hover
 {
 	background: #b2b2b2 url("/content/images/administration/content_form_button_selected.png") repeat-x bottom left;
-}	
+}
+
+#container #content div.content div.form-user-search
+{
+	margin: 0 230px 0 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.searches
+{
+	top: 0;
+	right: 0;
+	bottom: 0;
+	margin: 0;
+	padding: 0;
+	width: 228px;
+	position: absolute;
+	background: #f6f6f6;
+	border-left: 1px solid #cccccc;
+}
+
+#container #content div.content div.searches h5
+{
+	padding: 14px 14px 0 14px;
+	color: #515151;
+	font-size: 12px;
+}
+
+#container #content div.content div.searches ul
+{
+	padding: 9px 14px 9px 14px;
+}
+
+#container #content div.content div.searches li
+{
+	margin: 0;
+	padding: 5px 0 5px 10px;
+	list-style: none;
+	background: transparent url("/content/images/administration/list_block.png") no-repeat;
+	background-position: 0 10px;
+}
 
 #container #content div.content div.table
 {
@@ -1005,6 +1120,237 @@ ol.decimal  { list-style-type: decimal; }
 #container #content div.content div.table-history td.values table tr.last td
 {
 	border-bottom: none;
+}
+
+#container #content div.content div.table-privileges
+{
+	margin: 10px 10px 0 10px;
+	padding: 0 0 10px 0;
+	border-bottom: 1px solid #d5d5d5;
+}
+
+#container #content div.content div.table-privileges div.privilege
+{
+	margin: 10px 0 0 0;
+	padding: 0;
+	clear: both;
+	overflow: hidden;
+}
+
+#container #content div.content div.table-privileges div.privilege-first
+{
+	margin: 0;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role
+{
+	padding: 0;
+	background: #fbe3e4;
+	border: 1px solid #fbc2c4;
+	text-align: left;
+	vertical-align: middle;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role div.input
+{
+	margin: 0;
+	padding: 9px 7px 7px 9px;
+	float: left;
+	border-right: 1px solid #eed7d8;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role div.input input
+{
+	margin: 0;
+	padding: 0;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role label
+{
+	margin: 0;
+	padding: 9px 0 8px 10px;
+	height: 1%;
+	display: block;
+	float: left;
+	border-left: 1px solid #fceaeb;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role a.expander
+{
+	margin: 0;
+	padding: 11px 7px 11px 7px;
+	height: 8px;
+	width: 8px;
+	display: block;
+	float: right;
+	border-left: 1px solid #eed7d8;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role a.plus
+{
+	background: url("/content/images/administration/plus.png") no-repeat 7px 11px;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role a.minus
+{
+	background: url("/content/images/administration/minus.png") no-repeat 7px 11px;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-selected
+{
+	background: #e6efc2;
+	border: 1px solid #c6d880;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-selected div.input
+{
+	border-right: 1px solid #d8e1b7;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-selected label
+{
+	border-left: 1px solid #eef4d4;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-selected a.expander
+{
+	border-left: 1px solid #d8e1b7;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-administrator
+{
+	background: #fff6bf;
+	border: 1px solid #ffd324;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-administrator div.input
+{
+	border-right: 1px solid #f1eab7;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-administrator label
+{
+	border-left: 1px solid #fffbdf;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-administrator a.expander
+{
+	border-left: 1px solid #f1eab7;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-administrator-selected
+{
+	background: #8fbde0;
+	border: 1px solid #6bacde;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-administrator-selected div.input
+{
+	border-right: 1px solid #85b2d2;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-administrator-selected label
+{
+	border-left: 1px solid #a0c7e5;
+}
+
+#container #content div.content div.table-privileges div.privilege th.role-administrator-selected a.expander
+{
+	border-left: 1px solid #85b2d2;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox
+{
+	margin: 0;
+	padding: 0;
+	background: #fbe3e4;
+	border: 1px solid #fbc2c4;
+	text-align: left;
+	vertical-align: middle;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox div.input
+{
+	margin: 0;
+	padding: 9px 7px 7px 9px;
+	float: left;
+	border-right: 1px solid #eed7d8;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox div.input input
+{
+	margin: 0;
+	padding: 0;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox label
+{
+	margin: 0;
+	padding: 9px 0 0 10px;
+	height: 1%;
+	width: 100px;
+	display: block;
+	float: left;
+	border: none;
+	border-left: 1px solid #fceaeb;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox-selected
+{
+	margin: 0;
+	padding: 0;
+	background: #e6efc2;
+	border: 1px solid #c6d880;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox-selected div.input
+{
+	border-right: 1px solid #d8e1b7;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox-selected label
+{
+	border-left: 1px solid #eef4d4;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox-administrator
+{
+	margin: 0;
+	padding: 0;
+	background: #fff6bf;
+	border: 1px solid #ffd324;
+	text-align: left;
+	vertical-align: middle;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox-administrator div.input
+{
+	border-right: 1px solid #f1eab7;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox-administrator label
+{
+	border-left: 1px solid #fffbdf;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox-administrator-selected
+{
+	margin: 0;
+	padding: 0;
+	background: #8fbde0;
+	border: 1px solid #6bacde;
+	text-align: left;
+	vertical-align: middle;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox-administrator-selected div.input
+{
+	border-right: 1px solid #85b2d2;
+}
+
+#container #content div.content div.table-privileges div.privilege td.checkbox-administrator-selected label
+{
+	border-left: 1px solid #a0c7e5;
 }
 
 #container #content div.content div.pagination
@@ -1213,3 +1559,206 @@ ol.decimal  { list-style-type: decimal; }
 	padding: 0;
 	line-height: 16px;
 }
+
+
+/* -----------------------------------------------------------
+	jquery ui
+----------------------------------------------------------- */
+
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute; left: -99999999px; }
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+
+/* -----------------------------------------------------------
+	jquery ui -> datepicker
+----------------------------------------------------------- */
+.ui-datepicker { width: 212px; padding: 0; background: #FFFFFF; border: 1px solid #cccccc; border-top: none; }
+.ui-datepicker .ui-datepicker-header { position:relative; padding: 4px; background: #F6F6F6; }
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next { position:absolute; top: 1px; width: 1.8em; height: 1.8em; }
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px; }
+.ui-datepicker .ui-datepicker-prev { left: 0; }
+.ui-datepicker .ui-datepicker-next { right: 0; }
+.ui-datepicker .ui-datepicker-prev-hover { left: 0; }
+.ui-datepicker .ui-datepicker-next-hover { right: 0; }
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span { display: block; position: absolute; left: 50%; margin-left: -8px; top: 50%; margin-top: -8px;  }
+.ui-datepicker .ui-datepicker-title { margin: 0 2.3em; line-height: 1.8em; text-align: center; }
+.ui-datepicker .ui-datepicker-title select { margin:1px 0; }
+.ui-datepicker select.ui-datepicker-month-year {width: 100%;}
+.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-year { width: 49%;}
+.ui-datepicker table {width: 100%; border-collapse: collapse; margin: 0; }
+.ui-datepicker th { padding: .7em .3em; text-align: center; border: 0;  }
+.ui-datepicker td { border: 0; padding: 0 4px 4px 4px; }
+.ui-datepicker td span, .ui-datepicker td a { display: block; padding: 3px; text-align: center;  text-decoration: none; }
+.ui-datepicker td span, .ui-datepicker td a:hover { background: #376ea6; color: #ffffff; }
+.ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
+.ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }
+.ui-datepicker td span, .ui-datepicker td.ui-datepicker-today a { background: #DDDDDD; color: #585858; }
+.ui-datepicker td span, .ui-datepicker td.ui-datepicker-current-day a { background: #376ea6; color: #ffffff; }
+
+/* -----------------------------------------------------------
+	jquery ui -> datepicker / multiple calenders
+----------------------------------------------------------- */
+.ui-datepicker.ui-datepicker-multi { width:auto; }
+.ui-datepicker-multi .ui-datepicker-group { float:left; }
+.ui-datepicker-multi .ui-datepicker-group table { width:95%; margin:0 auto .4em; }
+.ui-datepicker-multi-2 .ui-datepicker-group { width:50%; }
+.ui-datepicker-multi-3 .ui-datepicker-group { width:33.3%; }
+.ui-datepicker-multi-4 .ui-datepicker-group { width:25%; }
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header { border-left-width:0; }
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header { border-left-width:0; }
+.ui-datepicker-multi .ui-datepicker-buttonpane { clear:left; }
+.ui-datepicker-row-break { clear:both; width:100%; }
+
+/* -----------------------------------------------------------
+	jquery ui -> datepicker / rtl support
+----------------------------------------------------------- */
+.ui-datepicker-rtl { direction: rtl; }
+.ui-datepicker-rtl .ui-datepicker-prev { right: 2px; left: auto; }
+.ui-datepicker-rtl .ui-datepicker-next { left: 2px; right: auto; }
+.ui-datepicker-rtl .ui-datepicker-prev:hover { right: 1px; left: auto; }
+.ui-datepicker-rtl .ui-datepicker-next:hover { left: 1px; right: auto; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane { clear:right; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button { float: left; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current { float:right; }
+.ui-datepicker-rtl .ui-datepicker-group { float:right; }
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+
+/* -----------------------------------------------------------
+	jquery ui -> select
+----------------------------------------------------------- */
+
+.ui-selectmenu
+{
+	margin: 0;
+	padding: 0;
+	height: 28px;
+	display: block;
+	position: relative;
+	float: left;
+	overflow: hidden;
+	background: #b2b2b2 url("/content/images/administration/content_form_button.png") repeat-x top left;
+	border: none;
+	border-bottom: 1px solid #5f5f5f;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	text-align: left;
+	text-decoration: none;
+}
+
+.ui-state-active
+{
+	border-radius: 0;
+	-moz-border-radius: 0;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+}
+
+.ui-selectmenu:hover
+{
+	text-decoration: none;
+}
+
+.ui-selectmenu-icon
+{
+	top: 0;
+	right: 0;
+	position: absolute;
+	width: 28px;
+	height: 28px;
+	background: url("/content/images/administration/select_button.png") no-repeat;
+	background-position: 0 0;
+	border: none;
+	border-right: 1px solid #5f5f5f;
+	border-top-right-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+	-moz-border-radius-bottomright: 4px;
+}
+
+.ui-state-hover .ui-selectmenu-icon
+{
+	background: url("/content/images/administration/select_button_selected.png") no-repeat;
+	background-position: 0 0;
+}
+
+.ui-state-active .ui-selectmenu-icon
+{
+	background: url("/content/images/administration/select_button_selected.png") no-repeat;
+	background-position: 0 0;
+	border-radius: 0;
+	-moz-border-radius: 0;
+	border-top-right-radius: 4px;
+	-moz-border-radius-topright: 4px;
+}
+
+.ui-selectmenu-menu
+{
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	overflow: auto;
+	visibility: hidden;
+	list-style:none;
+}
+
+.ui-selectmenu-open
+{
+	background: #ffffff;
+	border-left: 1px solid #cccccc;
+	border-right: 1px solid #5f5f5f;
+	border-bottom: 1px solid #5f5f5f;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	visibility: visible;
+}
+
+.ui-selectmenu-menu-popup
+{
+	margin-top: -1px;
+}
+
+.ui-selectmenu-menu li
+{
+	margin: 0;
+	padding: 2px 0 2px 0;
+	display: block;
+	border-bottom: 1px solid #b4b4b4;
+}
+
+.ui-selectmenu-menu li.ui-corner-bottom
+{
+	border: none;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+}
+
+.ui-selectmenu-menu li a,
+.ui-selectmenu-status
+{
+	padding: 6px 0 5px 8px;
+	display: block;
+	color: #555555;
+	text-decoration: none;
+}
+
+.ui-selectmenu-menu li.ui-selectmenu-hasIcon a,
+.ui-selectmenu-hasIcon .ui-selectmenu-status  { margin-left: 5px; padding-left: 20px; position: relative; }
+.ui-selectmenu-menu li .ui-icon,
+.ui-selectmenu-status .ui-icon { position: absolute; top: 1em; margin-top: -8px; left: 0; }
+.ui-selectmenu-status { line-height: 18px; }
+.ui-selectmenu-open li.ui-selectmenu-item-focus { background: #ece9e9; }
+.ui-selectmenu-open li.ui-selectmenu-item-focus a { color: #0066cc; }
+.ui-selectmenu-open li.ui-selectmenu-item-selected { background: #ece9e9; }
+.ui-selectmenu-open li.ui-selectmenu-item-selected a { color: #0066cc; }
+.ui-selectmenu-menu li span,.ui-selectmenu-status span { display:block; margin-bottom: .2em; }
+.ui-selectmenu-menu .ui-selectmenu-group .ui-selectmenu-group-label { line-height: 1.4em; display:block; padding:.6em .5em 0; }
+.ui-selectmenu-menu .ui-selectmenu-group ul { margin: 0; padding: 0; }

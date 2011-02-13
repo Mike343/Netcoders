@@ -1,0 +1,50 @@
+﻿@model Coders.Collections.IPagedCollection<Coders.Models.Users.UserBan>
+@section scripts
+{
+    <script src="/content/scripts/administration/coders.filter.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li class="last">@Resources.Titles.Roles</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Bans)</h5>
+	<ul>
+		<li class="last"><a href="@Url.Route(UsersAdministrationRoutes.BanCreate).Value"><span>@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Ban)</span></a></li>
+	</ul>
+</div>
+<div class="content">
+	<div class="table table-filtered">
+		<table>
+			<thead>
+				<tr>
+					<th class="left">@Resources.Titles.User</th>
+					<th>@Resources.Titles.BannedBy</th>
+					<th>@Resources.Titles.Expires</th>
+					<th>@Resources.Titles.Created</th>
+					<th></th>
+					<th class="last"></th>
+				</tr>
+			</thead>
+			<tbody>
+				@foreach (var ban in Model) {
+				<tr>
+					<td>@Url.Route(UsersAdministrationRoutes.HomeUpdate, new { id = ban.User.Id }).Link(ban.User.Name)</td>
+					<td class="center">@ban.Admin.Name</td>
+					<td class="center">@(ban.IsPermanent ? Resources.Titles.Permanent : @ban.Expire.Value.Personalize(User.Identity))</td>
+					<td class="center">@ban.Created.Personalize(User.Identity)</td>
+					<td class="link">@Url.Route(UsersAdministrationRoutes.BanUpdate, new { id = ban.Id }).Link(Resources.Titles.Update)</td>
+					<td class="link last">@Url.Route(UsersAdministrationRoutes.BanDelete, new { id = ban.Id }).Link(Resources.Titles.LiftBan)</td>
+				</tr>
+				}
+			</tbody>
+		</table>
+		@{Html.Pager(Model, UsersAdministrationRoutes.BanIndex);}
+	</div>
+	@{Html.Widget("user.ban.filter");}
+</div>

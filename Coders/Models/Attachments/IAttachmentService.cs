@@ -56,6 +56,12 @@ namespace Coders.Models.Attachments
 		FileInfo GetThumbnail(Attachment attachment, int width, int height);
 
 		/// <summary>
+		/// Gets the path.
+		/// </summary>
+		/// <returns></returns>
+		string GetPath();
+
+		/// <summary>
 		/// Processes the specified pending attachment.
 		/// </summary>
 		/// <param name="pending">The pending.</param>

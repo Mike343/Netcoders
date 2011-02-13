@@ -2,14 +2,14 @@
 using Coders.Authentication;
 using Coders.Extensions;
 using Coders.Tests.Authentication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Extensions
 {
-	[TestClass]
+	[TestFixture]
 	public class IdentityExtensionTest
 	{
-		[TestInitialize]
+		[SetUp]
 		public void Initialize()
 		{
 			var principal = new FakePrivilegePrincipal();
@@ -19,7 +19,7 @@ namespace Coders.Tests.Extensions
 			Thread.CurrentPrincipal = principal;
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_IsAuthenticated()
 		{
 			var principal = Thread.CurrentPrincipal;
@@ -28,12 +28,20 @@ namespace Coders.Tests.Extensions
 			Assert.IsTrue(identity.IsAuthenticated());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_ContainsRole()
 		{
 			var principal = Thread.CurrentPrincipal as PrivilegePrincipal;
 
 			Assert.IsTrue(principal.ContainsRole("Test"));
+		}
+
+		[Test]
+		public void Test_IsSuper()
+		{
+			var principal = Thread.CurrentPrincipal;
+
+			Assert.IsTrue(principal.IsSuper());
 		}
 	}
 }

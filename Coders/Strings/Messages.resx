@@ -156,14 +156,32 @@
   <data name="UserAccountPasswordReset" xml:space="preserve">
     <value>Your password has been successfully reset. We have sent you an email which contains your new password.</value>
   </data>
+  <data name="UserAccountPreferenceUpdated" xml:space="preserve">
+    <value>Your preferences has been successfully updated.</value>
+  </data>
   <data name="UserAccountUpdated" xml:space="preserve">
     <value>Your account was successfully updated</value>
+  </data>
+  <data name="UserBanCreated" xml:space="preserve">
+    <value>The ban for the user '{0}' has been successfully created.</value>
+  </data>
+  <data name="UserBanUpdated" xml:space="preserve">
+    <value>The ban for the user '{0}' has been successfully updated.</value>
   </data>
   <data name="UserCreated" xml:space="preserve">
     <value>The user '{0}' has been successfully created.</value>
   </data>
   <data name="UserPasswordReset" xml:space="preserve">
     <value>The password has been successfully reset for the user '{0}'. We have sent the user an email which contains thier new password.</value>
+  </data>
+  <data name="UserPrivilegeUpdated" xml:space="preserve">
+    <value>The privileges for the user '{0}' has been successfully updated.</value>
+  </data>
+  <data name="UserRoleCreated" xml:space="preserve">
+    <value>The role '{0}' has been successfully created.</value>
+  </data>
+  <data name="UserRoleUpdated" xml:space="preserve">
+    <value>The role '{0}' has been successfully updated.</value>
   </data>
   <data name="UserUpdated" xml:space="preserve">
     <value>The user '{0}' has been successfully updated.</value>

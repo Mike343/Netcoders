@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Coders.Models.Countries;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Countries
 {
-	[TestClass]
+	[TestFixture]
 	public class CountryTest
 	{
-		[TestMethod]
+		[Test]
 		public void Test_Country_Cache()
 		{
 			var countries = new List<Country>

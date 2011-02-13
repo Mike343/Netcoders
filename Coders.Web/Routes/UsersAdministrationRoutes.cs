@@ -33,6 +33,7 @@ namespace Coders.Web.Routes
 		public const string HomeDelete = "administration.user.home.delete";
 		public const string HomeReset = "administration.user.home.reset";
 		public const string RoleIndex = "administration.user.role.index";
+		public const string RoleHistory = "administration.user.role.history";
 		public const string RoleCreate = "administration.user.role.create";
 		public const string RoleUpdate = "administration.user.role.update";
 		public const string RoleDelete = "administration.user.role.delete";
@@ -68,7 +69,7 @@ namespace Coders.Web.Routes
 
 			#region Ban
 			routes.CreateArea("administration/users", "Coders.Web.Controllers.Users.Administration",
-				routes.MapRoute(BanIndex, "administration/users/bans/all/{page}", new { controller = "ban", action = "index", page = "1" }),
+				routes.MapRoute(BanIndex, "administration/users/bans/all/{sort}/{order}/{page}", new { controller = "ban", action = "index", sort = "created", order = "descending", page = "1" }),
 				routes.MapRoute(BanUpdate, "administration/users/bans/update/{id}", new { controller = "ban", action = "update", id = "" }),
 				routes.MapRoute(BanDelete, "administration/users/bans/delete/{id}", new { controller = "ban", action = "delete", id = "" }),
 				routes.MapRoute(BanCreate, "administration/users/bans/create", new { controller = "ban", action = "create" })
@@ -78,6 +79,7 @@ namespace Coders.Web.Routes
 			#region Role
 			routes.CreateArea("administration/users", "Coders.Web.Controllers.Users.Administration",
 				routes.MapRoute(RoleIndex, "administration/users/roles/all", new { controller = "role", action = "index" }),
+				routes.MapRoute(RoleHistory, "administration/users/roles/history/{sort}/{order}/{page}/{id}", new { controller = "role", action = "history", sort = "created", order = "descending", page = "1", id = "" }),
 				routes.MapRoute(RoleUpdate, "administration/users/roles/update/{id}", new { controller = "role", action = "update", id = "" }),
 				routes.MapRoute(RoleDelete, "administration/users/roles/delete/{id}", new { controller = "role", action = "delete", id = "" }),
 				routes.MapRoute(RoleCreate, "administration/users/roles/create", new { controller = "role", action = "create" }),

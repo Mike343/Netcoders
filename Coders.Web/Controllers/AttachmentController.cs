@@ -40,11 +40,11 @@ namespace Coders.Web.Controllers
 		[HttpGet]
 		public ActionResult Detail(int id)
 		{
-			var attachment = AttachmentService.GetById(id);
+			var attachment = this.AttachmentService.GetById(id);
 
 			if (attachment == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var path = attachment.FullPath.AsPath();
@@ -52,30 +52,30 @@ namespace Coders.Web.Controllers
 
 			if (!file.Exists)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			using (var stream = file.OpenRead())
 			{
-				return File(stream, attachment.FileType);
+				return base.File(stream, attachment.FileType);
 			}
 		}
 
 		[HttpGet]
 		public ActionResult Image(int id, int width, int height)
 		{
-			var attachment = AttachmentService.GetById(id);
+			var attachment = this.AttachmentService.GetById(id);
 
 			if (attachment == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
-			var image = AttachmentService.GetThumbnail(attachment, width, height);
+			var image = this.AttachmentService.GetThumbnail(attachment, width, height);
 
 			using (var stream = image.OpenRead())
 			{
-				return File(stream, attachment.FileType);
+				return base.File(stream, attachment.FileType);
 			}
 		}
 	}

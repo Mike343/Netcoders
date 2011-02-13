@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Coders.Specifications;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Specifications
 {
-	[TestClass]
+	[TestFixture]
 	public class SpecificationTest
 	{
 		public Specification<string> Specification
@@ -20,7 +20,7 @@ namespace Coders.Tests.Specifications
 			private set; 
 		}
 
-		[TestInitialize]
+		[SetUp]
 		public void Initialize()
 		{
 			this.Specification = new Specification<string>
@@ -37,31 +37,31 @@ namespace Coders.Tests.Specifications
 			};
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_Specification_PageOrDefault()
 		{
 			Assert.AreEqual(this.Specification.PageOrDefault, 1);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_Specification_LimitOrDefault()
 		{
 			Assert.AreEqual(this.Specification.LimitOrDefault, 10);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_Specification_First()
 		{
 			Assert.AreEqual(this.Specification.First, 0);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_Specification_Last()
 		{
 			Assert.AreEqual(this.Specification.Last, 10);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_Specification_And()
 		{
 			var specification = new ProductTitleSpecification("Table").And(new ProductOnSaleSpecification());
@@ -70,7 +70,7 @@ namespace Coders.Tests.Specifications
 			Assert.AreEqual(products.Count(), 1);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_Specification_Or()
 		{
 			var specification = new ProductTitleSpecification("Lamp").Or(new ProductTitleSpecification("Table"));
@@ -79,7 +79,7 @@ namespace Coders.Tests.Specifications
 			Assert.AreEqual(products.Count(), 2);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_Specification_SatisfyEntityFrom()
 		{
 			var specification = new ProductOnSaleSpecification();
@@ -88,7 +88,7 @@ namespace Coders.Tests.Specifications
 			Assert.IsNotNull(product);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_Specification_SatisfyEntitiesFrom()
 		{
 			var specification = new ProductOnSaleSpecification();

@@ -1,6 +1,5 @@
 ﻿$(document).ready(function () {
 	$("tr.compare").hide();
-
 	$("a.compare").live("click", function (event) {
 		var anchor = $(this);
 

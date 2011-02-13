@@ -23,7 +23,16 @@
 							<a href="@Url.Route(UsersAdministrationRoutes.HomeIndex, new { sort = "name", order = "ascending", page = 1 }).Value" title="@Resources.Titles.Users"><span>@Resources.Titles.Users</span></a>
 							<ul>
 								<li class="first">@Url.Route(UsersAdministrationRoutes.HomeIndex, new { sort = "name", order = "ascending", page = 1 }).Link(Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Users))</li>
+								<li class="first">@Url.Route(UsersAdministrationRoutes.SearchCreate).Link(Resources.Titles.SearchWith.FormatInvariant(Resources.Titles.Users))</li>
+								<li class="first">@Url.Route(UsersAdministrationRoutes.HostSearchCreate).Link(Resources.Titles.SearchWith.FormatInvariant(Resources.Titles.Hosts))</li>
 								<li>@Url.Route(UsersAdministrationRoutes.HomeCreate).Link(Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.User))</li>
+								<li>
+									@Url.Route(UsersAdministrationRoutes.BanIndex, new { sort = "created", order = "descending", page = 1 }).Link(Resources.Titles.Bans, new { @class = "childs" })
+									<ul>
+										<li>@Url.Route(UsersAdministrationRoutes.BanIndex, new { sort = "created", order = "descending", page = 1 }).Link(Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Bans))</li>
+										<li class="last">@Url.Route(UsersAdministrationRoutes.BanCreate).Link(Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Ban))</li>
+									</ul>
+								</li>
 								<li class="last">
 									@Url.Route(UsersAdministrationRoutes.RoleIndex).Link(Resources.Titles.Roles, new { @class = "childs" })
 									<ul>

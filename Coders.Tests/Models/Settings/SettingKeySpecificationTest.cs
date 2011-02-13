@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Coders.Models.Settings;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Settings
 {
-	[TestClass]
+	[TestFixture]
 	public class SettingKeySpecificationTest
 	{
 		private IQueryable<Setting> Values
@@ -14,8 +14,8 @@ namespace Coders.Tests.Models.Settings
 			set;
 		}
 
-		[TestInitialize]
-		public void TestInitialize()
+		[SetUp]
+		public void Initialize()
 		{
 			var values = new List<Setting>
 			{
@@ -26,7 +26,7 @@ namespace Coders.Tests.Models.Settings
 			this.Values = values.AsQueryable();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_SettingKeySpecification_SatisfyEntityFrom()
 		{
 			var specification = new SettingKeySpecification("one");
@@ -36,7 +36,7 @@ namespace Coders.Tests.Models.Settings
 			Assert.AreEqual("one", result.Key);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_SettingKeySpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new SettingKeySpecification("one");

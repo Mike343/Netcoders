@@ -22,12 +22,12 @@ using Coders.Specifications;
 
 namespace Coders.Models.Users
 {
-	public interface IUserSpecification : ISpecification<User>
+	public interface IUserBanSpecification : ISpecification<UserBan>
 	{
 		/// <summary>
 		/// Gets the sort.
 		/// </summary>
 		/// <value>The sort.</value>
-		SortUser Sort { get; set; }
+		SortUserBan Sort { get; set; }
 	}
 }

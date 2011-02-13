@@ -24,10 +24,18 @@ namespace Coders.Models.Users
 	public interface IUserAvatarService : IEntityService<UserAvatar>
 	{
 		/// <summary>
-		/// Assigns the specified avatar.
+		/// Assigns the specified avatar to the specified user.
 		/// </summary>
+		/// <param name="user">The user.</param>
 		/// <param name="avatar">The avatar.</param>
-		void Assign(UserAvatar avatar);
+		void AssignToUser(User user, UserAvatar avatar);
+
+		/// <summary>
+		/// Removes the specified avatar from the specified avatar if they match.
+		/// </summary>
+		/// <param name="user">The user.</param>
+		/// <param name="avatar">The avatar.</param>
+		bool RemoveFromUserOnMatch(User user, UserAvatar avatar);
 
 		/// <summary>
 		/// Inserts the specified avatar.

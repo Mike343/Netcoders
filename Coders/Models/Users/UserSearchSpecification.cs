@@ -23,7 +23,7 @@ using Coders.Specifications;
 
 namespace Coders.Models.Users
 {
-	public class UserSearchSpecification : Specification<UserSearch>
+	public class UserSearchSpecification : Specification<UserSearch>, IUserSearchSpecification
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UserSearchSpecification"/> class.

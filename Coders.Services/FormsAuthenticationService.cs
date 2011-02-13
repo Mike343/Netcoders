@@ -144,7 +144,7 @@ namespace Coders.Services
 			var value = new StringBuilder();
 			var consonant = false;
 
-			for (var i = 0; i <= length; i++)
+			for (var i = 0; i <= (length - 2); i++)
 			{
 				if (value.Length > 0 && !consonant && random.Next(100) < 10)
 				{
@@ -168,7 +168,7 @@ namespace Coders.Services
 				value.Append(_numbers[random.Next(_numbers.Length)].ToString());
 			}
 
-			value.Length = length + 2;
+			value.Length = length;
 
 			return value.ToString();
 		}

@@ -190,6 +190,7 @@ namespace Coders.Web.Models.Users
 				throw new ArgumentNullException("entity");
 			}
 
+			entity.Reputation = this.Reputation > 0 ? this.Reputation : (int?)null;
 			entity.Name = this.Name;
 			entity.EmailAddress = this.EmailAddress;
 			entity.NameExact = this.NameExact;
@@ -201,12 +202,11 @@ namespace Coders.Web.Models.Users
 			entity.LastLogOnBefore = this.LastLogOnBefore;
 			entity.LastLogOnAfter = this.LastLogOnAfter;
 
-			if (!this.Save || !base.Identity.IsAuthenticated())
+			if (!this.Save)
 			{
 				return;
 			}
 
-			entity.UserId = base.Identity.Id;
 			entity.Title = this.Title;
 		}
 	}

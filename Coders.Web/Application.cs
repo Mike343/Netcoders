@@ -20,16 +20,15 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Coders.DependencyResolution;
 using Coders.Extensions;
 using Coders.Models.Settings;
 using Coders.Web.ActionFilters;
 using Coders.Web.Routes;
 using FluentValidation.Attributes;
 using FluentValidation.Mvc;
+using Microsoft.Practices.ServiceLocation;
 #endregion
 
 namespace Coders.Web
@@ -125,13 +124,10 @@ namespace Coders.Web
 		/// </summary>
 		public void Setup()
 		{
-			Configure();
-
 			this.RegisterModules();
 			this.RegisterRoutes(RouteTable.Routes);
 
 			RegisterGlobalFilters(GlobalFilters.Filters);
-			RegisterControllerFactory();
 
 			ModelMetadataProviders.Current = new DataAnnotationsModelMetadataProvider();
 			ModelValidatorProviders.Providers.Add(new FluentValidationModelValidatorProvider(new AttributedValidatorFactory()));
@@ -153,14 +149,6 @@ namespace Coders.Web
 		}
 
 		/// <summary>
-		/// Configures this instance.
-		/// </summary>
-		public static void Configure()
-		{
-			NinjectHelper.Initialize(new[] { "*.DependencyResolution.dll", "*.Repositories.dll", "*.Web.dll" });
-		}
-
-		/// <summary>
 		/// Registers the global filters.
 		/// </summary>
 		/// <param name="filters">The filters.</param>
@@ -173,14 +161,6 @@ namespace Coders.Web
 
 			filters.Add(new HandleErrorAttribute());
 			filters.Add(new SessionFilterAttribute());
-		}
-
-		/// <summary>
-		/// Registers the controller factory.
-		/// </summary>
-		public static void RegisterControllerFactory()
-		{
-			ControllerBuilder.Current.SetControllerFactory(new ControllerFactory());
 		}
 	}
 }

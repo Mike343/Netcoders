@@ -198,9 +198,6 @@
   <data name="Search" xml:space="preserve">
     <value>Search</value>
   </data>
-  <data name="SearchResults" xml:space="preserve">
-    <value>Search Results</value>
-  </data>
   <data name="SearchWith" xml:space="preserve">
     <value>Search {0}</value>
   </data>
@@ -420,11 +417,8 @@
   <data name="Bytes" xml:space="preserve">
     <value>Bytes</value>
   </data>
-  <data name="Permissions" xml:space="preserve">
-    <value>Permissions</value>
-  </data>
-  <data name="LastActivity" xml:space="preserve">
-    <value>Last Activity</value>
+  <data name="Privileges" xml:space="preserve">
+    <value>Privileges</value>
   </data>
   <data name="Preferences" xml:space="preserve">
     <value>Preferences</value>
@@ -438,8 +432,8 @@
   <data name="SaveWith" xml:space="preserve">
     <value>Save {0}</value>
   </data>
-  <data name="UpdatePermissionsFor" xml:space="preserve">
-    <value>Update Permissions for '{0}'</value>
+  <data name="UpdatePrivilegesFor" xml:space="preserve">
+    <value>Update Privileges for '{0}'</value>
   </data>
   <data name="Administrator" xml:space="preserve">
     <value>Administrator</value>
@@ -450,8 +444,8 @@
   <data name="Create" xml:space="preserve">
     <value>Create</value>
   </data>
-  <data name="DefaultPermissions" xml:space="preserve">
-    <value>Default Permissions</value>
+  <data name="DefaultPrivileges" xml:space="preserve">
+    <value>Default Privileges</value>
   </data>
   <data name="DeleteAny" xml:space="preserve">
     <value>Delete Any</value>
@@ -686,5 +680,47 @@
   </data>
   <data name="ResetPasswordFor" xml:space="preserve">
     <value>Reset Password for '{0}'</value>
+  </data>
+  <data name="Reason" xml:space="preserve">
+    <value>Reason</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Expires</value>
+  </data>
+  <data name="Permanent" xml:space="preserve">
+    <value>Permanent</value>
+  </data>
+  <data name="Never" xml:space="preserve">
+    <value>Never</value>
+  </data>
+  <data name="BannedBy" xml:space="preserve">
+    <value>Banned By</value>
+  </data>
+  <data name="LiftBan" xml:space="preserve">
+    <value>Lift Ban</value>
+  </data>
+  <data name="UpdateBanFor" xml:space="preserve">
+    <value>Update ban for '{0}'</value>
+  </data>
+  <data name="AfterWith" xml:space="preserve">
+    <value>{0} After</value>
+  </data>
+  <data name="BeforeWith" xml:space="preserve">
+    <value>{0} Before</value>
+  </data>
+  <data name="LastLogOn" xml:space="preserve">
+    <value>Last Log on</value>
+  </data>
+  <data name="Results" xml:space="preserve">
+    <value>Results</value>
+  </data>
+  <data name="SavedWith" xml:space="preserve">
+    <value>Saved {0}</value>
+  </data>
+  <data name="Searches" xml:space="preserve">
+    <value>Searches</value>
+  </data>
+  <data name="HostAddress" xml:space="preserve">
+    <value>Host Address</value>
   </data>
 </root>

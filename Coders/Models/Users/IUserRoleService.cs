@@ -49,6 +49,6 @@ namespace Coders.Models.Users
 		/// </summary>
 		/// <param name="user">The user.</param>
 		/// <param name="values">The values.</param>
-		void UpdatePrivileges(User user, UserRoleRelationUpdate[] values);
+		void UpdatePrivileges(User user, IList<UserRoleRelationUpdate> values);
 	}
 }

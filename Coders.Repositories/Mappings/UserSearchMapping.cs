@@ -40,6 +40,7 @@ namespace Coders.Repositories.Mappings
 				.Nullable();
 
 			base.Map(x => x.Reputation)
+				.Column("Reputation")
 				.Nullable();
 
 			base.Map(x => x.Title)

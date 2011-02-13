@@ -49,7 +49,6 @@ namespace Coders.Models.TimeZones
 			this.Offset = info.GetDouble("Offset");
 			this.Title = info.GetString("Title");
 			this.Display = info.GetString("Display");
-			this.Slug = info.GetString("Slug");
 		}
 
 		/// <summary>
@@ -83,16 +82,6 @@ namespace Coders.Models.TimeZones
 		}
 
 		/// <summary>
-		/// Gets or sets the slug.
-		/// </summary>
-		/// <value>The slug.</value>
-		public string Slug
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
 		/// Copies the specified value to the audit.
 		/// </summary>
 		/// <param name="entity">The entity.</param>
@@ -106,7 +95,6 @@ namespace Coders.Models.TimeZones
 			this.Offset = entity.Offset;
 			this.Title = entity.Title;
 			this.Display = entity.Display;
-			this.Slug = entity.Slug;
 		}
 
 		/// <summary>
@@ -125,7 +113,6 @@ namespace Coders.Models.TimeZones
 			info.AddValue("Offset", this.Offset);
 			info.AddValue("Title", this.Title);
 			info.AddValue("Display", this.Display);
-			info.AddValue("Slug", this.Slug);
 		}
 	}
 }

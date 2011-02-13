@@ -17,12 +17,16 @@
 
 #region Using Directives
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using Coders.Extensions;
+using Coders.Models.Common;
+using Coders.Models.Common.Enums;
 using Coders.Models.Users;
+using Coders.Strings;
+using Coders.Web.Controllers.Administration.Queries;
 using Coders.Web.Models.Users;
 using Coders.Web.Routes;
-using Coders.Web.ViewModels;
 #endregion
 
 namespace Coders.Web.Controllers.Users.Administration
@@ -31,11 +35,19 @@ namespace Coders.Web.Controllers.Users.Administration
 	public class RoleController : DefaultController
 	{
 		public RoleController(
+			IAuditService<UserRole, UserRoleAudit> auditService,
 			IUserService userService, 
 			IUserRoleService userRoleService)
 		{
+			this.AuditService = auditService;
 			this.UserService = userService;
 			this.UserRoleService = userRoleService;
+		}
+
+		public IAuditService<UserRole, UserRoleAudit> AuditService
+		{
+			get;
+			private set;
 		}
 
 		public IUserService UserService
@@ -53,31 +65,42 @@ namespace Coders.Web.Controllers.Users.Administration
 		[HttpGet]
 		public ActionResult Index()
 		{
-			var roles = UserRoleService.GetAll();
+			var roles = this.UserRoleService.GetAll();
 			var role = roles.FirstOrDefault();
 			var privilege = new UserRolePrivilege();
 
-			return privilege.CanView(role) ? View(Views.Index, roles) : NotAuthorized();
+			return privilege.CanView(role) ? base.View(Views.Index, roles) : NotAuthorized();
+		}
+
+		[HttpGet]
+		public ActionResult History(SortAudit sort, SortOrder order, int? page, int? id)
+		{
+			var query = new AuditQuery<UserRole>(sort, order, page, id);
+			var audits = this.AuditService.GetPaged(query.Specification);
+			var audit = audits.FirstOrDefault();
+			var privilege = new AuditPrivilege();
+
+			return privilege.CanView(audit) ? base.View(Views.History, audits) : NotAuthorized();
 		}
 
 		[HttpGet]
 		public ActionResult Create()
 		{
-			var role = UserRoleService.Create();
+			var role = this.UserRoleService.Create();
 			var privilege = new UserRolePrivilege();
 
-			return privilege.CanCreate(role) ? View(Views.Create, new UserRoleCreateOrUpdate()) : NotAuthorized();
+			return privilege.CanCreate(role) ? base.View(Views.Create, new UserRoleCreateOrUpdate()) : NotAuthorized();
 		}
 
 		[HttpPost]
-		public ActionResult Create(UserRoleCreateOrUpdate value)
+		public ActionResult Create(UserRoleCreateOrUpdate value, IList<UserRoleRelationUpdateValue> privileges)
 		{
 			if (value == null)
 			{
 				throw new ArgumentNullException("value");
 			}
 
-			var role = UserRoleService.Create();
+			var role = this.UserRoleService.Create();
 			var privilege = new UserRolePrivilege();
 
 			if (!privilege.CanCreate(role))
@@ -87,44 +110,48 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			if (!ModelState.IsValid)
 			{
-				return View(Views.Create, value);
+				return base.View(Views.Create, value);
 			}
 
 			value.ValueToModel(role);
 
-			this.UserRoleService.InsertOrUpdate(role, value.Privileges);
+			this.UserRoleService.InsertOrUpdate(role, privileges);
 
-			return RedirectToRoute(UsersAdministrationRoutes.RoleUpdate, new { id = role.Id });
+			var model = new UserRoleCreateOrUpdate(role);
+
+			model.SuccessMessage(Messages.UserRoleCreated.FormatInvariant(role.Title));
+
+			return base.View(Views.Update, model);
 		}
 
 		[HttpGet]
 		public ActionResult Update(int id)
 		{
-			var role = UserRoleService.GetById(id);
+			var role = this.UserRoleService.GetById(id);
 
 			if (role == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserRolePrivilege();
 
-			return privilege.CanUpdate(role) ? View(Views.Update, new UserRoleCreateOrUpdate(role)) : NotAuthorized();
+			return privilege.CanUpdate(role) ? base.View(Views.Update, new UserRoleCreateOrUpdate(role)) : NotAuthorized();
 		}
 
 		[HttpPost]
-		public ActionResult Update(UserRoleCreateOrUpdate value)
+		public ActionResult Update(UserRoleCreateOrUpdate value, IList<UserRoleRelationUpdateValue> privileges)
 		{
 			if (value == null)
 			{
 				throw new ArgumentNullException("value");
 			}
 
-			var role = UserRoleService.GetById(value.Id);
+			var role = this.UserRoleService.GetById(value.Id);
 
 			if (role == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserRolePrivilege();
@@ -136,14 +163,16 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			if (!ModelState.IsValid)
 			{
-				return View(Views.Update, value);
+				return base.View(Views.Update, value);
 			}
 
 			value.ValueToModel(role);
 
-			this.UserRoleService.InsertOrUpdate(role, value.Privileges);
+			this.UserRoleService.InsertOrUpdate(role, privileges);
 
-			return RedirectToRoute(UsersAdministrationRoutes.RoleUpdate, new { id = role.Id });
+			value.SuccessMessage(Messages.UserRoleUpdated.FormatInvariant(role.Title));
+
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -153,7 +182,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			if (role == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserRolePrivilege();
@@ -169,11 +198,11 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			var role = UserRoleService.GetById(value.Id);
+			var role = this.UserRoleService.GetById(value.Id);
 
 			if (role == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserRolePrivilege();
@@ -190,17 +219,17 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			this.UserRoleService.Delete(role);
 
-			return RedirectToRoute(UsersAdministrationRoutes.RoleIndex);
+			return base.RedirectToRoute(UsersAdministrationRoutes.RoleIndex);
 		}
 
 		[HttpGet]
 		public ActionResult Privilege(int id)
 		{
-			var user = UserService.GetById(id);
+			var user = this.UserService.GetById(id);
 
 			if (user == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserPrivilege();
@@ -210,20 +239,23 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			var roles = UserRoleService.GetAll();
-			var permissions = this.UserRoleService.GetPrivileges(new UserRoleRelationUserSpecification(id));
+			var roles = this.UserRoleService.GetAll();
+			var privileges = this.UserRoleService.GetPrivileges(new UserRoleRelationUserSpecification(user.Id));
+			var value = new UserRolePrivilegeUpdate();
 
-			return View(Views.Privilege, new UserPrivilegeViewModel(user, roles, permissions));
+			value.Initialize(user, roles, privileges);
+
+			return base.View(Views.Privilege, value);
 		}
 
 		[HttpPost]
-		public ActionResult Privilege(int id, UserRoleRelationUpdate[] values)
+		public ActionResult Privilege(UserRolePrivilegeUpdate value)
 		{
-			var user = UserService.GetById(id);
+			var user = this.UserService.GetById(value.UserId);
 
 			if (user == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserPrivilege();
@@ -233,9 +265,17 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			this.UserRoleService.UpdatePrivileges(user, values);
+			this.UserRoleService.UpdatePrivileges(user, value.Values);
 
-			return RedirectToRoute(UsersAdministrationRoutes.RolePrivilege, new { id = user.Id });
+			value.SuccessMessage(Messages.UserPrivilegeUpdated.FormatInvariant(user.Name));
+
+			var roles = this.UserRoleService.GetAll();
+			var privileges = this.UserRoleService.GetPrivileges(new UserRoleRelationUserSpecification(user.Id));
+
+			value.Initialize(user, roles, privileges);
+			value.SuccessMessage(Messages.UserPrivilegeUpdated.FormatInvariant(user.Name));
+
+			return base.View(Views.Privilege, value);
 		}
 	}
 }

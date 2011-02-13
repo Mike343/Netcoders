@@ -1,12 +1,12 @@
 ﻿using Coders.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Extensions
 {
-	[TestClass]
+	[TestFixture]
 	public class TypeExtensionTest
 	{
-		[TestMethod]
+		[Test]
 		public void Test_TypeExtension_GetProperty()
 		{
 			var value = new Value
@@ -19,6 +19,17 @@ namespace Coders.Tests.Extensions
 			Assert.AreEqual("Test", name);
 		}
 
+		[Test]
+		public void Test_TypeExtension_GetTypesThatImplement()
+		{
+			var types = typeof(TypeExtensionTest).Assembly.GetTypesThatImplement<ITest>();
+
+			foreach (var type in types)
+			{
+				Assert.AreEqual("Rock", type.Name);
+			}
+		}
+
 		private class Value
 		{
 			public string Name
@@ -26,6 +37,16 @@ namespace Coders.Tests.Extensions
 				get;
 				set;
 			}
+		}
+
+		public interface ITest
+		{
+
+		}
+
+		public class Rock : ITest
+		{
+			
 		}
 	}
 }

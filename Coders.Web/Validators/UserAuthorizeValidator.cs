@@ -24,6 +24,7 @@ using Coders.Models.Common;
 using Coders.Models.Users;
 using Coders.Strings;
 using FluentValidation.Validators;
+using Microsoft.Practices.ServiceLocation;
 #endregion
 
 namespace Coders.Web.Validators

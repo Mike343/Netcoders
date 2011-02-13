@@ -1,0 +1,74 @@
+﻿@model Coders.Web.Models.Users.UserRolePrivilegeUpdate
+@section scripts
+{
+	<script src="/content/scripts/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+	<script src="/content/scripts/administration/coders.user.privilege.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(UsersAdministrationRoutes.HomeIndex, new { sort = "name", order = "ascending", page = 1 }).Link(Resources.Titles.Users)</li>
+			<li>@Url.Route(UsersAdministrationRoutes.HomeUpdate, new { id = Model.User.Id }).Link(Model.User.Name)</li>
+			<li class="last">@Resources.Titles.Privileges</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.UpdatePrivilegesFor.FormatInvariant(Model.User.Name)</h5>
+</div>
+<div class="content">
+	@{Html.Message(Model);}
+	@{Html.BeginRouteForm(UsersAdministrationRoutes.RolePrivilege);}
+	<div class="table table-privileges">
+		@for (var i = 0; i < Model.Values.Count; i++) 
+		{
+			<div class="@(i == 0 ? "privilege privilege-first" : "privilege")">
+				<table>
+					<thead>
+						<tr>
+							<th id="@Model.Values[i].Role.Title" colspan="4" class="@Model.Values[i].GetTitleClass()">
+								<div class="input">
+									@Html.HiddenFor(x => x.Values[i].RoleId)
+									@Html.CheckBoxFor(x => x.Values[i].Selected, new { @class = "privileges-group", title = Model.Values[i].Role.Title })
+								</div>
+								<label for="@("Values_{0}__Selected".FormatInvariant(i))">@Model.Values[i].Role.Title</label>
+								<a id="expander_@(Model.Values[i].Role.Title)" href="#@Model.Values[i].Role.Title" class="expander minus"></a>
+							</th>
+						</tr>
+					</thead>
+					<tbody id="checkboxes_@(Model.Values[i].Role.Title)">
+						<tr class="checkboxes">
+							@for (var k = 0; k < Model.Values[i].Privileges.Count; k++) 
+							{
+								if (k > 0 && (k % 4) == 0)
+								{
+									@(MvcHtmlString.Create("</tr><tr class=\"checkboxes\">"))
+								}
+								<td class="@Model.Values[i].GetCheckBoxClass(Model.Values[i].Privileges[k])">
+									<div class="input">
+										@Html.HiddenFor(x => x.Values[i].Privileges[k].Privilege)
+										@Html.CheckBoxFor(x => x.Values[i].Privileges[k].Selected, new { @class = Model.Values[i].Role.Title })
+									</div>
+									<label for="@("Values_{0}__Privileges_{1}__Selected".FormatInvariant(i, k))">@Model.Names[k]</label>
+								</td>
+							}
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		}
+	</div>
+	<div class="form">
+		<div class="fields">
+			<div class="buttons">
+				@Html.HiddenFor(x => x.UserId)
+				@Html.AntiForgeryToken()
+				<input type="submit" value="@Resources.Titles.SaveWith.FormatInvariant(Resources.Titles.Privileges)" />
+			</div>
+		</div>
+	</div>
+	@{Html.EndForm();}
+</div>

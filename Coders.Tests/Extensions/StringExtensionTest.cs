@@ -1,54 +1,54 @@
 ﻿using Coders.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Extensions
 {
-	[TestClass]
+	[TestFixture]
 	public class StringExtensionTest
 	{
-		[TestMethod]
+		[Test]
 		public void Test_StringExtension_GetValueOrNull_Null()
 		{
 			Assert.AreEqual(null, string.Empty.GetValueOrNull());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_StringExtension_GetValueOrNull_Value()
 		{
 			Assert.AreEqual("value", "value".GetValueOrNull());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_StringExtension_Slug()
 		{
 			Assert.AreEqual("this-is-a-teststring", "This is a test-string # ".Slug());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_StringExtension_Indent()
 		{
 			Assert.AreEqual("-- value", "value".Indent(2, "-"));
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_StringExtension_FormatInvariant()
 		{
 			Assert.AreEqual("value (value)", "value ({0})".FormatInvariant("value"));
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_StringExtension_Truncate()
 		{
 			Assert.AreEqual("value...", "value value value".Truncate(5));
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_StringExtension_UppercaseFirst()
 		{
 			Assert.AreEqual("Value", "value".UppercaseFirst());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_StringExtension_AsReadableSize()
 		{
 			Assert.AreEqual("40 KB", 40960.AsReadableSize());

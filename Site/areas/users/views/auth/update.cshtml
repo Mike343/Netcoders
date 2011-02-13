@@ -1,0 +1,46 @@
+﻿@model Coders.Web.Models.Users.UserAuthenticationUpdate
+@section scripts
+{
+    <script src="/content/scripts/coders.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+}
+<div class="left">
+	<h2>@Resources.Titles.ChangePassword</h2>
+	<div class="form">
+		@{Html.ValidationResult();}
+		@{Html.BeginRouteForm(UsersRoutes.AuthUpdate);}
+		<div class="fields">
+			<div class="field field-input">
+				<label for="CurrentPassword">@Resources.Titles.CurrentPassword:</label>
+				@Html.PasswordFor(x => x.CurrentPassword)
+				@Html.ValidationMessageFor(x => x.CurrentPassword)
+			</div>
+			<div class="field field-input">
+				<label for="NewPassword">@Resources.Titles.NewPassword:</label>
+				@Html.PasswordFor(x => x.NewPassword)
+				@Html.ValidationMessageFor(x => x.NewPassword)
+			</div>
+			<div class="field field-input">
+				<label for="VerifyNewPassword">@Resources.Titles.VerifyWith.FormatInvariant(Resources.Titles.NewPassword):</label>
+				@Html.PasswordFor(x => x.VerifyNewPassword)
+				@Html.ValidationMessageFor(x => x.VerifyNewPassword)
+			</div>
+			<div class="field field-button">
+				@Html.HiddenFor(x => x.EmailAddress)
+				@Html.AntiForgeryToken()
+				<input type="submit" value="@Resources.Titles.ChangePassword" />
+			</div>
+		</div>
+		@{Html.EndForm();}
+	</div>
+</div>
+<div class="right">
+	<div class="menu">
+		<h2>@Resources.Titles.Account</h2>
+		<ul>
+			<li>@Url.Route(UsersRoutes.Update).Link(Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.Account))</li>
+			<li>@Url.Route(UsersRoutes.PreferenceUpdate).Link(Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.Preferences))</li>
+			<li>@Url.Route(UsersRoutes.AuthUpdate).Link(Resources.Titles.ChangePassword)</li>
+		</ul>
+	</div>
+</div>

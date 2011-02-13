@@ -27,7 +27,7 @@ namespace Coders.Models.Users
 		/// Initializes a new instance of the <see cref="UserBanExpiredSpecification"/> class.
 		/// </summary>
 		public UserBanExpiredSpecification()
-			: base(x => x.Expire.HasValue && x.Expire.Value <= DateTime.Now)
+			: base(x => x.Expire <= DateTime.Now)
 		{
 
 		}

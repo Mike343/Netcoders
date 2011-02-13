@@ -1,41 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Practices.ServiceLocation;
 using Ninject;
 using Ninject.Parameters;
 
 namespace Coders.Tests
 {
-	public class NinjectServiceLocator : ServiceLocatorBase
+	public class NinjectServiceLocator : ServiceLocatorImplBase
 	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="NinjectServiceLocator"/> class.
+		/// </summary>
+		/// <param name="kernel">The kernel.</param>
 		public NinjectServiceLocator(IKernel kernel)
 		{
 			this.Kernel = kernel;
 		}
 
+		/// <summary>
+		/// Gets or sets the kernel.
+		/// </summary>
+		/// <value>The kernel.</value>
 		public IKernel Kernel
 		{
-			get; 
+			get;
 			private set;
 		}
 
-		protected override T TryGetInstance<T>(string key)
+		/// <summary>
+		/// Gets the instance.
+		/// </summary>
+		/// <param name="serviceType">Type of the service.</param>
+		/// <param name="key">The key.</param>
+		/// <returns></returns>
+		protected override object DoGetInstance(Type serviceType, string key)
 		{
-			return string.IsNullOrEmpty(key) ? this.Kernel.Get<T>() : this.Kernel.Get<T>(key, new IParameter[0]);
+			return string.IsNullOrEmpty(key) ? this.Kernel.TryGet(serviceType) : this.Kernel.TryGet(serviceType, key, new IParameter[0]);
 		}
 
-		protected override object TryGetInstance(Type type, string key)
+		/// <summary>
+		/// Gets all the instances.
+		/// </summary>
+		/// <param name="serviceType">Type of the service.</param>
+		/// <returns></returns>
+		protected override IEnumerable<object> DoGetAllInstances(Type serviceType)
 		{
-			return string.IsNullOrEmpty(key) ? this.Kernel.Get(type) : this.Kernel.Get(type, key, new IParameter[0]);
-		}
-
-		protected override IEnumerable<T> TryGetInstances<T>(string key)
-		{
-			return string.IsNullOrEmpty(key) ? this.Kernel.GetAll<T>() : this.Kernel.GetAll<T>(key, new IParameter[0]);
-		}
-
-		protected override void TryRelease(object instance)
-		{
-			this.Kernel.Release(instance);
+			return this.Kernel.GetAll(serviceType);
 		}
 	}
 }

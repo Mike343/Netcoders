@@ -26,7 +26,7 @@ namespace Coders.Web.Controllers
 		[HttpGet]
 		public ActionResult Index()
 		{
-			return View(Views.Index);
+			return base.View(Views.Index);
 		}
 	}
 }

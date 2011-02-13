@@ -1,12 +1,13 @@
-﻿using Coders.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Coders.Extensions;
+using NUnit.Framework;
 
 namespace Coders.Tests.Extensions
 {
-	[TestClass]
+	[TestFixture]
 	public class ObjectExtensionTest
 	{
-		[TestMethod]
+		[Test]
 		public void Test_ObjectExtension_AsInt()
 		{
 			var value = "1".AsInt();
@@ -14,12 +15,28 @@ namespace Coders.Tests.Extensions
 			Assert.AreEqual(1, value);
 		}
 
-		[TestMethod]
-		public void Test_ObjectExtension_AsBooleant()
+		[Test]
+		public void Test_ObjectExtension_AsBoolean()
 		{
 			var value = "true".AsBoolean();
 
 			Assert.AreEqual(true, value);
+		}
+
+		[Test]
+		public void Test_ObjectExtension_Object_AsBoolean()
+		{
+			object value = true;
+
+			Assert.AreEqual(true, value.AsBoolean());
+		}
+
+		[Test]
+		public void Test_ObjectExtension_AsDateTime()
+		{
+			var value = "2011-02-05 00:00:00.000".AsDateTime();
+
+			Assert.AreEqual(new DateTime(2011, 2, 5, 0, 0, 0, 0), value);
 		}
 	}
 }

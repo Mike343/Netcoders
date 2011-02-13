@@ -84,7 +84,7 @@ namespace Coders.Services
 				return ".gif";
 			}
 
-			return format == ImageFormat.Png ? ".png" : ".jpeg";
+			return format == ImageFormat.Png ? ".png" : ".jpg";
 		}
 
 		/// <summary>
@@ -129,7 +129,7 @@ namespace Coders.Services
 			using (var image = Image.FromStream(file.InputStream))
 			{
 				result[0] = image.Width;
-				result[0] = image.Height;
+				result[1] = image.Height;
 			}
 
 			return result;

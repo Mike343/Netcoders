@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Coders.Models.Countries;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Countries
 {
-	[TestClass]
+	[TestFixture]
 	public class CountryCodeSpecificationTest
 	{
 		private IQueryable<Country> Values
@@ -14,8 +14,8 @@ namespace Coders.Tests.Models.Countries
 			set;
 		}
 
-		[TestInitialize]
-		public void TestInitialize()
+		[SetUp]
+		public void Initialize()
 		{
 			var values = new List<Country>
 			{
@@ -26,7 +26,7 @@ namespace Coders.Tests.Models.Countries
 			this.Values = values.AsQueryable();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_CountryCodeSpecification_SatisfyEntityFrom()
 		{
 			var specification = new CountryCodeSpecification("us");
@@ -36,7 +36,7 @@ namespace Coders.Tests.Models.Countries
 			Assert.AreEqual("us", result.Code);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_CountryCodeSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new CountryCodeSpecification("us");

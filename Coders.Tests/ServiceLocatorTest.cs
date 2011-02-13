@@ -1,13 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.Practices.ServiceLocation;
 using Ninject;
+using NUnit.Framework;
 
 namespace Coders.Tests
 {
-	[TestClass]
+	[TestFixture]
 	public class ServiceLocatorTest
 	{
-		[TestInitialize]
-		public void TestInitialize()
+		[SetUp]
+		public void Initialize()
 		{
 			IKernel kernel = new StandardKernel();
 
@@ -17,18 +18,19 @@ namespace Coders.Tests
 			ServiceLocator.SetLocatorProvider(() => new NinjectServiceLocator(kernel));
 		}
 
-		[TestCleanup]
-		public void TestCleanup()
+		[TearDown]
+		public void Cleanup()
 		{
 			ServiceLocator.SetLocatorProvider(null);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_ServiceLocator()
 		{
 			var warrior = ServiceLocator.Current.GetInstance<IWarrior>();
 
-			Assert.IsInstanceOfType(warrior.Weapon, typeof(Dagger));
+			Assert.IsInstanceOf(typeof(Samurai), warrior);
+			Assert.IsInstanceOf(typeof (Dagger), warrior.Weapon);
 		}
 	}
 }

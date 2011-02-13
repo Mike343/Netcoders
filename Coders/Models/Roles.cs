@@ -20,12 +20,11 @@ namespace Coders.Models
 	public static class Roles
 	{
 		public const string Audits = "Audits";
-		public const string Administrator = "Administrator";
+		public const string Administrators = "Administrators";
 		public const string Attachments = "Attachments";
 		public const string AttachmentsRules = "AttachmentsRules";
 		public const string Comments = "Comments";
 		public const string Countries = "Countries";
-		public const string Logs = "Logs";
 		public const string Settings = "Settings";
 		public const string TimeZones = "TimeZones";
 		public const string Privileges = "Privileges";

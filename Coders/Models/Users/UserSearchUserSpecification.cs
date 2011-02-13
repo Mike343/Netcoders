@@ -24,7 +24,7 @@ namespace Coders.Models.Users
 		/// </summary>
 		/// <param name="userId">The user id.</param>
 		public UserSearchUserSpecification(int userId)
-			: base(x => x.UserId.HasValue && x.UserId.Value == userId)
+			: base(x => x.UserId == userId)
 		{
 
 		}

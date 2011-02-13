@@ -33,6 +33,11 @@ namespace Coders.Models.Users
 		IPagedCollection<User> GetResults(UserSearch search, ISpecification<UserSearch> specification);
 
 		/// <summary>
+		/// Rebuilds the search index.
+		/// </summary>
+		void Rebuild();
+
+		/// <summary>
 		/// Deletes the expired searches.
 		/// </summary>
 		void DeleteExpired();

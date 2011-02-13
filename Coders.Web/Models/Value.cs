@@ -23,7 +23,7 @@ using Coders.Web.ViewModels;
 
 namespace Coders.Web.Models
 {
-	public abstract class Value<T> : IValue<T>
+	public abstract class Value : IValue
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="Value&lt;T&gt;"/> class.
@@ -56,7 +56,7 @@ namespace Coders.Web.Models
 		/// <value>The message.</value>
 		public MessageViewModel Message
 		{
-			get; 
+			get;
 			private set;
 		}
 
@@ -86,7 +86,10 @@ namespace Coders.Web.Models
 		{
 			this.Message = new MessageViewModel(message, MessageScope.Error);
 		}
+	}
 
+	public abstract class Value<T> : Value, IValue<T>
+	{
 		/// <summary>
 		/// Converts this instance to the specified entity.
 		/// </summary>

@@ -1,12 +1,12 @@
 ﻿using Coders.Models.Users;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Users
 {
-	[TestClass]
+	[TestFixture]
 	public class UserAvatarTest
 	{
-		[TestMethod]
+		[Test]
 		public void Test_UserAvatar_FullPath()
 		{
 			var avatar = new UserAvatar

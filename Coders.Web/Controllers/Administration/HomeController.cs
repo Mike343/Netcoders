@@ -28,7 +28,7 @@ namespace Coders.Web.Controllers.Administration
 		[HttpGet]
 		public ActionResult Index()
 		{
-			return base.Principal.ContainsRole(Roles.Administrator) ? base.View(Views.Index) : NotAuthorized();
+			return base.Principal.ContainsRole(Roles.Administrators) ? base.View(Views.Index) : NotAuthorized();
 		}
 	}
 }

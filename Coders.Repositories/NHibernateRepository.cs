@@ -23,6 +23,7 @@ using Coders.Collections;
 using Coders.Models;
 using Coders.Repositories.Extension;
 using Coders.Specifications;
+using Microsoft.Practices.ServiceLocation;
 using NHibernate;
 using NHibernate.Linq;
 #endregion
@@ -37,15 +38,6 @@ namespace Coders.Repositories
 		public NHibernateRepository()
 		{
 			this.Session = ServiceLocator.Current.GetInstance<ISession>();
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="NHibernateRepository&lt;TEntity&gt;"/> class.
-		/// </summary>
-		/// <param name="session">The session.</param>
-		public NHibernateRepository(ISession session)
-		{
-			this.Session = session;
 		}
 
 		/// <summary>
@@ -211,7 +203,7 @@ namespace Coders.Repositories
 
 			using (var transaction = session.BeginTransaction())
 			{
-				var count = specification.SatisfyEntitiesFrom(session.Query<TEntity>()).Count();
+				var count = specification.SatisfyEntitiesFrom(session.Query<TEntity>(), false).Count();
 
 				transaction.Commit();
 

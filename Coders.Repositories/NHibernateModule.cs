@@ -16,14 +16,9 @@
 #endregion
 
 #region Using Directives
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Web;
-using FluentNHibernate.Cfg;
+
+using Coders.Models;
 using NHibernate;
-using NHibernate.Cfg;
 using Ninject;
 using Ninject.Activation;
 using Ninject.Modules;
@@ -33,91 +28,16 @@ namespace Coders.Repositories
 {
 	public class NHibernateModule : NinjectModule
     {
-		// private constants
-		public const string SessionKey = "Coders.Repositories.HibernateModule.Key";
-
-		// private static fields
-		private static ISession _session;
-
 		/// <summary>
 		/// Loads this instance.
 		/// </summary>
         public override void Load()
         {
-			var path = string.IsNullOrEmpty(AppDomain.CurrentDomain.RelativeSearchPath)
-				? AppDomain.CurrentDomain.BaseDirectory
-				: Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.RelativeSearchPath);
+			var provider = new NHibernateSessionFactoryProvider();
 
-			var assemblies = Directory.GetFiles(path, "*.Repositories.dll")
-				.Select(Path.GetFileNameWithoutExtension);
-
-			var file = HttpContext.Current == null ? "app.config" : "web.config";
-			var configuration = new Configuration();
-
-			configuration.Configure(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, file));
-
-			if (configuration == null)
-			{
-				throw new InvalidOperationException("The configuration is null.");
-			}
-
-			var fluent = Fluently.Configure(configuration).Mappings(map =>
-			{
-				foreach (var assembly in assemblies.Select(Assembly.Load))
-				{
-					map.FluentMappings.AddFromAssembly(assembly).Conventions.AddAssembly(assembly);
-				}
-			});
-
-			Bind<ISessionFactory>().ToConstant(fluent.BuildConfiguration().BuildSessionFactory());
-			Bind<ISession>().ToMethod(OnSessionStart).InRequestScope().OnDeactivation(OnSessionEnd);
+			Bind<ISessionFactory>().ToConstant(provider.SessionFactory).InSingletonScope();
+			Bind<ISession>().ToProvider(new NHibernateSessionProvider()).InRequestScope();
+			Bind<IUnitOfWork>().To<NHibernateUnitOfWork>();
         }
-
-		/// <summary>
-		/// Starts and adds the session the the cache.
-		/// </summary>
-		/// <param name="context">The context.</param>
-		/// <returns></returns>
-		private static ISession OnSessionStart(IContext context)
-		{
-			if (HttpContext.Current == null)
-			{
-				return _session ?? (_session = context.Kernel.Get<ISessionFactory>().OpenSession());
-			}
-
-			ISession session;
-
-			var cache = HttpContext.Current.Items;
-
-			if (!cache.Contains(SessionKey))
-			{
-				session = context.Kernel.Get<ISessionFactory>().OpenSession();
-				cache.Add(SessionKey, session);
-            }
-			else
-			{
-				session = cache[SessionKey] as ISession;
-			}
-
-			return session;
-		}
-
-		/// <summary>
-		/// Ends the session
-		/// </summary>
-		private static void OnSessionEnd(ISession session)
-		{
-			if (session != null)
-			{
-				session.Dispose();
-			}
-
-			var context = HttpContext.Current;
-
-			if (context != null)
-			{
-				HttpContext.Current.Items[SessionKey] = null;
-			}
-		}
     }
 }

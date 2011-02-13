@@ -18,51 +18,19 @@
 #region Using Directives
 using System;
 using System.Threading;
-using System.Web;
 using System.Web.Security;
+using Coders.DependencyResolution;
+using Coders.Models;
 using Coders.Web.Authentication;
+using Microsoft.Practices.ServiceLocation;
+using Ninject;
+using Ninject.Web.Mvc;
 #endregion
 
 namespace Coders.Web
 {
-	public class ApplicationHttpModule : HttpApplication
+	public class ApplicationHttpModule : NinjectHttpApplication
 	{
-		/// <summary>
-		/// Handles the Start event of the Application control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="args">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-		protected virtual void Application_Start(object sender, EventArgs args)
-		{
-			HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
-
-			var application = new Application();
-
-			application.Setup();
-
-			application.Initialize();
-		}
-
-		/// <summary>
-		/// Handles the End event of the Application control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="args">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-		protected virtual void Application_End(object sender, EventArgs args)
-		{
-
-		}
-
-		/// <summary>
-		/// Handles the BeginRequest event of the Application control.
-		/// </summary>
-		/// <param name="sender">The source of the event.</param>
-		/// <param name="args">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-		protected virtual void Application_BeginRequest(object sender, EventArgs args)
-		{
-
-		}
-
 		/// <summary>
 		/// Handles the EndRequest event of the Application control.
 		/// </summary>
@@ -70,7 +38,7 @@ namespace Coders.Web
 		/// <param name="args">The <see cref="System.EventArgs"/> instance containing the event data.</param>
 		protected virtual void Application_EndRequest(object sender, EventArgs args)
 		{
-
+			ServiceLocator.Current.GetInstance<IUnitOfWork>().Dispose();
 		}
 
 		/// <summary>
@@ -112,6 +80,34 @@ namespace Coders.Web
 					false
 				);
 			}
+		}
+
+		/// <summary>
+		/// Creates the kernel.
+		/// </summary>
+		/// <returns></returns>
+		protected override IKernel CreateKernel()
+		{
+			IKernel kernel = new StandardKernel();
+
+			kernel.Load(new[] { "*.DependencyResolution.dll", "*.Repositories.dll", "*.Web.dll" });
+
+			ServiceLocator.SetLocatorProvider(() => new NinjectServiceLocator(kernel));
+
+			return kernel;
+		}
+
+		/// <summary>
+		/// Called when [application started].
+		/// </summary>
+		protected override void OnApplicationStarted()
+		{
+			HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
+
+			var application = new Application();
+
+			application.Setup();
+			application.Initialize();
 		}
 
 		/// <summary>

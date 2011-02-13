@@ -26,6 +26,7 @@ using Coders.Models.TimeZones;
 using Coders.Models.TimeZones.Enums;
 using Coders.Models.Users;
 using Coders.Models.Users.Enums;
+using Microsoft.Practices.ServiceLocation;
 using TimeZone = Coders.Models.TimeZones.TimeZone;
 #endregion
 
@@ -33,6 +34,10 @@ namespace Coders.Web.Models.Users
 {
 	public class UserPreferenceUpdate : Value<UserPreference>
 	{
+		// private fields
+		private readonly ICountryService _countryService;
+		private readonly ITimeZoneService _timeZoneService;
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UserPreferenceUpdate"/> class.
 		/// </summary>
@@ -63,9 +68,6 @@ namespace Coders.Web.Models.Users
 			this.Dst = preference.Dst;
 			this.StartOfWeek = preference.StartOfWeek;
 			this.TimeFormat = preference.TimeFormat;
-			this.Dsts = Enum.GetNames(typeof(UserPreferenceDaylightSavingTime)).ToList();
-			this.StartOfWeeks = Enum.GetNames(typeof(UserPreferenceStartOfWeek)).ToList();
-			this.TimeFormats = Enum.GetNames(typeof(UserPreferenceTimeFormat)).ToList();
 		}
 
 		/// <summary>
@@ -85,17 +87,8 @@ namespace Coders.Web.Models.Users
 				throw new ArgumentNullException("timeZoneService");
 			}
 
-			this.Countries = countryService.GetAll(new CountrySpecification
-			{
-				Sort = SortCountry.Title, 
-				Order = SortOrder.Ascending
-			});
-
-			this.TimeZones = timeZoneService.GetAll(new TimeZoneSpecification
-			{
-				Sort = SortTimeZone.Offset,
-				Order = SortOrder.Ascending
-			});
+			_countryService = countryService;
+			_timeZoneService = timeZoneService;
 		}
 
 		/// <summary>
@@ -196,6 +189,28 @@ namespace Coders.Web.Models.Users
 		{
 			get;
 			private set;
+		}
+
+		/// <summary>
+		/// Initializes this instance.
+		/// </summary>
+		public void Initialize()
+		{
+			this.Countries = _countryService.GetAll(new CountrySpecification
+			{
+				Sort = SortCountry.Title,
+				Order = SortOrder.Ascending
+			});
+
+			this.TimeZones = _timeZoneService.GetAll(new TimeZoneSpecification
+			{
+				Sort = SortTimeZone.Offset,
+				Order = SortOrder.Ascending
+			});
+
+			this.Dsts = Enum.GetNames(typeof(UserPreferenceDaylightSavingTime)).ToList();
+			this.StartOfWeeks = Enum.GetNames(typeof(UserPreferenceStartOfWeek)).ToList();
+			this.TimeFormats = Enum.GetNames(typeof(UserPreferenceTimeFormat)).ToList();
 		}
 
 		/// <summary>

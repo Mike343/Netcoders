@@ -129,6 +129,8 @@ namespace Coders.Services
 
 				audit.Type = type.ToString();
 				audit.Data = writer.ToString();
+
+				writer.Close();
 			}
 
 			this.AuditRepository.Insert(audit);

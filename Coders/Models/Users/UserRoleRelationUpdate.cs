@@ -23,26 +23,6 @@ namespace Coders.Models.Users
 {
 	public class UserRoleRelationUpdate
 	{
-		// private fields
-		private readonly IList<UserRoleRelationUpdateValue> _privileges;
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UserRoleRelationUpdate"/> class.
-		/// </summary>
-		public UserRoleRelationUpdate()
-		{
-			
-		}
-
-		/// <summary>
-		/// Initializes a new instance of the <see cref="UserRoleRelationUpdate"/> class.
-		/// </summary>
-		/// <param name="privileges">The privileges.</param>
-		public UserRoleRelationUpdate(IList<UserRoleRelationUpdateValue> privileges)
-		{
-			_privileges = privileges;
-		}
-
 		/// <summary>
 		/// Gets or sets the role id.
 		/// </summary>
@@ -64,15 +44,23 @@ namespace Coders.Models.Users
 		}
 
 		/// <summary>
+		/// Gets or sets the role.
+		/// </summary>
+		/// <value>The role.</value>
+		public UserRole Role
+		{
+			get; 
+			set;
+		}
+
+		/// <summary>
 		/// Gets or sets the privileges.
 		/// </summary>
 		/// <value>The privileges.</value>
 		public IList<UserRoleRelationUpdateValue> Privileges
 		{
-			get
-			{
-				return _privileges;
-			}
+			get;
+			set;
 		}
 	}
 }

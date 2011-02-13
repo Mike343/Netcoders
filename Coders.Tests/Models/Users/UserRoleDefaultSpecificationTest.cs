@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Coders.Models.Users;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Users
 {
-	[TestClass]
+	[TestFixture]
 	public class UserRoleDefaultSpecificationTest
 	{
 		private IQueryable<UserRole> Values
@@ -14,7 +14,7 @@ namespace Coders.Tests.Models.Users
 			set;
 		}
 
-		[TestInitialize]
+		[SetUp]
 		public void TestInitialize()
 		{
 			var values = new List<UserRole>
@@ -26,7 +26,7 @@ namespace Coders.Tests.Models.Users
 			this.Values = values.AsQueryable();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_UserRoleDefaultSpecification_SatisfyEntityFrom()
 		{
 			var specification = new UserRoleDefaultSpecification();
@@ -36,7 +36,7 @@ namespace Coders.Tests.Models.Users
 			Assert.IsTrue(result.IsDefault);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_UserRoleDefaultSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserRoleDefaultSpecification();

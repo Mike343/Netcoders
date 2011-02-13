@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Coders.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Extensions
 {
-	[TestClass]
+	[TestFixture]
 	public class EnumerableExtensionTest
 	{
 		private IList<Value> Values
@@ -14,8 +14,8 @@ namespace Coders.Tests.Extensions
 			set;
 		}
 
-		[TestInitialize]
-		public void TestInitialize()
+		[SetUp]
+		public void Initialize()
 		{
 			this.Values = new List<Value>
 			{
@@ -25,7 +25,7 @@ namespace Coders.Tests.Extensions
 			};
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_EnumerableExtension_ForEach()
 		{
 			Assert.AreEqual(0, this.Values.Count(x => x.Selected));
@@ -35,7 +35,7 @@ namespace Coders.Tests.Extensions
 			Assert.AreEqual(3, this.Values.Count(x => x.Selected));
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_EnumerableExtension_FirstOrDefault()
 		{
 			var value = this.Values.FirstOrDefault();

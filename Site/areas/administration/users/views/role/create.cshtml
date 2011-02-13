@@ -49,15 +49,14 @@
 			</div>
 			<div class="field">
 				<div class="label label-checkbox">
-					<label>@Resources.Titles.DefaultPermissions:</label>
+					<label>@Resources.Titles.DefaultPrivileges:</label>
 				</div>
 				<div class="checkboxes">
 					@for (var i = 0; i < Model.PrivilegesValues.Count; i++) {
 					<div class="checkbox">
-						@Html.Hidden("Privileges.Index", i)
-						@Html.Hidden("Privileges[{0}].Privilege".FormatInvariant(i), Model.PrivilegesValues[i])
-						@Html.CheckBox("Privileges[{0}].Selected".FormatInvariant(i))
-						<label for="@("Permissions_{0}_Selected".FormatInvariant(i))">@Model.PrivilegesNames[i].Localize("Titles")</label>
+						@Html.Hidden("privileges[{0}].Privilege".FormatInvariant(i), Model.PrivilegesValues[i])
+						@Html.CheckBox("privileges[{0}].Selected".FormatInvariant(i))
+						<label for="@("privileges_{0}__Selected".FormatInvariant(i))">@Model.PrivilegesNames[i].Localize("Titles")</label>
 					</div>
 					}
 				</div>

@@ -51,6 +51,8 @@ namespace Coders.DependencyResolution
 			Bind<IUserHostService>().To<UserHostService>();
 			Bind<IUserService>().To<UserService>();
 			Bind<IUserRoleService>().To<UserRoleService>();
+			Bind<IUserSearchService>().To<UserSearchService>();
+			Bind<IUserHostSearchService>().To<UserHostSearchService>();
 		}
 	}
 }

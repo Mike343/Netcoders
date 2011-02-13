@@ -15,7 +15,7 @@
 <div class="title">
 	<h5>@Resources.Titles.ManageWith.FormatInvariant(Resources.Titles.Roles)</h5>
 	<ul>
-		<li><a href="@Url.Route(UsersAdministrationRoutes.HomeHistory, new { sort = "created", order = "descending", page = "1" }).Value"><span>@Resources.Titles.History</span></a></li>
+		<li><a href="@Url.Route(UsersAdministrationRoutes.RoleHistory, new { sort = "created", order = "descending", page = "1" }).Value"><span>@Resources.Titles.History</span></a></li>
 		<li class="last"><a href="@Url.Route(UsersAdministrationRoutes.RoleCreate).Value"><span>@Resources.Titles.CreateWith.FormatInvariant(Resources.Titles.Role)</span></a></li>
 	</ul>
 </div>

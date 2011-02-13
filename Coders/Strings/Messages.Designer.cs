@@ -178,11 +178,38 @@ namespace Coders.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Your preferences has been successfully updated..
+        /// </summary>
+        public static string UserAccountPreferenceUpdated {
+            get {
+                return ResourceManager.GetString("UserAccountPreferenceUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Your account was successfully updated.
         /// </summary>
         public static string UserAccountUpdated {
             get {
                 return ResourceManager.GetString("UserAccountUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ban for the user &apos;{0}&apos; has been successfully created..
+        /// </summary>
+        public static string UserBanCreated {
+            get {
+                return ResourceManager.GetString("UserBanCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The ban for the user &apos;{0}&apos; has been successfully updated..
+        /// </summary>
+        public static string UserBanUpdated {
+            get {
+                return ResourceManager.GetString("UserBanUpdated", resourceCulture);
             }
         }
         
@@ -201,6 +228,33 @@ namespace Coders.Strings {
         public static string UserPasswordReset {
             get {
                 return ResourceManager.GetString("UserPasswordReset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The privileges for the user &apos;{0}&apos; has been successfully updated..
+        /// </summary>
+        public static string UserPrivilegeUpdated {
+            get {
+                return ResourceManager.GetString("UserPrivilegeUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The role &apos;{0}&apos; has been successfully created..
+        /// </summary>
+        public static string UserRoleCreated {
+            get {
+                return ResourceManager.GetString("UserRoleCreated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The role &apos;{0}&apos; has been successfully updated..
+        /// </summary>
+        public static string UserRoleUpdated {
+            get {
+                return ResourceManager.GetString("UserRoleUpdated", resourceCulture);
             }
         }
         

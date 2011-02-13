@@ -19,8 +19,11 @@
 using System;
 using System.Web.Mvc;
 using Coders.Extensions;
+using Coders.Models.Common.Enums;
 using Coders.Models.Settings;
 using Coders.Models.Users;
+using Coders.Models.Users.Enums;
+using Coders.Strings;
 using Coders.Web.Models.Users;
 using Coders.Web.Routes;
 #endregion
@@ -41,27 +44,29 @@ namespace Coders.Web.Controllers.Users.Administration
 		}
 
 		[HttpGet]
-		public ActionResult Index(int? page)
+		public ActionResult Index(SortUserBan sort, SortOrder order, int? page)
 		{
-			var bans = UserBanService.GetPaged(new UserBanSpecification
+			var bans = this.UserBanService.GetPaged(new UserBanSpecification
 			{
 				Page = page, 
-				Limit = Setting.UserBanPageLimit.Value
+				Limit = Setting.UserBanPageLimit.Value,
+				Sort = sort,
+				Order = order
 			});
 
 			var ban = bans.FirstOrDefault();
 			var privilege = new UserBanPrivilege();
 
-			return privilege.CanView(ban) ? View(Views.Index, bans) : NotAuthorized();
+			return privilege.CanView(ban) ? base.View(Views.Index, bans) : NotAuthorized();
 		}
 
 		[HttpGet]
 		public ActionResult Create()
 		{
-			var ban = UserBanService.Create();
+			var ban = this.UserBanService.Create();
 			var privilege = new UserBanPrivilege();
 
-			return privilege.CanCreate(ban) ? View(Views.Create, new UserBanCreateOrUpdate()) : NotAuthorized();
+			return privilege.CanCreate(ban) ? base.View(Views.Create, new UserBanCreateOrUpdate()) : NotAuthorized();
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
@@ -82,29 +87,33 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			if (!ModelState.IsValid)
 			{
-				return View(Views.Create, value);
+				return base.View(Views.Create, value);
 			}
 
 			value.ValueToModel(ban);
 
 			this.UserBanService.InsertOrUpdate(ban, value.Name);
 
-			return RedirectToRoute(UsersAdministrationRoutes.BanUpdate, new { id = ban.Id });
+			var model = new UserBanCreateOrUpdate(ban);
+
+			model.SuccessMessage(Messages.UserBanCreated.FormatInvariant(ban.User.Name));
+
+			return base.View(Views.Update, model);
 		}
 
 		[HttpGet]
 		public ActionResult Update(int id)
 		{
-			var ban = UserBanService.GetById(id);
+			var ban = this.UserBanService.GetById(id);
 
 			if (ban == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserBanPrivilege();
 
-			return privilege.CanUpdate(ban) ? View(Views.Update, new UserBanCreateOrUpdate(ban)) : NotAuthorized();
+			return privilege.CanUpdate(ban) ? base.View(Views.Update, new UserBanCreateOrUpdate(ban)) : NotAuthorized();
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
@@ -119,7 +128,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			if (ban == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserBanPrivilege();
@@ -129,31 +138,35 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
+			value.Initialize(ban.User);
+
 			if (!ModelState.IsValid)
 			{
-				return View(Views.Update, value);
+				return base.View(Views.Update, value);
 			}
 
 			value.ValueToModel(ban);
 
 			this.UserBanService.InsertOrUpdate(ban);
 
-			return RedirectToRoute(UsersAdministrationRoutes.BanUpdate, new { id = ban.Id });
+			value.SuccessMessage(Messages.UserBanUpdated.FormatInvariant(ban.User.Name));
+
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
 		public ActionResult Delete(int id)
 		{
-			var ban = UserBanService.GetById(id);
+			var ban = this.UserBanService.GetById(id);
 
 			if (ban == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserBanPrivilege();
 
-			return privilege.CanDelete(ban) ? View(Views.Delete, new UserBanDelete(ban)) : NotAuthorized();
+			return privilege.CanDelete(ban) ? base.View(Views.Delete, new UserBanDelete(ban)) : NotAuthorized();
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
@@ -168,7 +181,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			if (ban == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserBanPrivilege();
@@ -180,7 +193,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			if (!ModelState.IsValid)
 			{
-				return View(Views.Delete, value);
+				return base.View(Views.Delete, value);
 			}
 
 			this.UserBanService.Delete(ban);

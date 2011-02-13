@@ -39,6 +39,9 @@
     <AssemblyOriginatorKeyFile>Coders.Services.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Lucene.Net">
+      <HintPath>..\Dependencies\Lucene.Net.dll</HintPath>
+    </Reference>
     <Reference Include="RazorEngine.Core">
       <HintPath>..\Dependencies\RazorEngine.Core.dll</HintPath>
     </Reference>
@@ -63,6 +66,7 @@
     <Compile Include="EntityService.cs" />
     <Compile Include="FileService.cs" />
     <Compile Include="Formatters\BBCodeFormatter.cs" />
+    <Compile Include="Formatters\BBCodeStripperFormatter.cs" />
     <Compile Include="Formatters\IFormatter.cs" />
     <Compile Include="Formatters\RegexFormatter.cs" />
     <Compile Include="Formatters\SearchReplaceFormatter.cs" />
@@ -70,6 +74,8 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="AuditService.cs" />
     <Compile Include="ImageService.cs" />
+    <Compile Include="Lucene\UserIndexer.cs" />
+    <Compile Include="Lucene\UserSearcher.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingService.cs" />
     <Compile Include="EmailService.cs" />
@@ -77,8 +83,10 @@
     <Compile Include="TimeZoneService.cs" />
     <Compile Include="UserAvatarService.cs" />
     <Compile Include="UserBanService.cs" />
+    <Compile Include="UserHostSearchService.cs" />
     <Compile Include="UserHostService.cs" />
     <Compile Include="UserRoleService.cs" />
+    <Compile Include="UserSearchService.cs" />
     <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,6 +98,7 @@
   <ItemGroup>
     <None Include="Coders.Services.snk" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

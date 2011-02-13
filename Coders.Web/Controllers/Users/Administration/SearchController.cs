@@ -47,7 +47,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			if (search == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var users = this.UserSearchService.GetResults(search, new UserSearchSpecification
@@ -58,7 +58,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			var privilege = new UserSearchPrivilege();
 
-			return privilege.CanView(search) ? View(Views.Index, users) : NotAuthorized();
+			return privilege.CanView(search) ? base.View(Views.Index, users) : NotAuthorized();
 		}
 
 		[HttpGet]
@@ -77,7 +77,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			value.Initialize(searches);
 
-			return View(Views.Create, value);
+			return base.View(Views.Create, value);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
@@ -88,15 +88,6 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				var searches = this.UserSearchService.GetAll(new UserSearchUserSpecification(base.Identity.Id));
-
-				value.Initialize(searches);
-
-				return View(Views.Create, value);
-			}
-
 			var search = this.UserSearchService.Create();
 			var privilege = new UserSearchPrivilege();
 
@@ -105,11 +96,20 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				var searches = this.UserSearchService.GetAll(new UserSearchUserSpecification(base.Identity.Id));
+
+				value.Initialize(searches);
+
+				return base.View(Views.Create, value);
+			}
+
 			value.ValueToModel(search);
 
 			this.UserSearchService.Insert(search);
 
-			return RedirectToRoute(UsersAdministrationRoutes.SearchIndex, new { id = search.Id });
+			return base.RedirectToRoute(UsersAdministrationRoutes.SearchIndex, new { id = search.Id });
 		}
 
 		[HttpGet]
@@ -119,7 +119,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			if (search == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserSearchPrivilege();
@@ -135,16 +135,11 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
-			}
-
 			var search = UserSearchService.GetById(value.Id);
 
 			if (search == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserSearchPrivilege();
@@ -154,9 +149,14 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Update, value);
+			}
+
 			this.UserSearchService.Delete(search);
 
-			return RedirectToRoute(UsersAdministrationRoutes.SearchCreate);
+			return base.RedirectToRoute(UsersAdministrationRoutes.SearchCreate);
 		}
 	}
 }

@@ -167,7 +167,7 @@ namespace Coders.Services
 
 			if (attachment.FileWidth <= width && attachment.FileHeight <= height)
 			{
-				return new FileInfo(attachment.FullPath.AsPath());
+				return new FileInfo(attachment.FileDiskPath);
 			}
 
 			var name = ThumbFormat.FormatInvariant(
@@ -195,6 +195,31 @@ namespace Coders.Services
 		}
 
 		/// <summary>
+		/// Gets the path.
+		/// </summary>
+		/// <returns></returns>
+		public string GetPath()
+		{
+			var date = DateTime.Now;
+
+			// month/day/year
+			var year = date.Year.ToString(CultureInfo.InvariantCulture);
+			var month = Path.Combine(year, date.Month.ToString(CultureInfo.InvariantCulture));
+			var day = Path.Combine(month, date.Day.ToString(CultureInfo.InvariantCulture));
+
+			// path_to_attachments/month/day/year
+			var path = Path.Combine(Setting.AttachmentPath.Value, day);
+			var directory = new DirectoryInfo(path.AsPath());
+
+			if (!directory.Exists)
+			{
+				directory.Create();
+			}
+
+			return path;
+		}
+
+		/// <summary>
 		/// Processes the specified pending attachment.
 		/// </summary>
 		/// <param name="pending">The pending.</param>
@@ -215,10 +240,9 @@ namespace Coders.Services
 
 			if (source != null && source.ContentLength > 0)
 			{
-				var path = GetPath();
+				var path = this.GetPath();
 				var file = this.FileService.Save(source, path);
 				var dimensions = this.ImageService.GetImageDimensions(source);
-
 				var attachment = this.Create();
 
 				attachment.FileName = file.FileName;
@@ -242,6 +266,22 @@ namespace Coders.Services
 			}
 
 			return false;
+		}
+
+		/// <summary>
+		/// Creates this instance.
+		/// </summary>
+		/// <returns></returns>
+		public override Attachment Create()
+		{
+			var attachment = new Attachment
+			{
+			    Created = DateTime.Now
+			};
+
+			attachment.Updated = attachment.Created;
+
+			return attachment;
 		}
 
 		/// <summary>
@@ -341,27 +381,6 @@ namespace Coders.Services
 			{
 				this.Delete(attachment);
 			}
-		}
-
-		private static string GetPath()
-		{
-			var date = DateTime.Now;
-
-			// month/day/year
-			var year = date.Year.ToString(CultureInfo.InvariantCulture);
-			var month = Path.Combine(year, date.Month.ToString(CultureInfo.InvariantCulture));
-			var day = Path.Combine(month, date.Day.ToString(CultureInfo.InvariantCulture));
-
-			// path_to_attachments/month/day/year
-			var path = Path.Combine(Setting.AttachmentPath.Value, day);
-			var directory = new DirectoryInfo(path.AsPath());
-
-			if (!directory.Exists)
-			{
-				directory.Create();
-			}
-
-			return path;
 		}
 	}
 }

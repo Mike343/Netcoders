@@ -1,0 +1,68 @@
+﻿@model Coders.Web.Models.Users.UserBanCreateOrUpdate
+@section scripts
+{
+	<script src="/content/scripts/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(UsersAdministrationRoutes.BanIndex, new { sort = "created", order = "descending", page = 1 }).Link(Resources.Titles.Bans)</li>
+			<li class="last">@Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.Ban)</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.UpdateBanFor.FormatInvariant(Model.User.Name)</h5>
+	<ul>
+		<li><a href="@Url.Route(UsersAdministrationRoutes.HomeUpdate, new { id = Model.User.Id }).Value"><span>@Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.User)</span></a></li>
+		<li class="last"><a href="@Url.Route(UsersAdministrationRoutes.BanDelete, new { id = Model.Id }).Value"><span>@Resources.Titles.LiftBan</span></a></li>
+	</ul>
+</div>
+<div class="content">
+	@{Html.Message(Model);}
+	@{Html.ValidationResult();}
+	@{Html.BeginRouteForm(UsersAdministrationRoutes.BanUpdate);}
+	<div class="form">
+		<div class="fields">
+			<div class="field field-first">
+				<div class="label">
+					<label for="Reason">@Resources.Titles.Reason:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.Reason, new { @class = "medium" })
+					@Html.ValidationMessageFor(x => x.Reason)
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label>@Resources.Titles.Options:</label>
+				</div>
+				<div class="checkboxes">
+					<div class="checkbox">
+						@Html.CheckBoxFor(x => x.IsPermanent)
+						<label for="IsPermanent">@Resources.Titles.Permanent</label>
+					</div>
+				</div>
+			</div>
+			<div class="field">
+				<div class="label">
+					<label for="Expire">@Resources.Titles.Expires:</label>
+				</div>
+				<div class="input">
+					@Html.TextBoxFor(x => x.Expire, new { @class = "date" })
+					@Html.ValidationMessageFor(x => x.Expire)
+				</div>
+			</div>
+			<div class="buttons">
+				@Html.HiddenFor(x => x.Id)
+				@Html.AntiForgeryToken()
+				<input type="submit" value="@Resources.Titles.Submit" />
+				<input type="reset" value="@Resources.Titles.Reset" />
+			</div>
+		</div>
+	</div>
+	@{Html.EndForm();}
+</div>

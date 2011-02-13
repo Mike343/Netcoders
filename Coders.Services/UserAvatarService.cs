@@ -37,20 +37,17 @@ namespace Coders.Services
 		/// <param name="fileService">The file service.</param>
 		/// <param name="imageService">The image service.</param>
 		/// <param name="authenticationService">The authentication service.</param>
-		/// <param name="userService">The user service.</param>
 		/// <param name="repository">The repository.</param>
 		public UserAvatarService(
 			IFileService fileService,
 			IImageService imageService,
 			IAuthenticationService authenticationService,
-			IUserService userService,
 			IRepository<UserAvatar> repository)
 			: base(repository)
 		{
 			this.FileService = fileService;
 			this.ImageService = imageService;
 			this.AuthenticationService = authenticationService;
-			this.UserService = userService;
 		}
 
 		/// <summary>
@@ -84,32 +81,53 @@ namespace Coders.Services
 		}
 
 		/// <summary>
-		/// Gets or sets the user service.
+		/// Removes the specified avatar from the specified avatar if they match.
 		/// </summary>
-		/// <value>The user service.</value>
-		public IUserService UserService
-		{
-			get;
-			private set;
-		}
-
-		/// <summary>
-		/// Assigns the specified avatar.
-		/// </summary>
+		/// <param name="user">The user.</param>
 		/// <param name="avatar">The avatar.</param>
-		public void Assign(UserAvatar avatar)
+		public bool RemoveFromUserOnMatch(User user, UserAvatar avatar)
 		{
+			if (user == null)
+			{
+				throw new ArgumentNullException("user");
+			}
+
 			if (avatar == null)
 			{
 				throw new ArgumentNullException("avatar");
 			}
 
-			// update user
-			var user = this.UserService.GetById(avatar.UserId);
+			if (user.Avatar == null)
+			{
+				return false;
+			}
+
+			if (user.Avatar.Id == avatar.Id)
+			{
+				user.Avatar = null;
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Assigns the specified avatar to the specified user.
+		/// </summary>
+		/// <param name="user">The user.</param>
+		/// <param name="avatar">The avatar.</param>
+		public void AssignToUser(User user, UserAvatar avatar)
+		{
+			if (user == null)
+			{
+				throw new ArgumentNullException("user");
+			}
+
+			if (avatar == null)
+			{
+				throw new ArgumentNullException("avatar");
+			}
 
 			user.Avatar = avatar;
-
-			this.UserService.Update(user);
 		}
 
 		/// <summary>
@@ -146,7 +164,6 @@ namespace Coders.Services
 			avatar.FilePath = result.FilePath;
 
 			this.Insert(avatar);
-			this.Assign(avatar);
 		}
 
 		/// <summary>
@@ -158,15 +175,6 @@ namespace Coders.Services
 			if (entity == null)
 			{
 				throw new ArgumentNullException("entity");
-			}
-
-			var user = this.UserService.GetById(entity.UserId);
-
-			if (user.Avatar != null && user.Avatar.Id == entity.Id)
-			{
-				user.Avatar = null;
-
-				this.UserService.Update(user);
 			}
 
 			this.FileService.Delete(entity.FilePath.AsPath());

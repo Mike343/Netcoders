@@ -306,6 +306,42 @@ namespace Coders.Models.Settings
 		}
 
 		/// <summary>
+		/// Gets the user search index path.
+		/// </summary>
+		/// <value>The user search index path.</value>
+		public static SettingValue UserSearchIndexPath
+		{
+			get
+			{
+				return new SettingValue("user.search.index.path");
+			}
+		}
+
+		/// <summary>
+		/// Gets the user search index created.
+		/// </summary>
+		/// <value>The user search index created.</value>
+		public static SettingValueAsBoolean UserSearchIndexCreated
+		{
+			get
+			{
+				return new SettingValueAsBoolean("user.search.index.created");
+			}
+		}
+
+		/// <summary>
+		/// Gets the user search index updated.
+		/// </summary>
+		/// <value>The user search index updated.</value>
+		public static SettingValueAsDateTime UserSearchIndexUpdated
+		{
+			get
+			{
+				return new SettingValueAsDateTime("user.search.index.updated");
+			}
+		}
+
+		/// <summary>
 		/// Gets the user host search page limit.
 		/// </summary>
 		/// <value>The user host search page limit.</value>
@@ -392,6 +428,18 @@ namespace Coders.Models.Settings
 			get
 			{
 				return new SettingValue("template.widgets.user.filter");
+			}
+		}
+
+		/// <summary>
+		/// Gets the template widget user ban filter.
+		/// </summary>
+		/// <value>The template widget user ban filter.</value>
+		public static SettingValue TemplateWidgetUserBanFilter
+		{
+			get
+			{
+				return new SettingValue("template.widgets.user.ban.filter");
 			}
 		}
 

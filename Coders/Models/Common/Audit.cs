@@ -111,7 +111,11 @@ namespace Coders.Models.Common
 			{
 				XmlReader xml = new XmlTextReader(reader);
 
-				return serializer.Deserialize(xml) as T;
+				var result = serializer.Deserialize(xml) as T;
+
+				reader.Close();
+
+				return result;
 			}
 		}
 	}

@@ -47,7 +47,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			if (search == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var hosts = this.UserHostSearchService.GetResults(search, new UserHostSearchSpecification
@@ -58,7 +58,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			var privilege = new UserHostSearchPrivilege();
 
-			return privilege.CanViewAny(search) ? View(Views.Index, hosts) : NotAuthorized();
+			return privilege.CanViewAny(search) ? base.View(Views.Index, hosts) : NotAuthorized();
 		}
 
 		[HttpGet]
@@ -77,7 +77,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			value.Initialize(searches);
 
-			return View(Views.Create, value);
+			return base.View(Views.Create, value);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
@@ -88,15 +88,6 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				var searches = this.UserHostSearchService.GetAll(new UserHostSearchUserSpecification(base.Identity.Id));
-
-				value.Initialize(searches);
-
-				return View(Views.Create, value);
-			}
-
 			var search = this.UserHostSearchService.Create();
 			var privilege = new UserHostSearchPrivilege();
 
@@ -105,11 +96,20 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				var searches = this.UserHostSearchService.GetAll(new UserHostSearchUserSpecification(base.Identity.Id));
+
+				value.Initialize(searches);
+
+				return base.View(Views.Create, value);
+			}
+
 			value.ValueToModel(search);
 
 			this.UserHostSearchService.Insert(search);
 
-			return RedirectToRoute(UsersAdministrationRoutes.HostSearchIndex, new { id = search.Id });
+			return base.RedirectToRoute(UsersAdministrationRoutes.HostSearchIndex, new { id = search.Id });
 		}
 
 		[HttpGet]
@@ -135,16 +135,11 @@ namespace Coders.Web.Controllers.Users.Administration
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
-			}
-
 			var search = UserHostSearchService.GetById(value.Id);
 
 			if (search == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserHostSearchPrivilege();
@@ -154,9 +149,14 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Update, value);
+			}
+
 			this.UserHostSearchService.Delete(search);
 
-			return RedirectToRoute(UsersAdministrationRoutes.HostSearchCreate);
+			return base.RedirectToRoute(UsersAdministrationRoutes.HostSearchCreate);
 		}
 	}
 }

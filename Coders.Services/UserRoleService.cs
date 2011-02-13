@@ -20,7 +20,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Coders.Authentication;
+using Coders.Extensions;
 using Coders.Models;
+using Coders.Models.Common;
+using Coders.Models.Common.Enums;
 using Coders.Models.Users;
 using Coders.Specifications;
 #endregion
@@ -32,14 +35,26 @@ namespace Coders.Services
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UserRoleService"/> class.
 		/// </summary>
+		/// <param name="auditService">The audit service.</param>
 		/// <param name="repository">The repository.</param>
 		/// <param name="userRolePrivilegeRepository">The user role privilege repository.</param>
 		public UserRoleService(
+			IAuditService<UserRole, UserRoleAudit> auditService,
 			IRepository<UserRole> repository,
 			IRepository<UserRoleRelation> userRolePrivilegeRepository)
 			: base(repository)
 		{
+			this.AuditService = auditService;
 			this.UserRolePrivilegeRepository = userRolePrivilegeRepository;
+		}
+
+		/// <summary>
+		/// Gets the audit service.
+		/// </summary>
+		public IAuditService<UserRole, UserRoleAudit> AuditService
+		{
+			get;
+			private set;
 		}
 
 		/// <summary>
@@ -60,6 +75,41 @@ namespace Coders.Services
 		public IList<UserRoleRelation> GetPrivileges(ISpecification<UserRoleRelation> specification)
 		{
 			return this.UserRolePrivilegeRepository.GetAll(specification);
+		}
+
+		/// <summary>
+		/// Inserts the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Insert(UserRole entity)
+		{
+			entity.Slug = entity.Title.Slug();
+
+			base.Insert(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Create);
+		}
+
+		/// <summary>
+		/// Inserts the privilege.
+		/// </summary>
+		/// <param name="relation">The relation.</param>
+		public void InsertPrivilege(UserRoleRelation relation)
+		{
+			this.UserRolePrivilegeRepository.Insert(relation);
+		}
+
+		/// <summary>
+		/// Updates the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Update(UserRole entity)
+		{
+			entity.Slug = entity.Title.Slug();
+
+			base.Update(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Update);
 		}
 
 		/// <summary>
@@ -92,20 +142,11 @@ namespace Coders.Services
 		}
 
 		/// <summary>
-		/// Inserts the privilege.
-		/// </summary>
-		/// <param name="relation">The relation.</param>
-		public void InsertPrivilege(UserRoleRelation relation)
-		{
-			this.UserRolePrivilegeRepository.Insert(relation);
-		}
-
-		/// <summary>
 		/// Updates the privileges for the specified user.
 		/// </summary>
 		/// <param name="user">The user.</param>
 		/// <param name="values">The values.</param>
-		public void UpdatePrivileges(User user, UserRoleRelationUpdate[] values)
+		public void UpdatePrivileges(User user, IList<UserRoleRelationUpdate> values)
 		{
 			if (user == null)
 			{
@@ -160,6 +201,17 @@ namespace Coders.Services
 					}
 				}
 			}
+		}
+
+		/// <summary>
+		/// Deletes the specified entity.
+		/// </summary>
+		/// <param name="entity">The entity.</param>
+		public override void Delete(UserRole entity)
+		{
+			base.Delete(entity);
+
+			this.AuditService.Audit(entity, AuditAction.Delete);
 		}
 	}
 }

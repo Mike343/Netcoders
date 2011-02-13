@@ -42,6 +42,10 @@ namespace Coders.Web.Models.Users
 			}
 		}
 
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UserBanCreateOrUpdate"/> class.
+		/// </summary>
+		/// <param name="ban">The ban.</param>
 		public UserBanCreateOrUpdate(UserBan ban)
 		{
 			if (ban == null)
@@ -121,6 +125,15 @@ namespace Coders.Web.Models.Users
 		{
 			get;
 			private set;
+		}
+
+		/// <summary>
+		/// Initializes the specified user.
+		/// </summary>
+		/// <param name="user">The user.</param>
+		public void Initialize(User user)
+		{
+			this.User = user;
 		}
 
 		/// <summary>

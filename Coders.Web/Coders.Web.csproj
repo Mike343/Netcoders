@@ -47,11 +47,16 @@
     </Reference>
     <Reference Include="HibernatingRhinos.Profiler.Appender.v4.0, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0774796e73ebf640, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\NHibernate.Profiler-Build-787\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
+      <HintPath>..\..\NHibernate.Profiler-Build-766\HibernatingRhinos.Profiler.Appender.v4.0.dll</HintPath>
     </Reference>
-    <Reference Include="Ninject, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\Dependencies\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject">
       <HintPath>..\Dependencies\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\Dependencies\Ninject.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -78,11 +83,9 @@
     <Compile Include="ActionResults\NotAuthorizedResult.cs" />
     <Compile Include="ActionResults\StatusResult.cs" />
     <Compile Include="Application.cs" />
-    <Compile Include="CodersControllers.cs" />
     <Compile Include="ApplicationSession.cs" />
     <Compile Include="Authentication\WebPrivilegePrincipal.cs" />
     <Compile Include="Authentication\WebUserIdentity.cs" />
-    <Compile Include="ControllerFactory.cs" />
     <Compile Include="ApplicationHttpModule.cs" />
     <Compile Include="Controllers\Administration\AttachmentController.cs" />
     <Compile Include="Controllers\Administration\AttachmentRuleController.cs" />
@@ -116,6 +119,7 @@
     <Compile Include="Extensions\FilterExtension.cs" />
     <Compile Include="Extensions\StringExtension.cs" />
     <Compile Include="Extensions\UserExtension.cs" />
+    <Compile Include="Extensions\UserRoleExtension.cs" />
     <Compile Include="Extensions\ValidatorExtension.cs" />
     <Compile Include="Extensions\WidgetExtension.cs" />
     <Compile Include="Helpers\MessageHelper.cs" />
@@ -146,6 +150,7 @@
     <Compile Include="Models\Users\UserPreferenceUpdate.cs" />
     <Compile Include="Models\Users\UserRoleCreateOrUpdate.cs" />
     <Compile Include="Models\Users\UserRoleDelete.cs" />
+    <Compile Include="Models\Users\UserRolePrivilegeUpdate.cs" />
     <Compile Include="Models\Users\UserSearchCreate.cs" />
     <Compile Include="Models\Users\UserSearchDelete.cs" />
     <Compile Include="Routes\AdministrationRoutes.cs" />
@@ -182,9 +187,9 @@
     <Compile Include="ViewModels\MessageViewModel.cs" />
     <Compile Include="ViewModels\SettingFilterViewModel.cs" />
     <Compile Include="ViewModels\StatusViewModel.cs" />
-    <Compile Include="ViewModels\UserPermissionViewModel.cs" />
     <Compile Include="Widgets\AttachmentFilter.cs" />
     <Compile Include="Widgets\AttachmentRuleFilter.cs" />
+    <Compile Include="Widgets\UserBanFilter.cs" />
     <Compile Include="Widgets\UserFilter.cs" />
     <Compile Include="Widgets\CountryFilter.cs" />
     <Compile Include="Widgets\IWidget.cs" />

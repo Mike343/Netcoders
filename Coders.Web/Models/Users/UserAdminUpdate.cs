@@ -31,6 +31,7 @@ using Coders.Strings;
 using Coders.Web.Extensions;
 using FluentValidation;
 using FluentValidation.Attributes;
+using Microsoft.Practices.ServiceLocation;
 using TimeZone = Coders.Models.TimeZones.TimeZone;
 #endregion
 

@@ -1,0 +1,47 @@
+﻿@model Coders.Web.Models.Users.UserRoleDelete
+@section scripts
+{
+	<script src="/content/scripts/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+}
+@section location
+{
+	<div id="location">
+		<ul>
+			<li class="first">@Url.Route(AdministrationRoutes.HomeIndex).Link(Resources.Titles.Administration)</li>
+			<li>@Url.Route(UsersAdministrationRoutes.RoleIndex).Link(Resources.Titles.Roles)</li>
+			<li class="last">@Resources.Titles.DeleteWith.FormatInvariant(Resources.Titles.Role)</li>
+		</ul>
+	</div>
+}
+<div class="title">
+	<h5>@Resources.Titles.DeleteWith.FormatInvariant(Resources.Titles.Role)</h5>
+</div>
+<div class="content">
+	<div class="messages" id="message">
+		<div class="message message-warning">
+			<div class="image">
+				<img src="/content/images/icons/warning.png" alt="@Resources.Titles.Warning" height="32" />
+			</div>
+			<div class="text">
+				<h6>@Resources.Titles.Warning</h6>
+				<ul>
+					<li>@Resources.Messages.DeleteUserRole.FormatInvariant(Model.Title)</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	@{Html.ValidationResult();}
+	@{Html.BeginRouteForm(UsersAdministrationRoutes.RoleDelete);}
+	<div class="form">
+		<div class="fields">
+			<div class="buttons">
+				@Html.HiddenFor(x => x.Id)
+				@Html.AntiForgeryToken()
+				<input type="submit" value="@Resources.Titles.Confirm" />
+				@Url.Route(UsersAdministrationRoutes.RoleIndex).Link(Resources.Titles.Cancel)
+			</div>
+		</div>
+	</div>
+	@{Html.EndForm();}
+</div>

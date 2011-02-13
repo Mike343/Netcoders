@@ -1,12 +1,12 @@
 ﻿using Coders.Models.Users;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Users
 {
-	[TestClass]
+	[TestFixture]
 	public class UserTest
 	{
-		[TestMethod]
+		[Test]
 		public void Test_User_UpdateReputation()
 		{
 			var user = new User();

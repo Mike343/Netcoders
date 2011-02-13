@@ -51,6 +51,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Site", "Site\", "{3415F8DF-
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Coders.Services.Tests", "Coders.Services.Tests\Coders.Services.Tests.csproj", "{1B0A47AD-01F3-413C-80AD-BF80E431783C}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Netcoders.vsmdi
@@ -144,6 +146,16 @@ Global
 		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Release|Mixed Platforms.ActiveCfg = Debug|Any CPU
 		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Release|Mixed Platforms.Build.0 = Debug|Any CPU
 		{3415F8DF-35EF-4E72-B618-BA42AC97AC02}.Release|x86.ActiveCfg = Debug|Any CPU
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -155,6 +167,7 @@ Global
 		{3154E2EC-87F0-4B57-A0BF-0E9DEC4803FC} = {A260D95B-063E-4E84-AE8B-593632E0D2C6}
 		{B6DBB1B8-ED20-43DA-9EBD-A68F3DADD5B3} = {A260D95B-063E-4E84-AE8B-593632E0D2C6}
 		{E564897D-86C6-4C6A-9838-16F45B2F508D} = {6ECB85D3-86F5-4456-BF40-1704E44C5119}
+		{1B0A47AD-01F3-413C-80AD-BF80E431783C} = {6ECB85D3-86F5-4456-BF40-1704E44C5119}
 		{B28DA324-C8ED-4CB2-B932-7A31A8511DB4} = {2AAB1C06-3190-401E-928F-FD4CDCE428C0}
 	EndGlobalSection
 EndGlobal

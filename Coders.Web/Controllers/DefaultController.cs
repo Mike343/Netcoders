@@ -21,6 +21,7 @@ using Coders.Authentication;
 using Coders.Extensions;
 using Coders.Models.Common;
 using Coders.Web.ActionResults;
+using Microsoft.Practices.ServiceLocation;
 #endregion
 
 namespace Coders.Web.Controllers

@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Coders.Models.Attachments;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Attachments
 {
-	[TestClass]
+	[TestFixture]
 	public class AttachmentPendingGroupSpecificationTest
 	{
 		private IQueryable<AttachmentPending> Values
@@ -14,19 +14,19 @@ namespace Coders.Tests.Models.Attachments
 			set;
 		}
 
-		[TestInitialize]
-		public void TestInitialize()
+		[SetUp]
+		public void Initialize()
 		{
 			var values = new List<AttachmentPending>
 			{
-				new AttachmentPending {Group = "Test"}, 
-				new AttachmentPending {Group = "Test 2"}
+				new AttachmentPending { Group = "Test" }, 
+				new AttachmentPending { Group = "Test2" }
 			};
 
 			this.Values = values.AsQueryable();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_AttachmentPendingGroupSpecification_SatisfyEntityFrom()
 		{
 			var specification = new AttachmentPendingGroupSpecification("Test");
@@ -36,7 +36,7 @@ namespace Coders.Tests.Models.Attachments
 			Assert.AreEqual("Test", result.Group);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_AttachmentPendingGroupSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new AttachmentPendingGroupSpecification("Test");

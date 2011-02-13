@@ -1,12 +1,12 @@
 ﻿using Coders.Models.Attachments;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Attachments
 {
-	[TestClass]
+	[TestFixture]
 	public class AttachmentTest
 	{
-		[TestMethod]
+		[Test]
 		public void Test_Attachment_FullPath()
 		{
 			var attachment = new Attachment

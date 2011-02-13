@@ -132,6 +132,12 @@
   <data name="DeleteTimeZone" xml:space="preserve">
     <value>Are you sure you want to delete the time zone '{0}'?</value>
   </data>
+  <data name="DeleteUserBan" xml:space="preserve">
+    <value>Are you sure you want to lift the ban for the user '{0}'?</value>
+  </data>
+  <data name="DeleteUserRole" xml:space="preserve">
+    <value>Are you sure you want to delete the role '{0}'?</value>
+  </data>
   <data name="UserResetPassword" xml:space="preserve">
     <value>Are you sure you want to reset the password for the user '{0}'?</value>
   </data>

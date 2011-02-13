@@ -47,7 +47,6 @@ namespace Coders.Models.Countries
 			}
 
 			this.Title = info.GetString("Title");
-			this.Slug = info.GetString("Slug");
 			this.Code = info.GetString("Code");
 		}
 
@@ -56,16 +55,6 @@ namespace Coders.Models.Countries
 		/// </summary>
 		/// <value>The title.</value>
 		public string Title
-		{
-			get;
-			set;
-		}
-
-		/// <summary>
-		/// Gets or sets the slug.
-		/// </summary>
-		/// <value>The slug.</value>
-		public string Slug
 		{
 			get;
 			set;
@@ -93,7 +82,6 @@ namespace Coders.Models.Countries
 			}
 
 			this.Title = entity.Title;
-			this.Slug = entity.Slug;
 			this.Code = entity.Code;
 		}
 
@@ -111,7 +99,6 @@ namespace Coders.Models.Countries
 			}
 
 			info.AddValue("Title", this.Title);
-			info.AddValue("Slug", this.Slug);
 			info.AddValue("Code", this.Code);
 		}
 	}

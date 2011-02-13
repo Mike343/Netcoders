@@ -89,6 +89,14 @@ namespace Coders.Specifications
 		IQueryable<TEntity> SatisfyEntitiesFrom(IQueryable<TEntity> query);
 
 		/// <summary>
+		/// Satisfies the entities from.
+		/// </summary>
+		/// <param name="query">The query.</param>
+		/// <param name="order">if set to <c>true</c> [order].</param>
+		/// <returns></returns>
+		IQueryable<TEntity> SatisfyEntitiesFrom(IQueryable<TEntity> query, bool order);
+
+		/// <summary>
 		/// Sorts the specified entities.
 		/// </summary>
 		/// <param name="entities">The entities.</param>

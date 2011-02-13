@@ -98,8 +98,8 @@ namespace Coders.Specifications
 				if (this.PageOrDefault == 1)
 				{
 					return 0;
-				}
-
+				} 
+				
 				return ((this.PageOrDefault * this.LimitOrDefault) - this.LimitOrDefault);
 			}
 		}
@@ -173,12 +173,23 @@ namespace Coders.Specifications
 		/// <returns></returns>
 		public virtual IQueryable<TEntity> SatisfyEntitiesFrom(IQueryable<TEntity> query)
 		{
-			if (this.Predicate == null)
+			return this.SatisfyEntitiesFrom(query, true);
+		}
+
+		/// <summary>
+		/// Satisfies the entities from.
+		/// </summary>
+		/// <param name="query">The query.</param>
+		/// <param name="order">if set to <c>true</c> [order].</param>
+		/// <returns></returns>
+		public virtual IQueryable<TEntity> SatisfyEntitiesFrom(IQueryable<TEntity> query, bool order)
+		{
+			if (order)
 			{
-				return this.OrderEntities(query, this);
+				return this.OrderEntities(this.Predicate == null ? query : query.Where(Predicate), this);
 			}
 
-			return this.OrderEntities(query.Where(Predicate), this);
+			return this.Predicate == null ? query : query.Where(Predicate);
 		}
 
 		/// <summary>
@@ -202,6 +213,11 @@ namespace Coders.Specifications
 		/// <returns></returns>
 		public virtual IQueryable<TEntity> OrderBy<TValue>(IQueryable<TEntity> entities, Expression<Func<TEntity, TValue>> value, SortOrder order)
 		{
+			if (entities == null)
+			{
+				throw new ArgumentNullException("entities");
+			}
+
 			return (order == SortOrder.Descending) ? entities.OrderByDescending(value) : entities.OrderBy(value);
 		}
 	}

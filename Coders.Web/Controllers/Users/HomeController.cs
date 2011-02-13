@@ -52,7 +52,7 @@ namespace Coders.Web.Controllers.Users
 				Order = order
 			});
 
-			return View(Views.Index, users);
+			return base.View(Views.Index, users);
 		}
 
 		[HttpGet]
@@ -65,13 +65,13 @@ namespace Coders.Web.Controllers.Users
 				return base.HttpNotFound();
 			}
 
-			return View(Views.Detail, user);
+			return base.View(Views.Detail, user);
 		}
 
 		[HttpGet]
 		public ActionResult Create()
 		{
-			return View(Views.Create, new UserCreate());
+			return base.View(Views.Create, new UserCreate());
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
@@ -84,7 +84,7 @@ namespace Coders.Web.Controllers.Users
 
 			if (!ModelState.IsValid)
 			{
-				return View(Views.Create, value);
+				return base.View(Views.Create, value);
 			}
 
 			var user = this.UserService.Create();
@@ -106,7 +106,7 @@ namespace Coders.Web.Controllers.Users
 				return base.HttpNotFound();
 			}
 
-			return View(Views.Update, new UserUpdate(user));
+			return base.View(Views.Update, new UserUpdate(user));
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Authorize]
@@ -117,16 +117,16 @@ namespace Coders.Web.Controllers.Users
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
-			}
-
 			var user = this.UserService.GetById(Identity.Id);
 
 			if (user == null)
 			{
 				return base.HttpNotFound();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Update, value);
 			}
 
 			value.ValueToModel(user);
@@ -137,7 +137,7 @@ namespace Coders.Web.Controllers.Users
 
 			value.SuccessMessage(Messages.UserAccountUpdated);
 
-			return View(Views.Update, value);
+			return base.View(Views.Update, value);
 		}
 	}
 }

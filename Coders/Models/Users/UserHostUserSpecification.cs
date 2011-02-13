@@ -15,13 +15,9 @@
 //	limitations under the License.
 #endregion
 
-#region Using Directives
-using Coders.Specifications;
-#endregion
-
 namespace Coders.Models.Users
 {
-	public class UserHostUserSpecification : Specification<UserHost>
+	public class UserHostUserSpecification : UserHostSpecification
 	{
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UserHostUserSpecification"/> class.

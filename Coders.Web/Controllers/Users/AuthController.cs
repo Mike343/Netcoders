@@ -47,7 +47,7 @@ namespace Coders.Web.Controllers.Users
 				Redirect = Request["returnUrl"]
 			};
 
-			return View(Views.LogOn, value);
+			return base.View(Views.LogOn, value);
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
@@ -60,7 +60,7 @@ namespace Coders.Web.Controllers.Users
 
 			if (!ModelState.IsValid)
 			{
-				return View(Views.LogOn, value);
+				return base.View(Views.LogOn, value);
 			}
 
 			var user = this.UserService.GetBy(new UserEmailAddressSpecification(value.EmailAddress));
@@ -84,13 +84,13 @@ namespace Coders.Web.Controllers.Users
 		{
 			this.AuthenticationService.LogOff();
 
-			return RedirectToRoute(CommonRoutes.Index);
+			return base.RedirectToRoute(CommonRoutes.Index);
 		}
 
 		[HttpGet]
 		public ActionResult Reset()
 		{
-			return View(Views.Reset, new UserAuthenticationReset());
+			return base.View(Views.Reset, new UserAuthenticationReset());
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
@@ -108,11 +108,6 @@ namespace Coders.Web.Controllers.Users
 
 			var user = this.UserService.GetBy(new UserEmailAddressSpecification(value.EmailAddress));
 
-			if (user == null)
-			{
-				return HttpNotFound();
-			}
-
 			this.AuthenticationService.Reset(user);
 
 			return Status(Messages.UserAccountPasswordReset);
@@ -125,15 +120,10 @@ namespace Coders.Web.Controllers.Users
 
 			if (user == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
-			var value = new UserAuthenticationUpdate
-			{
-				EmailAddress = user.EmailAddress
-			};
-
-			return View(Views.Update, value);
+			return base.View(Views.Update, new UserAuthenticationUpdate { EmailAddress = user.EmailAddress });
 		}
 
 		[HttpPost, ValidateAntiForgeryToken, Authorize]
@@ -144,22 +134,22 @@ namespace Coders.Web.Controllers.Users
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
-			}
-
 			var user = this.UserService.GetById(Identity.Id);
 
 			if (user == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
+			}
+
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Update, value);
 			}
 
 			this.AuthenticationService.Update(user, value.NewPassword);
 			this.AuthenticationService.LogOff();
 
-			return RedirectToRoute(UsersRoutes.AuthLogOn);
+			return base.RedirectToRoute(UsersRoutes.AuthLogOn);
 		}
 	}
 }

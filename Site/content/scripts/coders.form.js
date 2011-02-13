@@ -68,8 +68,9 @@ $(document).ready(function () {
 
     /* date picker */
     $(".date").datepicker({
-        showOn: 'both',
-        buttonText: ''
+    	showOn: 'both',
+    	buttonImage: '/content/images/icons/calendar.png',
+    	buttonImageOnly: true
     });
 
     /* file input styling */

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using Coders.Models.Users;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Users
 {
-	[TestClass]
+	[TestFixture]
 	public class UserBanExpiredSpecificationTest
 	{
 		private IQueryable<UserBan> Values
@@ -15,30 +15,29 @@ namespace Coders.Tests.Models.Users
 			set;
 		}
 
-		[TestInitialize]
-		public void TestInitialize()
+		[SetUp]
+		public void Initialize()
 		{
 			var values = new List<UserBan>
 			{
-				new UserBan { Expire = new DateTime(2011, 1, 9, 1, 1, 1)  }, 
-				new UserBan { Expire = new DateTime(2020, 1, 1, 1, 1, 1) }
+				new UserBan { Expire = new DateTime(2010, 1, 9, 1, 1, 1), User = new User { Id = 1 } }, 
+				new UserBan { Expire = new DateTime(2020, 1, 1, 1, 1, 1), User = new User { Id = 2 } }
 			};
 
 			this.Values = values.AsQueryable();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_UserBanExpiredSpecification_SatisfyEntityFrom()
 		{
 			var specification = new UserBanExpiredSpecification();
-
 			var result = specification.SatisfyEntityFrom(this.Values);
 
 			Assert.IsNotNull(result.Expire);
-			Assert.AreEqual(2011, result.Expire.Value.Year);
+			Assert.AreEqual(2010, result.Expire.Value.Year);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_UserBanExpiredSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserBanExpiredSpecification();

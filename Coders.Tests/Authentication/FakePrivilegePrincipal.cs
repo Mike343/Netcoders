@@ -14,6 +14,7 @@ namespace Coders.Tests.Authentication
 		{
 			this.Privileges.Clear();
 			this.Privileges.Add("Test", new PrivilegesValue(Coders.Authentication.Privileges.View | Coders.Authentication.Privileges.Create));
+			this.Privileges.Add("Privileges", new PrivilegesValue(Coders.Authentication.Privileges.View | Coders.Authentication.Privileges.UpdateAny));
 		}
 	}
 }

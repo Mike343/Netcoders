@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Coders.Models.Users;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Users
 {
-	[TestClass]
+	[TestFixture]
 	public class UserHostAddressSpecificationTest
 	{
 		private IQueryable<UserHost> Values
@@ -14,7 +14,7 @@ namespace Coders.Tests.Models.Users
 			set;
 		}
 
-		[TestInitialize]
+		[SetUp]
 		public void TestInitialize()
 		{
 			var values = new List<UserHost>
@@ -26,7 +26,7 @@ namespace Coders.Tests.Models.Users
 			this.Values = values.AsQueryable();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_UserHostAddressSpecification_SatisfyEntityFrom()
 		{
 			var specification = new UserHostAddressSpecification("127.0.0.1");
@@ -36,7 +36,7 @@ namespace Coders.Tests.Models.Users
 			Assert.AreEqual("127.0.0.1", result.HostAddress);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_UserHostAddressSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserHostAddressSpecification("127.0.0.1");

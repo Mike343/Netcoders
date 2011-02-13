@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Web;
 using Coders.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Rhino.Mocks;
 
 namespace Coders.Tests.Extensions
 {
-	[TestClass]
+	[TestFixture]
 	public class PathExtensionTest
 	{
 		private HttpContextBase _context;
 
-		[TestInitialize]
+		[SetUp]
 		public void TestInitialize()
 		{
 			_context = MockRepository.GenerateMock<HttpContextBase>();
@@ -23,7 +23,7 @@ namespace Coders.Tests.Extensions
 			_context.Stub(x => x.Request).Return(request);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PathExtension_AsPath()
 		{
 			var actual = "{0}\\directory".FormatInvariant(AppDomain.CurrentDomain.BaseDirectory);
@@ -31,13 +31,13 @@ namespace Coders.Tests.Extensions
 			Assert.AreEqual(actual, "directory".AsPath());
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PathExtension_AsPath_HttpContext()
 		{
 			Assert.AreEqual("site\\directory", "directory".AsPath(_context));
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PathExtension_AsRoot()
 		{
 			Assert.AreEqual("site/directory", "directory".AsRoot(_context));

@@ -25,6 +25,7 @@ using Coders.Models.Users;
 using Coders.Models.Users.Enums;
 using Coders.Web.Authentication;
 using Coders.Web.Models.Users;
+using Microsoft.Practices.ServiceLocation;
 #endregion
 
 namespace Coders.Web

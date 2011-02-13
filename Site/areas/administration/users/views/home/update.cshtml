@@ -2,7 +2,9 @@
 @section scripts
 {
 	<script src="/content/scripts/jquery-ui-1.8.custom.min.js" type="text/javascript"></script>
+	<script src="/content/scripts/jquery.ui.selectmenu.js" type="text/javascript"></script>
     <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+	<script src="/content/scripts/administration/coders.user.js" type="text/javascript"></script>
 }
 @section location
 {
@@ -17,7 +19,7 @@
 <div class="title">
 	<h5>@Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.User)</h5>
 	<ul>
-		<li><a href="@Url.Route(UsersAdministrationRoutes.RolePrivilege, new { id = Model.Id }).Value"><span>@Resources.Titles.Permissions</span></a></li>
+		<li><a href="@Url.Route(UsersAdministrationRoutes.RolePrivilege, new { id = Model.Id }).Value"><span>@Resources.Titles.Privileges</span></a></li>
 		<li><a href="@Url.Route(UsersAdministrationRoutes.HomeReset, new { id = Model.Id }).Value"><span>@Resources.Titles.ResetPassword</span></a></li>
 		<li class="last"><a href="@Url.Route(UsersAdministrationRoutes.HomeHistory).Value"><span>@Resources.Titles.History</span></a></li>
 	</ul>

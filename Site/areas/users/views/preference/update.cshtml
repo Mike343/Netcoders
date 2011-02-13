@@ -1,0 +1,51 @@
+﻿@model Coders.Web.Models.Users.UserPreferenceUpdate
+@section scripts
+{
+    <script src="/content/scripts/coders.js" type="text/javascript"></script>
+    <script src="/content/scripts/coders.form.js" type="text/javascript"></script>
+}
+<div class="left">
+	<h2>@Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.Preferences)</h2>
+	<div class="form">
+		@{Html.Message(Model);}
+		@{Html.ValidationResult();}
+		@{Html.BeginRouteForm(UsersRoutes.PreferenceUpdate);}
+		<div class="fields">
+			<div class="field field-select">
+				<label for="Country">@Resources.Titles.Country:</label>
+				@Html.DropDownListFor(x => x.CountryId, Model.Countries.SelectList(x => x.Id, x => x.Title), new { @class = "countries" })
+			</div>
+			<div class="field field-select">
+				<label for="TimeZone">@Resources.Titles.TimeZone:</label>
+				@Html.DropDownListFor(x => x.TimeZoneId, Model.TimeZones.SelectList(x => x.Id, x => x.Display), new { @class = "timezones" })
+			</div>
+			<div class="field field-select">
+				<label for="Dst">@Resources.Titles.DaylightSavingTime:</label>
+				@Html.DropDownListFor(x => x.Dst, Model.Dsts.SelectList(), new { @class = "normal" })
+			</div>
+			<div class="field field-select">
+				<label for="StartOfWeek">@Resources.Titles.StartOfTheWeek:</label>
+				@Html.DropDownListFor(x => x.StartOfWeek, Model.StartOfWeeks.SelectList(), new { @class = "normal" })
+			</div>
+			<div class="field field-select">
+				<label for="TimeFormat">@Resources.Titles.TimeFormat:</label>
+				@Html.DropDownListFor(x => x.TimeFormat, Model.TimeFormats.SelectList(), new { @class = "normal" })
+			</div>
+			<div class="field field-button">
+				@Html.AntiForgeryToken()
+				<input type="submit" value="@Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.Preferences)" />
+			</div>
+		</div>
+		@{Html.EndForm();}
+	</div>
+</div>
+<div class="right">
+	<div class="menu">
+		<h2>@Resources.Titles.Account</h2>
+		<ul>
+			<li>@Url.Route(UsersRoutes.Update).Link(Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.Account))</li>
+			<li>@Url.Route(UsersRoutes.PreferenceUpdate).Link(Resources.Titles.UpdateWith.FormatInvariant(Resources.Titles.Preferences))</li>
+			<li>@Url.Route(UsersRoutes.AuthUpdate).Link(Resources.Titles.ChangePassword)</li>
+		</ul>
+	</div>
+</div>

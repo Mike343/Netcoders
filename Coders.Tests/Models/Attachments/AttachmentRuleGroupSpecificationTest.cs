@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Coders.Models.Attachments;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Attachments
 {
-	[TestClass]
+	[TestFixture]
 	public class AttachmentRuleGroupSpecificationTest
 	{
 		private IQueryable<AttachmentRule> Values
@@ -14,8 +14,8 @@ namespace Coders.Tests.Models.Attachments
 			set;
 		}
 
-		[TestInitialize]
-		public void TestInitialize()
+		[SetUp]
+		public void Initialize()
 		{
 			var values = new List<AttachmentRule>
 			{
@@ -26,7 +26,7 @@ namespace Coders.Tests.Models.Attachments
 			this.Values = values.AsQueryable();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_AttachmentRuleGroupSpecification_SatisfyEntityFrom()
 		{
 			var specification = new AttachmentRuleGroupSpecification("Test");
@@ -36,7 +36,7 @@ namespace Coders.Tests.Models.Attachments
 			Assert.AreEqual("Test", result.Group);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_AttachmentRuleGroupSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new AttachmentRuleGroupSpecification("Test");

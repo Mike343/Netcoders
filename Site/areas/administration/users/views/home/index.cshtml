@@ -29,6 +29,7 @@
 					<th>@Resources.Titles.Status</th>
 					<th>@Resources.Titles.LastVisit</th>
 					<th></th>
+					<th></th>
 					<th class="last"></th>
 				</tr>
 			</thead>
@@ -39,6 +40,7 @@
 					<td class="center">@user.EmailAddress</td>
 					<td class="center">@user.Status</td>
 					<td class="center">@user.LastVisit.Personalize(User.Identity)</td>
+					<td class="link">@Url.Route(UsersAdministrationRoutes.RolePrivilege, new { id = user.Id }).Link(Resources.Titles.Privileges)</td>
 					<td class="link">@Url.Route(UsersAdministrationRoutes.HomeUpdate, new { id = user.Id }).Link(Resources.Titles.Update)</td>
 					<td class="link last">@Url.Route(UsersAdministrationRoutes.HomeDelete, new { id = user.Id }).Link(Resources.Titles.Delete)</td>
 				</tr>

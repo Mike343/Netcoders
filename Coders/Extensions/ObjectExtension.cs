@@ -25,7 +25,7 @@ namespace Coders.Extensions
 	public static class ObjectExtension
 	{
 		/// <summary>
-		/// Returns the specified value as an integer.
+		/// Returns the specified value as a integer.
 		/// </summary>
 		/// <param name="value">The value.</param>
 		/// <returns></returns>
@@ -47,7 +47,7 @@ namespace Coders.Extensions
 		}
 
 		/// <summary>
-		/// Returns the specified value as an boolean.
+		/// Returns the specified value as a boolean.
 		/// </summary>
 		/// <param name="value">The value.</param>
 		/// <returns></returns>
@@ -69,13 +69,35 @@ namespace Coders.Extensions
 		}
 
 		/// <summary>
-		/// Returns the specified value as an boolean.
+		/// Returns the specified value as a boolean.
 		/// </summary>
 		/// <param name="value">The value.</param>
 		/// <returns></returns>
 		public static bool AsBoolean(this object value)
 		{
 			return Convert.ToBoolean(value, CultureInfo.InvariantCulture);
+		}
+
+		/// <summary>
+		/// Returns the specified value as a DateTime.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <returns></returns>
+		public static DateTime AsDateTime(this string value)
+		{
+			if (!string.IsNullOrEmpty(value))
+			{
+				DateTime result;
+
+				var success = DateTime.TryParse(value, CultureInfo.InvariantCulture, DateTimeStyles.None, out result);
+
+				if (success)
+				{
+					return result;
+				}
+			}
+
+			return DateTime.MinValue;
 		}
 	}
 }

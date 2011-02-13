@@ -92,7 +92,7 @@ namespace Coders.Services
 			}
 			catch (MessageQueueException exception)
 			{
-				throw new InvalidOperationException("The message queue has failed to send the message", exception);
+				throw new InvalidOperationException("Failed to send the message to the queue.", exception);
 			}
 		}
 

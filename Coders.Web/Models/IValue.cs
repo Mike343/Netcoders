@@ -21,14 +21,17 @@ using Coders.Web.ViewModels;
 
 namespace Coders.Web.Models
 {
-	public interface IValue<in T>
+	public interface IValue
 	{
 		/// <summary>
 		/// Gets the message.
 		/// </summary>
 		/// <value>The message.</value>
 		MessageViewModel Message { get; }
+	}
 
+	public interface IValue<in T> : IValue
+	{
 		/// <summary>
 		/// Converts this instance to the specified entity.
 		/// </summary>

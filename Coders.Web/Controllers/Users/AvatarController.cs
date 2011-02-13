@@ -30,9 +30,16 @@ namespace Coders.Web.Controllers.Users
 	[Authorize]
 	public class AvatarController : DefaultController
 	{
-		public AvatarController(IUserAvatarService userAvatarService)
+		public AvatarController(IUserService userService, IUserAvatarService userAvatarService)
 		{
+			this.UserService = userService;
 			this.UserAvatarService = userAvatarService;
+		}
+
+		public IUserService UserService
+		{
+			get;
+			private set;
 		}
 
 		public IUserAvatarService UserAvatarService
@@ -53,7 +60,7 @@ namespace Coders.Web.Controllers.Users
 			var avatar = avatars.FirstOrDefault();
 			var privilege = new UserAvatarPrivilege();
 
-			return privilege.CanView(avatar) ? View(Views.Index, avatars) : NotAuthorized();
+			return privilege.CanView(avatar) ? base.View(Views.Index, avatars) : NotAuthorized();
 		}
 
 		[HttpGet]
@@ -63,7 +70,7 @@ namespace Coders.Web.Controllers.Users
 
 			if (avatar == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserAvatarPrivilege();
@@ -73,9 +80,13 @@ namespace Coders.Web.Controllers.Users
 				return NotAuthorized();
 			}
 
-			this.UserAvatarService.Assign(avatar);
+			var user = this.UserService.GetById(Identity.Id);
 
-			return RedirectToRoute(UsersRoutes.AvatarIndex);
+			this.UserAvatarService.AssignToUser(user, avatar);
+
+			this.UserService.Update(user);
+
+			return base.RedirectToRoute(UsersRoutes.AvatarIndex);
 		}
 
 		[HttpGet]
@@ -84,7 +95,7 @@ namespace Coders.Web.Controllers.Users
 			var avatar = this.UserAvatarService.Create();
 			var privilege = new UserAvatarPrivilege();
 
-			return privilege.CanCreate(avatar) ? View(Views.Create, new UserAvatarCreate()) : NotAuthorized();
+			return privilege.CanCreate(avatar) ? base.View(Views.Create, new UserAvatarCreate()) : NotAuthorized();
 		}
 
 		[HttpPost, ValidateAntiForgeryToken]
@@ -95,13 +106,6 @@ namespace Coders.Web.Controllers.Users
 				throw new ArgumentNullException("value");
 			}
 
-			value.File = Request.Files[0];
-
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Create, value);
-			}
-
 			var avatar = this.UserAvatarService.Create();
 			var privilege = new UserAvatarPrivilege();
 
@@ -110,9 +114,16 @@ namespace Coders.Web.Controllers.Users
 				return NotAuthorized();
 			}
 
+			value.File = Request.Files[0];
+
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Create, value);
+			}
+
 			this.UserAvatarService.Insert(avatar, value.File);
 
-			return RedirectToRoute(UsersRoutes.AvatarIndex);
+			return base.RedirectToRoute(UsersRoutes.AvatarIndex);
 		}
 
 		[HttpGet]
@@ -122,7 +133,7 @@ namespace Coders.Web.Controllers.Users
 
 			if (avatar == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserAvatarPrivilege();
@@ -138,16 +149,11 @@ namespace Coders.Web.Controllers.Users
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Delete, value);
-			}
-
 			var avatar = UserAvatarService.GetById(value.Id);
 
 			if (avatar == null)
 			{
-				return HttpNotFound();
+				return base.HttpNotFound();
 			}
 
 			var privilege = new UserAvatarPrivilege();
@@ -157,9 +163,22 @@ namespace Coders.Web.Controllers.Users
 				return NotAuthorized();
 			}
 
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Delete, value);
+			}
+
+			var user = this.UserService.GetById(Identity.Id);
+			var matched = this.UserAvatarService.RemoveFromUserOnMatch(user, avatar);
+
+			if (matched)
+			{
+				this.UserService.Update(user);
+			}
+
 			this.UserAvatarService.Delete(avatar);
 
-			return RedirectToRoute(UsersRoutes.AvatarIndex);
+			return base.RedirectToRoute(UsersRoutes.AvatarIndex);
 		}
 	}
 }

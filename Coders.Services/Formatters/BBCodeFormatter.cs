@@ -108,18 +108,5 @@ namespace Coders.Services.Formatters
 
 			return value;
 		}
-
-		/// <summary>
-		/// Strips the specified value of bbcode tags.
-		/// </summary>
-		/// <param name="value">The value.</param>
-		/// <returns></returns>
-		public static string Strip(string value)
-		{
-			var regex = new Regex(@"\[((.|\n)*?)\]((.|\n)*?)\[/((.|\n)*?)\]", RegexOptions.Compiled | RegexOptions.IgnoreCase);
-			var result = regex.Replace(value, string.Empty);
-
-			return result;
-		}
 	}
 }

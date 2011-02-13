@@ -103,12 +103,11 @@ namespace Coders.Web.Models.Users
 			entity.Name = this.Name;
 			entity.HostAddress = this.HostAddress;
 
-			if (!this.Save || !base.Identity.IsAuthenticated())
+			if (!this.Save)
 			{
 				return;
 			}
 
-			entity.UserId = base.Identity.Id;
 			entity.Title = this.Title;
 		}
 	}

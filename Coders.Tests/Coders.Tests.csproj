@@ -33,9 +33,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\Dependencies\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="Ninject">
       <HintPath>..\Dependencies\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework">
+      <HintPath>..\Dependencies\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="Rhino.Mocks">
       <HintPath>..\Dependencies\Rhino.Mocks.dll</HintPath>
@@ -66,26 +71,46 @@
     <Compile Include="Extensions\PathExtensionTest.cs" />
     <Compile Include="Extensions\StringExtensionTest.cs" />
     <Compile Include="Extensions\TypeExtensionTest.cs" />
+    <Compile Include="Models\Attachments\AttachmentAuditTest.cs" />
+    <Compile Include="Models\Attachments\AttachmentFileTypeSpecificationTest.cs" />
     <Compile Include="Models\Attachments\AttachmentPendingGroupSpecificationTest.cs" />
     <Compile Include="Models\Attachments\AttachmentPendingUserSpecificationTest.cs" />
+    <Compile Include="Models\Attachments\AttachmentRuleAuditTest.cs" />
     <Compile Include="Models\Attachments\AttachmentRuleGroupSpecificationTest.cs" />
+    <Compile Include="Models\Attachments\AttachmentStatusSpecificationTest.cs" />
     <Compile Include="Models\Attachments\AttachmentTest.cs" />
+    <Compile Include="Models\Common\AuditTypeSpecificationTest.cs" />
+    <Compile Include="Models\Countries\CountryAuditTest.cs" />
     <Compile Include="Models\Countries\CountryCodeSpecificationTest.cs" />
     <Compile Include="Models\Countries\CountryTest.cs" />
+    <Compile Include="Models\Settings\SettingAuditTest.cs" />
+    <Compile Include="Models\Settings\SettingGroupSpecificationTest.cs" />
     <Compile Include="Models\Settings\SettingKeySpecificationTest.cs" />
     <Compile Include="Models\Settings\SettingTest.cs" />
+    <Compile Include="Models\TimeZones\TimeZoneAuditTest.cs" />
     <Compile Include="Models\TimeZones\TimeZoneOffsetSpecificationTest.cs" />
     <Compile Include="Models\TimeZones\TimeZoneTest.cs" />
+    <Compile Include="Models\Users\UserAuditTest.cs" />
     <Compile Include="Models\Users\UserAvatarTest.cs" />
+    <Compile Include="Models\Users\UserAvatarUserSpecificationTest.cs" />
     <Compile Include="Models\Users\UserBanExpiredSpecificationTest.cs" />
     <Compile Include="Models\Users\UserBanUserSpecificationTest.cs" />
     <Compile Include="Models\Users\UserEmailAddressSpecificationTest.cs" />
     <Compile Include="Models\Users\UserHostAddressSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserHostSearchUserSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserHostUserSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserIdentifiersSpecificationTest.cs" />
     <Compile Include="Models\Users\UserNameSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserProtectedSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserRoleAuditTest.cs" />
     <Compile Include="Models\Users\UserRoleDefaultSpecificationTest.cs" />
-    <Compile Include="Models\Users\UserRolePrivilegeRoleSpecificationTest.cs" />
-    <Compile Include="Models\Users\UserRolePrivilegeUserSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserRoleRelationRoleSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserRoleRelationUserSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserSearchExpiredSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserSearchUserSpecificationTest.cs" />
+    <Compile Include="Models\Users\UserStatusSpecificationTest.cs" />
     <Compile Include="Models\Users\UserTest.cs" />
+    <Compile Include="Models\Users\UserUpdatedGreaterThanSpecificationTest.cs" />
     <Compile Include="ServiceLocatorClasses.cs" />
     <Compile Include="NinjectServiceLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

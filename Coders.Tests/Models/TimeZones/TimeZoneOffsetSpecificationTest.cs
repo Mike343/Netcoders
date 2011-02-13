@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Coders.Models.TimeZones;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.TimeZones
 {
-	[TestClass]
+	[TestFixture]
 	public class TimeZoneOffsetSpecificationTest
 	{
 		private IQueryable<TimeZone> Values
@@ -14,8 +14,8 @@ namespace Coders.Tests.Models.TimeZones
 			set;
 		}
 
-		[TestInitialize]
-		public void TestInitialize()
+		[SetUp]
+		public void Initialize()
 		{
 			var values = new List<TimeZone>
 			{
@@ -26,7 +26,7 @@ namespace Coders.Tests.Models.TimeZones
 			this.Values = values.AsQueryable();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_TimeZoneOffsetSpecification_SatisfyEntityFrom()
 		{
 			var specification = new TimeZoneOffsetSpecification(1.0);
@@ -36,7 +36,7 @@ namespace Coders.Tests.Models.TimeZones
 			Assert.AreEqual(1.0, result.Offset);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_TimeZoneOffsetSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new TimeZoneOffsetSpecification(1.0);

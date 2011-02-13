@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Coders.Models.TimeZones;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.TimeZones
 {
-	[TestClass]
+	[TestFixture]
 	public class TimeZoneTest
 	{
-		[TestMethod]
+		[Test]
 		public void Test_TimeZone_Cache()
 		{
 			var timeZones = new List<TimeZone>

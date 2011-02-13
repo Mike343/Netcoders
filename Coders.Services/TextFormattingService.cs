@@ -52,7 +52,7 @@ namespace Coders.Services
 		/// <returns></returns>
 		public string Strip(string value)
 		{
-			return BBCodeFormatter.Strip(value);
+			return new BBCodeStripperFormatter().Parse(value);
 		}
 	}
 }

@@ -1,36 +1,34 @@
 ﻿using Coders.Authentication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Authentication
 {
-	[TestClass]
+	[TestFixture]
 	public class PrivilegesValueTest
 	{
 		private PrivilegesValue _action;
 
-		[TestInitialize]
+		[SetUp]
 		public void Initialize()
 		{
 			_action = new PrivilegesValue(Privileges.Create);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegesValue_Permission()
 		{
 			Assert.AreEqual(_action.Permission, Privileges.Create);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegesValue_AllowedTo_True()
 		{
 			Assert.IsTrue(_action.AllowedTo(Privileges.Create));
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegesValue_AllowedTo_False()
 		{
-			var action = new PrivilegesValue(Privileges.Create);
-
 			Assert.IsFalse(_action.AllowedTo(Privileges.Delete));
 		}
 	}

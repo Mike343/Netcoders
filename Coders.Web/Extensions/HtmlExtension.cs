@@ -52,10 +52,9 @@ namespace Coders.Web.Extensions
 		/// <summary>
 		/// Renders the message.
 		/// </summary>
-		/// <typeparam name="T"></typeparam>
 		/// <param name="helper">The helper.</param>
 		/// <param name="value">The value.</param>
-		public static void Message<T>(this HtmlHelper helper, IValue<T> value)
+		public static void Message(this HtmlHelper helper, IValue value)
 		{
 			if (helper == null)
 			{

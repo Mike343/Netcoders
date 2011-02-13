@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Coders.Models.Users;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Users
 {
-	[TestClass]
+	[TestFixture]
 	public class UserBanUserSpecificationTest
 	{
 		private IQueryable<UserBan> Values
@@ -14,7 +14,7 @@ namespace Coders.Tests.Models.Users
 			set;
 		}
 
-		[TestInitialize]
+		[SetUp]
 		public void TestInitialize()
 		{
 			var values = new List<UserBan>
@@ -26,7 +26,7 @@ namespace Coders.Tests.Models.Users
 			this.Values = values.AsQueryable();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_UserBanUserSpecification_SatisfyEntityFrom()
 		{
 			var specification = new UserBanUserSpecification(1);
@@ -36,7 +36,7 @@ namespace Coders.Tests.Models.Users
 			Assert.AreEqual(1, result.Id);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_UserBanUserSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserBanUserSpecification(1);

@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Coders.Models.Settings;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Models.Settings
 {
-	[TestClass]
+	[TestFixture]
 	public class SettingTest
 	{
 		private IList<Setting> Values
@@ -13,8 +13,8 @@ namespace Coders.Tests.Models.Settings
 			set;
 		}
 
-		[TestInitialize]
-		public void TestInitialize()
+		[SetUp]
+		public void Initialize()
 		{
 			this.Values = new List<Setting>
 			{
@@ -23,7 +23,7 @@ namespace Coders.Tests.Models.Settings
 			};
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_Setting_Rebuild()
 		{
 			Setting.Rebuild(this.Values);

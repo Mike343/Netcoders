@@ -18,6 +18,7 @@
 #region Using Directives
 using System.Linq;
 using Coders.Repositories.Strategies;
+using Microsoft.Practices.ServiceLocation;
 #endregion
 
 namespace Coders.Repositories.Extension

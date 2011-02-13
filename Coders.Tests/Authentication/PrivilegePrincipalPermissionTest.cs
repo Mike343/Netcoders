@@ -1,20 +1,20 @@
 ﻿using System.Threading;
 using Coders.Authentication;
 using Coders.Extensions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Coders.Tests.Authentication
 {
-	[TestClass]
+	[TestFixture]
 	public class PrivilegePrincipalPermissionTest
 	{
-		[TestInitialize]
+		[SetUp]
 		public void Initialize()
 		{
 			Thread.CurrentPrincipal = new FakePrivilegePrincipal();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegePrincipalPermission_Init()
 		{
 			var permission = new PrivilegePrincipalPermission("Test", Privileges.Create);
@@ -24,7 +24,7 @@ namespace Coders.Tests.Authentication
 			Assert.AreEqual("Test", permission.Role);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegePrincipalPermission_Copy()
 		{
 			var permission = new PrivilegePrincipalPermission("Test", Privileges.Create);
@@ -35,7 +35,7 @@ namespace Coders.Tests.Authentication
 			Assert.AreEqual(permission.Role, copyOfPermission.Role);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegePrincipalPermission_Intersect()
 		{
 			var permission = new PrivilegePrincipalPermission("Test", Privileges.Create | Privileges.Delete);
@@ -46,7 +46,7 @@ namespace Coders.Tests.Authentication
 			Assert.AreEqual(permission.Role, intersect.Role);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegePrincipalPermission_Union()
 		{
 			var permission = new PrivilegePrincipalPermission("Test", Privileges.Create);
@@ -57,7 +57,7 @@ namespace Coders.Tests.Authentication
 			Assert.AreEqual(permission.Role, intersect.Role);
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegePrincipalPermission_IsSubsetOf_False()
 		{
 			var permission = new PrivilegePrincipalPermission("Test", Privileges.Create);
@@ -66,7 +66,7 @@ namespace Coders.Tests.Authentication
 			Assert.IsFalse(permission.IsSubsetOf(subset));
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegePrincipalPermission_IsSubsetOf_True()
 		{
 			var permission = new PrivilegePrincipalPermission("Test", Privileges.Create);
@@ -75,7 +75,7 @@ namespace Coders.Tests.Authentication
 			Assert.IsTrue(permission.IsSubsetOf(subset));
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegePrincipalPermission_Demand()
 		{
 			var permission = new PrivilegePrincipalPermission("Test", Privileges.Create);
@@ -90,7 +90,7 @@ namespace Coders.Tests.Authentication
 			}
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegePrincipalPermission_Demand_Fail()
 		{
 			var permission = new PrivilegePrincipalPermission("Test", Privileges.Delete);
@@ -107,7 +107,7 @@ namespace Coders.Tests.Authentication
 			Assert.Fail();
 		}
 
-		[TestMethod]
+		[Test]
 		public void Test_PrivilegePrincipalPermission_Authorized()
 		{
 			var permission = new PrivilegePrincipalPermission("Test", Privileges.Create);

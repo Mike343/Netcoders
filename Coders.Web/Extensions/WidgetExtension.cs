@@ -20,6 +20,7 @@ using System;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Coders.Web.Widgets;
+using Microsoft.Practices.ServiceLocation;
 #endregion
 
 namespace Coders.Web.Extensions

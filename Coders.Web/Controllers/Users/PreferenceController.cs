@@ -19,8 +19,8 @@
 using System;
 using System.Web.Mvc;
 using Coders.Models.Users;
+using Coders.Strings;
 using Coders.Web.Models.Users;
-using Coders.Web.Routes;
 #endregion
 
 namespace Coders.Web.Controllers.Users
@@ -51,7 +51,16 @@ namespace Coders.Web.Controllers.Users
 
 			var privilege = new UserPrivilege();
 
-			return privilege.CanUpdate(user) ? View(Views.Update, new UserPreferenceUpdate(user.Preference)) : NotAuthorized();
+			if (!privilege.CanUpdate(user))
+			{
+				return NotAuthorized();
+			}
+
+			var value = new UserPreferenceUpdate(user.Preference);
+
+			value.Initialize();
+
+			return base.View(Views.Update, value);
 		}
 
 		[HttpPost]
@@ -60,11 +69,6 @@ namespace Coders.Web.Controllers.Users
 			if (value == null)
 			{
 				throw new ArgumentNullException("value");
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
 			}
 
 			var user = this.UserService.GetById(Identity.Id);
@@ -81,9 +85,20 @@ namespace Coders.Web.Controllers.Users
 				return NotAuthorized();
 			}
 
+			value.Initialize();
+
+			if (!ModelState.IsValid)
+			{
+				return base.View(Views.Update, value);
+			}
+
+			value.ValueToModel(user.Preference);
+
 			this.UserService.UpdatePreference(user.Preference);
 
-			return RedirectToRoute(UsersRoutes.PreferenceUpdate);
+			value.SuccessMessage(Messages.UserAccountPreferenceUpdated);
+
+			return base.View(Views.Update, value);
 		}
 	}
 }
