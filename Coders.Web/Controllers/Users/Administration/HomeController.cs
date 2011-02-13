@@ -26,8 +26,8 @@ using Coders.Models.Users.Enums;
 using Coders.Strings;
 using Coders.Web.Controllers.Administration.Queries;
 using Coders.Web.Controllers.Users.Administration.Queries;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Users;
-using Coders.Web.Routes;
 #endregion
 
 namespace Coders.Web.Controllers.Users.Administration
@@ -102,20 +102,24 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return View(Views.Create, value);
+				value.ValueToModel(user);
+
+				this.UserService.Insert(user, value.Preference);
+
+				var model = new UserAdminUpdate(user);
+
+				model.SuccessMessage(Messages.UserCreated.FormatInvariant(user.Name));
+
+				return base.View(Views.Update, model);
 			}
 
-			value.ValueToModel(user);
+			value.CopyToModel(ModelState);
 
-			this.UserService.Insert(user, value.Preference);
-
-			var model = new UserAdminUpdate(user);
-
-			model.SuccessMessage(Messages.UserCreated.FormatInvariant(user.Name));
-
-			return base.View(Views.Update, model);
+			return base.View(Views.Create, value);
 		}
 
 		[HttpGet]
@@ -155,33 +159,37 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return View(Views.Update, value);
+				// value to user
+				value.ValueToModel(user);
+
+				// update user
+				this.UserService.Update(user);
+
+				// update password if needed
+				if (!string.IsNullOrEmpty(value.Password))
+				{
+					this.AuthenticationService.Update(user, value.Password);
+				}
+
+				// preference
+				var preference = user.Preference;
+
+				// value to preference
+				value.ValueToPreference(preference);
+
+				// update user preference
+				this.UserService.UpdatePreference(preference);
+
+				value.SuccessMessage(Messages.UserUpdated.FormatInvariant(user.Name));
 			}
-
-			// value to user
-			value.ValueToModel(user);
-
-			// update user
-			this.UserService.Update(user);
-
-			// update password if needed
-			if (!string.IsNullOrEmpty(value.Password))
+			else
 			{
-				this.AuthenticationService.Update(user, value.Password);
+				value.CopyToModel(ModelState);
 			}
-
-			// preference
-			var preference = user.Preference;
-
-			// value to preference
-			value.ValueToPreference(preference);
-
-			// update user preference
-			this.UserService.UpdatePreference(preference);
-
-			value.SuccessMessage(Messages.UserUpdated.FormatInvariant(user.Name));
 
 			return base.View(Views.Update, value);
 		}
@@ -232,20 +240,24 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			value.Initialize(user);
+			value.Validate();
 
-			if (!ModelState.IsValid)
+			if (value.IsValid)
 			{
-				return View(Views.Reset, value);
+				this.AuthenticationService.Reset(user);
+
+				var model = new UserAdminUpdate(user);
+
+				model.SuccessMessage(Messages.UserPasswordReset.FormatInvariant(user.Name));
+
+				return base.View(Views.Update, model);
 			}
 
-			this.AuthenticationService.Reset(user);
+			value.CopyToModel(ModelState);
 
-			var model = new UserAdminUpdate(user);
+			value.Initialize(user);
 
-			model.SuccessMessage(Messages.UserPasswordReset.FormatInvariant(user.Name));
-
-			return base.View(Views.Update, model);
+			return base.View(Views.Update, value);
 		}
 	}
 }

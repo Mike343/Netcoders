@@ -26,8 +26,6 @@ using Coders.Extensions;
 using Coders.Models.Settings;
 using Coders.Web.ActionFilters;
 using Coders.Web.Routes;
-using FluentValidation.Attributes;
-using FluentValidation.Mvc;
 using Microsoft.Practices.ServiceLocation;
 #endregion
 
@@ -129,8 +127,7 @@ namespace Coders.Web
 
 			RegisterGlobalFilters(GlobalFilters.Filters);
 
-			ModelMetadataProviders.Current = new DataAnnotationsModelMetadataProvider();
-			ModelValidatorProviders.Providers.Add(new FluentValidationModelValidatorProvider(new AttributedValidatorFactory()));
+			DataAnnotationsModelValidatorProvider.AddImplicitRequiredAttributeForValueTypes = false;
 		}
 
 		/// <summary>

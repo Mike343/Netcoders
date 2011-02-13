@@ -22,12 +22,10 @@ using Coders.Models.Settings;
 using Coders.Strings;
 using Coders.Web.Extensions;
 using FluentValidation;
-using FluentValidation.Attributes;
 #endregion
 
 namespace Coders.Web.Models.Settings
 {
-	[Validator(typeof(SettingCreateOrUpdateValidatorCollection))]
 	public class SettingCreateOrUpdate : Value<Setting>
 	{
 		/// <summary>
@@ -144,6 +142,14 @@ namespace Coders.Web.Models.Settings
 			entity.Group = this.Group;
 			entity.Key = this.ItemKey;
 			entity.Value = this.ItemValue;
+		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new SettingCreateOrUpdateValidatorCollection().Validate(this);
 		}
 	}
 

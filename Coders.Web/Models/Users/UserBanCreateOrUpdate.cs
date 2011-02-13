@@ -23,12 +23,10 @@ using Coders.Models.Users;
 using Coders.Strings;
 using Coders.Web.Extensions;
 using FluentValidation;
-using FluentValidation.Attributes;
 #endregion
 
 namespace Coders.Web.Models.Users
 {
-	[Validator(typeof(UserBanCreateOrUpdateValidatorCollection))]
 	public class UserBanCreateOrUpdate : Value<UserBan>
 	{
 		/// <summary>
@@ -154,6 +152,14 @@ namespace Coders.Web.Models.Users
 			{
 				entity.Expire = DateTime.Parse(this.Expire, CultureInfo.InvariantCulture);
 			}
+		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new UserBanCreateOrUpdateValidatorCollection().Validate(this);
 		}
 	}
 

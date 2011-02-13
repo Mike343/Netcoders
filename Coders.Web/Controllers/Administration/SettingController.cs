@@ -25,6 +25,7 @@ using Coders.Models.Settings;
 using Coders.Models.Settings.Enums;
 using Coders.Strings;
 using Coders.Web.Controllers.Administration.Queries;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Settings;
 using Coders.Web.Routes;
 #endregion
@@ -100,21 +101,24 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Create, value);
+				value.ValueToModel(setting);
+
+				this.SettingService.InsertOrUpdate(setting);
+				this.SettingService.Rebuild();
+
+				value = new SettingCreateOrUpdate(setting);
+				value.SuccessMessage(Messages.SettingCreated.FormatInvariant(setting.Title));
+			}
+			else
+			{
+				value.CopyToModel(ModelState);
 			}
 
-			value.ValueToModel(setting);
-
-			this.SettingService.InsertOrUpdate(setting);
-			this.SettingService.Rebuild();
-
-			var model = new SettingCreateOrUpdate(setting);
-
-			model.SuccessMessage(Messages.SettingCreated.FormatInvariant(setting.Title));
-
-			return base.View(Views.Update, model);
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -154,17 +158,21 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Update, value);
+				value.ValueToModel(setting);
+
+				this.SettingService.InsertOrUpdate(setting);
+				this.SettingService.Rebuild();
+
+				value.SuccessMessage(Messages.SettingUpdated.FormatInvariant(setting.Title));
 			}
-
-			value.ValueToModel(setting);
-
-			this.SettingService.InsertOrUpdate(setting);
-			this.SettingService.Rebuild();
-
-			value.SuccessMessage(Messages.SettingUpdated.FormatInvariant(setting.Title));
+			else
+			{
+				value.CopyToModel(ModelState);
+			}
 
 			return base.View(Views.Update, value);
 		}
@@ -204,11 +212,6 @@ namespace Coders.Web.Controllers.Administration
 			if (!privilege.CanDelete(setting))
 			{
 				return NotAuthorized();
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Delete, value);
 			}
 
 			this.SettingService.Delete(setting);

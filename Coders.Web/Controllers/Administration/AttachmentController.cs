@@ -25,6 +25,7 @@ using Coders.Models.Common;
 using Coders.Models.Common.Enums;
 using Coders.Strings;
 using Coders.Web.Controllers.Administration.Queries;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Attachments;
 using Coders.Web.Routes;
 #endregion
@@ -112,19 +113,22 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
-			{
-				value.Initialize(attachment);
+			value.Validate();
 
-				return base.View(Views.Update, value);
+			if (value.IsValid)
+			{
+				value.ValueToModel(attachment);
+
+				this.AttachmentService.Update(attachment);
+
+				value.SuccessMessage(Messages.AttachmentUpdated);
+			}
+			else
+			{
+				value.CopyToModel(ModelState);
 			}
 
-			value.ValueToModel(attachment);
-
-			this.AttachmentService.Update(attachment);
-
 			value.Initialize(attachment);
-			value.SuccessMessage(Messages.AttachmentUpdated);
 
 			return base.View(Views.Update, value);
 		}
@@ -164,11 +168,6 @@ namespace Coders.Web.Controllers.Administration
 			if (!privilege.CanDelete(attachment))
 			{
 				return NotAuthorized();
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Delete, value);
 			}
 
 			this.AttachmentService.Delete(attachment, value.Soft);

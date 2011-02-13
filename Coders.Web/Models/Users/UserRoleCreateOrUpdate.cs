@@ -23,12 +23,10 @@ using Coders.Extensions;
 using Coders.Models.Users;
 using Coders.Strings;
 using FluentValidation;
-using FluentValidation.Attributes;
 #endregion
 
 namespace Coders.Web.Models.Users
 {
-	[Validator(typeof(UserRoleCreateOrUpdateValidatorCollection))]
 	public class UserRoleCreateOrUpdate : Value<UserRole>
 	{
 		/// <summary>
@@ -147,6 +145,14 @@ namespace Coders.Web.Models.Users
 			entity.Title = this.Title;
 			entity.IsDefault = this.IsDefault;
 			entity.IsAdministrator = this.IsAdministrator;
+		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new UserRoleCreateOrUpdateValidatorCollection().Validate(this);
 		}
 	}
 

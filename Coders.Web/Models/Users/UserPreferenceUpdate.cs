@@ -230,5 +230,13 @@ namespace Coders.Web.Models.Users
 			entity.Country = this.Countries.FirstOrDefault(x => x.Id == this.CountryId);
 			entity.TimeZone = this.TimeZones.FirstOrDefault(x => x.Id == this.TimeZoneId);
 		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			
+		}
 	}
 }

@@ -21,12 +21,10 @@ using Coders.Extensions;
 using Coders.Models.Countries;
 using Coders.Strings;
 using FluentValidation;
-using FluentValidation.Attributes;
 #endregion
 
 namespace Coders.Web.Models.Countries
 {
-	[Validator(typeof(CountryCreateOrUpdateValidatorCollection))]
 	public class CountryCreateOrUpdate : Value<Country>
 	{
 		/// <summary>
@@ -96,6 +94,14 @@ namespace Coders.Web.Models.Countries
 
 			entity.Title = this.Title;
 			entity.Code = this.Code;
+		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new CountryCreateOrUpdateValidatorCollection().Validate(this);
 		}
 	}
 

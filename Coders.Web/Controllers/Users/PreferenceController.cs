@@ -20,6 +20,7 @@ using System;
 using System.Web.Mvc;
 using Coders.Models.Users;
 using Coders.Strings;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Users;
 #endregion
 
@@ -85,18 +86,22 @@ namespace Coders.Web.Controllers.Users
 				return NotAuthorized();
 			}
 
-			value.Initialize();
+			value.Validate();
 
-			if (!ModelState.IsValid)
+			if (value.IsValid)
 			{
-				return base.View(Views.Update, value);
+				value.ValueToModel(user.Preference);
+
+				this.UserService.UpdatePreference(user.Preference);
+
+				value.SuccessMessage(Messages.UserAccountPreferenceUpdated);
+			}
+			else
+			{
+				value.CopyToModel(ModelState);
 			}
 
-			value.ValueToModel(user.Preference);
-
-			this.UserService.UpdatePreference(user.Preference);
-
-			value.SuccessMessage(Messages.UserAccountPreferenceUpdated);
+			value.Initialize();
 
 			return base.View(Views.Update, value);
 		}

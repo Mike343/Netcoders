@@ -30,14 +30,12 @@ using Coders.Models.Users.Enums;
 using Coders.Strings;
 using Coders.Web.Extensions;
 using FluentValidation;
-using FluentValidation.Attributes;
 using Microsoft.Practices.ServiceLocation;
 using TimeZone = Coders.Models.TimeZones.TimeZone;
 #endregion
 
 namespace Coders.Web.Models.Users
 {
-	[Validator(typeof(UserAdminUpdateValidatorCollection))]
 	public class UserAdminUpdate : Value<User>
 	{
 		/// <summary>
@@ -409,6 +407,14 @@ namespace Coders.Web.Models.Users
 			preference.TimeFormat = this.TimeFormat;
 			preference.Country = this.Countries.FirstOrDefault(x => x.Id == this.CountryId);
 			preference.TimeZone = this.TimeZones.FirstOrDefault(x => x.Id == this.TimeZoneId);
+		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new UserAdminUpdateValidatorCollection().Validate(this);
 		}
 	}
 

@@ -26,6 +26,7 @@ using Coders.Models.Countries.Enums;
 using Coders.Models.Settings;
 using Coders.Strings;
 using Coders.Web.Controllers.Administration.Queries;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Countries;
 using Coders.Web.Routes;
 #endregion
@@ -107,20 +108,23 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Create, value);
+				value.ValueToModel(country);
+
+				this.CountryService.InsertOrUpdate(country);
+
+				value = new CountryCreateOrUpdate(country);
+				value.SuccessMessage(Messages.CountryCreated.FormatInvariant(country.Title));
+			}
+			else
+			{
+				value.CopyToModel(ModelState);
 			}
 
-			value.ValueToModel(country);
-
-			this.CountryService.InsertOrUpdate(country);
-
-			var model = new CountryCreateOrUpdate(country);
-
-			model.SuccessMessage(Messages.CountryCreated.FormatInvariant(country.Title));
-
-			return base.View(Views.Update, model);
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -160,16 +164,20 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Update, value);
+				value.ValueToModel(country);
+
+				this.CountryService.InsertOrUpdate(country);
+
+				value.SuccessMessage(Messages.CountryUpdated.FormatInvariant(country.Title));
 			}
-
-			value.ValueToModel(country);
-
-			this.CountryService.InsertOrUpdate(country);
-
-			value.SuccessMessage(Messages.CountryUpdated.FormatInvariant(country.Title));
+			else
+			{
+				value.CopyToModel(ModelState);
+			}
 
 			return base.View(Views.Update, value);
 		}
@@ -209,11 +217,6 @@ namespace Coders.Web.Controllers.Administration
 			if (!privilege.CanDelete(country))
 			{
 				return NotAuthorized();
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Delete, value);
 			}
 
 			this.CountryService.Delete(country);

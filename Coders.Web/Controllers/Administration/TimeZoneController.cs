@@ -26,6 +26,7 @@ using Coders.Models.TimeZones;
 using Coders.Models.TimeZones.Enums;
 using Coders.Strings;
 using Coders.Web.Controllers.Administration.Queries;
+using Coders.Web.Extensions;
 using Coders.Web.Models.TimeZones;
 using Coders.Web.Routes;
 using TimeZone = Coders.Models.TimeZones.TimeZone;
@@ -109,20 +110,23 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return View(Views.Create, value);
+				value.ValueToModel(timeZone);
+
+				this.TimeZoneService.InsertOrUpdate(timeZone);
+
+				value = new TimeZoneCreateOrUpdate(timeZone);
+				value.SuccessMessage(Messages.TimeZoneCreated.FormatInvariant(timeZone.Title));
+			}
+			else
+			{
+				value.CopyToModel(ModelState);
 			}
 
-			value.ValueToModel(timeZone);
-
-			this.TimeZoneService.InsertOrUpdate(timeZone);
-
-			var model = new TimeZoneCreateOrUpdate(timeZone);
-
-			model.SuccessMessage(Messages.TimeZoneCreated.FormatInvariant(timeZone.Title));
-
-			return base.View(Views.Update, model);
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -162,16 +166,20 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return View(Views.Update, value);
+				value.ValueToModel(timeZone);
+
+				this.TimeZoneService.InsertOrUpdate(timeZone);
+
+				value.SuccessMessage(Messages.TimeZoneUpdated.FormatInvariant(timeZone.Title));
 			}
-
-			value.ValueToModel(timeZone);
-
-			this.TimeZoneService.InsertOrUpdate(timeZone);
-
-			value.SuccessMessage(Messages.TimeZoneUpdated.FormatInvariant(timeZone.Title));
+			else
+			{
+				value.CopyToModel(ModelState);
+			}
 
 			return base.View(Views.Update, value);
 		}
@@ -211,11 +219,6 @@ namespace Coders.Web.Controllers.Administration
 			if (!privilege.CanDelete(timeZone))
 			{
 				return NotAuthorized();
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return base.View(Views.Delete, value);
 			}
 
 			this.TimeZoneService.Delete(timeZone);

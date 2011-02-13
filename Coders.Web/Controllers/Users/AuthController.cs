@@ -20,6 +20,7 @@ using System;
 using System.Web.Mvc;
 using Coders.Models.Users;
 using Coders.Strings;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Users;
 using Coders.Web.Routes;
 #endregion
@@ -58,25 +59,29 @@ namespace Coders.Web.Controllers.Users
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.LogOn, value);
+				var user = this.UserService.GetBy(new UserEmailAddressSpecification(value.EmailAddress));
+
+				this.AuthenticationService.LogOn(user);
+
+				ApplicationSession.Destroy(this.Session);
+
+				var url = value.Redirect;
+
+				if (base.Url.IsLocalUrl(url))
+				{
+					return base.Redirect(url);
+				}
+
+				return base.RedirectToRoute(CommonRoutes.Index);
 			}
 
-			var user = this.UserService.GetBy(new UserEmailAddressSpecification(value.EmailAddress));
+			value.CopyToModel(ModelState);
 
-			this.AuthenticationService.LogOn(user);
-
-			ApplicationSession.Destroy(this.Session);
-
-			var url = value.Redirect;
-
-			if (base.Url.IsLocalUrl(url))
-			{
-				return base.Redirect(url);
-			}
-
-			return base.RedirectToRoute(CommonRoutes.Index);
+			return base.View(Views.LogOn, value);
 		}
 
 		[HttpGet]
@@ -101,16 +106,20 @@ namespace Coders.Web.Controllers.Users
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return View(Views.Reset, value);
+				var user = this.UserService.GetBy(new UserEmailAddressSpecification(value.EmailAddress));
+
+				this.AuthenticationService.Reset(user);
+
+				return Status(Messages.UserAccountPasswordReset);
 			}
 
-			var user = this.UserService.GetBy(new UserEmailAddressSpecification(value.EmailAddress));
+			value.CopyToModel(ModelState);
 
-			this.AuthenticationService.Reset(user);
-
-			return Status(Messages.UserAccountPasswordReset);
+			return base.View(Views.Reset, value);
 		}
 
 		[HttpGet, Authorize]
@@ -141,15 +150,19 @@ namespace Coders.Web.Controllers.Users
 				return base.HttpNotFound();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Update, value);
+				this.AuthenticationService.Update(user, value.NewPassword);
+				this.AuthenticationService.LogOff();
+
+				return base.RedirectToRoute(UsersRoutes.AuthLogOn);
 			}
 
-			this.AuthenticationService.Update(user, value.NewPassword);
-			this.AuthenticationService.LogOff();
+			value.CopyToModel(ModelState);
 
-			return base.RedirectToRoute(UsersRoutes.AuthLogOn);
+			return base.View(Views.Update, value);
 		}
 	}
 }

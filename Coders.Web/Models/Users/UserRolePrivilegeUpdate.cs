@@ -113,5 +113,13 @@ namespace Coders.Web.Models.Users
 				this.Values.Add(relation);
 			}
 		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+
+		}
 	}
 }

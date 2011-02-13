@@ -16,9 +16,11 @@
 #endregion
 
 #region Using Directives
+using System.Collections.Generic;
 using Coders.Authentication;
 using Coders.Web.ActionResults.Enums;
 using Coders.Web.ViewModels;
+using FluentValidation.Results;
 #endregion
 
 namespace Coders.Web.Models
@@ -41,6 +43,18 @@ namespace Coders.Web.Models
 		}
 
 		/// <summary>
+		/// Gets a value indicating whether this instance is valid.
+		/// </summary>
+		/// <value><c>true</c> if this instance is valid; otherwise, <c>false</c>.</value>
+		public bool IsValid
+		{
+			get
+			{
+				return this.Result.IsValid;
+			}
+		}
+
+		/// <summary>
 		/// Gets or sets the identity.
 		/// </summary>
 		/// <value>The identity.</value>
@@ -58,6 +72,28 @@ namespace Coders.Web.Models
 		{
 			get;
 			private set;
+		}
+
+		/// <summary>
+		/// Gets or sets the result.
+		/// </summary>
+		/// <value>The result.</value>
+		public ValidationResult Result
+		{
+			get; 
+			set;
+		}
+
+		/// <summary>
+		/// Gets the errors.
+		/// </summary>
+		/// <value>The errors.</value>
+		public IList<ValidationFailure> Errors
+		{
+			get
+			{
+				return this.Result.Errors;
+			}
 		}
 
 		/// <summary>
@@ -86,6 +122,11 @@ namespace Coders.Web.Models
 		{
 			this.Message = new MessageViewModel(message, MessageScope.Error);
 		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public abstract void Validate();
 	}
 
 	public abstract class Value<T> : Value, IValue<T>

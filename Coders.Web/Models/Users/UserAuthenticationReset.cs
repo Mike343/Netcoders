@@ -20,13 +20,11 @@ using System;
 using Coders.Models.Users;
 using Coders.Web.Extensions;
 using FluentValidation;
-using FluentValidation.Attributes;
 #endregion
 
 namespace Coders.Web.Models.Users
 {
-	[Validator(typeof(UserAuthenticationResetValidatorCollection))]
-	public class UserAuthenticationReset
+	public class UserAuthenticationReset : Value
 	{
 		/// <summary>
 		/// Gets or sets the id.
@@ -72,6 +70,14 @@ namespace Coders.Web.Models.Users
 
 			this.Id = user.Id;
 			this.User = user;
+		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new UserAuthenticationResetValidatorCollection().Validate(this);
 		}
 	}
 

@@ -169,6 +169,14 @@ namespace Coders.Web.Models.Users
 			entity.EmailAddress = this.EmailAddress;
 			entity.Signature = this.Signature;
 		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new UserUpdateValidatorCollection().Validate(this);
+		}
 	}
 
 	public class UserUpdateValidatorCollection : AbstractValidator<UserUpdate>

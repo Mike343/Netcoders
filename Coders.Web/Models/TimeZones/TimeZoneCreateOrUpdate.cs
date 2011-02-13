@@ -20,13 +20,11 @@ using System;
 using Coders.Extensions;
 using Coders.Strings;
 using FluentValidation;
-using FluentValidation.Attributes;
 using TimeZone = Coders.Models.TimeZones.TimeZone;
 #endregion
 
 namespace Coders.Web.Models.TimeZones
 {
-	[Validator(typeof(TimeZoneCreateOrUpdateValidatorCollection))]
 	public class TimeZoneCreateOrUpdate : Value<TimeZone>
 	{
 		/// <summary>
@@ -108,6 +106,14 @@ namespace Coders.Web.Models.TimeZones
 			entity.Title = this.Title;
 			entity.Display = this.Display;
 			entity.Offset = this.Offset;
+		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new TimeZoneCreateOrUpdateValidatorCollection().Validate(this);
 		}
 	}
 

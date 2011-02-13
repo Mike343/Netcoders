@@ -21,12 +21,10 @@ using Coders.Extensions;
 using Coders.Models.Attachments;
 using Coders.Strings;
 using FluentValidation;
-using FluentValidation.Attributes;
 #endregion
 
 namespace Coders.Web.Models.Attachments
 {
-	[Validator(typeof(AttachmentRuleCreateOrUpdateValidatorCollection))]
 	public class AttachmentRuleCreateOrUpdate : Value<AttachmentRule>
 	{
 		/// <summary>
@@ -144,6 +142,14 @@ namespace Coders.Web.Models.Attachments
 			entity.Group = this.Group;
 			entity.FileType = this.FileType;
 			entity.FileExtension = this.FileExtension;
+		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new AttachmentRuleCreateOrUpdateValidatorCollection().Validate(this);
 		}
 	}
 

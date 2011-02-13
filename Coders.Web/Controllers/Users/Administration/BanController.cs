@@ -24,6 +24,7 @@ using Coders.Models.Settings;
 using Coders.Models.Users;
 using Coders.Models.Users.Enums;
 using Coders.Strings;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Users;
 using Coders.Web.Routes;
 #endregion
@@ -85,20 +86,23 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Create, value);
+				value.ValueToModel(ban);
+
+				this.UserBanService.InsertOrUpdate(ban, value.Name);
+
+				value = new UserBanCreateOrUpdate(ban);
+				value.SuccessMessage(Messages.UserBanCreated.FormatInvariant(ban.User.Name));
+			}
+			else
+			{
+				value.CopyToModel(ModelState);
 			}
 
-			value.ValueToModel(ban);
-
-			this.UserBanService.InsertOrUpdate(ban, value.Name);
-
-			var model = new UserBanCreateOrUpdate(ban);
-
-			model.SuccessMessage(Messages.UserBanCreated.FormatInvariant(ban.User.Name));
-
-			return base.View(Views.Update, model);
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -138,18 +142,22 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			value.Initialize(ban.User);
+			value.Validate();
 
-			if (!ModelState.IsValid)
+			if (value.IsValid)
 			{
-				return base.View(Views.Update, value);
+				value.ValueToModel(ban);
+
+				this.UserBanService.InsertOrUpdate(ban);
+
+				value.SuccessMessage(Messages.UserBanUpdated.FormatInvariant(ban.User.Name));
+			}
+			else
+			{
+				value.CopyToModel(ModelState);
 			}
 
-			value.ValueToModel(ban);
-
-			this.UserBanService.InsertOrUpdate(ban);
-
-			value.SuccessMessage(Messages.UserBanUpdated.FormatInvariant(ban.User.Name));
+			value.Initialize(ban.User);
 
 			return base.View(Views.Update, value);
 		}
@@ -189,11 +197,6 @@ namespace Coders.Web.Controllers.Users.Administration
 			if (!privilege.CanDelete(ban))
 			{
 				return NotAuthorized();
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return base.View(Views.Delete, value);
 			}
 
 			this.UserBanService.Delete(ban);

@@ -18,13 +18,11 @@
 #region Using Directives
 using Coders.Web.Extensions;
 using FluentValidation;
-using FluentValidation.Attributes;
 #endregion
 
 namespace Coders.Web.Models.Users
 {
-	[Validator(typeof(UserAuthenticationValidatorCollection))]
-	public class UserAuthentication
+	public class UserAuthentication : Value
 	{
 		/// <summary>
 		/// Gets or sets the email address.
@@ -64,6 +62,14 @@ namespace Coders.Web.Models.Users
 		{
 			get;
 			set;
+		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new UserAuthenticationValidatorCollection().Validate(this);
 		}
 	}
 

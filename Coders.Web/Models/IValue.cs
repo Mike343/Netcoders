@@ -16,7 +16,9 @@
 #endregion
 
 #region Using Directives
+using System.Collections.Generic;
 using Coders.Web.ViewModels;
+using FluentValidation.Results;
 #endregion
 
 namespace Coders.Web.Models
@@ -28,6 +30,17 @@ namespace Coders.Web.Models
 		/// </summary>
 		/// <value>The message.</value>
 		MessageViewModel Message { get; }
+
+		/// <summary>
+		/// Gets the errors.
+		/// </summary>
+		/// <value>The errors.</value>
+		IList<ValidationFailure> Errors { get; }
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		void Validate();
 	}
 
 	public interface IValue<in T> : IValue

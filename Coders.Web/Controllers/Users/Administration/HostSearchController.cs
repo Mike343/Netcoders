@@ -20,6 +20,7 @@ using System;
 using System.Web.Mvc;
 using Coders.Models.Settings;
 using Coders.Models.Users;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Users;
 using Coders.Web.Routes;
 #endregion
@@ -96,20 +97,24 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				var searches = this.UserHostSearchService.GetAll(new UserHostSearchUserSpecification(base.Identity.Id));
+				value.ValueToModel(search);
 
-				value.Initialize(searches);
+				this.UserHostSearchService.Insert(search);
 
-				return base.View(Views.Create, value);
+				return base.RedirectToRoute(UsersAdministrationRoutes.HostSearchIndex, new { id = search.Id });
 			}
 
-			value.ValueToModel(search);
+			value.CopyToModel(ModelState);
 
-			this.UserHostSearchService.Insert(search);
+			var searches = this.UserHostSearchService.GetAll(new UserHostSearchUserSpecification(base.Identity.Id));
 
-			return base.RedirectToRoute(UsersAdministrationRoutes.HostSearchIndex, new { id = search.Id });
+			value.Initialize(searches);
+
+			return base.View(Views.Create, value);
 		}
 
 		[HttpGet]
@@ -147,11 +152,6 @@ namespace Coders.Web.Controllers.Users.Administration
 			if (!privilege.CanDelete(search))
 			{
 				return NotAuthorized();
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return base.View(Views.Update, value);
 			}
 
 			this.UserHostSearchService.Delete(search);

@@ -24,6 +24,7 @@ using Coders.Models.Common;
 using Coders.Models.Common.Enums;
 using Coders.Strings;
 using Coders.Web.Controllers.Administration.Queries;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Attachments;
 using Coders.Web.Routes;
 #endregion
@@ -99,20 +100,23 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return View(Views.Create, value);
+				value.ValueToModel(rule);
+
+				this.AttachmentRuleService.InsertOrUpdate(rule);
+
+				value = new AttachmentRuleCreateOrUpdate(rule);
+				value.SuccessMessage(Messages.AttachmentRuleCreated.FormatInvariant(rule.FileType, rule.Group));
+			}
+			else
+			{
+				value.CopyToModel(ModelState);
 			}
 
-			value.ValueToModel(rule);
-
-			this.AttachmentRuleService.InsertOrUpdate(rule);
-
-			var model = new AttachmentRuleCreateOrUpdate(rule);
-
-			model.SuccessMessage(Messages.AttachmentRuleCreated.FormatInvariant(rule.FileType, rule.Group));
-
-			return base.View(Views.Update, model);
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -152,16 +156,20 @@ namespace Coders.Web.Controllers.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return View(Views.Update, value);
+				value.ValueToModel(rule);
+
+				this.AttachmentRuleService.InsertOrUpdate(rule);
+
+				value.SuccessMessage(Messages.AttachmentRuleUpdated.FormatInvariant(rule.FileType, rule.Group));
 			}
-
-			value.ValueToModel(rule);
-
-			this.AttachmentRuleService.InsertOrUpdate(rule);
-
-			value.SuccessMessage(Messages.AttachmentRuleUpdated.FormatInvariant(rule.FileType, rule.Group));
+			else
+			{
+				value.CopyToModel(ModelState);
+			}
 
 			return base.View(Views.Update, value);
 		}
@@ -201,11 +209,6 @@ namespace Coders.Web.Controllers.Administration
 			if (!privilege.CanDelete(rule))
 			{
 				return NotAuthorized();
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Delete, value);
 			}
 
 			this.AttachmentRuleService.Delete(rule);

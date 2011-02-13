@@ -101,5 +101,13 @@ namespace Coders.Web.Models.Attachments
 
 			entity.FileName = this.FileName;
 		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+
+		}
 	}
 }

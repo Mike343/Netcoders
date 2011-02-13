@@ -23,6 +23,7 @@ using Coders.Models.Settings;
 using Coders.Models.Users;
 using Coders.Models.Users.Enums;
 using Coders.Strings;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Users;
 #endregion
 
@@ -82,18 +83,22 @@ namespace Coders.Web.Controllers.Users
 				throw new ArgumentNullException("value");
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Create, value);
+				var user = this.UserService.Create();
+
+				value.ValueToModel(user);
+
+				this.UserService.Insert(user, value.Preference);
+
+				return Status(Messages.UserAccountCreated);
 			}
 
-			var user = this.UserService.Create();
+			value.CopyToModel(ModelState);
 
-			value.ValueToModel(user);
-
-			this.UserService.Insert(user, value.Preference);
-
-			return Status(Messages.UserAccountCreated);
+			return base.View(Views.Create, value);
 		}
 
 		[HttpGet, Authorize]
@@ -124,18 +129,22 @@ namespace Coders.Web.Controllers.Users
 				return base.HttpNotFound();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Update, value);
+				value.ValueToModel(user);
+
+				this.UserService.Update(user);
+
+				ApplicationSession.Destroy(Session);
+
+				value.SuccessMessage(Messages.UserAccountUpdated);
 			}
-
-			value.ValueToModel(user);
-
-			this.UserService.Update(user);
-
-			ApplicationSession.Destroy(Session);
-
-			value.SuccessMessage(Messages.UserAccountUpdated);
+			else
+			{
+				value.CopyToModel(ModelState);
+			}
 
 			return base.View(Views.Update, value);
 		}

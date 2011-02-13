@@ -20,6 +20,7 @@ using System;
 using System.Web.Mvc;
 using Coders.Models.Settings;
 using Coders.Models.Users;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Users;
 using Coders.Web.Routes;
 #endregion
@@ -96,20 +97,24 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				var searches = this.UserSearchService.GetAll(new UserSearchUserSpecification(base.Identity.Id));
+				value.ValueToModel(search);
 
-				value.Initialize(searches);
+				this.UserSearchService.Insert(search);
 
-				return base.View(Views.Create, value);
+				return base.RedirectToRoute(UsersAdministrationRoutes.SearchIndex, new { id = search.Id });
 			}
 
-			value.ValueToModel(search);
+			value.CopyToModel(ModelState);
 
-			this.UserSearchService.Insert(search);
+			var searches = this.UserSearchService.GetAll(new UserSearchUserSpecification(base.Identity.Id));
 
-			return base.RedirectToRoute(UsersAdministrationRoutes.SearchIndex, new { id = search.Id });
+			value.Initialize(searches);
+
+			return base.View(Views.Create, value);
 		}
 
 		[HttpGet]

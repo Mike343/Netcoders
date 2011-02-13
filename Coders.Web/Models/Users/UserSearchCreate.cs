@@ -22,12 +22,10 @@ using Coders.Extensions;
 using Coders.Models.Users;
 using Coders.Strings;
 using FluentValidation;
-using FluentValidation.Attributes;
 #endregion
 
 namespace Coders.Web.Models.Users
 {
-	[Validator(typeof(UserSearchCreateValidatorCollection))]
 	public class UserSearchCreate : Value<UserSearch>
 	{
 		/// <summary>
@@ -208,6 +206,14 @@ namespace Coders.Web.Models.Users
 			}
 
 			entity.Title = this.Title;
+		}
+
+		/// <summary>
+		/// Validates this instance.
+		/// </summary>
+		public override void Validate()
+		{
+			base.Result = new UserSearchCreateValidatorCollection().Validate(this);
 		}
 	}
 

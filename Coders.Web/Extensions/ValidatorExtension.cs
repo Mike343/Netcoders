@@ -19,6 +19,8 @@
 using System;
 using System.Linq.Expressions;
 using System.Web;
+using System.Web.Mvc;
+using Coders.Web.Models;
 using Coders.Web.Validators;
 using FluentValidation;
 #endregion
@@ -238,6 +240,29 @@ namespace Coders.Web.Extensions
 			}
 
 			return builder.SetValidator(new UserUniqueNameValidator());
+		}
+
+		/// <summary>
+		/// Copies the validation errors to the model state dictionary.
+		/// </summary>
+		/// <param name="value">The value.</param>
+		/// <param name="dictionary">The dictionary.</param>
+		public static void CopyToModel(this IValue value, ModelStateDictionary dictionary)
+		{
+			if (value == null)
+			{
+				throw new ArgumentNullException("value");
+			}
+
+			if (dictionary == null)
+			{
+				throw new ArgumentNullException("dictionary");
+			}
+
+			foreach (var error in value.Errors)
+			{
+				dictionary.AddModelError(error.PropertyName, error.ErrorMessage);
+			}
 		}
 	}
 }

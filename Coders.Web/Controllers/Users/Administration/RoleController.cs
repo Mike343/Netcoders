@@ -25,6 +25,7 @@ using Coders.Models.Common.Enums;
 using Coders.Models.Users;
 using Coders.Strings;
 using Coders.Web.Controllers.Administration.Queries;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Users;
 using Coders.Web.Routes;
 #endregion
@@ -108,20 +109,23 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Create, value);
+				value.ValueToModel(role);
+
+				this.UserRoleService.InsertOrUpdate(role, privileges);
+
+				value = new UserRoleCreateOrUpdate(role);
+				value.SuccessMessage(Messages.UserRoleCreated.FormatInvariant(role.Title));
+			}
+			else
+			{
+				value.CopyToModel(ModelState);
 			}
 
-			value.ValueToModel(role);
-
-			this.UserRoleService.InsertOrUpdate(role, privileges);
-
-			var model = new UserRoleCreateOrUpdate(role);
-
-			model.SuccessMessage(Messages.UserRoleCreated.FormatInvariant(role.Title));
-
-			return base.View(Views.Update, model);
+			return base.View(Views.Update, value);
 		}
 
 		[HttpGet]
@@ -161,16 +165,20 @@ namespace Coders.Web.Controllers.Users.Administration
 				return NotAuthorized();
 			}
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Update, value);
+				value.ValueToModel(role);
+
+				this.UserRoleService.InsertOrUpdate(role, privileges);
+
+				value.SuccessMessage(Messages.UserRoleUpdated.FormatInvariant(role.Title));
 			}
-
-			value.ValueToModel(role);
-
-			this.UserRoleService.InsertOrUpdate(role, privileges);
-
-			value.SuccessMessage(Messages.UserRoleUpdated.FormatInvariant(role.Title));
+			else
+			{
+				value.CopyToModel(ModelState);
+			}
 
 			return base.View(Views.Update, value);
 		}
@@ -210,11 +218,6 @@ namespace Coders.Web.Controllers.Users.Administration
 			if (!privilege.CanDelete(role))
 			{
 				return NotAuthorized();
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return View(Views.Update, value);
 			}
 
 			this.UserRoleService.Delete(role);

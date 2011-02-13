@@ -21,6 +21,7 @@ using System.Web.Mvc;
 using Coders.Extensions;
 using Coders.Models.Settings;
 using Coders.Models.Users;
+using Coders.Web.Extensions;
 using Coders.Web.Models.Users;
 using Coders.Web.Routes;
 #endregion
@@ -83,7 +84,6 @@ namespace Coders.Web.Controllers.Users
 			var user = this.UserService.GetById(Identity.Id);
 
 			this.UserAvatarService.AssignToUser(user, avatar);
-
 			this.UserService.Update(user);
 
 			return base.RedirectToRoute(UsersRoutes.AvatarIndex);
@@ -116,14 +116,18 @@ namespace Coders.Web.Controllers.Users
 
 			value.File = Request.Files[0];
 
-			if (!ModelState.IsValid)
+			value.Validate();
+
+			if (value.IsValid)
 			{
-				return base.View(Views.Create, value);
+				this.UserAvatarService.Insert(avatar, value.File);
+
+				return base.RedirectToRoute(UsersRoutes.AvatarIndex);
 			}
 
-			this.UserAvatarService.Insert(avatar, value.File);
+			value.CopyToModel(ModelState);
 
-			return base.RedirectToRoute(UsersRoutes.AvatarIndex);
+			return base.View(Views.Create, value);
 		}
 
 		[HttpGet]
@@ -161,11 +165,6 @@ namespace Coders.Web.Controllers.Users
 			if (!privilege.CanDelete(avatar))
 			{
 				return NotAuthorized();
-			}
-
-			if (!ModelState.IsValid)
-			{
-				return base.View(Views.Delete, value);
 			}
 
 			var user = this.UserService.GetById(Identity.Id);
