@@ -153,7 +153,7 @@ namespace Coders.Web.Controllers.Users
 				throw new ArgumentNullException("value");
 			}
 
-			var avatar = UserAvatarService.GetById(value.Id);
+			var avatar = this.UserAvatarService.GetById(value.Id);
 
 			if (avatar == null)
 			{

@@ -28,8 +28,6 @@ namespace Coders.Tests.Extensions
 		[Test]
 		public void Test_EnumerableExtension_ForEach()
 		{
-			Assert.AreEqual(0, this.Values.Count(x => x.Selected));
-
 			this.Values.ForEach(x => x.Selected = true);
 
 			Assert.AreEqual(3, this.Values.Count(x => x.Selected));
@@ -40,8 +38,8 @@ namespace Coders.Tests.Extensions
 		{
 			var value = this.Values.FirstOrDefault();
 
-			Assert.IsNotNull(value);
-			Assert.AreEqual("One", value.Name);
+			Assert.IsNotNull(value, "NotNull");
+			Assert.AreEqual("One", value.Name, "Name");
 		}
 
 		private class Value

@@ -153,7 +153,6 @@
     <Compile Include="Models\Users\UserRolePrivilegeUpdate.cs" />
     <Compile Include="Models\Users\UserSearchCreate.cs" />
     <Compile Include="Models\Users\UserSearchDelete.cs" />
-    <Compile Include="Models\ValueError.cs" />
     <Compile Include="Routes\AdministrationRoutes.cs" />
     <Compile Include="Routes\UsersAdministrationRoutes.cs" />
     <Compile Include="Routes\CommonRoutes.cs" />

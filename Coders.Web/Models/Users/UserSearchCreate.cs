@@ -174,6 +174,11 @@ namespace Coders.Web.Models.Users
 		/// <param name="searches">The searches.</param>
 		public void Initialize(IList<UserSearch> searches)
 		{
+			if (searches == null)
+			{
+				this.Searches = new List<UserSearch>();
+			}
+
 			this.Searches = searches;
 		}
 

@@ -34,9 +34,19 @@ namespace Coders.Web.Validators
 		/// Initializes a new instance of the <see cref="UserEmailAddressMustExistValidator"/> class.
 		/// </summary>
 		public UserEmailAddressMustExistValidator()
+			: this(ServiceLocator.Current.GetInstance<IUserService>())
+		{
+
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UserEmailAddressMustExistValidator"/> class.
+		/// </summary>
+		/// <param name="userService">The user service.</param>
+		public UserEmailAddressMustExistValidator(IUserService userService)
 			: base(Errors.UserEmailAddressNotFound)
 		{
-			this.UserService = ServiceLocator.Current.GetInstance<IUserService>();
+			this.UserService = userService;
 		}
 
 		/// <summary>

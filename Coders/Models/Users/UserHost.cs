@@ -33,7 +33,7 @@ namespace Coders.Models.Users
 		/// Gets or sets the user.
 		/// </summary>
 		/// <value>The user.</value>
-		public virtual User User
+		public virtual IUser User
 		{
 			get; 
 			set; 

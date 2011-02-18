@@ -36,7 +36,7 @@ namespace Coders.Web.Extensions
 		/// <returns></returns>
 		public static IHtmlString AvatarImage(this User user)
 		{
-			return AvatarImage(user, null);
+			return AvatarImage(user, null, new HttpContextWrapper(HttpContext.Current));
 		}
 
 		/// <summary>
@@ -46,6 +46,18 @@ namespace Coders.Web.Extensions
 		/// <param name="attributes">The attributes.</param>
 		/// <returns></returns>
 		public static IHtmlString AvatarImage(this User user, object attributes)
+		{
+			return AvatarImage(user, attributes, new HttpContextWrapper(HttpContext.Current));
+		}
+
+		/// <summary>
+		/// Gets the avatar image for the specified user.
+		/// </summary>
+		/// <param name="user">The user.</param>
+		/// <param name="attributes">The attributes.</param>
+		/// <param name="context">The context.</param>
+		/// <returns></returns>
+		public static IHtmlString AvatarImage(this User user, object attributes, HttpContextBase context)
 		{
 			if (user == null)
 			{
@@ -58,7 +70,7 @@ namespace Coders.Web.Extensions
 
 			var builder = new TagBuilder("img");
 
-			builder.MergeAttribute("src", source.AsRoot());
+			builder.MergeAttribute("src", source.AsRoot(context));
 			builder.MergeAttribute("alt", user.Name);
 			builder.MergeAttributes(new RouteValueDictionary(attributes));
 

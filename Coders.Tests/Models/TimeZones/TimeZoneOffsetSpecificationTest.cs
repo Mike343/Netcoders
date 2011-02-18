@@ -30,7 +30,6 @@ namespace Coders.Tests.Models.TimeZones
 		public void Test_TimeZoneOffsetSpecification_SatisfyEntityFrom()
 		{
 			var specification = new TimeZoneOffsetSpecification(1.0);
-
 			var result = specification.SatisfyEntityFrom(this.Values);
 
 			Assert.AreEqual(1.0, result.Offset);
@@ -40,7 +39,6 @@ namespace Coders.Tests.Models.TimeZones
 		public void Test_TimeZoneOffsetSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new TimeZoneOffsetSpecification(1.0);
-
 			var results = specification.SatisfyEntitiesFrom(this.Values);
 
 			Assert.AreEqual(1, results.Count());

@@ -34,9 +34,15 @@ namespace Coders.Web.Validators
 		/// Initializes a new instance of the <see cref="UserUniqueEmailAddressValidator"/> class.
 		/// </summary>
 		public UserUniqueEmailAddressValidator()
+			: this(ServiceLocator.Current.GetInstance<IUserService>())
+		{
+
+		}
+
+		public UserUniqueEmailAddressValidator(IUserService userService)
 			: base(Errors.UserEmailAddressTaken)
 		{
-			this.UserService = ServiceLocator.Current.GetInstance<IUserService>();
+			this.UserService = userService;
 		}
 
 		/// <summary>

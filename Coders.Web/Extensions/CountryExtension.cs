@@ -35,6 +35,17 @@ namespace Coders.Web.Extensions
 		/// <returns></returns>
 		public static IHtmlString FlagImage(this Country country)
 		{
+			return FlagImage(country, new HttpContextWrapper(HttpContext.Current));
+		}
+
+		/// <summary>
+		/// Gets the flag image for the specified country.
+		/// </summary>
+		/// <param name="country">The country.</param>
+		/// <param name="context">The context.</param>
+		/// <returns></returns>
+		public static IHtmlString FlagImage(this Country country, HttpContextBase context)
+		{
 			if (country == null)
 			{
 				throw new ArgumentNullException("country");
@@ -43,7 +54,7 @@ namespace Coders.Web.Extensions
 			var builder = new TagBuilder("img");
 			var source = string.Concat(Setting.CountryFlagPath.Value, "/", country.Code, ".gif");
 
-			builder.MergeAttribute("src", source.AsRoot());
+			builder.MergeAttribute("src", source.AsRoot(context));
 			builder.MergeAttribute("alt", country.Title);
 
 			return new MvcHtmlString(builder.ToString(TagRenderMode.SelfClosing));

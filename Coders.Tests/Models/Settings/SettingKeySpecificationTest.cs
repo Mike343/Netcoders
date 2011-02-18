@@ -30,7 +30,6 @@ namespace Coders.Tests.Models.Settings
 		public void Test_SettingKeySpecification_SatisfyEntityFrom()
 		{
 			var specification = new SettingKeySpecification("one");
-
 			var result = specification.SatisfyEntityFrom(this.Values);
 
 			Assert.AreEqual("one", result.Key);
@@ -40,7 +39,6 @@ namespace Coders.Tests.Models.Settings
 		public void Test_SettingKeySpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new SettingKeySpecification("one");
-
 			var results = specification.SatisfyEntitiesFrom(this.Values);
 
 			Assert.AreEqual(1, results.Count());

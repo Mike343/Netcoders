@@ -39,7 +39,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserHostSearchUserSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserHostSearchUserSpecification(1);
-
 			var results = specification.SatisfyEntitiesFrom(this.Values);
 
 			Assert.AreEqual(1, results.Count());

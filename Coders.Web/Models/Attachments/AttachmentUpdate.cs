@@ -17,7 +17,10 @@
 
 #region Using Directives
 using System;
+using Coders.Extensions;
 using Coders.Models.Attachments;
+using Coders.Strings;
+using FluentValidation;
 #endregion
 
 namespace Coders.Web.Models.Attachments
@@ -107,7 +110,20 @@ namespace Coders.Web.Models.Attachments
 		/// </summary>
 		public override void Validate()
 		{
+			base.Result = new AttachmentUpdateValidatorCollection().Validate(this);
+		}
+	}
 
+	public class AttachmentUpdateValidatorCollection : AbstractValidator<AttachmentUpdate>
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="AttachmentUpdateValidatorCollection"/> class.
+		/// </summary>
+		public AttachmentUpdateValidatorCollection()
+		{
+			RuleFor(x => x.FileName)
+				.NotEmpty()
+				.WithMessage(Errors.Required.FormatInvariant(Titles.FileName));
 		}
 	}
 }

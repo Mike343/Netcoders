@@ -86,6 +86,7 @@ namespace Coders.Web.Controllers.Users
 				return NotAuthorized();
 			}
 
+			value.Initialize();
 			value.Validate();
 
 			if (value.IsValid)
@@ -100,8 +101,6 @@ namespace Coders.Web.Controllers.Users
 			{
 				value.CopyToModel(ModelState);
 			}
-
-			value.Initialize();
 
 			return base.View(Views.Update, value);
 		}

@@ -30,7 +30,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserRoleDefaultSpecification_SatisfyEntityFrom()
 		{
 			var specification = new UserRoleDefaultSpecification();
-
 			var result = specification.SatisfyEntityFrom(this.Values);
 
 			Assert.IsTrue(result.IsDefault);
@@ -40,7 +39,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserRoleDefaultSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserRoleDefaultSpecification();
-
 			var results = specification.SatisfyEntitiesFrom(this.Values);
 
 			Assert.AreEqual(1, results.Count());

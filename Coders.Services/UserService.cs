@@ -169,14 +169,17 @@ namespace Coders.Services
 
 			var roles = this.UserRoleService.GetAll(new UserRoleDefaultSpecification());
 
-			foreach (var role in roles)
+			if (roles != null && roles.Count > 0)
 			{
-				this.UserRoleService.InsertPrivilege(new UserRoleRelation
+				foreach (var role in roles)
 				{
-					Privilege = role.Privilege,
-					User = entity,
-					Role = role
-				});
+					this.UserRoleService.InsertPrivilege(new UserRoleRelation
+					{
+						Privilege = role.Privilege,
+						User = entity,
+						Role = role
+					});
+				}
 			}
 
 			this.AuditService.Audit(entity, AuditAction.Create);

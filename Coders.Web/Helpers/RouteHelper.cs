@@ -31,9 +31,11 @@ namespace Coders.Web.Helpers
 		/// Initializes a new instance of the <see cref="RouteHelper"/> class.
 		/// </summary>
 		/// <param name="value">The value.</param>
-		public RouteHelper(string value)
+		/// <param name="context">The context.</param>
+		public RouteHelper(string value, RequestContext context)
 		{
 			this.Value = value;
+			this.Context = context;
 		}
 
 		/// <summary>
@@ -41,6 +43,12 @@ namespace Coders.Web.Helpers
 		/// </summary>
 		/// <value>The value.</value>
 		public string Value
+		{
+			get;
+			private set;
+		}
+
+		public RequestContext Context
 		{
 			get;
 			private set;
@@ -199,7 +207,7 @@ namespace Coders.Web.Helpers
 
 			var image = new TagBuilder("img");
 
-			image.MergeAttribute("src", (root) ? source.AsRoot() : source);
+			image.MergeAttribute("src", (root) ? source.AsRoot(this.Context.HttpContext) : source);
 
 			if (!string.IsNullOrEmpty(text))
 			{

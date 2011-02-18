@@ -83,7 +83,7 @@ namespace Coders.Services
 				host = context.Request.UserHostAddress;
 			}
 
-			return (string.IsNullOrEmpty(host)) ? "127.0.0.1" : host;
+			return string.IsNullOrEmpty(host) ? "127.0.0.1" : host;
 		}
 
 		/// <summary>

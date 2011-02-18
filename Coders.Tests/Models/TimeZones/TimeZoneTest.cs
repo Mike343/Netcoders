@@ -12,13 +12,12 @@ namespace Coders.Tests.Models.TimeZones
 		{
 			var timeZones = new List<TimeZone>
 			{
-				new TimeZone { Title = "Central Time" }, 
-				new TimeZone { Title = "Eastern Time" }
+				new TimeZone { Title = "Central Time" }
 			};
 
 			TimeZone.Cache(timeZones);
 
-			Assert.AreEqual(2, TimeZone.TimeZones.Count);
+			Assert.AreEqual(1, TimeZone.TimeZones.Count);
 		}
 	}
 }

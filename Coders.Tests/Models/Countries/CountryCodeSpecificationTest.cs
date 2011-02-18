@@ -30,7 +30,6 @@ namespace Coders.Tests.Models.Countries
 		public void Test_CountryCodeSpecification_SatisfyEntityFrom()
 		{
 			var specification = new CountryCodeSpecification("us");
-
 			var result = specification.SatisfyEntityFrom(this.Values);
 
 			Assert.AreEqual("us", result.Code);
@@ -40,7 +39,6 @@ namespace Coders.Tests.Models.Countries
 		public void Test_CountryCodeSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new CountryCodeSpecification("us");
-
 			var results = specification.SatisfyEntitiesFrom(this.Values);
 
 			Assert.AreEqual(1, results.Count());

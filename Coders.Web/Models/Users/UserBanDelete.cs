@@ -61,7 +61,7 @@ namespace Coders.Web.Models.Users
 		/// Gets or sets the user.
 		/// </summary>
 		/// <value>The user.</value>
-		public User User
+		public IUser User
 		{
 			get;
 			set;

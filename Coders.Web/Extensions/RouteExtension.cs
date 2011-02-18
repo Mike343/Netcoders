@@ -51,7 +51,7 @@ namespace Coders.Web.Extensions
 				throw new ArgumentNullException("helper");
 			}
 
-			return new RouteHelper(helper.RouteUrl(name, values));
+			return new RouteHelper(helper.RouteUrl(name, values), helper.RequestContext);
 		}
 
 		/// <summary>

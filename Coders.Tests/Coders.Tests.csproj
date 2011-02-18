@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentValidation">
+      <HintPath>..\Dependencies\FluentValidation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\Dependencies\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -49,7 +52,13 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 3\Assemblies\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -90,6 +99,7 @@
     <Compile Include="Models\TimeZones\TimeZoneAuditTest.cs" />
     <Compile Include="Models\TimeZones\TimeZoneOffsetSpecificationTest.cs" />
     <Compile Include="Models\TimeZones\TimeZoneTest.cs" />
+    <Compile Include="Models\Users\UserHostSearchExpiredSpecificationTest.cs" />
     <Compile Include="Models\Users\UserAuditTest.cs" />
     <Compile Include="Models\Users\UserAvatarTest.cs" />
     <Compile Include="Models\Users\UserAvatarUserSpecificationTest.cs" />
@@ -112,13 +122,145 @@
     <Compile Include="Models\Users\UserTest.cs" />
     <Compile Include="Models\Users\UserUpdatedGreaterThanSpecificationTest.cs" />
     <Compile Include="ServiceLocatorClasses.cs" />
-    <Compile Include="NinjectServiceLocator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocatorTest.cs" />
+    <Compile Include="Services\AttachmentRuleServiceTest.cs" />
+    <Compile Include="Services\AttachmentServiceTest.cs" />
+    <Compile Include="Services\AuditServiceTest.cs" />
+    <Compile Include="Services\CountryServiceTest.cs" />
+    <Compile Include="Services\Fakes\FakeAttachmentRuleRepository.cs" />
+    <Compile Include="Services\Fakes\FakeAuditRepository.cs" />
+    <Compile Include="Services\Fakes\FakeCountryRepository.cs" />
+    <Compile Include="Services\Fakes\FakeSettingRepository.cs" />
+    <Compile Include="Services\Fakes\FakeTimeZoneRepository.cs" />
+    <Compile Include="Services\Fakes\FakeUserBanRepository.cs" />
+    <Compile Include="Services\Fakes\FakeUserHostRepository.cs" />
+    <Compile Include="Services\Fakes\FakeUserHostSearchRepository.cs" />
+    <Compile Include="Services\Fakes\FakeUserPreferenceRepository.cs" />
+    <Compile Include="Services\Fakes\FakeUserRepository.cs" />
+    <Compile Include="Services\Fakes\FakeUserRoleRelationRepository.cs" />
+    <Compile Include="Services\Fakes\FakeUserRoleRepository.cs" />
+    <Compile Include="Services\Fakes\FakeUserSearchRepository.cs" />
+    <Compile Include="Services\FileServiceTest.cs" />
+    <Compile Include="Services\FormsAuthenticationServiceTest.cs" />
+    <Compile Include="Services\ImageServiceTest.cs" />
+    <Compile Include="Services\SettingServiceTest.cs" />
+    <Compile Include="Services\TextFormattingServiceTest.cs" />
+    <Compile Include="Services\TimeZoneServiceTest.cs" />
+    <Compile Include="Services\UserAvatarServiceTest.cs" />
+    <Compile Include="Services\UserBanServiceTest.cs" />
+    <Compile Include="Services\UserHostSearchServiceTest.cs" />
+    <Compile Include="Services\UserHostServiceTest.cs" />
+    <Compile Include="Services\UserRoleServiceTest.cs" />
+    <Compile Include="Services\UserSearchServiceTest.cs" />
+    <Compile Include="Services\UserServiceTest.cs" />
     <Compile Include="Specifications\SpecificationClasses.cs" />
     <Compile Include="Specifications\SpecificationTest.cs" />
+    <Compile Include="Web\ActionResults\ErrorResultTest.cs" />
+    <Compile Include="Web\ActionResults\NotAuthorizedResultTest.cs" />
+    <Compile Include="Web\ActionResults\StatusResultTest.cs" />
+    <Compile Include="Web\ApplicationSessionTest.cs" />
+    <Compile Include="Web\ApplicationTest.cs" />
+    <Compile Include="Web\Authentication\WebPrivilegePrincipalTest.cs" />
+    <Compile Include="Web\Authentication\WebUserIdentityTest.cs" />
+    <Compile Include="Web\Controllers\Administration\AttachmentControllerTest.cs" />
+    <Compile Include="Web\Controllers\Administration\AttachmentRuleControllerTest.cs" />
+    <Compile Include="Web\Controllers\Administration\CountryControllerTest.cs" />
+    <Compile Include="Web\Controllers\Administration\SettingControllerTest.cs" />
+    <Compile Include="Web\Controllers\Administration\TimeZoneControllerTest.cs" />
+    <Compile Include="Web\Controllers\AttachmentControllerTest.cs" />
+    <Compile Include="Web\Controllers\Users\Administration\BanControllerTest.cs" />
+    <Compile Include="Web\Controllers\Users\Administration\HomeControllerTest.cs" />
+    <Compile Include="Web\Controllers\Users\Administration\HostSearchControllerTest.cs" />
+    <Compile Include="Web\Controllers\Users\Administration\RoleControllerTest.cs" />
+    <Compile Include="Web\Controllers\Users\Administration\SearchControllerTest.cs" />
+    <Compile Include="Web\Controllers\Users\AuthControllerTest.cs" />
+    <Compile Include="Web\Controllers\Users\AvatarControllerTest.cs" />
+    <Compile Include="Web\Controllers\Users\HomeControllerTest.cs" />
+    <Compile Include="Web\Controllers\Users\PreferenceControllerTest.cs" />
+    <Compile Include="Web\Controllers\Users\SearchControllerTest.cs" />
+    <Compile Include="Web\Extensions\CountryExtensionTest.cs" />
+    <Compile Include="Web\Extensions\DateExtensionTest.cs" />
+    <Compile Include="Web\Extensions\FilterExtensionTest.cs" />
+    <Compile Include="Web\Extensions\HtmlExtensionTest.cs" />
+    <Compile Include="Web\Extensions\RouteExtensionTest.cs" />
+    <Compile Include="Web\Extensions\StringExtensionTest.cs" />
+    <Compile Include="Web\Extensions\UserExtensionTest.cs" />
+    <Compile Include="Web\Extensions\UserRoleExtensionTest.cs" />
+    <Compile Include="Web\Fakes\FakeAttachmentRuleService.cs" />
+    <Compile Include="Web\Fakes\FakeAttachmentService.cs" />
+    <Compile Include="Web\Fakes\FakeAuditService.cs" />
+    <Compile Include="Web\Fakes\FakeAuthenticationService.cs" />
+    <Compile Include="Web\Fakes\FakeCountryService.cs" />
+    <Compile Include="Web\Fakes\FakeImageService.cs" />
+    <Compile Include="Web\Fakes\FakeSettingService.cs" />
+    <Compile Include="Web\Fakes\FakeTimeZoneService.cs" />
+    <Compile Include="Web\Fakes\FakeUserAvatarService.cs" />
+    <Compile Include="Web\Fakes\FakeUserBanService.cs" />
+    <Compile Include="Web\Fakes\FakeUserHostSearchService.cs" />
+    <Compile Include="Web\Fakes\FakeUserRoleService.cs" />
+    <Compile Include="Web\Fakes\FakeUserSearchService.cs" />
+    <Compile Include="Web\Fakes\FakeUserService.cs" />
+    <Compile Include="Web\Helpers\PrincipalHelper.cs.cs" />
+    <Compile Include="Web\Helpers\ViewHelper.cs" />
+    <Compile Include="Web\Models\Attachments\AttachmentDeleteTest.cs" />
+    <Compile Include="Web\Models\Attachments\AttachmentRuleCreateOrUpdateTest.cs" />
+    <Compile Include="Web\Models\Attachments\AttachmentRuleDeleteTest.cs" />
+    <Compile Include="Web\Models\Attachments\AttachmentUpdateTest.cs" />
+    <Compile Include="Web\Models\Countries\CountryCreateOrUpdateTest.cs" />
+    <Compile Include="Web\Models\Countries\CountryDeleteTest.cs" />
+    <Compile Include="Web\Models\FilterTest.cs" />
+    <Compile Include="Web\Models\Settings\SettingCreateOrUpdateTest.cs" />
+    <Compile Include="Web\Models\Settings\SettingDeleteTest.cs" />
+    <Compile Include="Web\Models\TimeZones\TimeZoneCreateOrUpdateTest.cs" />
+    <Compile Include="Web\Models\TimeZones\TimeZoneDeleteTest.cs" />
+    <Compile Include="Web\Models\Users\UserAdminCreateTest.cs" />
+    <Compile Include="Web\Models\Users\UserAdminUpdateTest.cs" />
+    <Compile Include="Web\Models\Users\UserAuthenticationResetTest.cs" />
+    <Compile Include="Web\Models\Users\UserAuthenticationTest.cs" />
+    <Compile Include="Web\Models\Users\UserAuthenticationUpdateTest.cs" />
+    <Compile Include="Web\Models\Users\UserAvatarCreateTest.cs" />
+    <Compile Include="Web\Models\Users\UserAvatarDeleteTest.cs" />
+    <Compile Include="Web\Models\Users\UserBanCreateOrUpdateTest.cs" />
+    <Compile Include="Web\Models\Users\UserBanDeleteTest.cs" />
+    <Compile Include="Web\Models\Users\UserCreateTest.cs" />
+    <Compile Include="Web\Models\Users\UserHostSearchCreateTest.cs" />
+    <Compile Include="Web\Models\Users\UserHostSearchDeleteTest.cs" />
+    <Compile Include="Web\Models\Users\UserPreferenceUpdateTest.cs" />
+    <Compile Include="Web\Models\Users\UserRoleCreateOrUpdateTest.cs" />
+    <Compile Include="Web\Models\Users\UserRoleDeleteTest.cs" />
+    <Compile Include="Web\Models\Users\UserRolePrivilegeUpdateTest.cs" />
+    <Compile Include="Web\Models\Users\UserSearchCreateTest.cs" />
+    <Compile Include="Web\Models\Users\UserSearchDeleteTest.cs" />
+    <Compile Include="Web\Models\Users\UserSessionTest.cs" />
+    <Compile Include="Web\Models\Users\UserUpdateTest.cs" />
+    <Compile Include="Web\Validators\CharacterValidatorTest.cs" />
+    <Compile Include="Web\Validators\DateValidatorTest.cs" />
+    <Compile Include="Web\Validators\EmailValidatorTest.cs" />
+    <Compile Include="Web\Validators\ImageDimensionMaxValidatorTest.cs" />
+    <Compile Include="Web\Validators\ImageDimensionMinValidatorTest.cs" />
+    <Compile Include="Web\Validators\ImageValidatorTest.cs" />
+    <Compile Include="Web\Validators\SettingUniqueValidatorTest.cs" />
+    <Compile Include="Web\Validators\UserAuthorizeValidatorTest.cs" />
+    <Compile Include="Web\Validators\UserEmailAddressMustExistValidatorTest.cs" />
+    <Compile Include="Web\Validators\UserNameMustExistValidatorTest.cs" />
+    <Compile Include="Web\Validators\UserNameNotProtectedValidatorTest.cs" />
+    <Compile Include="Web\Validators\UserUniqueEmailAddressValidatorTest.cs" />
+    <Compile Include="Web\Validators\UserUniqueNameValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Coders.DependencyResolution\Coders.DependencyResolution.csproj">
+      <Project>{3154E2EC-87F0-4B57-A0BF-0E9DEC4803FC}</Project>
+      <Name>Coders.DependencyResolution</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Coders.Services\Coders.Services.csproj">
+      <Project>{B26E83D5-C556-4DBE-A758-72C663CFB702}</Project>
+      <Name>Coders.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Coders.Web\Coders.Web.csproj">
+      <Project>{B6DBB1B8-ED20-43DA-9EBD-A68F3DADD5B3}</Project>
+      <Name>Coders.Web</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Coders\Coders.csproj">
       <Project>{0580C019-23F8-473C-9386-9BF07334A655}</Project>
       <Name>Coders</Name>

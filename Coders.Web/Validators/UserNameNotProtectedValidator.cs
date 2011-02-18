@@ -34,9 +34,19 @@ namespace Coders.Web.Validators
 		/// Initializes a new instance of the <see cref="UserNameNotProtectedValidator"/> class.
 		/// </summary>
 		public UserNameNotProtectedValidator()
+			: this(ServiceLocator.Current.GetInstance<IUserService>())
+		{
+
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UserNameNotProtectedValidator"/> class.
+		/// </summary>
+		/// <param name="userService">The user service.</param>
+		public UserNameNotProtectedValidator(IUserService userService)
 			: base(Errors.UserProtected)
 		{
-			this.UserService = ServiceLocator.Current.GetInstance<IUserService>();
+			this.UserService = userService;
 		}
 
 		/// <summary>

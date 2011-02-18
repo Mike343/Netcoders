@@ -175,6 +175,7 @@
     <Compile Include="Models\TimeZones\TimeZoneOffsetSpecification.cs" />
     <Compile Include="Models\TimeZones\TimeZonePrivilege.cs" />
     <Compile Include="Models\TimeZones\TimeZone.cs" />
+    <Compile Include="Models\Users\UserHostSearchExpiredSpecification.cs" />
     <Compile Include="Models\Users\IUserSearchSpecification.cs" />
     <Compile Include="Models\Users\IUserBanSpecification.cs" />
     <Compile Include="Models\Users\Enums\SortUserBan.cs" />

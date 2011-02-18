@@ -33,15 +33,14 @@ namespace Coders.Tests.Models.Users
 			var specification = new UserBanExpiredSpecification();
 			var result = specification.SatisfyEntityFrom(this.Values);
 
-			Assert.IsNotNull(result.Expire);
-			Assert.AreEqual(2010, result.Expire.Value.Year);
+			Assert.IsNotNull(result.Expire, "NotNull");
+			Assert.AreEqual(2010, result.Expire.Value.Year, "Expire");
 		}
 
 		[Test]
 		public void Test_UserBanExpiredSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserBanExpiredSpecification();
-
 			var results = specification.SatisfyEntitiesFrom(this.Values);
 
 			Assert.AreEqual(1, results.Count());

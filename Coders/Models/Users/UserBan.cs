@@ -69,7 +69,7 @@ namespace Coders.Models.Users
 		/// Gets or sets the user.
 		/// </summary>
 		/// <value>The user.</value>
-		public virtual User User
+		public virtual IUser User
 		{
 			get;
 			set;
@@ -79,7 +79,7 @@ namespace Coders.Models.Users
 		/// Gets or sets the admin.
 		/// </summary>
 		/// <value>The admin.</value>
-		public virtual User Admin
+		public virtual IUser Admin
 		{
 			get;
 			set;

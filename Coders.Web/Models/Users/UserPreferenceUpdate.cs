@@ -26,6 +26,7 @@ using Coders.Models.TimeZones;
 using Coders.Models.TimeZones.Enums;
 using Coders.Models.Users;
 using Coders.Models.Users.Enums;
+using FluentValidation;
 using Microsoft.Practices.ServiceLocation;
 using TimeZone = Coders.Models.TimeZones.TimeZone;
 #endregion
@@ -236,7 +237,12 @@ namespace Coders.Web.Models.Users
 		/// </summary>
 		public override void Validate()
 		{
-			
+			base.Result = new UserPreferenceUpdateValidatorCollection().Validate(this);
 		}
+	}
+
+	public class UserPreferenceUpdateValidatorCollection : AbstractValidator<UserPreferenceUpdate>
+	{
+
 	}
 }

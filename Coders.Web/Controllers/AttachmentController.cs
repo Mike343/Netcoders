@@ -57,7 +57,7 @@ namespace Coders.Web.Controllers
 
 			using (var stream = file.OpenRead())
 			{
-				return base.File(stream, attachment.FileType);
+				return base.File(stream, attachment.FileType, attachment.FileName);
 			}
 		}
 
@@ -75,7 +75,7 @@ namespace Coders.Web.Controllers
 
 			using (var stream = image.OpenRead())
 			{
-				return base.File(stream, attachment.FileType);
+				return base.File(stream, attachment.FileType, attachment.FileName);
 			}
 		}
 	}

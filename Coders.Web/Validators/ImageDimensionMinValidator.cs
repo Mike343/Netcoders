@@ -36,11 +36,23 @@ namespace Coders.Web.Validators
 		/// <param name="width">The width.</param>
 		/// <param name="height">The height.</param>
 		public ImageDimensionMinValidator(int width, int height)
+			: this(width, height, ServiceLocator.Current.GetInstance<IImageService>())
+		{
+
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ImageDimensionMinValidator"/> class.
+		/// </summary>
+		/// <param name="width">The width.</param>
+		/// <param name="height">The height.</param>
+		/// <param name="imageService">The image service.</param>
+		public ImageDimensionMinValidator(int width, int height, IImageService imageService)
 			: base(Errors.ImageDimensionMinNotValid)
 		{
 			this.Width = width;
 			this.Height = height;
-			this.ImageService = ServiceLocator.Current.GetInstance<IImageService>();
+			this.ImageService = imageService;
 		}
 
 		/// <summary>

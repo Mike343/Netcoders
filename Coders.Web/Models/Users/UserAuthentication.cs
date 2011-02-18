@@ -80,8 +80,11 @@ namespace Coders.Web.Models.Users
 		/// </summary>
 		public UserAuthenticationValidatorCollection()
 		{
-			RuleFor(x => x.EmailAddress).UserEmailAddressMustExist();
-			RuleFor(x => x.Password).UserAuthorize(x => x.EmailAddress);
+			RuleFor(x => x.EmailAddress)
+				.UserEmailAddressMustExist();
+
+			RuleFor(x => x.Password)
+				.UserAuthorize(x => x.EmailAddress);
 		}
 	}
 }

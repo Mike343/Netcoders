@@ -30,7 +30,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserEmailAddressSpecification_SatisfyEntityFrom()
 		{
 			var specification = new UserEmailAddressSpecification("test@test.com");
-
 			var result = specification.SatisfyEntityFrom(this.Values);
 
 			Assert.AreEqual("test@test.com", result.EmailAddress);
@@ -40,7 +39,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserEmailAddressSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserEmailAddressSpecification("test@test.com");
-
 			var results = specification.SatisfyEntitiesFrom(this.Values);
 
 			Assert.AreEqual(1, results.Count());

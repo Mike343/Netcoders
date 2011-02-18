@@ -17,7 +17,9 @@
 
 #region Using Directives
 using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
+using Coders.Extensions;
 using Coders.Models.Settings;
 using Coders.Models.Users;
 using Coders.Web.Extensions;
@@ -63,16 +65,14 @@ namespace Coders.Web.Controllers.Users
 		[HttpGet]
 		public ActionResult Create()
 		{
-			var search = this.UserSearchService.Create();
-			var privilege = new UserSearchPrivilege();
-
-			if (!privilege.CanCreate(search))
-			{
-				return NotAuthorized();
-			}
-
-			var searches = this.UserSearchService.GetAll(new UserSearchUserSpecification(base.Identity.Id));
 			var value = new UserSearchCreate();
+
+			IList<UserSearch> searches = null;
+
+			if (base.Identity.IsAuthenticated())
+			{
+				searches = this.UserSearchService.GetAll(new UserSearchUserSpecification(base.Identity.Id));
+			}
 
 			value.Initialize(searches);
 
@@ -88,12 +88,6 @@ namespace Coders.Web.Controllers.Users
 			}
 
 			var search = this.UserSearchService.Create();
-			var privilege = new UserSearchPrivilege();
-
-			if (!privilege.CanCreate(search))
-			{
-				return NotAuthorized();
-			}
 
 			value.Validate();
 
@@ -108,7 +102,12 @@ namespace Coders.Web.Controllers.Users
 
 			value.CopyToModel(ModelState);
 
-			var searches = this.UserSearchService.GetAll(new UserSearchUserSpecification(base.Identity.Id));
+			IList<UserSearch> searches = null;
+
+			if (base.Identity.IsAuthenticated())
+			{
+				searches = this.UserSearchService.GetAll(new UserSearchUserSpecification(base.Identity.Id));
+			}
 
 			value.Initialize(searches);
 

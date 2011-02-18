@@ -17,6 +17,7 @@
 
 #region Using Directives
 using Coders.Models.Users;
+using Coders.Repositories.Strategies.Joins;
 using FluentNHibernate.Mapping;
 #endregion
 
@@ -51,11 +52,11 @@ namespace Coders.Repositories.Mappings
 				.Column("Expire")
 				.Nullable();
 
-			base.References(x => x.User)
+			base.References<UserMinimum>(x => x.User)
 				.Column("UserId")
 				.Not.Nullable();
 
-			base.References(x => x.Admin)
+			base.References<UserMinimum>(x => x.Admin)
 				.Column("AdminId")
 				.Not.Nullable();
 		}

@@ -30,7 +30,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserHostAddressSpecification_SatisfyEntityFrom()
 		{
 			var specification = new UserHostAddressSpecification("127.0.0.1");
-
 			var result = specification.SatisfyEntityFrom(this.Values);
 
 			Assert.AreEqual("127.0.0.1", result.HostAddress);
@@ -40,7 +39,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserHostAddressSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserHostAddressSpecification("127.0.0.1");
-
 			var results = specification.SatisfyEntitiesFrom(this.Values);
 
 			Assert.AreEqual(1, results.Count());

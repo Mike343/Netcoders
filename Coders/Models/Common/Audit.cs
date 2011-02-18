@@ -18,6 +18,7 @@
 #region Using Directives
 using System;
 using System.IO;
+using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using Coders.Models.Common.Enums;

@@ -34,9 +34,15 @@ namespace Coders.Web.Validators
 		/// Initializes a new instance of the <see cref="UserNameMustExistValidator"/> class.
 		/// </summary>
 		public UserNameMustExistValidator()
+			: this(ServiceLocator.Current.GetInstance<IUserService>())
+		{
+
+		}
+
+		public UserNameMustExistValidator(IUserService userService)
 			: base(Errors.UserNameNotFound)
 		{
-			this.UserService = ServiceLocator.Current.GetInstance<IUserService>();
+			this.UserService = userService;
 		}
 
 		/// <summary>

@@ -6,6 +6,8 @@ namespace Coders.Tests.Authentication
 	{
 		public FakeUserIdentity()
 		{
+			base.Id = 1;
+			base.Name = "test";
 			base.IsAuthenticated = true;
 		}
 

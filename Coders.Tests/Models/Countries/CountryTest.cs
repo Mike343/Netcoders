@@ -12,13 +12,12 @@ namespace Coders.Tests.Models.Countries
 		{
 			var countries = new List<Country>
 			{
-				new Country { Title = "United States" }, 
-				new Country { Title = "Canada" }
+				new Country { Title = "United States" }
 			};
 
 			Country.Cache(countries);
 
-			Assert.AreEqual(2, Country.Countries.Count);
+			Assert.AreEqual(1, Country.Countries.Count);
 		}
 	}
 }

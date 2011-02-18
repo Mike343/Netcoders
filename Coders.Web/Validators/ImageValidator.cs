@@ -35,9 +35,19 @@ namespace Coders.Web.Validators
 		/// Initializes a new instance of the <see cref="ImageValidator"/> class.
 		/// </summary>
 		public ImageValidator()
+			: this(ServiceLocator.Current.GetInstance<IImageService>())
+		{
+
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ImageValidator"/> class.
+		/// </summary>
+		/// <param name="imageService">The image service.</param>
+		public ImageValidator(IImageService imageService)
 			: base(Errors.ImageContentTypeNotValid)
 		{
-			this.ImageService = ServiceLocator.Current.GetInstance<IImageService>();
+			this.ImageService = imageService;
 		}
 
 		/// <summary>

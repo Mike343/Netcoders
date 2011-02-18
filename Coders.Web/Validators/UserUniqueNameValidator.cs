@@ -34,9 +34,19 @@ namespace Coders.Web.Validators
 		/// Initializes a new instance of the <see cref="UserUniqueNameValidator"/> class.
 		/// </summary>
 		public UserUniqueNameValidator()
-			: base(Errors.UserNameTaken)
+			: this(ServiceLocator.Current.GetInstance<IUserService>())
 		{
 			this.UserService = ServiceLocator.Current.GetInstance<IUserService>();
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UserUniqueNameValidator"/> class.
+		/// </summary>
+		/// <param name="userService">The user service.</param>
+		public UserUniqueNameValidator(IUserService userService)
+			: base(Errors.UserNameTaken)
+		{
+			this.UserService = userService;
 		}
 
 		/// <summary>

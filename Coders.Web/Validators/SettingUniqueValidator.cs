@@ -34,9 +34,19 @@ namespace Coders.Web.Validators
 		/// Initializes a new instance of the <see cref="SettingUniqueValidator"/> class.
 		/// </summary>
 		public SettingUniqueValidator()
+			: this(ServiceLocator.Current.GetInstance<ISettingService>())
+		{
+
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="SettingUniqueValidator"/> class.
+		/// </summary>
+		/// <param name="settingService">The setting service.</param>
+		public SettingUniqueValidator(ISettingService settingService)
 			: base(Errors.SettingKeyTaken)
 		{
-			this.SettingService = ServiceLocator.Current.GetInstance<ISettingService>();
+			this.SettingService = settingService;
 		}
 
 		/// <summary>

@@ -30,7 +30,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserNameSpecification_SatisfyEntityFrom()
 		{
 			var specification = new UserNameSpecification("Test");
-
 			var result = specification.SatisfyEntityFrom(this.Values);
 
 			Assert.AreEqual("Test", result.Name);
@@ -40,7 +39,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserNameSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserNameSpecification("Test");
-
 			var results = specification.SatisfyEntitiesFrom(this.Values);
 
 			Assert.AreEqual(1, results.Count());

@@ -157,7 +157,12 @@ namespace Coders.Services
 		/// </summary>
 		public void DeleteExpired()
 		{
-			throw new NotImplementedException();
+			var searches = base.GetAll(new UserHostSearchExpiredSpecification());
+
+			foreach (var search in searches)
+			{
+				this.Delete(search);
+			}
 		}
 	}
 }

@@ -40,11 +40,29 @@ namespace Coders.Web.Validators
 		/// </summary>
 		/// <param name="expression">The expression.</param>
 		public UserAuthorizeValidator(Expression<Func<T, string>> expression)
+			: this(
+			expression, 
+			ServiceLocator.Current.GetInstance<IAuthenticationService>(), 
+			ServiceLocator.Current.GetInstance<IUserService>())
+		{
+
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="UserAuthorizeValidator&lt;T&gt;"/> class.
+		/// </summary>
+		/// <param name="expression">The expression.</param>
+		/// <param name="authenticationService">The authentication service.</param>
+		/// <param name="userService">The user service.</param>
+		public UserAuthorizeValidator(
+			Expression<Func<T, string>> expression, 
+			IAuthenticationService authenticationService,
+			IUserService userService)
 			: base(Errors.UserAuthenticationFailed)
 		{
 			this.Bind = ExpressionHelper.GetExpressionText(expression);
-			this.AuthenticationService = ServiceLocator.Current.GetInstance<IAuthenticationService>();
-			this.UserService = ServiceLocator.Current.GetInstance<IUserService>();
+			this.AuthenticationService = authenticationService;
+			this.UserService = userService;
 		}
 
 		/// <summary>

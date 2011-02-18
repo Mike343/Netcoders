@@ -257,7 +257,7 @@ namespace Coders.Web.Controllers.Users.Administration
 
 			value.Initialize(user);
 
-			return base.View(Views.Update, value);
+			return base.View(Views.Reset, value);
 		}
 	}
 }

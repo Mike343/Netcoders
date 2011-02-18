@@ -118,7 +118,7 @@ namespace Coders.Web.Helpers
 						html.AddAttribute(HtmlTextWriterAttribute.Class, "prev");
 						html.RenderBeginTag(HtmlTextWriterTag.Li);
 
-						html.AddAttribute(HtmlTextWriterAttribute.Href, path.VirtualPath.AsRoot());
+						html.AddAttribute(HtmlTextWriterAttribute.Href, path.VirtualPath.AsRoot(this.Context.HttpContext));
 						html.RenderBeginTag(HtmlTextWriterTag.A);
 						html.Write("&laquo; prev");
 						html.RenderEndTag();
@@ -176,7 +176,7 @@ namespace Coders.Web.Helpers
 						html.AddAttribute(HtmlTextWriterAttribute.Class, "next");
 						html.RenderBeginTag(HtmlTextWriterTag.Li);
 
-						html.AddAttribute(HtmlTextWriterAttribute.Href, path.VirtualPath.AsRoot());
+						html.AddAttribute(HtmlTextWriterAttribute.Href, path.VirtualPath.AsRoot(this.Context.HttpContext));
 						html.RenderBeginTag(HtmlTextWriterTag.A);
 						html.Write("next &raquo;");
 						html.RenderEndTag();
@@ -239,7 +239,7 @@ namespace Coders.Web.Helpers
 				{
 					html.RenderBeginTag(HtmlTextWriterTag.Li);
 
-					html.AddAttribute(HtmlTextWriterAttribute.Href, path.VirtualPath.AsRoot());
+					html.AddAttribute(HtmlTextWriterAttribute.Href, path.VirtualPath.AsRoot(this.Context.HttpContext));
 					html.RenderBeginTag(HtmlTextWriterTag.A);
 					html.Write(index);
 					html.RenderEndTag();

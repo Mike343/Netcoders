@@ -1,4 +1,5 @@
-﻿using Microsoft.Practices.ServiceLocation;
+﻿using Coders.DependencyResolution;
+using Microsoft.Practices.ServiceLocation;
 using Ninject;
 using NUnit.Framework;
 
@@ -29,7 +30,6 @@ namespace Coders.Tests
 		{
 			var warrior = ServiceLocator.Current.GetInstance<IWarrior>();
 
-			Assert.IsInstanceOf(typeof(Samurai), warrior);
 			Assert.IsInstanceOf(typeof (Dagger), warrior.Weapon);
 		}
 	}

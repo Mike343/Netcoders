@@ -119,7 +119,7 @@ namespace Coders.Web.Models.Users
 		/// Gets or sets the user.
 		/// </summary>
 		/// <value>The user.</value>
-		public User User
+		public IUser User
 		{
 			get;
 			private set;
@@ -129,7 +129,7 @@ namespace Coders.Web.Models.Users
 		/// Initializes the specified user.
 		/// </summary>
 		/// <param name="user">The user.</param>
-		public void Initialize(User user)
+		public void Initialize(IUser user)
 		{
 			this.User = user;
 		}

@@ -25,7 +25,7 @@ namespace Coders.Authentication
 	/// 
 	/// </summary>
 	/// <typeparam name="T"></typeparam>
-	public class Privilege<T> : IPrivilege<T>
+	public class Privilege<T> : IPrivilege<T> where T : class
 	{
 		// private fields
 		private readonly PrivilegePrincipal _principal;

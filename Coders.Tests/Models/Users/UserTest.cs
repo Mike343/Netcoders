@@ -13,11 +13,11 @@ namespace Coders.Tests.Models.Users
 
 			user.UpdateReputation();
 
-			Assert.AreEqual(1, user.Reputation);
+			Assert.AreEqual(1, user.Reputation, "Add");
 
 			user.UpdateReputation(1, false);
 
-			Assert.AreEqual(0, user.Reputation);
+			Assert.AreEqual(0, user.Reputation, "Subtract");
 		}
 	}
 }

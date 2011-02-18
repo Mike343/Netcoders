@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using Coders.Authentication;
 using Coders.Extensions;
+using Coders.Models;
 using Coders.Tests.Authentication;
 using NUnit.Framework;
 
@@ -33,7 +34,7 @@ namespace Coders.Tests.Extensions
 		{
 			var principal = Thread.CurrentPrincipal as PrivilegePrincipal;
 
-			Assert.IsTrue(principal.ContainsRole("Test"));
+			Assert.IsTrue(principal.ContainsRole(Roles.Privileges));
 		}
 
 		[Test]

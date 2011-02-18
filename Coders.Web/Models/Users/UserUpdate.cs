@@ -136,7 +136,7 @@ namespace Coders.Web.Models.Users
 		{
 			get
 			{
-				return !this.Name.Equals(this.CurrentName);
+				return this.Name != this.CurrentName;
 			}
 		}
 
@@ -148,7 +148,7 @@ namespace Coders.Web.Models.Users
 		{
 			get
 			{
-				return !this.EmailAddress.Equals(this.CurrentEmailAddress);
+				return this.EmailAddress != this.CurrentEmailAddress;
 			}
 		}
 

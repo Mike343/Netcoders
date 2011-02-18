@@ -30,7 +30,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserRoleRelationUserSpecification_SatisfyEntityFrom()
 		{
 			var specification = new UserRoleRelationUserSpecification(1);
-
 			var result = specification.SatisfyEntityFrom(this.Values);
 
 			Assert.AreEqual(1, result.Id);
@@ -40,7 +39,6 @@ namespace Coders.Tests.Models.Users
 		public void Test_UserRoleRelationUserSpecification_SatisfyEntitiesFrom()
 		{
 			var specification = new UserRoleRelationUserSpecification(1);
-
 			var results = specification.SatisfyEntitiesFrom(this.Values);
 
 			Assert.AreEqual(1, results.Count());

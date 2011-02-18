@@ -17,7 +17,7 @@
 
 namespace Coders.Authentication
 {
-	public interface IPrivilege<in T>
+	public interface IPrivilege<in T> where T : class
 	{
 		/// <summary>
 		/// Determines whether this instance can view the specified entity.

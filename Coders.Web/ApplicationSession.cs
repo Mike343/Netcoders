@@ -39,10 +39,28 @@ namespace Coders.Web
 		/// Initializes a new instance of the <see cref="ApplicationSession"/> class.
 		/// </summary>
 		public ApplicationSession()
+			: this(
+			ServiceLocator.Current.GetInstance<IUserRoleService>(),
+			ServiceLocator.Current.GetInstance<IUserHostService>(),
+			ServiceLocator.Current.GetInstance<IRepository<User>>())
 		{
-			this.UserRoleService = ServiceLocator.Current.GetInstance<IUserRoleService>();
-			this.UserHostService = ServiceLocator.Current.GetInstance<IUserHostService>();
-			this.UserRepository = ServiceLocator.Current.GetInstance<IRepository<User>>();
+
+		}
+
+		/// <summary>
+		/// Initializes a new instance of the <see cref="ApplicationSession"/> class.
+		/// </summary>
+		/// <param name="userRoleService">The user role service.</param>
+		/// <param name="userHostService">The user host service.</param>
+		/// <param name="userRepository">The user repository.</param>
+		public ApplicationSession(
+			IUserRoleService userRoleService, 
+			IUserHostService userHostService, 
+			IRepository<User> userRepository)
+		{
+			this.UserRoleService = userRoleService;
+			this.UserHostService = userHostService;
+			this.UserRepository = userRepository;
 		}
 
 		/// <summary>
@@ -124,7 +142,7 @@ namespace Coders.Web
 		{
 			if (session == null)
 			{
-				throw new ArgumentNullException("session");
+				return;
 			}
 
 			session[SessionKey] = null;

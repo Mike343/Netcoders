@@ -17,6 +17,7 @@
 
 #region Using Directives
 using Coders.Models.Users;
+using Coders.Repositories.Strategies.Joins;
 using FluentNHibernate.Mapping;
 #endregion
 
@@ -39,7 +40,7 @@ namespace Coders.Repositories.Mappings
 				.Column("HostAddress")
 				.Not.Nullable();
 
-			base.References(x => x.User)
+			base.References<UserMinimum>(x => x.User)
 				.Column("UserId")
 				.Not.Nullable();
 		}

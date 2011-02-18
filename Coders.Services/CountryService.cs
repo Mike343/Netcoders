@@ -18,6 +18,7 @@
 #region Using Directives
 using System;
 using System.Collections.Generic;
+using Coders.Extensions;
 using Coders.Models;
 using Coders.Models.Common;
 using Coders.Models.Common.Enums;
@@ -79,6 +80,8 @@ namespace Coders.Services
 				throw new ArgumentNullException("entity");
 			}
 
+			entity.Slug = entity.Title.Slug();
+
 			base.Insert(entity);
 
 			this.AuditService.Audit(entity, AuditAction.Create);
@@ -94,6 +97,8 @@ namespace Coders.Services
 			{
 				throw new ArgumentNullException("entity");
 			}
+
+			entity.Slug = entity.Title.Slug();
 
 			base.Update(entity);
 

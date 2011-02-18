@@ -71,9 +71,16 @@ namespace Coders.Web
 				? AppDomain.CurrentDomain.BaseDirectory 
 				: Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AppDomain.CurrentDomain.RelativeSearchPath);
 
+			var files = new List<string>();
+			var patterns = new[] { "*.Web.dll", "*.Tests.dll" };
+
+			foreach (var pattern in patterns)
+			{
+				files.AddRange(Directory.GetFiles(path, pattern));
+			}
+
 			// find all the assemblies ending in web
-			var assemblies = Directory.GetFiles(path, "*.Web.dll")
-				.Select(Path.GetFileNameWithoutExtension);
+			var assemblies = files.Select(Path.GetFileNameWithoutExtension);
 
 			// get the installer instances
 			var instances = assemblies.GetInstances();
